@@ -100,7 +100,7 @@ module Ioki
         when :array
           if value.respond_to?(:map) && model_class
             value.map do |el|
-              model_class.new(el) if el.is_a?(Hash)
+              el.is_a?(Hash) ? model_class.new(el) : el
             end
           else
             Array(value)
