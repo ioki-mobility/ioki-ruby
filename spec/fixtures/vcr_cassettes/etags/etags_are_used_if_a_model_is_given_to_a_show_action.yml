@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/drivers/drv_f8e8bece-2245-43bb-bdc6-aed97672b412
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"4f616ce724e97935ddcba01e35455d16"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b3663181-a92a-42aa-ad6d-81437a78f927
+      Date:
+      - Tue, 05 Oct 2021 07:49:03 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkYXRhIjp7ImlkIjoiZHJ2X2Y4ZThiZWNlLTIyNDUtNDNiYi1iZGM2LWFlZDk3NjcyYjQxMiIsImNyZWF0ZWRfYXQiOiIyMDIxLTA0LTE1VDExOjQ2OjU5WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTA4LTEwVDEwOjE3OjA1WiIsInZlcnNpb24iOjM3LCJjb25uZWN0ZWRfdmVoaWNsZV9pZCI6bnVsbCwiZXh0ZXJuYWxfaWQiOm51bGwsImRpc3BsYXlfbmFtZSI6IlNlZSBCLiIsImZpcnN0X25hbWUiOiJTZWUiLCJsYXN0X25hbWUiOiJCw6RyIiwibG9jYWxlIjoiZGUiLCJsb2NrZWRfYXQiOm51bGwsInBob25lX251bWJlciI6bnVsbCwidXNlcm5hbWUiOiJzZWViciIsInR5cGUiOiJkcml2ZXIifX0=
+  recorded_at: Tue, 05 Oct 2021 07:49:03 GMT
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/drivers/drv_f8e8bece-2245-43bb-bdc6-aed97672b412
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      If-None-Match:
+      - W/"4f616ce724e97935ddcba01e35455d16"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 304
+      message: Not Modified
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Vary:
+      - Accept
+      Content-Language:
+      - de
+      Etag:
+      - W/"4f616ce724e97935ddcba01e35455d16"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 663b2eea-75b6-4e85-b721-8b0c42c1bc1b
+      Date:
+      - Tue, 05 Oct 2021 07:49:03 GMT
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 05 Oct 2021 07:49:03 GMT
+recorded_with: VCR 6.0.0

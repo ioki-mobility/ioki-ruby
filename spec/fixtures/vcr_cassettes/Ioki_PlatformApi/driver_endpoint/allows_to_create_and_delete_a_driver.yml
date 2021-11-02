@@ -1,0 +1,346 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/products
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"0da9480c10e7cc8850c28f671dd53138"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0d2d46e8-6581-42e2-9c8c-80142c6335ea
+      Date:
+      - Tue, 05 Oct 2021 07:48:39 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":"prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556","created_at":"2021-04-13T08:43:59Z","updated_at":"2021-09-30T10:11:11Z","version":63,"ad_hoc_bookable":true,"description":"This
+        product is used to test our APIs.","name":"Webbooking Test Product","service_time_info":"","prebookable":true,"ride_options":{"passengers":{"types":[{"type":"adult"}],"wheelchair":true,"walker":false,"public_transport_ticket":false,"bahncard":false,"blue_badge":false,"name_required_if_no_public_transport_ticket":false},"book_for_others":false,"destination_time_based_matching":true,"max_passengers":7,"max_storage_spaces":1,"max_wheelchairs":0,"max_walkers":0,"prebooking_threshold":{"min":180,"max":604800}},"ride_rating_criteria":["ride_rating","waiting_time_rating","punctuality_rating"],"timezone":{"identifier":"Europe/Berlin","utc_offset":3600},"area":{"coordinates":[[[[8.675079345703125,54.40014786826661],[8.650703430175781,54.39055369012342],[8.646583557128904,54.37955760256639],[8.654823303222656,54.37415844505573],[8.690872192382812,54.37135860235671],[8.690185546875,54.35575598361581],[8.662033081054688,54.34915309141559],[8.645210266113281,54.34034758462987],[8.63250732421875,54.33874638072146],[8.623924255371094,54.34374993587144],[8.601608276367188,54.33994728949938],[8.599205017089844,54.32273091140167],[8.608818054199219,54.30951345350935],[8.630104064941406,54.30170114166421],[8.656196594238281,54.2836670703751],[8.680915832519531,54.27825530893341],[8.705291748046875,54.29288547126026],[8.719711303710936,54.28907812098708],[8.73687744140625,54.29448846081451],[8.744430541992188,54.2930858483669],[8.747520446777344,54.28987969766288],[8.759193420410156,54.2918835711024],[8.768806457519531,54.289478911275],[8.770179748535156,54.28206365961121],[8.782196044921875,54.28146236448578],[8.823051452636719,54.29168318814591],[8.840217590332031,54.31572218220585],[8.8330078125,54.33534361534531],[8.828544616699219,54.35095398542096],[8.834724426269529,54.35375521923379],[8.817901611328125,54.37095860924334],[8.827171325683594,54.37795792621687],[8.822364807128906,54.38795488075699],[8.802452087402344,54.39615056670082],[8.800392150878906,54.40214637298808],[8.820304870605469,54.40314558883448],[8.819618225097656,54.40814130293445],[8.808975219726562,54.40993961104121],[8.741340637207031,54.39874885702449],[8.72314453125,54.39834913076302],[8.717994689941406,54.39914857939097],[8.709754943847656,54.39914857939097],[8.699455261230469,54.3969500581744],[8.675079345703125,54.40014786826661]]]],"type":"MultiPolygon"},"bounding_box":{"max":{"lat":54.40993961104121,"lng":8.840217590332031},"min":{"lat":54.27825530893341,"lng":8.599205017089844}},"fixed_stations":[],"matching_configurations":[{"id":"mcf_539610bf-3e63-404a-b881-884832a1bf95","created_at":"2021-04-13T08:48:08Z","updated_at":"2021-08-06T12:48:37Z","name":"Eiderstedt","slug":"eiderstedt","area":{"coordinates":[[[[8.675079345703125,54.40014786826661],[8.650703430175781,54.39055369012342],[8.646583557128904,54.37955760256639],[8.654823303222656,54.37415844505573],[8.690872192382812,54.37135860235671],[8.690185546875,54.35575598361581],[8.662033081054688,54.34915309141559],[8.645210266113281,54.34034758462987],[8.63250732421875,54.33874638072146],[8.623924255371094,54.34374993587144],[8.601608276367188,54.33994728949938],[8.599205017089844,54.32273091140167],[8.608818054199219,54.30951345350935],[8.630104064941406,54.30170114166421],[8.656196594238281,54.2836670703751],[8.680915832519531,54.27825530893341],[8.705291748046875,54.29288547126026],[8.719711303710936,54.28907812098708],[8.73687744140625,54.29448846081451],[8.744430541992188,54.2930858483669],[8.747520446777344,54.28987969766288],[8.759193420410156,54.2918835711024],[8.768806457519531,54.289478911275],[8.770179748535156,54.28206365961121],[8.782196044921875,54.28146236448578],[8.823051452636719,54.29168318814591],[8.840217590332031,54.31572218220585],[8.8330078125,54.33534361534531],[8.828544616699219,54.35095398542096],[8.834724426269529,54.35375521923379],[8.817901611328125,54.37095860924334],[8.827171325683594,54.37795792621687],[8.822364807128906,54.38795488075699],[8.802452087402344,54.39615056670082],[8.800392150878906,54.40214637298808],[8.820304870605469,54.40314558883448],[8.819618225097656,54.40814130293445],[8.808975219726562,54.40993961104121],[8.741340637207031,54.39874885702449],[8.72314453125,54.39834913076302],[8.717994689941406,54.39914857939097],[8.709754943847656,54.39914857939097],[8.699455261230469,54.3969500581744],[8.675079345703125,54.40014786826661]]]],"type":"MultiPolygon"},"type":"matching_configuration"}],"provider":{"id":"prv_a0e7939f-2352-43d3-8328-25f532931672","created_at":"2021-04-13T08:36:22Z","updated_at":"2021-08-23T13:56:12Z","version":12,"city":"Frankfurt
+        am Main","country_code":"DE","currency":"EUR","current_tos_date":"2021-01-01","logpay_payment_method_types":[],"merchant_name":"ioki
+        GmbH","name":"Webbooking Test Provider","payment_method_types":["cash","service_credits","external_payment"],"personal_discount_payment_method_types":["service_credits","external_payment"],"postal_code":"60322","psp":"no_psp","ride_payment_method_types":["cash","service_credits"],"service_credit_payment_method_types":[],"street_name":"An
+        der Welle","street_number":"3","stripe_payment_method_types":[],"tip_payment_method_types":[],"service_credit_options":{"packages":[]},"type":"provider"},"type":"product"}],"meta":{"page":1,"last_page":true}}'
+  recorded_at: Tue, 05 Oct 2021 07:48:39 GMT
+- request:
+    method: post
+    uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/drivers
+    body:
+      encoding: UTF-8
+      string: '{"data":{"username":"vcr-suszab","first_name":"Suzie","last_name":"Sabastian"}}'
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"ae3205702d6abd41879705f7f0643cbc"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - d3c75379-8697-43f0-9f34-94523ec37624
+      Date:
+      - Tue, 05 Oct 2021 07:48:40 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"drv_f73bdfa2-d890-4102-87d5-258ef8dd1ba1","created_at":"2021-10-05T07:48:40Z","updated_at":"2021-10-05T07:48:40Z","version":0,"connected_vehicle_id":null,"external_id":null,"display_name":"Suzie
+        S.","first_name":"Suzie","last_name":"Sabastian","locale":"de","locked_at":null,"phone_number":null,"username":"vcr-suszab","type":"driver"}}'
+  recorded_at: Tue, 05 Oct 2021 07:48:40 GMT
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/drivers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"3cb8eda12f4196aa2112880e0243e8b5"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - c3162355-d46f-40d1-a8b4-21be61219bec
+      Date:
+      - Tue, 05 Oct 2021 07:48:41 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkYXRhIjpbeyJpZCI6ImRydl9mOGU4YmVjZS0yMjQ1LTQzYmItYmRjNi1hZWQ5NzY3MmI0MTIiLCJjcmVhdGVkX2F0IjoiMjAyMS0wNC0xNVQxMTo0Njo1OVoiLCJ1cGRhdGVkX2F0IjoiMjAyMS0wOC0xMFQxMDoxNzowNVoiLCJ2ZXJzaW9uIjozNywiY29ubmVjdGVkX3ZlaGljbGVfaWQiOm51bGwsImV4dGVybmFsX2lkIjpudWxsLCJkaXNwbGF5X25hbWUiOiJTZWUgQi4iLCJmaXJzdF9uYW1lIjoiU2VlIiwibGFzdF9uYW1lIjoiQsOkciIsImxvY2FsZSI6ImRlIiwibG9ja2VkX2F0IjpudWxsLCJwaG9uZV9udW1iZXIiOm51bGwsInVzZXJuYW1lIjoic2VlYnIiLCJ0eXBlIjoiZHJpdmVyIn0seyJpZCI6ImRydl85MTQwMjI5NS0xMWIwLTQwYWItOGM4MC0wMGJkMmEwNWFlMDciLCJjcmVhdGVkX2F0IjoiMjAyMS0wNy0wNlQxMDoxNToxNFoiLCJ1cGRhdGVkX2F0IjoiMjAyMS0wNy0wNlQxMDoxNToxNFoiLCJ2ZXJzaW9uIjowLCJjb25uZWN0ZWRfdmVoaWNsZV9pZCI6bnVsbCwiZXh0ZXJuYWxfaWQiOm51bGwsImRpc3BsYXlfbmFtZSI6IkZlcmRpIEMuIiwiZmlyc3RfbmFtZSI6IkZlcmRpIiwibGFzdF9uYW1lIjoiQy4iLCJsb2NhbGUiOiJkZSIsImxvY2tlZF9hdCI6bnVsbCwicGhvbmVfbnVtYmVyIjoiKzQ5MTc2MjczODI3MzYiLCJ1c2VybmFtZSI6ImZlcmRpYyIsInR5cGUiOiJkcml2ZXIifSx7ImlkIjoiZHJ2XzEzY2RkZDQyLTIwNDgtNDY0OC04MmEyLTQ5YmI5OWJlZWIzNyIsImNyZWF0ZWRfYXQiOiIyMDIxLTA4LTEwVDA3OjUwOjM3WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTA4LTEwVDA3OjUyOjQ5WiIsInZlcnNpb24iOjEsImNvbm5lY3RlZF92ZWhpY2xlX2lkIjpudWxsLCJleHRlcm5hbF9pZCI6bnVsbCwiZGlzcGxheV9uYW1lIjoiQ2xhaXIgTC4iLCJmaXJzdF9uYW1lIjoiQ2xhaXIiLCJsYXN0X25hbWUiOiJMaWVib2xkIiwibG9jYWxlIjoiZGUiLCJsb2NrZWRfYXQiOm51bGwsInBob25lX251bWJlciI6bnVsbCwidXNlcm5hbWUiOiJjbGFpcmxpNiIsInR5cGUiOiJkcml2ZXIifSx7ImlkIjoiZHJ2X2Y3M2JkZmEyLWQ4OTAtNDEwMi04N2Q1LTI1OGVmOGRkMWJhMSIsImNyZWF0ZWRfYXQiOiIyMDIxLTEwLTA1VDA3OjQ4OjQwWiIsInVwZGF0ZWRfYXQiOiIyMDIxLTEwLTA1VDA3OjQ4OjQwWiIsInZlcnNpb24iOjAsImNvbm5lY3RlZF92ZWhpY2xlX2lkIjpudWxsLCJleHRlcm5hbF9pZCI6bnVsbCwiZGlzcGxheV9uYW1lIjoiU3V6aWUgUy4iLCJmaXJzdF9uYW1lIjoiU3V6aWUiLCJsYXN0X25hbWUiOiJTYWJhc3RpYW4iLCJsb2NhbGUiOiJkZSIsImxvY2tlZF9hdCI6bnVsbCwicGhvbmVfbnVtYmVyIjpudWxsLCJ1c2VybmFtZSI6InZjci1zdXN6YWIiLCJ0eXBlIjoiZHJpdmVyIn1dLCJtZXRhIjp7InBhZ2UiOjEsImxhc3RfcGFnZSI6dHJ1ZX19
+  recorded_at: Tue, 05 Oct 2021 07:48:41 GMT
+- request:
+    method: delete
+    uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/drivers/drv_f73bdfa2-d890-4102-87d5-258ef8dd1ba1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"c5c5056c30ce04bb5983a4680bd02ff4"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 6ac02896-b62f-4dd8-b682-1f0506230f81
+      Date:
+      - Tue, 05 Oct 2021 07:48:41 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"drv_f73bdfa2-d890-4102-87d5-258ef8dd1ba1","created_at":"2021-10-05T07:48:40Z","updated_at":"2021-10-05T07:48:41Z","version":1,"connected_vehicle_id":null,"external_id":null,"display_name":"Archivierter
+        F.","first_name":"Archivierter","last_name":"Fahrer","locale":"de","locked_at":null,"phone_number":null,"username":null,"type":"driver"}}'
+  recorded_at: Tue, 05 Oct 2021 07:48:41 GMT
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/drivers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"84f197a91552a392f7f51447de3d3780"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 5b9cb840-1a21-4ec1-ba7e-477c4f57fb84
+      Date:
+      - Tue, 05 Oct 2021 07:48:41 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkYXRhIjpbeyJpZCI6ImRydl9mOGU4YmVjZS0yMjQ1LTQzYmItYmRjNi1hZWQ5NzY3MmI0MTIiLCJjcmVhdGVkX2F0IjoiMjAyMS0wNC0xNVQxMTo0Njo1OVoiLCJ1cGRhdGVkX2F0IjoiMjAyMS0wOC0xMFQxMDoxNzowNVoiLCJ2ZXJzaW9uIjozNywiY29ubmVjdGVkX3ZlaGljbGVfaWQiOm51bGwsImV4dGVybmFsX2lkIjpudWxsLCJkaXNwbGF5X25hbWUiOiJTZWUgQi4iLCJmaXJzdF9uYW1lIjoiU2VlIiwibGFzdF9uYW1lIjoiQsOkciIsImxvY2FsZSI6ImRlIiwibG9ja2VkX2F0IjpudWxsLCJwaG9uZV9udW1iZXIiOm51bGwsInVzZXJuYW1lIjoic2VlYnIiLCJ0eXBlIjoiZHJpdmVyIn0seyJpZCI6ImRydl85MTQwMjI5NS0xMWIwLTQwYWItOGM4MC0wMGJkMmEwNWFlMDciLCJjcmVhdGVkX2F0IjoiMjAyMS0wNy0wNlQxMDoxNToxNFoiLCJ1cGRhdGVkX2F0IjoiMjAyMS0wNy0wNlQxMDoxNToxNFoiLCJ2ZXJzaW9uIjowLCJjb25uZWN0ZWRfdmVoaWNsZV9pZCI6bnVsbCwiZXh0ZXJuYWxfaWQiOm51bGwsImRpc3BsYXlfbmFtZSI6IkZlcmRpIEMuIiwiZmlyc3RfbmFtZSI6IkZlcmRpIiwibGFzdF9uYW1lIjoiQy4iLCJsb2NhbGUiOiJkZSIsImxvY2tlZF9hdCI6bnVsbCwicGhvbmVfbnVtYmVyIjoiKzQ5MTc2MjczODI3MzYiLCJ1c2VybmFtZSI6ImZlcmRpYyIsInR5cGUiOiJkcml2ZXIifSx7ImlkIjoiZHJ2XzEzY2RkZDQyLTIwNDgtNDY0OC04MmEyLTQ5YmI5OWJlZWIzNyIsImNyZWF0ZWRfYXQiOiIyMDIxLTA4LTEwVDA3OjUwOjM3WiIsInVwZGF0ZWRfYXQiOiIyMDIxLTA4LTEwVDA3OjUyOjQ5WiIsInZlcnNpb24iOjEsImNvbm5lY3RlZF92ZWhpY2xlX2lkIjpudWxsLCJleHRlcm5hbF9pZCI6bnVsbCwiZGlzcGxheV9uYW1lIjoiQ2xhaXIgTC4iLCJmaXJzdF9uYW1lIjoiQ2xhaXIiLCJsYXN0X25hbWUiOiJMaWVib2xkIiwibG9jYWxlIjoiZGUiLCJsb2NrZWRfYXQiOm51bGwsInBob25lX251bWJlciI6bnVsbCwidXNlcm5hbWUiOiJjbGFpcmxpNiIsInR5cGUiOiJkcml2ZXIifV0sIm1ldGEiOnsicGFnZSI6MSwibGFzdF9wYWdlIjp0cnVlfX0=
+  recorded_at: Tue, 05 Oct 2021 07:48:41 GMT
+recorded_with: VCR 6.0.0

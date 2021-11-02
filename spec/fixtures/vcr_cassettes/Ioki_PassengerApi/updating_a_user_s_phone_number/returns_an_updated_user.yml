@@ -1,0 +1,342 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/providers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"a6d7faab2533aaeaab2dc3d472eebe0c"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 5a258172-d90b-4952-8e48-55f2e3f50c1e
+      Date:
+      - Tue, 05 Oct 2021 07:50:27 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":"prv_a0e7939f-2352-43d3-8328-25f532931672","created_at":"2021-04-13T08:36:22Z","updated_at":"2021-08-23T13:56:12Z","version":12,"city":"Frankfurt
+        am Main","country_code":"DE","currency":"EUR","current_tos_date":"2021-01-01","logpay_payment_method_types":[],"merchant_name":"ioki
+        GmbH","name":"Webbooking Test Provider","payment_method_types":["cash","service_credits","external_payment"],"personal_discount_payment_method_types":["service_credits","external_payment"],"postal_code":"60322","psp":"no_psp","ride_payment_method_types":["cash","service_credits"],"service_credit_payment_method_types":[],"street_name":"An
+        der Welle","street_number":"3","stripe_payment_method_types":[],"tip_payment_method_types":[],"service_credit_options":{"packages":[]},"type":"provider"}],"meta":{"page":1,"last_page":true}}'
+  recorded_at: Tue, 05 Oct 2021 07:50:27 GMT
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/providers/prv_a0e7939f-2352-43d3-8328-25f532931672/users/usr_aa88fd04-c8d2-4d7b-bbea-2d6096bf5f28
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"5a3e49e19a27c3283a84665f487f99f2"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 1a2b270e-ae36-4f55-a271-7159e4947040
+      Date:
+      - Tue, 05 Oct 2021 07:50:27 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"usr_aa88fd04-c8d2-4d7b-bbea-2d6096bf5f28","created_at":"2021-09-20T08:13:18Z","updated_at":"2021-10-04T07:00:27Z","version":20,"external_id":"usr_ae26ac71-2547-43ea-a2a5-7fe339a0d859","first_name":"Andreas","last_name":"Hellwig","locale":"de","lock_reason":null,"lock_type":null,"locked_at":null,"phone_number":"+16465550193","terms_accepted_at":"2021-09-20T08:13:18Z","email":null,"type":"user"}}'
+  recorded_at: Tue, 05 Oct 2021 07:50:27 GMT
+- request:
+    method: post
+    uri: https://demo.io.ki/api/platform/providers/prv_a0e7939f-2352-43d3-8328-25f532931672/users/usr_aa88fd04-c8d2-4d7b-bbea-2d6096bf5f28/request_tokens
+    body:
+      encoding: UTF-8
+      string: '{"data":{"client_identifier":"dev.passengerapi.test.backend"}}'
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"344202675501ee86159665505d5d2e97"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - c80938f8-8875-4881-9071-901ef97eaba3
+      Date:
+      - Tue, 05 Oct 2021 07:50:27 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"tok_fa3ee57c-edce-404a-b9d6-29aa1e8fca5d","created_at":"2021-10-05T07:50:27Z","updated_at":"2021-10-05T07:50:27Z","token":"g7c5Fpgs39V184pSn2U3RTEz","user_id":"usr_aa88fd04-c8d2-4d7b-bbea-2d6096bf5f28","type":"passenger_request_token"}}'
+  recorded_at: Tue, 05 Oct 2021 07:50:27 GMT
+- request:
+    method: post
+    uri: https://demo.io.ki/api/passenger/phone_verification_requests
+    body:
+      encoding: UTF-8
+      string: '{"data":{"phone_number":"+16465550197","us_data_transfer_accepted":null}}'
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '1'
+      X-Client-Identifier:
+      - dev.passengerapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"a377bcb373add4cb46448585f4263401"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 5bf48d5f-287e-4e2d-87b8-c39feaf214a3
+      Date:
+      - Tue, 05 Oct 2021 07:50:27 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"pvr_9e9a6eba-0b48-4096-b5d9-e5c944645f30","created_at":"2021-10-05T07:50:27Z","updated_at":"2021-10-05T07:50:27Z","phone_number":"+16465550197","type":"phone_verification_request"}}'
+  recorded_at: Tue, 05 Oct 2021 07:50:27 GMT
+- request:
+    method: patch
+    uri: https://demo.io.ki/api/passenger/user/phone_number
+    body:
+      encoding: UTF-8
+      string: '{"data":{"phone_number":"+16465550197","code":"646197"}}'
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '1'
+      X-Client-Identifier:
+      - dev.passengerapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"834299ce5dfd7687bafae06fb39956b9"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 951bc8c4-bb50-4db8-8ecf-471091773ced
+      Date:
+      - Tue, 05 Oct 2021 07:50:27 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"usr_aa88fd04-c8d2-4d7b-bbea-2d6096bf5f28","created_at":"2021-09-20T08:13:18Z","updated_at":"2021-10-05T07:50:27Z","version":21,"airship_named_user_id":null,"allow_marketing":null,"analytics_tracking":null,"current_terms_accepted":true,"display_name":"Andreas
+        H.","failed_payments":false,"first_name":"Andreas","last_name":"Hellwig","locale":"de","logpay_customer_set":false,"minimum_age_confirmed":false,"phone_number":"+16465550197","referral_code":"WTPNGLWNC7","referring_user_set":false,"registered":true,"remaining_referrals":0,"unique_customer_id":"TW288B","email":null,"type":"user"}}'
+  recorded_at: Tue, 05 Oct 2021 07:50:27 GMT
+recorded_with: VCR 6.0.0

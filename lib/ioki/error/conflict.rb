@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+module Ioki
+  module Error
+    class Conflict < Ioki::Error::Base
+    end
+  end
+end

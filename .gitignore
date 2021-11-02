@@ -1,0 +1,18 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/spec/fixtures/open_api_definitions
+/tmp/
+
+# rspec failure tracking
+.rspec_status
+
+# Use 'direnv' and place your credentials here if you want easy access
+# to your demo env or whatever instance you work with:
+.envrc
+
+.DS_Store

@@ -1,0 +1,33 @@
+name: CI for all of schalter
+
+on: [push]
+
+jobs:
+  linting:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v2
+      - name: Bundle install and cache result
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rubocop
+        run: |
+          bundle exec rubocop
+
+  backend-services:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v2
+      - name: Bundle install and cache result
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rspec
+        run: |
+          source .github/ci_workflow.env
+          bundle exec rspec
