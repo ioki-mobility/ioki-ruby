@@ -6,12 +6,12 @@ RSpec.describe Ioki::Configuration do
   let(:config) { described_class.new }
 
   describe 'constants' do
-    it 'defines DEFAULT_API_BASE_URL' do
-      expect(described_class::DEFAULT_API_BASE_URL).to eq('https://app.io.ki/api/')
+    it 'defines DEFAULT_VALUES[:api_base_url]' do
+      expect(described_class::DEFAULT_VALUES[:api_base_url]).to eq('https://app.io.ki/api/')
     end
 
-    it 'defines DEFAULT_API_VERSION' do
-      expect(described_class::DEFAULT_API_VERSION).to eq('20210101')
+    it 'defines DEFAULT_VALUES[:api_version]' do
+      expect(described_class::DEFAULT_VALUES[:api_version]).to eq('20210101')
     end
   end
 
@@ -53,8 +53,8 @@ RSpec.describe Ioki::Configuration do
           http_adapter:          :faraday,
           verbose_output:        false,
           logger:                logger_double,
-          api_base_url:          described_class::DEFAULT_API_BASE_URL,
-          api_version:           described_class::DEFAULT_API_VERSION,
+          api_base_url:          described_class::DEFAULT_VALUES[:api_base_url],
+          api_version:           described_class::DEFAULT_VALUES[:api_version],
           api_client_identifier: nil,
           api_client_secret:     nil,
           api_client_version:    nil,
@@ -74,7 +74,7 @@ RSpec.describe Ioki::Configuration do
 
     describe '#reset!' do
       described_class::CONFIG_KEYS.each do |attribute|
-        it "resets #{attribute} to the default value" do
+        it "resets #{attribute} to values from ENV" do
           config.send(:"#{attribute}=", :dummy_value)
 
           expect { config.reset! }.to change {
@@ -82,6 +82,33 @@ RSpec.describe Ioki::Configuration do
           }.from(:dummy_value).to(EXPECTED_DEFAULTS[attribute])
         end
       end
+    end
+  end
+
+  describe 'loading config from environment variables' do
+    it 'works without any arguments' do
+      stub_const(
+        'ENV',
+        'IOKI_HTTP_ADAPTER'          => 'ADAPTER',
+        'IOKI_API_BASE_URL'          => 'BASE_URL',
+        'IOKI_VERBOSE_OUTPUT'        => 'true',
+        'IOKI_API_VERSION'           => 'API_VERSION',
+        'IOKI_API_CLIENT_IDENTIFIER' => 'CLIENT_IDENTIFIER',
+        'IOKI_API_CLIENT_SECRET'     => 'CLIENT_SECRET',
+        'IOKI_API_CLIENT_VERSION'    => 'CLIENT_VERSION',
+        'IOKI_API_TOKEN'             => 'API_TOKEN'
+      )
+
+      config_from_env = described_class.from_env
+
+      expect(config_from_env.http_adapter).to eq :ADAPTER
+      expect(config_from_env.api_base_url).to eq 'BASE_URL'
+      expect(config_from_env.verbose_output).to be true
+      expect(config_from_env.api_version).to eq 'API_VERSION'
+      expect(config_from_env.api_client_identifier).to eq 'CLIENT_IDENTIFIER'
+      expect(config_from_env.api_client_secret).to eq 'CLIENT_SECRET'
+      expect(config_from_env.api_client_version).to eq 'CLIENT_VERSION'
+      expect(config_from_env.api_token).to eq 'API_TOKEN'
     end
   end
 end
