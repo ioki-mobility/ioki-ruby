@@ -30,7 +30,7 @@ RSpec.describe Ioki::DriverApi do
     it 'calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/driver/request_tokens')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(driver_client.create_request_token(request_token, options)).

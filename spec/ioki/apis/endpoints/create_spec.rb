@@ -20,7 +20,10 @@ RSpec.describe Endpoints::Create do
         headers: client.all_headers,
         params:  params
       ).and_return(
-        { 'data' => { 'id' => '0815', name: 'attributes altered by server' } }
+        [
+          { 'data' => { 'id' => '0815', name: 'attributes altered by server' } },
+          instance_double(Faraday::Response, headers: { etag: 'ETAG' })
+        ]
       )
 
       result = endpoint.call(client, model, [], params: params)
@@ -29,6 +32,7 @@ RSpec.describe Endpoints::Create do
       expect(result).not_to eq(model)
       expect(result.id).to eq('0815')
       expect(result.name).to eq('attributes altered by server')
+      expect(result._etag).to eq('ETAG')
     end
 
     context 'when the passed model instance has the wrong class' do

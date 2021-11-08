@@ -102,7 +102,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_station('0815', station, options)).
@@ -117,7 +117,7 @@ RSpec.describe Ioki::PlatformApi do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations/4711')
         expect(params[:method]).to eq :patch
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.update_station('0815', station, options)).
@@ -167,7 +167,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_vehicle('0815', vehicle, options)).
@@ -181,7 +181,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles/4711')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.update_vehicle('0815', vehicle, options)).
@@ -231,7 +231,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_ride('0815', ride, options)).
@@ -269,7 +269,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_user('0815', user, options)).
@@ -283,7 +283,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users/4711')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.update_user('0815', user, options)).
@@ -333,7 +333,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_driver('0815', driver, options)).
@@ -347,8 +347,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711')
-
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.update_driver('0815', driver, options)).
@@ -398,7 +397,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_driver_vehicle_connection('0815', driver_vehicle_connection, options)).
@@ -412,8 +411,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections/4711')
-
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.update_driver_vehicle_connection('0815', driver_vehicle_connection, options)).
@@ -475,7 +473,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/rating')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_rating('0815', rating, options)).
@@ -489,8 +487,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/rating/1337')
-
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.update_rating('0815', '4711', rating, options)).
@@ -516,7 +513,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/booking')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_booking('0815', '4711', booking, options)).
@@ -530,7 +527,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users/4711/request_tokens')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_request_token('0815', '4711', passenger_request_token, options)).
@@ -544,7 +541,7 @@ RSpec.describe Ioki::PlatformApi do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/ride_inquiry')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(platform_client.create_ride_inquiry('0815', ride_inquiry, options)).

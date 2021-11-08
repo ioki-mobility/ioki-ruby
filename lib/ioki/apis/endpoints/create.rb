@@ -28,11 +28,10 @@ module Endpoints
       outgoing_model_class = @outgoing_model_class || options[:outgoing_model_class] || model_class
 
       unless model.is_a?(outgoing_model_class)
-        raise(ArgumentError,
-              "#{model} is not an instance of #{outgoing_model_class}")
+        raise(ArgumentError, "#{model} is not an instance of #{outgoing_model_class}")
       end
 
-      parsed_response, = client.request(
+      parsed_response, response = client.request(
         url:     client.build_request_url(*Endpoints.url_elements(name, full_path, *args)),
         method:  :post,
         body:    { data: model.serialize(:create) }.to_json,
@@ -40,7 +39,7 @@ module Endpoints
         params:  options[:params]
       )
 
-      model_class.new(parsed_response['data'])
+      model_class.new(parsed_response['data'], response.headers[:etag])
     end
   end
 end
