@@ -4,9 +4,13 @@ require 'ioki/std_out_logger'
 
 module Ioki
   class Configuration
-    DEFAULT_HTTP_ADAPTER            = 'faraday'
-    DEFAULT_API_BASE_URL            = 'https://app.io.ki/api/'
-    DEFAULT_API_VERSION             = '20210101'
+    DEFAULT_VALUES =
+      {
+        http_adapter: :faraday,
+        api_base_url: 'https://app.io.ki/api/',
+        api_version:  '20210101',
+        language:     'de'
+      }.freeze
 
     CONFIG_KEYS = [
       :http_adapter,
@@ -23,30 +27,43 @@ module Ioki
 
     attr_accessor(*CONFIG_KEYS)
 
-    def initialize(params = {})
-      @http_adapter = (params[:http_adapter] || DEFAULT_HTTP_ADAPTER).to_sym
-      @verbose_output = params[:verbose_output] == 'true'
+    def initialize(params = DEFAULT_VALUES)
+      @http_adapter = params[:http_adapter].to_sym
+      @verbose_output = ['true', true].include?(params[:verbose_output])
       @logger = params[:logger] || Ioki::StdOutLogger.new
-      @api_base_url = params[:api_base_url] || DEFAULT_API_BASE_URL
-      @api_version = params[:api_version] || DEFAULT_API_VERSION
+      @api_base_url = params[:api_base_url]
+      @api_version = params[:api_version]
       @api_client_identifier = params[:api_client_identifier]
       @api_client_secret = params[:api_client_secret]
       @api_client_version = params[:api_client_version]
       @api_token = params[:api_token]
-      @language = params[:language] || 'de'
+      @language = params[:language]
+    end
+
+    def self.from_env(env_prefix = '')
+      new(DEFAULT_VALUES.merge(values_from_env(env_prefix)))
     end
 
     def reset!
-      @http_adapter = (ENV['IOKI_HTTP_ADAPTER'] || DEFAULT_HTTP_ADAPTER).to_sym
-      @verbose_output = ENV['IOKI_VERBOSE_OUTPUT'] == 'true'
+      CONFIG_KEYS.each do |key|
+        send("#{key}=", DEFAULT_VALUES.merge(self.class.values_from_env)[key])
+      end
       @logger = Ioki::StdOutLogger.new
-      @api_base_url = ENV['IOKI_API_BASE_URL'] || DEFAULT_API_BASE_URL
-      @api_version = ENV['IOKI_API_VERSION'] || DEFAULT_API_VERSION
-      @api_client_identifier = ENV['IOKI_API_CLIENT_IDENTIFIER']
-      @api_client_secret = ENV['IOKI_API_CLIENT_SECRET']
-      @api_client_version = ENV['IOKI_API_CLIENT_VERSION']
-      @api_token = ENV['IOKI_API_TOKEN']
-      @language = 'de'
+    end
+
+    def self.values_from_env(env_prefix = '')
+      prefix = ['IOKI', env_prefix].reject(&:empty?).join('_')
+
+      {
+        http_adapter:          ENV["#{prefix}_HTTP_ADAPTER"].to_s.to_sym,
+        verbose_output:        ENV["#{prefix}_VERBOSE_OUTPUT"] == 'true',
+        api_base_url:          ENV["#{prefix}_API_BASE_URL"],
+        api_version:           ENV["#{prefix}_API_VERSION"],
+        api_client_identifier: ENV["#{prefix}_API_CLIENT_IDENTIFIER"],
+        api_client_secret:     ENV["#{prefix}_API_CLIENT_SECRET"],
+        api_client_version:    ENV["#{prefix}_API_CLIENT_VERSION"],
+        api_token:             ENV["#{prefix}_API_TOKEN"]
+      }.reject { |_key, value| value.nil? || value.to_s == '' }
     end
   end
 end
