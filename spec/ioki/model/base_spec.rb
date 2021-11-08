@@ -549,9 +549,26 @@ RSpec.describe Ioki::Model::Base do
           expect(model.type_cast_attribute_value(:attr, nil)).to be_nil
         end
 
-        it 'handles an array correctly' do
+        it 'handles an array of hashes correctly' do
           result = model.type_cast_attribute_value(:attr,
                                                    [{ email: 'mail1@example.com' }, { email: 'mail2@example.com' }])
+          expect(result).to be_kind_of(Array)
+          expect(result.size).to eq(2)
+          expect(result.first).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result.first.email).to eq('mail1@example.com')
+          expect(result.last).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result.last.email).to eq('mail2@example.com')
+        end
+
+        it 'handles an array of fitting objects correctly' do
+          result = model.type_cast_attribute_value(
+            :attr,
+            [
+              Ioki::Model::Platform::User.new(email: 'mail1@example.com'),
+              Ioki::Model::Platform::User.new(email: 'mail2@example.com')
+            ]
+          )
+
           expect(result).to be_kind_of(Array)
           expect(result.size).to eq(2)
           expect(result.first).to be_kind_of(Ioki::Model::Platform::User)
