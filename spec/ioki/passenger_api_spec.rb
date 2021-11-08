@@ -78,7 +78,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/ride_inquiry')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.create_ride_inquiry(ride_inquiry, options)).
@@ -92,7 +92,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/rides')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.create_ride(ride, options)).
@@ -120,7 +120,7 @@ RSpec.describe Ioki::PassengerApi do
           }.to_json
         )
 
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.create_cancellation(ride, cancellation)).
@@ -136,7 +136,7 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/rides/RIDE_ID/booking')
         expect(params[:body]).to eq '{"data":{"ride_version":2,"payment_method":null}}'
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.create_booking(ride, booking, options)).
@@ -152,7 +152,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/phone_verification_requests')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.create_phone_verification_request(phone_verification_request, options)).
@@ -166,7 +166,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/user/phone_number')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.update_user_phone_number(user_phone_number, options.merge(model: user_phone_number))).
@@ -185,8 +185,7 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/user')
         expect(JSON.parse(params[:body])['data']).
           to match(hash_including('first_name' => 'Lupe', 'last_name' => 'Smiles'))
-
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.update_user(user, options)).
@@ -212,7 +211,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('https://app.io.ki/api/passenger/rides/RIDE_ID/rating')
-        result_with_data
+        [result_with_data, full_response]
       end
 
       expect(passenger_client.create_rating(ride, rating,
