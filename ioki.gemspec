@@ -5,8 +5,8 @@ require_relative 'lib/ioki/version'
 Gem::Specification.new do |spec|
   spec.name          = 'ioki'
   spec.version       = Ioki::VERSION
-  spec.authors       = ['Andreas Schwarzkopf']
-  spec.email         = ['asmailbox@gmx.de']
+  spec.authors       = ['IOKI']
+  spec.email         = ['info@ioki.com']
 
   spec.summary       = <<-SUMMARY
     The ioki Gem provides a rubyesque way of accessing the ioki Rest APIs.
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   DESCRIPTION
 
   spec.homepage = 'https://github.com/ioki-mobility/ioki'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.2')
 
   spec.metadata = {
     'homepage_uri'    => spec.homepage,
