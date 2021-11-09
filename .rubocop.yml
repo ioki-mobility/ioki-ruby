@@ -455,7 +455,7 @@ RSpec/IdenticalEqualityAssertion:
 
 RSpec/DescribeClass:
   Exclude:
-    - spec/ioki/vcr/*
+    - spec/ioki/examples/*
     - spec/ioki/model/openapi_spec.rb
 
 RSpec/NestedGroups:

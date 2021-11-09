@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 RSpec.describe 'Ioki::DriverApi', :vcr do
+  # Compare fixtures/vcr_cassettes for the recorded requests and responses for this example.
+
   setup_platform_client(:platform_client)
   setup_driver_client(:driver_client)
 
