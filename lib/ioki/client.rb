@@ -135,7 +135,7 @@ module Ioki
     end
 
     def http_adapter_class
-      config.http_adapter == :test ? Ioki::HttpAdapter::Test : Ioki::HttpAdapter::Faraday
+      config.http_adapter_class
     end
   end
 end

@@ -28,7 +28,7 @@ module Ioki
     attr_accessor(*CONFIG_KEYS)
 
     def initialize(params = DEFAULT_VALUES)
-      @http_adapter = params[:http_adapter].to_sym
+      @http_adapter = params[:http_adapter]
       @verbose_output = ['true', true].include?(params[:verbose_output])
       @logger = params[:logger] || Ioki::StdOutLogger.new
       @api_base_url = params[:api_base_url]
@@ -55,7 +55,7 @@ module Ioki
       prefix = ['IOKI', env_prefix].reject(&:empty?).join('_')
 
       {
-        http_adapter:          ENV["#{prefix}_HTTP_ADAPTER"].to_s.to_sym,
+        http_adapter:          ENV["#{prefix}_HTTP_ADAPTER"],
         verbose_output:        ENV["#{prefix}_VERBOSE_OUTPUT"] == 'true',
         api_base_url:          ENV["#{prefix}_API_BASE_URL"],
         api_version:           ENV["#{prefix}_API_VERSION"],
@@ -63,7 +63,11 @@ module Ioki
         api_client_secret:     ENV["#{prefix}_API_CLIENT_SECRET"],
         api_client_version:    ENV["#{prefix}_API_CLIENT_VERSION"],
         api_token:             ENV["#{prefix}_API_TOKEN"]
-      }.reject { |_key, value| value.nil? || value.to_s == '' }
+      }.compact
+    end
+
+    def http_adapter_class
+      http_adapter.to_s == 'test' ? Ioki::HttpAdapter::Test : Ioki::HttpAdapter::Faraday
     end
   end
 end

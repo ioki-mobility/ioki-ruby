@@ -101,7 +101,7 @@ RSpec.describe Ioki::Configuration do
 
       config_from_env = described_class.from_env
 
-      expect(config_from_env.http_adapter).to eq :ADAPTER
+      expect(config_from_env.http_adapter).to eq 'ADAPTER'
       expect(config_from_env.api_base_url).to eq 'BASE_URL'
       expect(config_from_env.verbose_output).to be true
       expect(config_from_env.api_version).to eq 'API_VERSION'
