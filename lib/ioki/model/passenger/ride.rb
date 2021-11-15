@@ -36,7 +36,6 @@ model_class: Ioki::Model::Passenger::CalculatedPoint
         attribute :driver_can_be_called, type: :boolean, on: [:read, :create, :update]
         attribute :needs_cancellation_code, type: :boolean, on: [:read, :create, :update]
         attribute :passenger_can_be_called, type: :boolean, on: [:read, :create, :update]
-        attribute :passenger_cancellation_reason, type: :string, on: [:read, :create, :update]
         attribute :payment_method, type: :object, on: :read, model_class: Ioki::Model::Passenger::PaymentMethod
         attribute :payment_state, type: :string, on: [:read, :create, :update]
         attribute :prebooked, type: :boolean, on: [:read, :create, :update]

@@ -45,6 +45,12 @@ RSpec::Matchers.define :match_open_api_definition do |scope, model, options = {}
   match do |actual_model|
     return false if model_node.nil?
 
+    model_node.fetch('properties').each do |name, attributes|
+      if actual_model.attribute_definitions.keys.map(&:to_s).include?(name.to_s) && attributes['deprecated']
+        warn "#{name} on #{actual_model} is deprecated."
+      end
+    end
+
     (defined_attributes(actual_model) - specified_attributes).empty?
   end
 
