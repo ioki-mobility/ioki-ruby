@@ -18,7 +18,7 @@ module Endpoints
 
     def call(client, args = [], options = {})
       parsed_response, = client.request(
-        url:     client.build_request_url(*Endpoints.url_elements(resource, path + [action], *args)),
+        url:     client.build_request_url(*Endpoints.url_elements(path + [action], *args)),
         method:  request_method,
         headers: client.all_headers,
         body:    options[:body].to_json,

@@ -34,7 +34,7 @@ module Endpoints
 
     def model_params(client, args, options, model)
       parsed_response, response = client.request(
-        url:     client.build_request_url(*Endpoints.url_elements(name, full_path, *args)),
+        url:     client.build_request_url(*Endpoints.url_elements(full_path, *args)),
         headers: client.all_headers(etag: model&._etag),
         params:  options[:params]
       )

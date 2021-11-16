@@ -40,31 +40,22 @@ module Endpoints
     end
   end
 
-  def self.url_elements(resource, path, *args)
-    args_min = path.select { |el| el.is_a?(Symbol) }.size
-
-    unless path.all? { |element| element.is_a?(String) || element.is_a?(Symbol) }
-      raise ArgumentError, 'path: must consist of Strings and Symbols'
+  def self.url_elements(path, *args)
+    unless path.all? { |element| [Symbol, String].include?(element.class) }
+      raise ArgumentError, 'path: must consist of Strings and Symbols only'
     end
 
-    if args.size < args_min
-      raise ArgumentError,
-            "\#'#{resource}' needs at least #{args_min} arguments, but I only got #{args.size}."
+    unless path.select { |element| element.is_a?(Symbol) }.size <= args.size
+      raise ArgumentError, 'args: must have an argument for every symbol in :path'
     end
 
-    arg_idx = 0
-    path.map do |el|
-      next el unless el.is_a?(Symbol)
+    interpolation_args = path.select { |inner_element| inner_element.is_a?(Symbol) }.zip(args).reverse
+    interpolation_path = path.map { |element| element.is_a?(String) ? element : interpolation_args.pop }
+    interpolation_path.map do |path_element, arg|
+      next path_element if path_element.is_a?(String)
+      next arg if arg.is_a?(String)
 
-      arg = args[arg_idx]
-      arg_idx += 1
-
-      unless arg.is_a?(String) || arg.respond_to?(el)
-        raise ArgumentError,
-              "\#'#{resource}': argument #{arg_idx} must respond to :#{el} or to be a string"
-      end
-
-      arg.is_a?(String) ? arg : arg.public_send(el)
+      arg.public_send(path_element)
     end.compact
   end
 end
