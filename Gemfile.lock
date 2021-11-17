@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ioki (0.3.0)
+    ioki-ruby (0.3.0)
       faraday (~> 1.4)
 
 GEM
@@ -125,7 +125,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   guard-rspec
-  ioki!
+  ioki-ruby!
   pry
   rake (~> 12.0)
   rspec (~> 3.0)
