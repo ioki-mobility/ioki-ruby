@@ -39,7 +39,7 @@ module Ioki
     # On this "layer" we
     # - unpack params from the options hash and move them onto the URL
     # - test the response status and throw a potential Ioki::Error
-    def request(url:, method: :get, body: nil, headers: [], params: nil, logger: nil)
+    def request(url:, method: :get, body: nil, headers: [], params: nil)
       raise ArgumentError, 'Pass url as a proper URI' unless url.is_a?(URI)
 
       if params
@@ -50,31 +50,13 @@ module Ioki
         url.query = URI.encode_www_form(query_params)
       end
 
-      logger ||= config.logger if config.verbose_output
-
-      response = http_adapter_class.request(
-        url:     url,
-        method:  method,
-        body:    body,
-        headers: headers,
-        logger:  logger
-      )
+      response = config.http_adapter.run_request(method, url, body, headers)
 
       error_class = Ioki::Error.http_status_code_to_error_class(response.status)
 
       raise error_class.new(http_response: response) if error_class
 
-      parsed_response = nil
-
-      if response.body && !response.body.empty?
-        begin
-          parsed_response = JSON.parse(response.body)
-        rescue JSON::ParserError
-          raise Ioki::Error::ResponseMalformed
-        end
-      end
-
-      return parsed_response, response
+      return response.body, response
     end
 
     def build_request_url(api_namespace, *url_fragments)
@@ -82,60 +64,11 @@ module Ioki
         raise ArgumentError, "Unknown api namespace '#{api_namespace}'"
       end
 
-      fragments = [config.api_base_url, api_namespace.to_s] + url_fragments.map(&:to_s)
+      fragments = [api_namespace.to_s] + url_fragments.map(&:to_s)
       fragments = fragments.map { |f| f.delete_prefix('/').delete_suffix('/') }
 
       URI.parse(fragments.join('/'))
     end
 
-    def default_headers
-      {
-        'Content-Type'    => 'application/json',
-        'Accept'          => 'application/json',
-        'Accept-Language' => config.language.to_s
-      }
-    end
-
-    def api_headers
-      {
-        'X-Api-Version' => config.api_version
-      }
-    end
-
-    def client_headers
-      {
-        'X-Client-Identifier' => config.api_client_identifier,
-        'X-Client-Secret'     => config.api_client_secret,
-        'X-Client-Version'    => config.api_client_version
-      }
-    end
-
-    def auth_headers
-      {
-        'Authorization' => "Bearer #{config.api_token}"
-      }
-    end
-
-    def etag_header(etag)
-      {
-        'If-None-Match' => etag
-      }
-    end
-
-    def all_headers(skip_auth: false, etag: nil)
-      headers = {}
-
-      headers.merge!(default_headers)
-      headers.merge!(api_headers)
-      headers.merge!(client_headers)
-      headers.merge!(auth_headers) unless skip_auth
-      headers.merge!(etag_header(etag)) if etag
-
-      headers
-    end
-
-    def http_adapter_class
-      config.http_adapter == :test ? Ioki::HttpAdapter::Test : Ioki::HttpAdapter::Faraday
-    end
   end
 end

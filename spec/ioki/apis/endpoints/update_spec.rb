@@ -8,18 +8,17 @@ RSpec.describe Endpoints::Update do
     let(:serialized_model) { { name: 'Test' } }
 
     let(:endpoint) { described_class.new('product', base_path: ['base'], model_class: model_class) }
-    let(:client)   { instance_double(Ioki::Client, 'client', all_headers: 'HEADERS', build_request_url: url) }
+    let(:client)   { instance_double(Ioki::Client, 'client', build_request_url: url) }
     let(:params)   { instance_double(Hash, 'params') }
 
     before { allow(model).to receive(:serialize).with(:update).and_return(serialized_model) }
 
     it 'is a shortcut calling #request, sending serialized modeldata and instantiating a new class from the result' do
       expect(client).to receive(:request).with(
-        url:     url,
-        method:  :patch,
-        body:    { data: serialized_model }.to_json,
-        headers: client.all_headers,
-        params:  params
+        url:    url,
+        method: :patch,
+        body:   { data: serialized_model },
+        params: params
       ).and_return(
         [
           { 'data' => { 'id' => '0815', name: 'attributes altered by server' } },

@@ -2,7 +2,8 @@ PATH
   remote: .
   specs:
     ioki (0.3.0)
-      faraday (~> 1.4)
+      faraday (~> 1.8)
+      faraday_middleware (~> 1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -35,6 +36,8 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
+    faraday_middleware (1.2.0)
+      faraday (~> 1.0)
     ffi (1.15.4)
     formatador (0.3.0)
     guard (2.18.0)

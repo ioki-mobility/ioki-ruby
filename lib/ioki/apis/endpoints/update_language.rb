@@ -9,10 +9,9 @@ module Endpoints
     def call(client, args = [], options = {})
       client.config.language = args.last
       client.request(
-        url:     URI("#{client.config.api_base_url}/passenger/user/language"),
-        headers: client.all_headers,
-        method:  :patch,
-        params:  options[:params]
+        url:    client.build_request_url('passenger', 'user', 'language'),
+        method: :patch,
+        params: options[:params]
       )
     end
   end

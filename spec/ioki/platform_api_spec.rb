@@ -27,7 +27,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#providers' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers')
+        expect(params[:url].to_s).to eq('platform/providers')
         result_with_index_data
       end
 
@@ -39,7 +39,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#provider(id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815')
+        expect(params[:url].to_s).to eq('platform/providers/0815')
         [result_with_data, full_response]
       end
 
@@ -51,7 +51,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#products' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products')
+        expect(params[:url].to_s).to eq('platform/products')
         result_with_index_data
       end
 
@@ -63,7 +63,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#product(id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815')
+        expect(params[:url].to_s).to eq('platform/products/0815')
         [result_with_data, full_response]
       end
 
@@ -75,7 +75,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#stations(product_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations')
+        expect(params[:url].to_s).to eq('platform/products/0815/stations')
         result_with_index_data
       end
 
@@ -87,7 +87,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#station(product_id, station_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/stations/4711')
         [result_with_data, full_response]
       end
 
@@ -101,7 +101,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations')
+        expect(params[:url].to_s).to eq('platform/products/0815/stations')
         [result_with_data, full_response]
       end
 
@@ -115,7 +115,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/stations/4711')
         expect(params[:method]).to eq :patch
         [result_with_data, full_response]
       end
@@ -128,7 +128,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#delete_station(product_id, station_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/stations/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/stations/4711')
         result_with_data
       end
 
@@ -140,7 +140,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#vehicles(product_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles')
+        expect(params[:url].to_s).to eq('platform/products/0815/vehicles')
         result_with_index_data
       end
 
@@ -152,7 +152,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#vehicle(product_id, vehicle_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/vehicles/4711')
         [result_with_data, full_response]
       end
 
@@ -166,7 +166,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles')
+        expect(params[:url].to_s).to eq('platform/products/0815/vehicles')
         [result_with_data, full_response]
       end
 
@@ -180,7 +180,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/vehicles/4711')
         [result_with_data, full_response]
       end
 
@@ -192,7 +192,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#delete_vehicle(product_id, vehicle_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/vehicles/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/vehicles/4711')
         result_with_data
       end
 
@@ -204,7 +204,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#rides(product_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides')
         result_with_index_data
       end
 
@@ -216,7 +216,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#ride(product_id, ride_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides/4711')
         [result_with_data, full_response]
       end
 
@@ -230,7 +230,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides')
         [result_with_data, full_response]
       end
 
@@ -242,7 +242,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#users(product_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users')
+        expect(params[:url].to_s).to eq('platform/providers/0815/users')
         result_with_index_data
       end
 
@@ -254,7 +254,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#user(product_id, user_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users/4711')
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/4711')
         [result_with_data, full_response]
       end
 
@@ -268,7 +268,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users')
+        expect(params[:url].to_s).to eq('platform/providers/0815/users')
         [result_with_data, full_response]
       end
 
@@ -282,7 +282,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users/4711')
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/4711')
         [result_with_data, full_response]
       end
 
@@ -294,7 +294,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#delete_user(product_id, user_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users/4711')
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/4711')
         result_with_data
       end
 
@@ -306,7 +306,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#drivers(product_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers')
         result_with_index_data
       end
 
@@ -318,7 +318,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#driver(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711')
         [result_with_data, full_response]
       end
 
@@ -332,7 +332,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers')
         [result_with_data, full_response]
       end
 
@@ -346,7 +346,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711')
         [result_with_data, full_response]
       end
 
@@ -358,7 +358,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#delete_driver(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711')
         result_with_data
       end
 
@@ -370,7 +370,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#driver_vehicle_connections(product_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections')
+        expect(params[:url].to_s).to eq('platform/products/0815/driver_vehicle_connections')
         result_with_index_data
       end
 
@@ -382,7 +382,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#driver_vehicle_connection(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/driver_vehicle_connections/4711')
         [result_with_data, full_response]
       end
 
@@ -396,7 +396,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections')
+        expect(params[:url].to_s).to eq('platform/products/0815/driver_vehicle_connections')
         [result_with_data, full_response]
       end
 
@@ -410,7 +410,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/driver_vehicle_connections/4711')
         [result_with_data, full_response]
       end
 
@@ -422,7 +422,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#delete_driver_vehicle_connection(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/driver_vehicle_connections/4711')
+        expect(params[:url].to_s).to eq('platform/products/0815/driver_vehicle_connections/4711')
         result_with_data
       end
 
@@ -434,7 +434,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#drivers_lock(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711/lock')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711/lock')
         expect(params[:method]).to eq(:patch)
         result_with_data
       end
@@ -446,7 +446,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#drivers_unlock(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711/unlock')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711/unlock')
         expect(params[:method]).to eq(:patch)
         result_with_data
       end
@@ -458,7 +458,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#drivers_set_pin(product_id, driver_id, pin)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/drivers/4711/set_pin')
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711/set_pin')
         expect(params[:method]).to eq(:patch)
         result_with_data
       end
@@ -472,7 +472,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/rating')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides/4711/rating')
         [result_with_data, full_response]
       end
 
@@ -486,7 +486,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/rating/1337')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides/4711/rating/1337')
         [result_with_data, full_response]
       end
 
@@ -498,7 +498,7 @@ RSpec.describe Ioki::PlatformApi do
   describe '#delete_rating(product_id, rating_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/rating/1337')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides/4711/rating/1337')
         result_with_data
       end
 
@@ -512,7 +512,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/rides/4711/booking')
+        expect(params[:url].to_s).to eq('platform/products/0815/rides/4711/booking')
         [result_with_data, full_response]
       end
 
@@ -526,7 +526,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/providers/0815/users/4711/request_tokens')
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/4711/request_tokens')
         [result_with_data, full_response]
       end
 
@@ -540,7 +540,7 @@ RSpec.describe Ioki::PlatformApi do
 
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('https://app.io.ki/api/platform/products/0815/ride_inquiry')
+        expect(params[:url].to_s).to eq('platform/products/0815/ride_inquiry')
         [result_with_data, full_response]
       end
 

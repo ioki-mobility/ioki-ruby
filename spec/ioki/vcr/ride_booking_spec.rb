@@ -51,7 +51,7 @@ RSpec.describe 'Booking and cancelling a ride via the passenger_api', :vcr do
     5.times do
       break if created_ride.state == 'ready'
 
-      sleep 1
+      # sleep 1
       created_ride = passenger_client.ride(created_ride.id)
     end
 

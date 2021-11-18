@@ -123,10 +123,18 @@ for most configurable attributes to a baked in default.
 
 ## Logger
 
-The logger can be set to any object that follows the "Rails logger" contract,
-i.e. responding to #debug and alike. If no logger is set up, `Ioki::StdOutLogger`
-will be used, which uses `Kernel#puts`.
+The logger can be set to any object that implements the ruby `Logger` contract,
+i.e. responding to #debug and alike. If no logger is set up no logging occurs.
+A simple logger to standard out looks like this:
 
+```ruby
+require 'logger'
+
+Ioki::Configuration.new(
+  logger:         Logger.new(STDOUT),
+  logger_options: { headers: true, bodies: false, log_level: :info }
+)
+```
 
 ## Development
 
@@ -136,6 +144,27 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 You can use `rake c` to start an interactive console. If you make code changes entering `reload!` in the console will load the current files again.
 
+## Testing
+
+ioki-ruby uses Faraday under the hood to make requests to the API.
+
+If you would like to make those request with fast predictable results in you test suite, you can pass in your own [Faraday::Connection stub](https://lostisland.github.io/faraday/adapters/testing).
+
+
+```ruby
+  let(:client)       { Ioki::Client.new(config, Ioki::PlatformApi) }
+  let(:config)       { Ioki::Configuration.new http_adapter: http_adapter }
+  let(:http_adapter) { Faraday.new('https://example.com/api') { |f| f.adapter :test, stubs } }
+  let(:stubs)        { Faraday::Adapter::Test::Stubs.new }
+
+  it 'can retrieve provider data from the providers endpoint' do
+    stubs.get("/api/platform/providers") do |env|
+      [ 200, {}, { 'data' => [{ 'id' => '123', 'city' => 'Somewhere'}] } ]
+    end
+    expect(client.providers.first).to be_a Ioki::Model::Platform::Provider
+    expect(client.providers.first.city).to eq('Somewhere')
+  end
+```
 
 ## More examples:
 
