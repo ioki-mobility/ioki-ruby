@@ -158,6 +158,14 @@ RSpec.describe Ioki::Model::Base do
       end
     end
 
+    describe 'for an attribute of an unknown type' do
+      let(:example_class) { Class.new(Ioki::Model::Base) { attribute :foo, type: :indeger, on: :create } }
+
+      it 'returns an error' do
+        expect { example_class.new.foo = 'bar' }.to raise_error(RuntimeError, 'Unknown type indeger')
+      end
+    end
+
     describe 'default_handling' do
       describe 'for an attribute of type :string, default: 42' do
         let(:example_class) do
