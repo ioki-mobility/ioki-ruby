@@ -32,7 +32,7 @@ module Endpoints
       end
 
       parsed_response, response = client.request(
-        url:     client.build_request_url(*Endpoints.url_elements(name, full_path, *args)),
+        url:     client.build_request_url(*Endpoints.url_elements(full_path, *args)),
         method:  :post,
         body:    { data: model.serialize(:create) }.to_json,
         headers: client.all_headers,

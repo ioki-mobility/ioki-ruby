@@ -25,7 +25,7 @@ module Endpoints
 
     def call(client, args = [], options = {})
       parsed_response, = client.request(
-        url:     client.build_request_url(*Endpoints.url_elements(name, full_path, *args)),
+        url:     client.build_request_url(*Endpoints.url_elements(full_path, *args)),
         method:  :delete,
         headers: client.all_headers,
         params:  options[:params]
