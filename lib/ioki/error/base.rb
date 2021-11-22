@@ -15,11 +15,7 @@ module Ioki
         return @api_error if defined?(@api_error)
 
         if http_response.status.to_s[0] == '4'
-          @api_error = begin
-            JSON.parse(http_response.body)
-          rescue JSON::ParserError
-            nil
-          end
+          @api_error = http_response.body
         end
 
         @api_error

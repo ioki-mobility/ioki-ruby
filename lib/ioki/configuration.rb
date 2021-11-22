@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
-require 'ioki/std_out_logger'
-
 module Ioki
   class Configuration
     DEFAULT_VALUES =
       {
-        http_adapter: :faraday,
-        api_base_url: 'https://app.io.ki/api/',
-        api_version:  '20210101',
-        language:     'de'
+        api_base_url:   'https://app.io.ki/api/',
+        api_version:    '20210101',
+        language:       'de',
+        logger_options: { headers: true, bodies: false, log_level: :info }
       }.freeze
 
     CONFIG_KEYS = [
       :http_adapter,
-      :verbose_output,
       :logger,
+      :logger_options,
       :api_base_url,
       :api_version,
       :api_client_identifier,
@@ -27,10 +25,10 @@ module Ioki
 
     attr_accessor(*CONFIG_KEYS)
 
-    def initialize(params = DEFAULT_VALUES)
-      @http_adapter = params[:http_adapter].to_sym
-      @verbose_output = ['true', true].include?(params[:verbose_output])
-      @logger = params[:logger] || Ioki::StdOutLogger.new
+    def initialize(params = {})
+      params = DEFAULT_VALUES.merge(params)
+      @logger = params[:logger]
+      @logger_options = params[:logger_options]
       @api_base_url = params[:api_base_url]
       @api_version = params[:api_version]
       @api_client_identifier = params[:api_client_identifier]
@@ -38,6 +36,8 @@ module Ioki
       @api_client_version = params[:api_client_version]
       @api_token = params[:api_token]
       @language = params[:language]
+      # you can pass in a custom Faraday::Connection instance:
+      @http_adapter = params[:http_adapter] || Ioki::HttpAdapter.get(self)
     end
 
     def self.from_env(env_prefix = '')
@@ -48,15 +48,12 @@ module Ioki
       CONFIG_KEYS.each do |key|
         send("#{key}=", DEFAULT_VALUES.merge(self.class.values_from_env)[key])
       end
-      @logger = Ioki::StdOutLogger.new
     end
 
     def self.values_from_env(env_prefix = '')
       prefix = ['IOKI', env_prefix].reject(&:empty?).join('_')
 
       {
-        http_adapter:          ENV["#{prefix}_HTTP_ADAPTER"].to_s.to_sym,
-        verbose_output:        ENV["#{prefix}_VERBOSE_OUTPUT"] == 'true',
         api_base_url:          ENV["#{prefix}_API_BASE_URL"],
         api_version:           ENV["#{prefix}_API_VERSION"],
         api_client_identifier: ENV["#{prefix}_API_CLIENT_IDENTIFIER"],

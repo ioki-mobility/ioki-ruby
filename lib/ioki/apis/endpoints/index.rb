@@ -56,9 +56,8 @@ module Endpoints
 
     def send_request(client, args, options)
       parsed_response, = client.request(
-        url:     client.build_request_url(*Endpoints.url_elements(full_path, *args)),
-        headers: client.all_headers,
-        params:  options[:params]
+        url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
+        params: options[:params]
       )
 
       [parsed_response['data'].map { |attr| model_class.new(attr) }, parsed_response]

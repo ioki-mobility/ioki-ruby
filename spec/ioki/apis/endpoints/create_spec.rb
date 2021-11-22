@@ -4,7 +4,7 @@ RSpec.describe Endpoints::Create do
   let(:url)              { URI.parse('www.example.org') }
   let(:model_class)      { Ioki::Model::Platform::Product }
   let(:model)            { Ioki::Model::Platform::Product.new }
-  let(:client)           { instance_double(Ioki::Client, 'client', all_headers: [], build_request_url: url) }
+  let(:client)           { instance_double(Ioki::Client, 'client', build_request_url: url) }
   let(:endpoint)         { described_class.new('product', base_path: ['base'], model_class: model_class) }
   let(:params)           { instance_double(Hash, 'params') }
   let(:serialized_model) { { name: 'Test' } }
@@ -14,11 +14,10 @@ RSpec.describe Endpoints::Create do
   describe '#call' do
     it 'calls #request on the client, sending serialized modeldata and instantiating a new class from the result' do
       expect(client).to receive(:request).with(
-        url:     url,
-        method:  :post,
-        body:    { data: serialized_model }.to_json,
-        headers: client.all_headers,
-        params:  params
+        url:    url,
+        method: :post,
+        body:   { data: serialized_model },
+        params: params
       ).and_return(
         [
           { 'data' => { 'id' => '0815', name: 'attributes altered by server' } },

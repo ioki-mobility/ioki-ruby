@@ -206,7 +206,7 @@ http_interactions:
   recorded_at: Tue, 12 Oct 2021 10:33:25 GMT
 - request:
     method: patch
-    uri: https://demo.io.ki/api//passenger/user/language
+    uri: https://demo.io.ki/api/passenger/user/language
     body:
       encoding: UTF-8
       string: ''
@@ -344,7 +344,7 @@ http_interactions:
   recorded_at: Tue, 12 Oct 2021 10:33:25 GMT
 - request:
     method: patch
-    uri: https://demo.io.ki/api//passenger/user/language
+    uri: https://demo.io.ki/api/passenger/user/language
     body:
       encoding: UTF-8
       string: ''

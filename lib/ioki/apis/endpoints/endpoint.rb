@@ -18,11 +18,10 @@ module Endpoints
 
     def call(client, args = [], options = {})
       parsed_response, = client.request(
-        url:     client.build_request_url(*Endpoints.url_elements(path + [action], *args)),
-        method:  request_method,
-        headers: client.all_headers,
-        body:    options[:body].to_json,
-        params:  options[:params]
+        url:    client.build_request_url(*Endpoints.url_elements(path + [action], *args)),
+        method: request_method,
+        body:   options[:body],
+        params: options[:params]
       )
 
       if model_class

@@ -19,8 +19,8 @@ RSpec.describe Ioki::Configuration do
     expect(described_class::CONFIG_KEYS).to match_array(
       [
         :http_adapter,
-        :verbose_output,
         :logger,
+        :logger_options,
         :api_base_url,
         :api_version,
         :api_client_identifier,
@@ -42,33 +42,31 @@ RSpec.describe Ioki::Configuration do
   end
 
   describe 'default values and resetting' do
-    logger_double = :logger
-
     before do
       allow(ENV).to receive(:[]).and_return(nil)
-      allow(Ioki::StdOutLogger).to receive(:new).and_return(logger_double)
       stub_const(
         'EXPECTED_DEFAULTS',
         {
-          http_adapter:          :faraday,
-          verbose_output:        false,
-          logger:                logger_double,
           api_base_url:          described_class::DEFAULT_VALUES[:api_base_url],
           api_version:           described_class::DEFAULT_VALUES[:api_version],
           api_client_identifier: nil,
           api_client_secret:     nil,
           api_client_version:    nil,
           api_token:             nil,
-          language:              'de'
+          language:              'de',
+          logger_options:        described_class::DEFAULT_VALUES[:logger_options]
         }.freeze
       )
     end
 
     describe 'defines default values' do
-      described_class::CONFIG_KEYS.each do |attribute|
+      (described_class::CONFIG_KEYS - [:http_adapter]).each do |attribute|
         it "defines #{attribute} as the default value" do
           expect(config.send(attribute)).to eq(EXPECTED_DEFAULTS[attribute])
         end
+      end
+      it 'sets the http_adapter' do
+        expect(config.http_adapter).to be_a Faraday::Connection
       end
     end
 
@@ -89,9 +87,7 @@ RSpec.describe Ioki::Configuration do
     it 'works without any arguments' do
       stub_const(
         'ENV',
-        'IOKI_HTTP_ADAPTER'          => 'ADAPTER',
         'IOKI_API_BASE_URL'          => 'BASE_URL',
-        'IOKI_VERBOSE_OUTPUT'        => 'true',
         'IOKI_API_VERSION'           => 'API_VERSION',
         'IOKI_API_CLIENT_IDENTIFIER' => 'CLIENT_IDENTIFIER',
         'IOKI_API_CLIENT_SECRET'     => 'CLIENT_SECRET',
@@ -101,9 +97,7 @@ RSpec.describe Ioki::Configuration do
 
       config_from_env = described_class.from_env
 
-      expect(config_from_env.http_adapter).to eq :ADAPTER
       expect(config_from_env.api_base_url).to eq 'BASE_URL'
-      expect(config_from_env.verbose_output).to be true
       expect(config_from_env.api_version).to eq 'API_VERSION'
       expect(config_from_env.api_client_identifier).to eq 'CLIENT_IDENTIFIER'
       expect(config_from_env.api_client_secret).to eq 'CLIENT_SECRET'

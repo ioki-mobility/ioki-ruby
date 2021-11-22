@@ -9,19 +9,20 @@ RSpec.describe Endpoints::Show do
       Faraday::Response,
       'response double',
       status:  200,
-      body:    '{"data": { "id": "0815"}}',
+      body:    { data: { id: '0815' } },
       headers: { etag: 'ETAG' }
     )
   end
   let(:endpoint) { described_class.new('product', base_path: ['base'], model_class: model_class) }
-  let(:client)   { instance_double(Ioki::Client, 'client', all_headers: 'HEADERS', build_request_url: url) }
+  let(:client)   { instance_double(Ioki::Client, 'client', build_request_url: url) }
   let(:params)   { instance_double(Hash, 'params') }
 
   it 'calls #request on the client and instantiates a class from the result' do
     expect(client).to receive(:request).with(
-      url:     url,
-      headers: client.all_headers,
-      params:  params
+      hash_including(
+        url:    url,
+        params: params
+      )
     ).and_return([parsed_data, response])
 
     result = endpoint.call(client, ['0815'], { params: params })
@@ -42,10 +43,9 @@ RSpec.describe Endpoints::Show do
     before { model._etag = 'ETAG' }
 
     it "passes on model'the s etag to the request method via headers" do
-      expect(client).to receive(:all_headers).with(etag: 'ETAG').and_return('HEADERS_WITH_ETAG')
       expect(client).to receive(:request).with(
         url:     url,
-        headers: 'HEADERS_WITH_ETAG',
+        headers: { 'If-None-Match': model._etag },
         params:  params
       ).and_return([parsed_data, response])
 
