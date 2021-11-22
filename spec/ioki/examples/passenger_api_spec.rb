@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 RSpec.describe 'Ioki::PassengerApi', :vcr do
+  # Compare fixtures/vcr_cassettes for the recorded requests and responses for this example.
+
   setup_platform_client(:platform_client)
   setup_passenger_client(:passenger_client)
 
