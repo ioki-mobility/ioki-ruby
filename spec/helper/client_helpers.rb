@@ -2,43 +2,31 @@
 
 module ExtendedClientHelpers
   def setup_platform_client(client_name)
-    let(client_name) { build_platform_client_from_envs }
+    let(client_name) { Ioki::PlatformClient.new }
   end
 
   def setup_passenger_client(client_name)
-    let(client_name) { build_passenger_client_from_envs }
+    let(client_name) { Ioki::PassengerClient.new }
   end
 
   def setup_driver_client(client_name)
-    let(client_name) { build_driver_client_from_envs }
+    let(client_name) { Ioki::DriverClient.new }
   end
 end
 
 module IncludedClientHelpers
-  def build_platform_client_from_envs
-    Ioki::Client.new(Ioki::Configuration.from_env('PLATFORM'), Ioki::PlatformApi)
-  end
-
   def with_platform_client(&block)
-    platform_client = build_platform_client
+    platform_client = Ioki::PlatformClient.new
     block.call(platform_client)
   end
 
-  def build_passenger_client_from_envs
-    Ioki::Client.new(Ioki::Configuration.from_env('PASSENGER'), Ioki::PassengerApi)
-  end
-
   def with_passenger_client(&block)
-    passenger_client = build_passenger_client
+    passenger_client = Ioki::PassengerClient.new
     block.call(passenger_client)
   end
 
-  def build_driver_client_from_envs
-    Ioki::Client.new(Ioki::Configuration.from_env('DRIVER'), Ioki::DriverApi)
-  end
-
   def with_driver_client(&block)
-    driver_client = build_driver_client
+    driver_client = Ioki::DriverClient.new
     block.call(driver_client)
   end
 end
