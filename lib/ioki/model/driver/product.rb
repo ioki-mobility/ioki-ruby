@@ -6,7 +6,6 @@ module Ioki
       class Product < Base
         attribute :name, on: :read, type: :string
         attribute :auto_accept_by_driver_client, on: :read, type: :boolean
-        attribute :auto_accept_rides, on: :read, type: :boolean
         attribute :driver_client_can_reject_task, on: :read, type: :boolean
         attribute :driver_emergency_phone_number, on: :read, type: :string
         attribute :driver_faq_url, on: :read, type: :string

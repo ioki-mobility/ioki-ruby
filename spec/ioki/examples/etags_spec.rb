@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe 'etags', :vcr do
+  # Compare fixtures/vcr_cassettes for the recorded requests and responses for this example.
+
   setup_platform_client(:platform_client)
 
   let!(:real_demo_product_id) { 'prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556' }

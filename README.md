@@ -8,7 +8,7 @@ used in other ruby code.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ioki'
+gem 'ioki-ruby'
 ```
 
 And then execute:
@@ -17,7 +17,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ioki
+    $ gem install ioki-ruby
 
 It's recommended to configure using shared git hooks from `.git-hooks` by running:
 
@@ -25,17 +25,9 @@ It's recommended to configure using shared git hooks from `.git-hooks` by runnin
 
 ## Example Usage
 
-Simple usage of a `Ioki::Client`
+Basic usage of a `Ioki::Client`
 ```ruby
-  platform_client = Ioki::Client.new(
-    Ioki::Configuration.new(
-      api_client_identifier: 'com.ioki.example.client',
-      api_client_secret:     'XYZ',
-      api_client_version:    '0.0.1',
-      api_token:             '123456'
-    ),
-    Ioki::PlatformApi
-  )
+  platform_client = Ioki::PlatformClient.new
 
   providers = platform_client.providers
   # returns a list of Ioki::Model::Platform::Provider instances
@@ -67,14 +59,7 @@ Simple usage of a `Ioki::Client`
   # will delete the formerly created station
 ```
 
-Sending arbitrary Parameters, example with pagination:
-
-```ruby
-  rides = platform_client.rides(
-    'prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556',
-    options: { params: { per_page: 5, page: 3 }}
-  )
-```
+See `spec/ioki/examples` for more examples.
 
 ## Configuration
 If a project requires only a specific client setup, one can set the defaults on
@@ -114,6 +99,14 @@ and api_client_secret. You can setup these ENV variables:
   ENV['IOKI_API_CLIENT_SECRET']
   ENV['IOKI_API_CLIENT_VERSION']
   ENV['IOKI_API_TOKEN']
+```
+
+or define them for one of the three supported apis with a prefix:
+
+```ruby
+ENV['IOKI_PLATFORM_API_CLIENT_IDENTIFIER']
+ENV['IOKI_PASSENGER_API_VERSION'] 
+...
 ```
 
 Values passed directly into `Ioki::Client.new` constructor take precedence over
@@ -165,173 +158,3 @@ If you would like to make those request with fast predictable results in you tes
     expect(client.providers.first.city).to eq('Somewhere')
   end
 ```
-
-## More examples:
-
-### Create, book and confirm a ride with the platform API
-
-```ruby
-platform_client = Ioki::Client.new(Ioki::Configuration.new, Ioki::PlatformApi)
-
-sta_1 = platform_client.stations("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556").first
-sta_2 = platform_client.stations("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556").last
-
-ride = Ioki::Model::Platform::Ride.new(
-  {
-    origin: {
-      lat: sta_1.lat,
-      lng: sta_1.lng,
-      time: Time.at(Time.now.to_i + 7200).to_s
-    },
-    destination: {
-      lat: sta_2.lat,
-      lng: sta_2.lng
-    },
-    user_id: 'usr_6ab72037-eea1-49ae-9720-55022f5e1267',
-    passengers: [
-      { type: 'adult' }
-    ],
-    storage_spaces: 0
-  },
-)
-
-new_ride = platform_client.create_ride("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556", ride)
-
-reloaded_ride = nil
-
-60.times do
-  puts "waiting for matching..."
-
-  reloaded_ride = platform_client.ride("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556", new_ride.id)
-
-  break if reloaded_ride.state != 'searching'
-
-  sleep 1
-end
-
-puts "Ride #{reloaded_ride.id} is now: #{reloaded_ride.state} (Version: #{reloaded_ride.version})"
-
-booked_ride = nil
-
-if (reloaded_ride.state == 'ready')
-  booking = Ioki::Model::Platform::Booking.new({
-    ride_version: reloaded_ride.version,
-    payment_method: {
-      payment_method_type: 'cash'
-    }
-  })
-
-  new_booking = platform_client.create_booking("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556", reloaded_ride.id, booking)
-
-  puts "Ride was booked!"
-
-  booked_ride = platform_client.ride("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556", new_ride.id)
-
-  confirmed_ride = nil
-
-  60.times do
-    puts "waiting for driver to confirm the ride..."
-
-    confirmed_ride = platform_client.ride("prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556", new_ride.id)
-
-    break if confirmed_ride.state != 'passenger_accepted'
-
-    sleep 1
-  end
-
-  puts "Ride #{confirmed_ride.id} is now: #{confirmed_ride.state} (Version: #{confirmed_ride.version})"
-
-  if confirmed_ride.state == 'driver_accepted'
-    puts "Your booking was confirmed!"
-    puts "Your booking Code: '#{booked_ride.booking.verification_code}'"
-    puts "Pickup:  #{booked_ride.pickup.lat}/#{booked_ride.pickup.lng} @ Station ID: #{booked_ride.pickup.station_id}"
-    puts "Dropoff: #{booked_ride.dropoff.lat}/#{booked_ride.dropoff.lng} @ Station ID: #{booked_ride.dropoff.station_id}"
-  end
-end
-```
-
-### Using the passenger API
-
-```ruby
-require 'securerandom'
-
-platform_client = Ioki::Client.new(
-  api_base_url: ENV['IOKI_PLATFORM_API_BASE_URL'],
-  api_version: ENV['IOKI_PLATFORM_API_VERSION'],
-  api_client_identifier: ENV['IOKI_PLATFORM_API_CLIENT_IDENTIFIER'],
-  api_client_secret: ENV['IOKI_PLATFORM_API_CLIENT_SECRET'],
-  api_client_version: ENV['IOKI_PLATFORM_API_CLIENT_VERSION'],
-  api_token: ENV['IOKI_PLATFORM_API_TOKEN']
-)
-
-platform_api = platform_client.platform
-
-product_id = platform_api.products.first.id
-provider_id = platform_api.providers.first.id
-
-user_id = platform_api.create_user(
-  provider_id,
-  Ioki::Model::Platform::User.new(
-    first_name: 'Mose',
-    last_name: 'Kiszka',
-    external_id: SecureRandom.uuid,
-    terms_accepted: true
-  )
-).id
-
-request_token = platform_api.create_request_token(
-  provider_id,
-  user_id,
-  Ioki::Model::Platform::PassengerRequestToken.new(
-    client_identifier: 'dev.passengerapi.test.backend'
-  )
-)
-
-passenger_api = Ioki::Client.new(
-  api_base_url: ENV['IOKI_PASSENGER_API_BASE_URL'],
-  api_version: ENV['IOKI_PASSENGER_API_VERSION'],
-  api_client_identifier: ENV['IOKI_PASSENGER_API_CLIENT_IDENTIFIER'],
-  api_client_secret: ENV['IOKI_PASSENGER_API_CLIENT_SECRET'],
-  api_client_version: ENV['IOKI_PASSENGER_API_CLIENT_VERSION'],
-  api_token: request_token.token
-).passenger
-
-station1 = platform_api.stations(product_id).first
-station2 = platform_api.stations(product_id).last
-
-new_ride = Ioki::Model::Passenger::Ride.new(
-  product_id: product_id,
-  origin: {
-    lat: station1.lat,
-    lng: station1.lng,
-    time: Time.at(Time.now.to_i + 7200).to_s
-  },
-  destination: {
-    lat: station2.lat,
-    lng: station2.lng
-  },
-  passengers: Ioki::Model::Passenger::RidePassenger.new(type: 'adult')
-)
-
-created_ride = passenger_api.create_ride(new_ride)
-
-5.times do
-  puts "waiting for matching..."
-
-  sleep 1
-  
-  # Providing the complete model like this allows using etag headers to reduce traffic. 
-  # Notice the 304 response on repeated calls.
-  created_ride = passenger_api.ride(created_ride)
-end
-
-passenger_api.create_cancellation(
-  created_ride.id,
-  model: Ioki::Model::Passenger::Cancellation.new(
-    ride_version: created_ride.version.to_i,
-    cancellation_reason: 'I found something better'
-  )
-)
-```
-
-See `specs/vcr` for even more examples.

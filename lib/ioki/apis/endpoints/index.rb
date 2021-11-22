@@ -26,28 +26,37 @@ module Endpoints
     def call(client, args = [], options = {})
       auto_paginate = options.delete(:auto_paginate)
 
-      return send_request(client, args, options).first unless auto_paginate
-
-      results = []
-      act_page = 1
-
-      loop do
-        options[:params] ||= {}
-        options[:params][:page] = act_page
-
-        page_results, parsed_response = send_request(client, args, options)
-        results += page_results
-        act_page += 1
-
-        break results unless parsed_response.dig('meta', 'last_page') == false
+      if auto_paginate
+        paginated_requests(client, args, options)
+      else
+        send_request(client, args, options).first
       end
     end
 
     private
 
+    def paginated_requests(client, args, options)
+      # Accumulates request results, while iterating over pages. The iteration stops based on the response's meta data
+      # so we're incrementing a counter and handling the collection manually.
+
+      results = []
+      current_page = 1
+
+      loop do
+        options[:params] ||= {}
+        options[:params][:page] = current_page
+
+        page_results, parsed_response = send_request(client, args, options)
+        results += page_results
+        current_page += 1
+
+        break results unless parsed_response.dig('meta', 'last_page') == false
+      end
+    end
+
     def send_request(client, args, options)
       parsed_response, = client.request(
-        url:    client.build_request_url(*Endpoints.url_elements(name, full_path, *args)),
+        url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
         params: options[:params]
       )
 
