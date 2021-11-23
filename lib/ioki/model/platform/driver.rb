@@ -6,17 +6,16 @@ module Ioki
   module Model
     module Platform
       class Driver < Base
-        attribute :connected_vehicle, type: :object,    on: :read, model_class: Ioki::Model::Platform::Vehicle
-        attribute :external_id,       type: :string,    on: [:create, :update], omit_if_blank_on: [:create, :update]
-        attribute :locked_at,         type: :date_time, on: :read
-
-        attribute :username,          type: :string,    on: [:create, :update], omit_if_blank_on: [:create, :update]
-        attribute :first_name,        type: :string,    on: [:create, :update], omit_if_blank_on: [:create, :update]
-        attribute :last_name,         type: :string,    on: [:create, :update], omit_if_blank_on: [:create, :update]
-
-        attribute :display_name,      type: :string,    on: :read
-        attribute :locale,            type: :string,    on: :create, omit_if_blank_on: :create
-        attribute :phone_number,      type: :string,    on: :create, omit_if_blank_on: :create
+        attribute :connected_vehicle_id, on: :read, type: :string
+        attribute :external_id, on: [:create, :update], omit_if_blank_on: [:create, :update], type: :string
+        attribute :locked_at, on: :read, type: :date_time
+        attribute :username, on: [:create, :update], omit_if_blank_on: [:create, :update], type: :string
+        attribute :first_name, on: [:create, :update], omit_if_blank_on: [:create, :update], type: :string
+        attribute :last_name, on: [:create, :update], omit_if_blank_on: [:create, :update], type: :string
+        attribute :display_name, on: :read, type: :string
+        attribute :locale, on: :create, omit_if_blank_on: :create, type: :string
+        attribute :phone_number, on: :create, omit_if_blank_on: :create, type: :string
+        attribute :version, on: :read, type: :integer
       end
     end
   end

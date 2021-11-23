@@ -4,14 +4,15 @@ module Ioki
   module Model
     module Platform
       class Rating < Base
-        attribute :version, type: :integer, on: :read
-        attribute :vehicle_rating, type: :integer, on: :read
-        attribute :service_rating, type: :integer, on: :read
-        attribute :driver_rating, type: :integer, on: :read
-        attribute :ride_rating, type: :integer, on: :read
-        attribute :waiting_time_rating, type: :integer, on: :read
-        attribute :punctuality_rating, type: :integer, on: :read
-        attribute :comment, type: :string, on: :read
+        attribute :version, on: :read, type: :integer
+        attribute :vehicle_rating, on: :read, type: :integer
+        attribute :service_rating, on: :read, type: :integer
+        attribute :driver_rating, on: :read, type: :integer
+        attribute :ride_rating, on: :read, type: :integer
+        attribute :waiting_time_rating, on: :read, type: :integer
+        attribute :punctuality_rating, on: :read, type: :integer
+        attribute :comment, on: :read, type: :string
+        attribute :editable, on: :read, type: :boolean
       end
     end
   end

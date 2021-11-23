@@ -1,0 +1,36 @@
+# frozen_string_literal: true
+
+require 'ioki/model/platform/deactivation'
+require 'ioki/model/platform/driver'
+require 'ioki/model/platform/matching_configuration'
+require 'ioki/model/platform/pause'
+require 'ioki/model/platform/place'
+require 'ioki/model/platform/task'
+require 'ioki/model/platform/vehicle'
+
+module Ioki
+  module Model
+    module Platform
+      class TaskList < Base
+        attribute :actual_ends_at, on: :read, type: :string
+        attribute :actual_starts_at, on: :read, type: :string
+        attribute :ad_hoc_bookable, on: :read, type: :boolean
+        attribute :deactivated, on: :read, type: :boolean
+        attribute :deactivations, on: :read, type: :array, model_class: Ioki::Model::Platform::Deactivation
+        attribute :driver, on: :read, type: :object, model_class: Ioki::Model::Platform::Driver
+        attribute :end_place, on: :read, type: :object, model_class: Ioki::Model::Platform::Place
+        attribute :matching_configuration, on: :read, type: :object, model_class: Ioki::Model::Platform::MatchingConfiguration
+        attribute :paused, on: :read, type: :boolean
+        attribute :pauses, on: :read, type: :array, model_class: Ioki::Model::Platform::Pause
+        attribute :planned_ends_at, on: :read, type: :string
+        attribute :planned_starts_at, on: :read, type: :string
+        attribute :prebookable, on: :read, type: :boolean
+        attribute :product_id, on: :read, type: :string
+        attribute :start_place, on: :read, type: :object, model_class: Ioki::Model::Platform::Place
+        attribute :state, on: :read, type: :string
+        attribute :tasks, on: :read, type: :array, model_class: Ioki::Model::Platform::Task
+        attribute :vehicle, on: :read, type: :object, model_class: Ioki::Model::Platform::Vehicle
+      end
+    end
+  end
+end

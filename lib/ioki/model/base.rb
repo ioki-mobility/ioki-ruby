@@ -27,6 +27,18 @@ module Ioki
           end
         end
 
+        def schema_path
+          nil
+        end
+
+        def unvalidated(unvalidated = false)
+          @unvalidated = unvalidated
+        end
+
+        def unvalidated?
+          @unvalidated
+        end
+
         def ancestor_model_classes
           ancestors.select { |k| k <= Ioki::Model::Base }.reverse
         end

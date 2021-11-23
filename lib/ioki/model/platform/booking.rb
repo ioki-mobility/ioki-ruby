@@ -6,6 +6,8 @@ module Ioki
   module Model
     module Platform
       class Booking < Base
+        unvalidated true
+
         attribute :verification_code, type: :string, on: [:read, :update]
         attribute :ride_version, type: :integer, on: :create
         attribute :payment_method, type: :object, on: :create, model_class: Ioki::Model::Platform::PaymentMethod

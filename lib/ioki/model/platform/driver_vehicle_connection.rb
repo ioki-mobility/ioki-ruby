@@ -7,6 +7,13 @@ module Ioki
   module Model
     module Platform
       class DriverVehicleConnection < Ioki::Model::Base
+        # Note that this does not inherit from Ioki::Model::Platform::Base because created_at and updated_at are not defined.
+
+        def self.specification_scope
+          'platform_api--v20210101'
+        end
+
+        attribute :type, on: :read, type: :string
         attribute :id, on: [:update, :read], type: :string
         attribute :vehicle, on: :read, type: :object, model_class: Ioki::Model::Platform::Vehicle
         attribute :driver, on: :read, type: :object, model_class: Ioki::Model::Platform::Driver
