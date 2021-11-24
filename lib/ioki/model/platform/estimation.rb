@@ -8,7 +8,7 @@ module Ioki
   module Model
     module Platform
       class Estimation < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Platform::Base because it does not implement :created_at, :updated_at and :id.
+        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
 
         def self.specification_scope
           nil
@@ -20,12 +20,12 @@ module Ioki
 
         attribute :type, on: :read, type: :string
         attribute :confidence, on: :read, type: :float
-        attribute :dropoff, on: :read, type: :object, model_class: Ioki::Model::Platform::CalculatedPoint
+        attribute :dropoff, on: :read, type: :object, model_class: CalculatedPoint
         attribute :estimation_type, on: :read, type: :string
-        attribute :fare, on: :read, type: :object, model_class: Ioki::Model::Platform::Fare
-        attribute :links, on: :read, type: :array, model_class: Ioki::Model::Platform::RideInquiryLink
+        attribute :fare, on: :read, type: :object, model_class: Fare
+        attribute :links, on: :read, type: :array, model_class: RideInquiryLink
         attribute :meta_data, on: :read, type: :object # Quote from the API docs: "Additional metadata about the estimation, no specified format (yet)"
-        attribute :pickup, on: :read, type: :object, model_class: Ioki::Model::Platform::CalculatedPoint
+        attribute :pickup, on: :read, type: :object, model_class: CalculatedPoint
       end
     end
   end

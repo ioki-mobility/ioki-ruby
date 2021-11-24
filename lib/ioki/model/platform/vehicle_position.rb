@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Platform
       class VehiclePosition < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Platform::Base because :updated_atis not defined.
+        # Note that this does not inherit from Base because :updated_atis not defined.
 
         def self.schema_path
           'platform_api--v20210101--vehicle_position_without_vehicle'

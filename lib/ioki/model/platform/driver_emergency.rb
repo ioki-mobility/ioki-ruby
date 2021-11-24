@@ -8,8 +8,8 @@ module Ioki
     module Platform
       class DriverEmergency < Base
         attribute :acknowledged_at, on: :read, type: :string
-        attribute :driver, on: [:create, :read], type: :object, model_class: Ioki::Model::Platform::Driver
-        attribute :vehicle, on: [:create, :read], type: :object, model_class: Ioki::Model::Platform::Vehicle
+        attribute :driver, on: [:create, :read], type: :object, model_class: Driver
+        attribute :vehicle, on: [:create, :read], type: :object, model_class: Vehicle
       end
     end
   end

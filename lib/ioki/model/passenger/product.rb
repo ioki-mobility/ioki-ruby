@@ -7,7 +7,7 @@ module Ioki
     module Passenger
       class Product < Base
         attribute :name, on: :read
-        attribute :provider, type: :object, on: :read, model_class: Ioki::Model::Passenger::Provider
+        attribute :provider, type: :object, on: :read, model_class: Provider
       end
     end
   end

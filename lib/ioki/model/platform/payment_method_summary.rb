@@ -6,7 +6,7 @@ module Ioki
   module Model
     module Platform
       class PaymentMethodSummary < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Platform::Base because it does not implement :created_at, :updated_at and :id.
+        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
         def self.specification_scope
           'platform_api--v20210101'
         end

@@ -6,7 +6,7 @@ module Ioki
   module Model
     module Passenger
       class User < Base
-        attribute :email,             type: :object,    model_class: Ioki::Model::Passenger::UserEmail,
+        attribute :email,             type: :object,    model_class: UserEmail,
 on: [:read, :update]
         attribute :first_name,        type: :string,    on: [:read, :update]
         attribute :last_name,         type: :string,    on: [:read, :update]

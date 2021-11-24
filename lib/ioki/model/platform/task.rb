@@ -9,7 +9,7 @@ module Ioki
       class Task < Base
         attribute :acceptable, on: :read, type: :boolean
         attribute :accepted_at, on: :read, type: :string
-        attribute :calculated_point, on: :read, type: :object, model_class: Ioki::Model::Platform::CalculatedPoint
+        attribute :calculated_point, on: :read, type: :object, model_class: CalculatedPoint
         attribute :cancellable, on: :read, type: :boolean
         attribute :cancelled_at, on: :read, type: :string
         attribute :completable, on: :read, type: :boolean
@@ -17,7 +17,7 @@ module Ioki
         attribute :completer, on: :read, type: :object # The model_class is omitted because it can have one of several types.
         attribute :completer_id, on: :read, type: :string
         attribute :completer_type, on: :read, type: :string
-        attribute :pause, on: :read, type: :object, model_class: Ioki::Model::Platform::Pause
+        attribute :pause, on: :read, type: :object, model_class: Pause
         attribute :rejectable, on: :read, type: :boolean
         attribute :ride, on: :read, type: :object # The model_class is omitted because of a circular dependency
         attribute :state, on: :read, type: :string

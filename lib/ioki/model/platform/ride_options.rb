@@ -13,8 +13,8 @@ module Ioki
         attribute :destination_time_based_matching, on: :read, type: :boolean
         attribute :max_wheelchairs, on: :read, type: :integer
         attribute :max_walkers, on: :read, type: :integer
-        attribute :prebooking_threshold, on: :read, type: :object, model_class: Ioki::Model::Platform::PrebookingThreshold
-        attribute :passengers, on: :read, type: :object, model_class: Ioki::Model::Platform::PassengerOptions
+        attribute :prebooking_threshold, on: :read, type: :object, model_class: PrebookingThreshold
+        attribute :passengers, on: :read, type: :object, model_class: PassengerOptions
       end
     end
   end

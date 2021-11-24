@@ -7,7 +7,7 @@ module Ioki
     module Platform
       class User < Base
         attribute :email,             type: :object,  on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update], model_class: Ioki::Model::Platform::UserEmail
+omit_if_blank_on: [:create, :update], model_class: UserEmail
         attribute :external_id,       type: :string,  on: [:read, :create, :update],
 omit_if_blank_on: [:create, :update]
         attribute :first_name,        type: :string,  on: [:read, :create, :update],

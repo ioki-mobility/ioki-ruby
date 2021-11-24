@@ -14,9 +14,9 @@ module Ioki
         attribute :geo_track, type: :string, on: :read
         attribute :geo_track_durations, type: :array, on: :read
         attribute :leg_order, type: :integer, on: :read
-        attribute :maneuvers, type: :array, on: :read, model_class: Ioki::Model::Platform::Maneuver
+        attribute :maneuvers, type: :array, on: :read, model_class: Maneuver
         attribute :maneuvers_calculated_at, type: :string, on: :read
-        attribute :destination_task, type: :object, on: :read, model_class: Ioki::Model::Platform::Task
+        attribute :destination_task, type: :object, on: :read, model_class: Task
       end
     end
   end

@@ -20,7 +20,7 @@ module Ioki
         attribute :street_name,   on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :string
         attribute :street_number, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :string
         attribute :active, on: :read, type: :boolean
-        attribute :deactivations, on: :read, type: :array, model_class: Ioki::Model::Platform::Deactivation
+        attribute :deactivations, on: :read, type: :array, model_class: Deactivation
       end
     end
   end

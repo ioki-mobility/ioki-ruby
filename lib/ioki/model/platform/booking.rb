@@ -10,7 +10,7 @@ module Ioki
 
         attribute :verification_code, type: :string, on: [:read, :update]
         attribute :ride_version, type: :integer, on: :create
-        attribute :payment_method, type: :object, on: :create, model_class: Ioki::Model::Platform::PaymentMethod
+        attribute :payment_method, type: :object, on: :create, model_class: PaymentMethod
       end
     end
   end

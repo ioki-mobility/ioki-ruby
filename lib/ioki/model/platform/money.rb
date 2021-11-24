@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Platform
       class Money < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Platform::Base because it does not implement :created_at, :updated_at and :id.
+        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
 
         def self.schema_path
           'money'

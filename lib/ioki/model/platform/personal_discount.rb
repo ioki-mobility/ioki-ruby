@@ -8,15 +8,15 @@ module Ioki
   module Model
     module Platform
       class PersonalDiscount < Base
-        attribute :absolute_discount_object, on: :read, type: :object, model_class: Ioki::Model::Platform::Money
+        attribute :absolute_discount_object, on: :read, type: :object, model_class: Money
         attribute :channel, on: :read, type: :string
         attribute :consumed, on: :read, type: :boolean
         attribute :description, on: :read, type: :string
         attribute :discount_type, on: :read, type: :string
         attribute :maximum_usages, on: :read, type: :integer
-        attribute :payment_method, on: :read, type: :object, model_class: Ioki::Model::Platform::PaymentMethod
+        attribute :payment_method, on: :read, type: :object, model_class: PaymentMethod
         attribute :product_id, on: :read, type: :string
-        attribute :receipts, on: :read, type: :array, model_class: Ioki::Model::Platform::Receipt
+        attribute :receipts, on: :read, type: :array, model_class: Receipt
         attribute :relative_discount, on: :read, type: :integer
         attribute :title, on: :read, type: :string
         attribute :usages, on: :read, type: :integer

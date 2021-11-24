@@ -8,7 +8,7 @@ module Ioki
       class Booking < Base
         attribute :verification_code, type: :string, on: [:read, :update]
         attribute :ride_version, type: :integer, on: :create
-        attribute :payment_method, type: :object, on: :create, model_class: Ioki::Model::Passenger::PaymentMethod
+        attribute :payment_method, type: :object, on: :create, model_class: PaymentMethod
       end
     end
   end

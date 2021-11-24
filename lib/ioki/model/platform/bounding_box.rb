@@ -6,7 +6,7 @@ module Ioki
   module Model
     module Platform
       class BoundingBox < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Platform::Base because it does not define :created_at, :id, :type and :updated_at.
+        # Note that this does not inherit from Base because it does not define :created_at, :id, :type and :updated_at.
 
         def self.schema_path
           'bounding_box'
@@ -16,8 +16,8 @@ module Ioki
           nil
         end
 
-        attribute :min, on: :read, type: :object, model_class: Ioki::Model::Platform::Coordinate
-        attribute :max, on: :read, type: :object, model_class: Ioki::Model::Platform::Coordinate
+        attribute :min, on: :read, type: :object, model_class: Coordinate
+        attribute :max, on: :read, type: :object, model_class: Coordinate
       end
     end
   end

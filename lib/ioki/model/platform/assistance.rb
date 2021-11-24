@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Platform
       class Assistance < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Platform::Base because :created_at, :updated_at and :id are not defined.
+        # Note that this does not inherit from Base because :created_at, :updated_at and :id are not defined.
 
         def self.schema_path
           'platform_api--v20210101--ride_inquiry--assistance'

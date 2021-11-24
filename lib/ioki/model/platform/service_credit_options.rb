@@ -8,7 +8,7 @@ module Ioki
       class ServiceCreditOptions < Base
         unvalidated true
 
-        attribute :packages, on: :read, type: :array, model_class: Ioki::Model::Platform::Package
+        attribute :packages, on: :read, type: :array, model_class: Package
       end
     end
   end

@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Passenger
       class RidePassenger < Ioki::Model::Base
-        # Note that this does not inherit from Ioki::Model::Passenger::Base because :type behaves differently here.
+        # Note that this does not inherit from Base because :type behaves differently here.
 
         attribute :type,                    type: :string, on: [:create, :update]
         attribute :bahncard,                type: :boolean, on: [:read, :create, :update],

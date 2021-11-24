@@ -16,20 +16,20 @@ module Ioki
         attribute :actual_starts_at, on: :read, type: :string
         attribute :ad_hoc_bookable, on: :read, type: :boolean
         attribute :deactivated, on: :read, type: :boolean
-        attribute :deactivations, on: :read, type: :array, model_class: Ioki::Model::Platform::Deactivation
-        attribute :driver, on: :read, type: :object, model_class: Ioki::Model::Platform::Driver
-        attribute :end_place, on: :read, type: :object, model_class: Ioki::Model::Platform::Place
-        attribute :matching_configuration, on: :read, type: :object, model_class: Ioki::Model::Platform::MatchingConfiguration
+        attribute :deactivations, on: :read, type: :array, model_class: Deactivation
+        attribute :driver, on: :read, type: :object, model_class: Driver
+        attribute :end_place, on: :read, type: :object, model_class: Place
+        attribute :matching_configuration, on: :read, type: :object, model_class: MatchingConfiguration
         attribute :paused, on: :read, type: :boolean
-        attribute :pauses, on: :read, type: :array, model_class: Ioki::Model::Platform::Pause
+        attribute :pauses, on: :read, type: :array, model_class: Pause
         attribute :planned_ends_at, on: :read, type: :string
         attribute :planned_starts_at, on: :read, type: :string
         attribute :prebookable, on: :read, type: :boolean
         attribute :product_id, on: :read, type: :string
-        attribute :start_place, on: :read, type: :object, model_class: Ioki::Model::Platform::Place
+        attribute :start_place, on: :read, type: :object, model_class: Place
         attribute :state, on: :read, type: :string
-        attribute :tasks, on: :read, type: :array, model_class: Ioki::Model::Platform::Task
-        attribute :vehicle, on: :read, type: :object, model_class: Ioki::Model::Platform::Vehicle
+        attribute :tasks, on: :read, type: :array, model_class: Task
+        attribute :vehicle, on: :read, type: :object, model_class: Vehicle
       end
     end
   end

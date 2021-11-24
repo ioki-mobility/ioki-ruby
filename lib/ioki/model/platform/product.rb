@@ -13,18 +13,18 @@ module Ioki
     module Platform
       class Product < Base
         attribute :name, on: :read
-        attribute :provider, type: :object, on: :read, model_class: Ioki::Model::Platform::Provider
-        attribute :area, type: :object, on: :read, model_class: Ioki::Model::Platform::Area
+        attribute :provider, type: :object, on: :read, model_class: Provider
+        attribute :area, type: :object, on: :read, model_class: Area
         attribute :ad_hoc_bookable, on: :read, type: :boolean
-        attribute :bounding_box, on: :read, type: :object, model_class: Ioki::Model::Platform::BoundingBox
+        attribute :bounding_box, on: :read, type: :object, model_class: BoundingBox
         attribute :description, on: :read, type: :string
-        attribute :fixed_stations, on: :read, type: :array, model_class: Ioki::Model::Platform::Station
-        attribute :matching_configurations, on: :read, type: :array, model_class: Ioki::Model::Platform::MatchingConfiguration
+        attribute :fixed_stations, on: :read, type: :array, model_class: Station
+        attribute :matching_configurations, on: :read, type: :array, model_class: MatchingConfiguration
         attribute :prebookable, on: :read, type: :boolean
-        attribute :ride_options, on: :read, type: :object, model_class: Ioki::Model::Platform::RideOptions
+        attribute :ride_options, on: :read, type: :object, model_class: RideOptions
         attribute :ride_rating_criteria, on: :read, type: :array
         attribute :service_time_info, on: :read, type: :string
-        attribute :timezone, on: :read, type: :object, model_class: Ioki::Model::Platform::TimeZone
+        attribute :timezone, on: :read, type: :object, model_class: TimeZone
         attribute :version, on: :read, type: :integer
       end
     end

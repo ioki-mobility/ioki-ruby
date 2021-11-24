@@ -20,7 +20,7 @@ module Ioki
         attribute :autonomous, on: :read, type: :boolean
         attribute :description, on: :read, type: :string
         attribute :external_id, on: :read, type: :string
-        attribute :last_known_position, on: :read, type: :object, model_class: Ioki::Model::Platform::VehiclePosition
+        attribute :last_known_position, on: :read, type: :object, model_class: VehiclePosition
         attribute :phone_number, on: :read, type: :string
         attribute :version, on: :read, type: :integer
       end

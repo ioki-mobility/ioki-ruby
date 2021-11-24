@@ -10,13 +10,13 @@ module Ioki
   module Model
     module Platform
       class RideInquiry < Base
-        attribute :origin, on: :create, type: :object, model_class: Ioki::Model::Platform::RequestedPoint, unvalidated: true # The model does not return it but it's used when sending data to the server.
-        attribute :destination, on: :create, type: :object, model_class: Ioki::Model::Platform::RequestedPoint, unvalidated: true # The model does not return it but it's used when sending data to the server.
-        attribute :assistances, on: :read, type: :array, model_class: Ioki::Model::Platform::Assistance
-        attribute :availability, on: :read, type: :object, model_class: Ioki::Model::Platform::Availability
-        attribute :constraints, on: :read, type: :object, model_class: Ioki::Model::Platform::Constraints
+        attribute :origin, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true # The model does not return it but it's used when sending data to the server.
+        attribute :destination, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true # The model does not return it but it's used when sending data to the server.
+        attribute :assistances, on: :read, type: :array, model_class: Assistance
+        attribute :availability, on: :read, type: :object, model_class: Availability
+        attribute :constraints, on: :read, type: :object, model_class: Constraints
         attribute :errors, on: :read, type: :array
-        attribute :estimations, on: :read, type: :array, model_class: Ioki::Model::Platform::Estimation
+        attribute :estimations, on: :read, type: :array, model_class: Estimation
       end
     end
   end

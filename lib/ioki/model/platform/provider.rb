@@ -17,7 +17,7 @@ module Ioki
         attribute :postal_code, on: :read, type: :string
         attribute :psp, on: :read, type: :string
         attribute :ride_payment_method_types, on: :read, type: :array
-        attribute :service_credit_options, on: :read, type: :object, model_class: Ioki::Model::Platform::ServiceCreditOptions
+        attribute :service_credit_options, on: :read, type: :object, model_class: ServiceCreditOptions
         attribute :service_credit_payment_method_types, on: :read, type: :array
         attribute :street_name, on: :read, type: :string
         attribute :street_number, on: :read, type: :string

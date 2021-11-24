@@ -11,14 +11,14 @@ module Ioki
   module Model
     module Platform
       class ServiceCredit < Base
-        attribute :admin, on: :read, type: :object, model_class: Ioki::Model::Platform::Admin
-        attribute :balance, on: :read, type: :object, model_class: Ioki::Model::Platform::Money
+        attribute :admin, on: :read, type: :object, model_class: Admin
+        attribute :balance, on: :read, type: :object, model_class: Money
         attribute :channel, on: :read, type: :string
-        attribute :charges, on: :read, type: :object, model_class: Ioki::Model::Platform::ServiceCreditCharge
+        attribute :charges, on: :read, type: :object, model_class: ServiceCreditCharge
         attribute :consumed, on: :read, type: :boolean
-        attribute :cost, on: :read, type: :object, model_class: Ioki::Model::Platform::Money
-        attribute :payment_method, on: :read, type: :object, model_class: Ioki::Model::Platform::PaymentMethod
-        attribute :value, on: :read, type: :object, model_class: Ioki::Model::Platform::Money
+        attribute :cost, on: :read, type: :object, model_class: Money
+        attribute :payment_method, on: :read, type: :object, model_class: PaymentMethod
+        attribute :value, on: :read, type: :object, model_class: Money
       end
     end
   end
