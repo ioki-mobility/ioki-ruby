@@ -11,6 +11,10 @@ module Ioki
       end
 
       class Base < Ioki::Model::Base
+        def self.specification_scope
+          'driver_api'
+        end
+
         attribute :id,         on: :read, type: :string
         attribute :type,       on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
