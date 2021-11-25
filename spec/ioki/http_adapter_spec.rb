@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'logger'
+require 'securerandom'
 
 RSpec.describe Ioki::HttpAdapter do
   subject(:http_adapter) { described_class.get(config) }
@@ -11,9 +12,9 @@ RSpec.describe Ioki::HttpAdapter do
       api_base_url:          'https://app.io.ki/api',
       api_version:           'api_version',
       api_client_identifier: 'api_client_identifier',
-      api_client_secret:     'api_client_secret',
+      api_client_secret:     SecureRandom.alphanumeric,
       api_client_version:    'api_client_version',
-      api_token:             'SECRET_TOKEN',
+      api_token:             SecureRandom.alphanumeric,
       language:              :'en-BZ',
       logger:                logger,
       logger_options:        { headers: true, bodies: true }
@@ -58,10 +59,10 @@ RSpec.describe Ioki::HttpAdapter do
     it { is_expected.to include 'X-Client-Identifier' => config.api_client_identifier }
     it { is_expected.to include 'X-Client-Secret'     => config.api_client_secret }
     it { is_expected.to include 'X-Client-Version'    => config.api_client_version }
-    it { is_expected.to include 'Authorization'       => 'Bearer SECRET_TOKEN' }
+    it { is_expected.to include 'Authorization'       => "Bearer #{config.api_token}" }
   end
 
-  describe 'encoding for logger' do
+  describe 'logger' do
     let(:logger) { instance_double(::Logger, 'logger') }
 
     it 'uses the correct encoding from the Content-Type header' do
@@ -73,6 +74,16 @@ RSpec.describe Ioki::HttpAdapter do
       allow(logger).to receive(:info) do |*_args, &block|
         body = block.call
         expect(body.encoding).to eq(Encoding::UTF_8)
+      end
+      http_adapter.get('platform/products')
+    end
+
+    it 'scrubs the api_client_secret and the api_token from the logs' do
+      stub_request(:get, 'https://app.io.ki/api/platform/products').to_return(status: 200, body: '[]', headers: {})
+      allow(logger).to receive(:info) do |*_args, &block|
+        body = block.call
+        expect(body).not_to include(config.api_client_secret)
+        expect(body).not_to include(config.api_token)
       end
       http_adapter.get('platform/products')
     end
