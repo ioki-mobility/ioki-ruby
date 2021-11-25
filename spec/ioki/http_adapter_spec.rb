@@ -15,7 +15,8 @@ RSpec.describe Ioki::HttpAdapter do
       api_client_version:    'api_client_version',
       api_token:             'SECRET_TOKEN',
       language:              :'en-BZ',
-      logger:                logger
+      logger:                logger,
+      logger_options:        { headers: true, bodies: true }
     )
   end
   let(:logger) { nil }
@@ -58,5 +59,22 @@ RSpec.describe Ioki::HttpAdapter do
     it { is_expected.to include 'X-Client-Secret'     => config.api_client_secret }
     it { is_expected.to include 'X-Client-Version'    => config.api_client_version }
     it { is_expected.to include 'Authorization'       => 'Bearer SECRET_TOKEN' }
+  end
+
+  describe 'encoding for logger' do
+    let(:logger) { instance_double(::Logger, 'logger') }
+
+    it 'uses the correct encoding from the Content-Type header' do
+      stub_request(:get, 'https://app.io.ki/api/platform/products').to_return(
+        status:  200,
+        body:    [{ name: 'Grüne Höhe Wägen' }].to_json.force_encoding(Encoding::ASCII_8BIT),
+        headers: { 'Content-Type' => 'application/json; charset=utf-8' }
+      )
+      allow(logger).to receive(:info) do |*_args, &block|
+        body = block.call
+        expect(body.encoding).to eq(Encoding::UTF_8)
+      end
+      http_adapter.get('platform/products')
+    end
   end
 end
