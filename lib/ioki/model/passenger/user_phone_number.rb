@@ -3,9 +3,12 @@
 module Ioki
   module Model
     module Passenger
-      class UserPhoneNumber < Base
-        attribute :phone_number, type: :string, on: :update
-        attribute :code, type: :string, on: :update
+      class UserPhoneNumber < Ioki::Model::Base
+        unvalidated true # Specification not available. Only used for updating a user's phone number.
+
+        attribute :id, on: :read, type: :string
+        attribute :phone_number, on: :update, type: :string
+        attribute :code, on: :update, type: :string
       end
     end
   end

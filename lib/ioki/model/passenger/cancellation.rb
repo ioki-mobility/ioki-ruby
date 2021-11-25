@@ -4,11 +4,11 @@ module Ioki
   module Model
     module Passenger
       class Cancellation < Base
-        attribute :ride_id,                        on: [:create, :read], type: :string
-        attribute :ride_version,                   on: [:create, :read], type: :integer
-        attribute :code,                           on: [:create, :read], type: :string
-        attribute :passenger_cancellation_reason,  on: [:create, :read], type: :string
-        # attribute :cancellation_statement_id, type: :string
+        unvalidated true # Specification not available. Only used for creation.
+
+        attribute :ride_version,                   on: :create, type: :integer
+        attribute :code,                           on: :create, type: :string
+        attribute :cancellation_statement_id,      on: :create, type: :string
       end
     end
   end

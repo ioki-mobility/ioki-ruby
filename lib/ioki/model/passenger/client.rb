@@ -6,6 +6,13 @@ module Ioki
   module Model
     module Passenger
       class Client < Ioki::Model::Base
+        # Note that this does not inherit from Base because :created_at, :updated_at and :id are not defined.
+
+        def self.specification_scope
+          nil
+        end
+
+        attribute :type,                   on: :read, type: :string
         attribute :current_version,        on: :read, type: :string
         attribute :default_map_center_lat, on: :read, type: :float
         attribute :default_map_center_lng, on: :read, type: :float

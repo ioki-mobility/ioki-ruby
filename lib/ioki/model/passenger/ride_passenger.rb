@@ -6,17 +6,18 @@ module Ioki
       class RidePassenger < Ioki::Model::Base
         # Note that this does not inherit from Base because :type behaves differently here.
 
-        attribute :type,                    type: :string, on: [:create, :update]
-        attribute :bahncard,                type: :boolean, on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update]
-        attribute :blue_badge,              type: :boolean, on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update]
-        attribute :public_transport_ticket, type: :boolean, on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update]
-        attribute :walker,                  type: :boolean, on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update]
-        attribute :wheelchair,              type: :boolean, on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update]
+        def self.specification_scope
+          'passenger_api'
+        end
+
+        attribute :type, on: [:create, :update], type: :string
+        attribute :bahncard, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
+        attribute :blue_badge, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
+        attribute :public_transport_ticket, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
+        attribute :walker, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
+        attribute :wheelchair, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
+        attribute :first_name, on: :read, type: :string
+        attribute :last_name, on: :read, type: :string
       end
     end
   end

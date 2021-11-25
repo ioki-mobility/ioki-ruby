@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Passenger
       class Features < Base
+        unvalidated true # Specification not available
+
         attribute :analytics_tracking, type: :boolean, on: :read
         attribute :failed_payment_handling, type: :boolean, on: :read
         attribute :marketing_automation, type: :boolean, on: :read
