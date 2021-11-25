@@ -13,29 +13,26 @@ API_SPECIFICATIONS =
     File.file?(path) ? JSON.parse(File.read(path)) : nil
   end.freeze
 
-RSpec::Matchers.define :match_open_api_definition do |scope, model, options = {}|
+RSpec::Matchers.define :match_open_api_definition do |scope, model|
   define_method :schemas do
     API_SPECIFICATIONS.fetch(scope.to_sym).fetch('components').fetch('schemas')
   end
 
-  define_method :specification_scope do
-    options[:specification_scope] || scope
+  define_method :schema_path do |actual_model|
+    actual_model.schema_path ||
+      "#{actual_model.specification_scope}--#{StringHelper.underscore(model.to_s.split('::').last)}"
   end
 
-  define_method :schema_path do
-    options[:schema_path] || "#{specification_scope}--#{StringHelper.underscore(model.to_s.split('::').last)}"
-  end
-
-  define_method :model_node do
-    schemas[schema_path]
+  define_method :model_node do |actual_model|
+    schemas[schema_path(actual_model)]
   end
 
   define_method :specified_attributes do |actual_model|
-    model_node.fetch('properties').keys.map(&:to_sym) - unvalidated_attributes(actual_model) - deprecated_attributes
+    model_node(actual_model).fetch('properties').keys.map(&:to_sym) - unvalidated_attributes(actual_model) - deprecated_attributes(actual_model)
   end
 
-  define_method :deprecated_attributes do
-    model_node.fetch('properties').select { |_name, attributes| attributes['deprecated'] }.keys.map(&:to_sym)
+  define_method :deprecated_attributes do |actual_model|
+    model_node(actual_model).fetch('properties').select { |_name, attributes| attributes['deprecated'] }.keys.map(&:to_sym)
   end
 
   define_method :defined_attributes do |actual_model|
@@ -50,19 +47,19 @@ RSpec::Matchers.define :match_open_api_definition do |scope, model, options = {}
   end
 
   match do |actual_model|
-    return false if model_node.nil?
+    return false if model_node(actual_model).nil?
 
-    unless (defined_attributes(actual_model) & deprecated_attributes).empty?
-      warn "The following attributes on #{actual_model} are deprecated: #{defined_attributes(actual_model) | deprecated_attributes}."
+    unless (defined_attributes(actual_model) & deprecated_attributes(actual_model)).empty?
+      warn "The following attributes on #{actual_model} are deprecated: #{defined_attributes(actual_model) | deprecated_attributes(actual_model)}."
     end
 
     specified_attributes(actual_model).sort == defined_attributes(actual_model).sort
   end
 
   failure_message do |actual_model|
-    if model_node.nil?
+    if model_node(actual_model).nil?
       <<~MESSAGE
-        Specification not found for #{actual_model}. I was looking for: #{schema_path}. Available specifications:
+        Specification not found for #{actual_model}. I was looking for: #{schema_path(actual_model)}. Available specifications:
         #{schemas.keys}
       MESSAGE
     else

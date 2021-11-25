@@ -7,13 +7,7 @@ RSpec.describe 'OpenApi schema definitions' do
     describe 'the platform_api definition' do
       Ioki::Model::Platform.valid_models.each do |model|
         it "ensures #{model} matches the published API specifications" do
-          expect(model).
-            to match_open_api_definition(
-              'platform_api',
-              model,
-              specification_scope: model.specification_scope,
-              schema_path:         model.schema_path
-            )
+          expect(model).to match_open_api_definition('platform_api', model)
         end
       end
     end
@@ -23,13 +17,7 @@ RSpec.describe 'OpenApi schema definitions' do
     describe 'the passenger_api definition' do
       Ioki::Model::Passenger.valid_models.each do |model|
         it "ensures #{model} matches the published API specifications" do
-          expect(model).
-            to match_open_api_definition(
-              'passenger_api',
-              model,
-              specification_scope: model.specification_scope,
-              schema_path:         model.schema_path
-            )
+          expect(model).to match_open_api_definition('passenger_api', model)
         end
       end
     end
@@ -39,13 +27,7 @@ RSpec.describe 'OpenApi schema definitions' do
     describe 'the driver_api definition' do
       Ioki::Model::Driver.valid_models.each do |model|
         it "ensures #{model} matches the published API specifications" do
-          expect(model).
-            to match_open_api_definition(
-              'driver_api',
-              model,
-              specification_scope: model.specification_scope,
-              schema_path:         model.schema_path
-            )
+          expect(model).to match_open_api_definition('driver_api', model)
         end
       end
     end

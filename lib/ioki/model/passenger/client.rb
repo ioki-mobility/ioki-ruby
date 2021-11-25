@@ -9,7 +9,7 @@ module Ioki
         # Note that this does not inherit from Base because :created_at, :updated_at and :id are not defined.
 
         def self.specification_scope
-          nil
+          'passenger_api'
         end
 
         attribute :type,                   on: :read, type: :string
