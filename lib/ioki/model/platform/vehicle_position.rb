@@ -10,10 +10,6 @@ module Ioki
           'platform_api--v20210101--vehicle_position_without_vehicle'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :accuracy, on: :read, type: :float
         attribute :altitude, on: :read, type: :float
         attribute :altitude_accuracy, on: :read, type: :float

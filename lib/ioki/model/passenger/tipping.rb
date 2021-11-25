@@ -12,10 +12,6 @@ module Ioki
           'passenger_api--product--tipping'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :minimum, on: :read, type: :object, model_class: Money
         attribute :suggestions, on: :read, type: :array, model_class: Money
       end

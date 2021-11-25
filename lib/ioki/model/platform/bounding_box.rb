@@ -12,10 +12,6 @@ module Ioki
           'bounding_box'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :min, on: :read, type: :object, model_class: Coordinate
         attribute :max, on: :read, type: :object, model_class: Coordinate
       end

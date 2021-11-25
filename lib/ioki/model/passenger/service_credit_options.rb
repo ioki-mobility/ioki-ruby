@@ -12,10 +12,6 @@ module Ioki
           'passenger_api--nested_service_credit_options'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :packages, on: :read, type: :array, model_class: Package
       end
     end

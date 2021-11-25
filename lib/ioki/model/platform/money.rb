@@ -10,10 +10,6 @@ module Ioki
           'money'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :amount, on: :read, type: :integer
         attribute :currency, on: :read, type: :string
         attribute :type, on: :read, type: :string

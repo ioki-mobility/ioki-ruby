@@ -10,10 +10,6 @@ module Ioki
           'passenger_api--ride_inquiry--assistance'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :href, on: :read, type: :string
         attribute :text, on: :read, type: :string
         attribute :title, on: :read, type: :string

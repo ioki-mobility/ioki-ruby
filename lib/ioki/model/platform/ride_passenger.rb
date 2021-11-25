@@ -10,10 +10,6 @@ module Ioki
           'platform_api--v20210101--ride_passenger'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :type,                    type: :string, on: [:create, :update]
         attribute :bahncard,                type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]
         attribute :blue_badge,              type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]

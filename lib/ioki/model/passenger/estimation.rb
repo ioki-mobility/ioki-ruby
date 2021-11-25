@@ -8,10 +8,6 @@ module Ioki
       class Estimation < Ioki::Model::Base
         # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
 
-        def self.specification_scope
-          nil
-        end
-
         def self.schema_path
           'passenger_api--ride_inquiry--estimation'
         end

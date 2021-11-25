@@ -31,6 +31,10 @@ module Ioki
           nil
         end
 
+        def specification_scope
+          nil
+        end
+
         def unvalidated(unvalidated = false)
           @unvalidated = unvalidated
         end

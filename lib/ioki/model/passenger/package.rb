@@ -12,10 +12,6 @@ module Ioki
           'passenger_api--nested_service_credit_packages'
         end
 
-        def self.specification_scope
-          nil
-        end
-
         attribute :cost_object, on: :read, type: :object, model_class: Money
         attribute :value_object, on: :read, type: :object, model_class: Money
       end
