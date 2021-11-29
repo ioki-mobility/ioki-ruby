@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class Cancellation < Base
+      class Cancellation < Ioki::Model::Base
         unvalidated true # Specification not available. Only used for creation.
 
         attribute :ride_version,                   on: :create, type: :integer

@@ -5,7 +5,9 @@ require 'ioki/model/platform/payment_method'
 module Ioki
   module Model
     module Platform
-      class Booking < Base
+      class Booking < Ioki::Model::Base
+        # Note that this does not inherit from Base because it does not define :id, :type, :created_at and :updated_at.
+
         unvalidated true
 
         attribute :verification_code, type: :string, on: [:read, :update]

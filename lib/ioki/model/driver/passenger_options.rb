@@ -5,7 +5,9 @@ require 'ioki/model/driver/passenger_type'
 module Ioki
   module Model
     module Driver
-      class PassengerOptions < Base
+      class PassengerOptions < Ioki::Model::Base
+        # Note that this does not inherit from Base because it does not implement :type, :id, :created_at and :updated_at.
+
         unvalidated true # Specification not available.
 
         attribute :types, on: :read, type: :array, model_class: PassengerType

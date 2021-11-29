@@ -3,7 +3,9 @@
 module Ioki
   module Model
     module Passenger
-      class ImageVersion < Base
+      class ImageVersion < Ioki::Model::Base
+        # Note that this does not inherit from Base because it does not define :id, :type, :created_at and :updated_at.
+
         unvalidated true # Specification not available
 
         attribute :large, on: :read, type: :string

@@ -23,6 +23,12 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
     end
   end
 
+  describe 'an object endpoint without a model class' do
+    it 'is returned as a hash' do
+      expect(platform_client.rides(real_demo_product_id).first.fare.fare_details).to be_a(Hash)
+    end
+  end
+
   describe 'index endpoints' do
     let(:task_list_id) do
       platform_client.task_lists(real_demo_product_id, params: { per_page: 1, page: 1 }).first.id
