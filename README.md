@@ -158,3 +158,8 @@ If you would like to make those request with fast predictable results in you tes
     expect(client.providers.first.city).to eq('Somewhere')
   end
 ```
+
+### OpenApi specifications
+
+If you're allowed to access the OpenAPI-specifications for the three APIs you can place them in `spec/fixtures/open_api_definitions`. `open_api_spec` will then compare theses specs with the matching models. You can define `specification_scope` on the model to set the prefix the specs are looking for in the OpenApi-schema file and `schema_path` if the name of the schema is not the snake_case version of the class name and define `unvalidated true` to mark that no specification exists for a model.
+Sometimes it's also helpful to disable the check for specific attributes. You can pass `unvalidated: true` as an option to the `attribute` definition.
