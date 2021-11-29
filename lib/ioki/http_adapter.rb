@@ -10,20 +10,22 @@ module Ioki
       ::Faraday.new(config.api_base_url, headers: headers(config)) do |f|
         f.adapter :net_http
 
-        # The order of execution of the middleware is FiFo:
-        # 1) parsed as JSON (and implicitly is encoded properly as UTF-8)
-        # 2) logging occurs
+        f.request :authorization, 'Bearer', -> { config.api_token }
+
+        # The placement of the middleware here determines the execution order
+        # It's important, that the logger is defined before the :json middleware
+        # The order is then inverted:
+        # 1) Encode & decode request & response body as JSON using UTF-8 charset
+        # 2) Use logger to log headers and / or bodies
         if config.logger
           f.response :logger, config.logger, config.logger_options do |logger|
-            logger.filter(/(X-Client-Secret: )(\w+)/, '\1[REMOVED]')
-            logger.filter(/(Authorization: )(\w+)/, '\1[REMOVED]')
+            logger.filter(/(X-Client-Secret: ")([^"]+)/, '\1[REMOVED]')
+            logger.filter(/(Authorization: ")([^"]+)/, '\1[REMOVED]')
             logger.filter(/("token":")([^"]+)/, '\1[REMOVED]')
           end
         end
         f.response :json # decode response bodies as JSON
-
-        f.request :json # encode req bodies as JSON
-        f.request :authorization, 'Bearer', -> { config.api_token }
+        f.request :json # encode request bodies as JSON
       end
     end
 
