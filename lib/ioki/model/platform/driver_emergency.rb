@@ -7,7 +7,7 @@ module Ioki
   module Model
     module Platform
       class DriverEmergency < Base
-        attribute :acknowledged_at, on: :read, type: :string
+        attribute :acknowledged_at, on: :read, type: :date_time
         attribute :driver, on: [:create, :read], type: :object, model_class: Driver
         attribute :vehicle, on: [:create, :read], type: :object, model_class: Vehicle
       end

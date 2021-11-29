@@ -8,12 +8,12 @@ module Ioki
     module Platform
       class Task < Base
         attribute :acceptable, on: :read, type: :boolean
-        attribute :accepted_at, on: :read, type: :string
+        attribute :accepted_at, on: :read, type: :date_time
         attribute :calculated_point, on: :read, type: :object, model_class: CalculatedPoint
         attribute :cancellable, on: :read, type: :boolean
-        attribute :cancelled_at, on: :read, type: :string
+        attribute :cancelled_at, on: :read, type: :date_time
         attribute :completable, on: :read, type: :boolean
-        attribute :completed_at, on: :read, type: :string
+        attribute :completed_at, on: :read, type: :date_time
         attribute :completer, on: :read, type: :object # The model_class is omitted because it can have one of several types.
         attribute :completer_id, on: :read, type: :string
         attribute :completer_type, on: :read, type: :string
