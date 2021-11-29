@@ -63,7 +63,7 @@ module Ioki
       attr_accessor :_raw_attributes, :_attributes, :_etag
 
       def initialize(raw_attributes = {}, etag = nil)
-        @_raw_attributes = raw_attributes.transform_keys(&:to_sym)
+        @_raw_attributes = (raw_attributes || {}).transform_keys(&:to_sym)
         @_etag = etag
         reset_attributes!
       end
