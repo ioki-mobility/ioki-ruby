@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.1 - 2021-11-29
+* Bugfixes
+
 ## 0.6.0 - 2021-11-22
 * Refactorings, gem name fix, improve setup
 
