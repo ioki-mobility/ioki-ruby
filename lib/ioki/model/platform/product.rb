@@ -6,7 +6,7 @@ require 'ioki/model/platform/matching_configuration'
 require 'ioki/model/platform/provider'
 require 'ioki/model/platform/ride_options'
 require 'ioki/model/platform/station'
-require 'ioki/model/platform/time_zone'
+require 'ioki/model/platform/timezone'
 
 module Ioki
   module Model
@@ -24,7 +24,7 @@ module Ioki
         attribute :ride_options, on: :read, type: :object, model_class: RideOptions
         attribute :ride_rating_criteria, on: :read, type: :array
         attribute :service_time_info, on: :read, type: :string
-        attribute :timezone, on: :read, type: :object, model_class: TimeZone
+        attribute :timezone, on: :read, type: :object, model_class: Timezone
         attribute :version, on: :read, type: :integer
       end
     end

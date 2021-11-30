@@ -6,7 +6,7 @@ require 'ioki/model/driver/passenger_options'
 module Ioki
   module Model
     module Driver
-      class RideOption < Ioki::Model::Base
+      class RideOptions < Ioki::Model::Base
         # Note that this does not inherit from Base because it does not implement :type, :id, :created_at and :updated_at.
 
         unvalidated true # Specification not available.

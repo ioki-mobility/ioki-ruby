@@ -2,8 +2,8 @@
 
 module Ioki
   module Model
-    module Platform
-      class TimeZone < Ioki::Model::Base
+    module Passenger
+      class Timezone < Ioki::Model::Base
         # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
 
         unvalidated true # No specification available.

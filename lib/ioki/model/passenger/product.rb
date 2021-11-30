@@ -9,7 +9,7 @@ require 'ioki/model/passenger/personal_discount_type'
 require 'ioki/model/passenger/provider'
 require 'ioki/model/passenger/ride_options'
 require 'ioki/model/passenger/station'
-require 'ioki/model/passenger/time_zone'
+require 'ioki/model/passenger/timezone'
 require 'ioki/model/passenger/tipping'
 
 module Ioki
@@ -37,7 +37,7 @@ module Ioki
         attribute :supports_passenger_cancellation_reason, on: :read, type: :boolean
         attribute :supports_prebooking_ui_assistance, on: :read, type: :boolean
         attribute :supports_updating_passengers_on_ride, on: :read, type: :boolean
-        attribute :timezone, on: :read, type: :object, model_class: TimeZone
+        attribute :timezone, on: :read, type: :object, model_class: Timezone
         attribute :tipping, on: :read, type: :object, model_class: Tipping
         attribute :version, on: :read, type: :integer
       end
