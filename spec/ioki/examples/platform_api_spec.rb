@@ -81,50 +81,5 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       # expect(platform_client.webhooks(real_demo_provider_id).first).to be_a(Ioki::Model::Platform::Webhook)
       # No webhook defined on demo product
     end
-
-      # Update a user's email
-
-      # # Passenger
-
-      # ## Product endpoint can test
-
-      # area.rb
-      # image_version.rb (avatar)
-      # coordinate.rb (bounding_box)
-      # passenger_options.rb
-      # ride_options.rb
-      # timezone.rb
-      # prebooking_threshold.rb
-      # passenger_type.rb
-
-      # ## Ride endpoint can test
-
-      # cancellation.rb -> cancel outgoing model only
-      # mobile_ticket_data.rb
-      # route.rb
-
-      # ## Ride Inquiry creation endpoint can text
-
-      # constraints.rb
-      # availability.rb
-
-      # ## User Phone number update outgoing model only
-
-      # user_phone_number.rb
-
-      # ## Client endpoint
-
-      # features.rb
-
-
-
-      # # Driver
-
-      # ## Product endpoint can test
-
-      # passenger_type.rb
-      # ride_option.rb
-      # passenger_options.rb
-      # prebooking_threshold.rb
   end
 end

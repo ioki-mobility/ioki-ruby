@@ -56,9 +56,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 0dc76dcc-3d86-4359-bc37-6349eef8d79c
+      - 993063a5-1cf1-4849-a1c1-b9d5631d2ee7
       Date:
-      - Tue, 30 Nov 2021 08:55:20 GMT
+      - Tue, 30 Nov 2021 09:48:35 GMT
       Transfer-Encoding:
       - chunked
       Strict-Transport-Security:
@@ -74,5 +74,5 @@ http_interactions:
         am Main","country_code":"DE","currency":"EUR","current_tos_date":"2021-01-01","logpay_payment_method_types":[],"merchant_name":"ioki
         GmbH","name":"Webbooking Test Provider","payment_method_types":["cash","service_credits","external_payment"],"personal_discount_payment_method_types":["service_credits","external_payment"],"postal_code":"60322","psp":"no_psp","ride_payment_method_types":["cash","service_credits"],"service_credit_payment_method_types":[],"street_name":"An
         der Welle","street_number":"3","stripe_payment_method_types":[],"tip_payment_method_types":[],"service_credit_options":{"packages":[]},"type":"provider"},"type":"product"}],"meta":{"page":1,"last_page":true}}'
-  recorded_at: Tue, 30 Nov 2021 08:55:20 GMT
+  recorded_at: Tue, 30 Nov 2021 09:48:35 GMT
 recorded_with: VCR 6.0.0
