@@ -89,7 +89,7 @@ RSpec.describe 'models without open api specifications', vcr: { record: :all } d
     before do
       passenger_client.config.api_token = platform_client.create_request_token(
         platform_client.providers.first,
-        platform_client.users(platform_client.providers.first).first,
+        platform_client.users(platform_client.providers.first).last,
         Ioki::Model::Platform::PassengerRequestToken.new(
           client_identifier: 'dev.passengerapi.test.backend'
         )
@@ -159,8 +159,8 @@ RSpec.describe 'models without open api specifications', vcr: { record: :all } d
         it 'has data for all defined attributes' do
           expect(passenger_client.rides(product).first.route).to be_a(Ioki::Model::Passenger::Route)
           expect(passenger_client.rides(product).first.route.track).to be_a(String)
+          pending('Needs a ride with a ticket that has a ticket with mobile_ticket_data')
           expect(passenger_client.rides(product).first.ticket.mobile_ticket_data).to be_a(Ioki::Model::Passenger::MobileTicketData)
-          pending('Needs a ride with a ticket that has mobile_ticket_data')
           expect(passenger_client.rides(product).first.ticket.mobile_ticket_data.purchase_id).to be_a(String)
           expect(passenger_client.rides(product).first.ticket.mobile_ticket_data.customer_code).to be_a(String)
         end
@@ -172,11 +172,15 @@ RSpec.describe 'models without open api specifications', vcr: { record: :all } d
 
       describe 'models accessible on the ride_inqury creation endpoint' do
         let(:ride_inqury) do
-          Ioki::Model::Passenger::RideInquiry.new(origin: { lat: 1, lng: 1 }, destination: { lat: 1, lng: 1 })
+          Ioki::Model::Passenger::RideInquiry.new(
+            origin:      { lat: 1, lng: 1 },
+            destination: { lat: 1, lng: 1 },
+            product_id:  product.id
+          )
         end
 
         it 'has data for all defined attributes' do
-          returned_ride_inquiry = passenger_client.create_ride_inquiry(product, ride_inqury)
+          returned_ride_inquiry = passenger_client.create_ride_inquiry(ride_inqury)
           expect(returned_ride_inquiry.availability).to be_a(Ioki::Model::Passenger::Availability)
           expect(returned_ride_inquiry.constraints).to be_a(Ioki::Model::Passenger::Constraints)
         end
@@ -184,20 +188,24 @@ RSpec.describe 'models without open api specifications', vcr: { record: :all } d
 
       describe 'models accessible on the client endpoint' do
         it 'has data for all defined attributes' do
-          expect(passenger_client.bootstrap.client.features).to be_a(Ioki::Model::Passenger::Features)
-          expect(passenger_client.bootstrap.client.features.analytics_tracking).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.failed_payment_handling).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.marketing_automation).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.minimum_age_confirmation).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.newsletter).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.non_purchasable_personal_discounts).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.payment).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.promo_codes).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.purchasable_personal_discounts).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.referrals).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.service_credits).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.unique_customer_id).to be(true).or(be(false))
-          expect(passenger_client.bootstrap.client.features.user_email_required).to be(true).or(be(false))
+          features = passenger_client.bootstrap.client.features
+
+          expect(features).to be_a(Ioki::Model::Passenger::Features)
+          expect(features.analytics_tracking).to be(true).or(be(false))
+          expect(features.failed_payment_handling).to be(true).or(be(false))
+          expect(features.marketing_automation).to be(true).or(be(false))
+          pending('Needs a client with a minimum_age_confirmation feature enabled')
+          expect(features.minimum_age_confirmation).to be_a(Ioki::Model::Passenger::MinimumAgeConfirmation)
+          expect(features.minimum_age_confirmation.minimum_age).to be_a(Integer)
+          expect(features.newsletter).to be(true).or(be(false))
+          expect(features.non_purchasable_personal_discounts).to be(true).or(be(false))
+          expect(features.payment).to be(true).or(be(false))
+          expect(features.promo_codes).to be(true).or(be(false))
+          expect(features.purchasable_personal_discounts).to be(true).or(be(false))
+          expect(features.referrals).to be(true).or(be(false))
+          expect(features.service_credits).to be(true).or(be(false))
+          expect(features.unique_customer_id).to be(true).or(be(false))
+          expect(features.user_email_required).to be(true).or(be(false))
         end
       end
     end

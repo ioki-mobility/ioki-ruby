@@ -56,9 +56,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - dc7d1017-5c74-4caa-ae85-d33845a919eb
+      - ba118bcc-997f-42ef-9983-88e067823108
       Date:
-      - Tue, 30 Nov 2021 09:48:40 GMT
+      - Tue, 30 Nov 2021 11:17:54 GMT
       Transfer-Encoding:
       - chunked
       Strict-Transport-Security:
@@ -74,7 +74,7 @@ http_interactions:
         am Main","country_code":"DE","currency":"EUR","current_tos_date":"2021-01-01","logpay_payment_method_types":[],"merchant_name":"ioki
         GmbH","name":"Webbooking Test Provider","payment_method_types":["cash","service_credits","external_payment"],"personal_discount_payment_method_types":["service_credits","external_payment"],"postal_code":"60322","psp":"no_psp","ride_payment_method_types":["cash","service_credits"],"service_credit_payment_method_types":[],"street_name":"An
         der Welle","street_number":"3","stripe_payment_method_types":[],"tip_payment_method_types":[],"service_credit_options":{"packages":[]},"type":"provider"},"type":"product"}],"meta":{"page":1,"last_page":true}}'
-  recorded_at: Tue, 30 Nov 2021 09:48:40 GMT
+  recorded_at: Tue, 30 Nov 2021 11:17:54 GMT
 - request:
     method: post
     uri: https://demo.io.ki/api/platform/products/prd_f041ff2b-1357-49c6-bcd1-d4dd261fc556/ride_inquiry
@@ -127,20 +127,19 @@ http_interactions:
       Content-Language:
       - de
       Etag:
-      - W/"0de2d10189f4b6befbc00f0465df02e3"
+      - W/"47cc93dfc90b5a5bb3513948e523fb5d"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - c921edb7-9638-4f74-9987-4bcd90aac391
+      - 72a5338d-fef4-426f-b74b-2be6648715ca
       Date:
-      - Tue, 30 Nov 2021 09:48:40 GMT
+      - Tue, 30 Nov 2021 11:17:54 GMT
       Transfer-Encoding:
       - chunked
       Strict-Transport-Security:
       - max-age=31536000
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJkYXRhIjp7ImlkIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMS0xMS0zMFQwOTo0ODo0MCswMDowMCIsInVwZGF0ZWRfYXQiOiIyMDIxLTExLTMwVDA5OjQ4OjQwKzAwOjAwIiwiYXZhaWxhYmlsaXR5Ijp7ImF2YWlsYWJsZSI6ZmFsc2UsIm5leHRfYXZhaWxhYmlsaXR5IjpudWxsfSwiY29uc3RyYWludHMiOnsibWF4X3Bhc3NlbmdlcnMiOm51bGwsIm1heF93aGVlbGNoYWlycyI6bnVsbCwibWF4X3dhbGtlcnMiOjAsIm1heF9zdG9yYWdlX3NwYWNlcyI6bnVsbCwiYXJlYSI6bnVsbH0sImVycm9ycyI6WyJzZXJ2aWNlX25vdF9hdmFpbGFibGUiXSwiYXNzaXN0YW5jZXMiOlt7ImhyZWYiOm51bGwsInRleHQiOiJEZXIgU2VydmljZSBpc3QgZGVyemVpdCBuaWNodCB2ZXJmw7xnYmFyLiIsInRpdGxlIjoiS2VpbiBTZXJ2aWNlIiwidHlwZSI6InJpZGVfaW5xdWlyeS9hc3Npc3RhbmNlIn1dLCJlc3RpbWF0aW9ucyI6W10sInR5cGUiOiJyaWRlX2lucXVpcnkifX0=
-  recorded_at: Tue, 30 Nov 2021 09:48:40 GMT
+      string: '{"data":{"id":null,"created_at":"2021-11-30T11:17:54+00:00","updated_at":"2021-11-30T11:17:54+00:00","availability":{"available":true,"next_availability":null},"constraints":{"max_passengers":null,"max_wheelchairs":null,"max_walkers":0,"max_storage_spaces":null,"area":null},"errors":["origin_outside_of_service_area"],"assistances":[],"estimations":[],"type":"ride_inquiry"}}'
+  recorded_at: Tue, 30 Nov 2021 11:17:54 GMT
 recorded_with: VCR 6.0.0
