@@ -53,7 +53,7 @@ model_class: Ioki::Model::Passenger::CalculatedPoint
         attribute :vehicle, type: :object, model_class: Ioki::Model::Passenger::Vehicle, on: [:read, :create, :update]
         attribute :vehicle_reached_dropoff, type: :boolean, on: [:read, :create, :update]
         attribute :vehicle_reached_pickup, type: :boolean, on: [:read, :create, :update]
-        attribute :version, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create]
+        attribute :version, type: :integer, on: [:read, :update]
       end
     end
   end

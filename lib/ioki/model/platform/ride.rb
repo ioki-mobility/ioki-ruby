@@ -26,7 +26,7 @@ model_class: Ioki::Model::Platform::RidePassenger
         attribute :dropoff,        type: :object,  on: :read, model_class: Ioki::Model::Platform::CalculatedPoint
         attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
         attribute :rating,         type: :object,  on: :read, model_class: Ioki::Model::Platform::Rating
-        attribute :version,        type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create]
+        attribute :version,        type: :integer, on: [:read, :update]
       end
     end
   end
