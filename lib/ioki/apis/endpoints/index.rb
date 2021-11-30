@@ -50,7 +50,7 @@ module Endpoints
         results += page_results
         current_page += 1
 
-        break results unless parsed_response.dig('meta', 'last_page') == false
+        break results unless parsed_response.dig('meta', 'last_page') == false && page_results.size != 0
       end
     end
 

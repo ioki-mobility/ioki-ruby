@@ -70,6 +70,22 @@ RSpec.describe Endpoints::Index do
     expect(result.map(&:id)).to eq(%w[001 002 003 004 005])
   end
 
+  # https://github.com/kaminari/kaminari/issues/962
+  # https://github.com/kaminari/kaminari/issues/582
+  it 'When there are no results, the API returns last_page: false for the page 1' \
+     'auto_paginate should not continue to request data when there are no results' do
+    allow(client).to receive(:request) do |params|
+      expect(params[:params][:page]).not_to eq(2)
+      { 'data' => [], 'meta' => { 'page' => 1, 'last_page' => false } }
+    end
+    endpoint.call(
+      client,
+      [],
+      model_class:   model_class,
+      auto_paginate: true
+    )
+  end
+
   it 'works without an explicit params hash' do
     expect(client).
       to receive(:request).
