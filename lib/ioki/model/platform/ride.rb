@@ -21,12 +21,12 @@ model_class: Ioki::Model::Platform::RidePassenger
         attribute :user_id,        type: :string,  on: [:create, :update]
         attribute :product_id,     type: :string,  on: [:read, :create, :update]
         attribute :user,           type: :object,  on: :read, model_class: Ioki::Model::Platform::User
-        attribute :version,        type: :string,  on: :update
         attribute :booking,        type: :object,  on: :read, model_class: Ioki::Model::Platform::Booking
         attribute :pickup,         type: :object,  on: :read, model_class: Ioki::Model::Platform::CalculatedPoint
         attribute :dropoff,        type: :object,  on: :read, model_class: Ioki::Model::Platform::CalculatedPoint
         attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
         attribute :rating,         type: :object,  on: :read, model_class: Ioki::Model::Platform::Rating
+        attribute :version,        type: :integer, on: [:read, :update]
       end
     end
   end

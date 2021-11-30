@@ -62,6 +62,7 @@ RSpec.describe 'Create, book and confirm a ride with the platform API', :vcr do
 
     # The booking was confirmed:
     expect(confirmed_ride.state).to eq 'driver_accepted'
+    expect(confirmed_ride.version).to eq 6
     expect(booked_ride.booking.verification_code).not_to be_empty
 
     # Pickup information is available:

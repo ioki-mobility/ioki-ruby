@@ -21,7 +21,6 @@ model_class: Ioki::Model::Passenger::RequestedPoint
         attribute :passengers,     type: :array,   on: [:create, :read],
 model_class: Ioki::Model::Passenger::RidePassenger
         attribute :user,           type: :object,  on: :read, model_class: Ioki::Model::Passenger::User
-        attribute :version,        type: :integer, on: [:read, :create, :update]
         attribute :booking,        type: :object,  on: :read, model_class: Ioki::Model::Passenger::Booking
         attribute :pickup,         type: :object,  on: :read, model_class: Ioki::Model::Passenger::CalculatedPoint
         attribute :dropoff,        type: :object,  on: :read, model_class: Ioki::Model::Passenger::CalculatedPoint
@@ -54,7 +53,7 @@ model_class: Ioki::Model::Passenger::CalculatedPoint
         attribute :vehicle, type: :object, model_class: Ioki::Model::Passenger::Vehicle, on: [:read, :create, :update]
         attribute :vehicle_reached_dropoff, type: :boolean, on: [:read, :create, :update]
         attribute :vehicle_reached_pickup, type: :boolean, on: [:read, :create, :update]
-        attribute :version, type: :integer, on: [:read, :create, :update]
+        attribute :version, type: :integer, on: [:read, :update]
       end
     end
   end
