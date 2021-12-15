@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/providers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Identifier:
+      - dev.platformapi.test.backend
+      X-Client-Secret:
+      - "<X-Client-Secret>"
+      X-Client-Version:
+      - 0.0.1
+      User-Agent:
+      - Faraday v1.8.0
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Content-Language:
+      - de
+      Etag:
+      - W/"aaefe10a14f4499742e8c344451ee87f"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9adbc689-4e04-41c5-8d11-4dad6373a8b7
+      Date:
+      - Wed, 15 Dec 2021 09:52:20 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkYXRhIjpbeyJpZCI6InBydl9hMGU3OTM5Zi0yMzUyLTQzZDMtODMyOC0yNWY1MzI5MzE2NzIiLCJjcmVhdGVkX2F0IjoiMjAyMS0wNC0xM1QwODozNjoyMloiLCJ1cGRhdGVkX2F0IjoiMjAyMS0wOC0yM1QxMzo1NjoxMloiLCJ2ZXJzaW9uIjoxMiwiY2l0eSI6IkZyYW5rZnVydCBhbSBNYWluIiwiY291bnRyeV9jb2RlIjoiREUiLCJjdXJyZW5jeSI6IkVVUiIsImN1cnJlbnRfdG9zX2RhdGUiOiIyMDIxLTAxLTAxIiwibG9ncGF5X3BheW1lbnRfbWV0aG9kX3R5cGVzIjpbXSwibWVyY2hhbnRfbmFtZSI6Imlva2kgR21iSCIsIm5hbWUiOiJXZWJib29raW5nIFRlc3QgUHJvdmlkZXIiLCJwYXltZW50X21ldGhvZF90eXBlcyI6WyJjYXNoIiwic2VydmljZV9jcmVkaXRzIiwiZXh0ZXJuYWxfcGF5bWVudCJdLCJwZXJzb25hbF9kaXNjb3VudF9wYXltZW50X21ldGhvZF90eXBlcyI6WyJzZXJ2aWNlX2NyZWRpdHMiLCJleHRlcm5hbF9wYXltZW50Il0sInBvc3RhbF9jb2RlIjoiNjAzMjIiLCJwc3AiOiJub19wc3AiLCJyaWRlX3BheW1lbnRfbWV0aG9kX3R5cGVzIjpbImNhc2giLCJzZXJ2aWNlX2NyZWRpdHMiXSwic2VydmljZV9jcmVkaXRfcGF5bWVudF9tZXRob2RfdHlwZXMiOltdLCJzdHJlZXRfbmFtZSI6IkFuIGRlciBXZWxsZSIsInN0cmVldF9udW1iZXIiOiIzIiwic3RyaXBlX3BheW1lbnRfbWV0aG9kX3R5cGVzIjpbXSwidGlwX3BheW1lbnRfbWV0aG9kX3R5cGVzIjpbXSwic2VydmljZV9jcmVkaXRfb3B0aW9ucyI6eyJwYWNrYWdlcyI6W119LCJ0eXBlIjoicHJvdmlkZXIifSx7ImlkIjoicHJ2X2UyZTE4ZjczLTEwN2UtNGQxNy05YjJkLTkwYTA2ODY2MDYwMiIsImNyZWF0ZWRfYXQiOiIyMDIxLTA1LTEwVDIxOjA5OjExWiIsInVwZGF0ZWRfYXQiOiIyMDIxLTEyLTA5VDExOjAxOjQ2WiIsInZlcnNpb24iOjYsImNpdHkiOiJMw7xkaW5naGF1c2VuIiwiY291bnRyeV9jb2RlIjoiREUiLCJjdXJyZW5jeSI6IkVVUiIsImN1cnJlbnRfdG9zX2RhdGUiOiIyMDIxLTA0LTAxIiwibG9ncGF5X3BheW1lbnRfbWV0aG9kX3R5cGVzIjpbXSwibWVyY2hhbnRfbmFtZSI6IlJWTSBHbWJIIiwibmFtZSI6IlJlZ2lvbmFsdmVya2VociBNw7xuc3RlcmxhbmQgR21iSCIsInBheW1lbnRfbWV0aG9kX3R5cGVzIjpbImNhc2giXSwicGVyc29uYWxfZGlzY291bnRfcGF5bWVudF9tZXRob2RfdHlwZXMiOltdLCJwb3N0YWxfY29kZSI6IjU5MzQ4IiwicHNwIjoibm9fcHNwIiwicmlkZV9wYXltZW50X21ldGhvZF90eXBlcyI6WyJjYXNoIl0sInNlcnZpY2VfY3JlZGl0X3BheW1lbnRfbWV0aG9kX3R5cGVzIjpbXSwic3RyZWV0X25hbWUiOiJSdWRvbGYtRGllc2VsLVN0cmHDn2UiLCJzdHJlZXRfbnVtYmVyIjoiOCIsInN0cmlwZV9wYXltZW50X21ldGhvZF90eXBlcyI6W10sInRpcF9wYXltZW50X21ldGhvZF90eXBlcyI6W10sInNlcnZpY2VfY3JlZGl0X29wdGlvbnMiOnsicGFja2FnZXMiOltdfSwidHlwZSI6InByb3ZpZGVyIn1dLCJtZXRhIjp7InBhZ2UiOjEsImxhc3RfcGFnZSI6dHJ1ZX19
+  recorded_at: Wed, 15 Dec 2021 09:52:20 GMT
+recorded_with: VCR 6.0.0

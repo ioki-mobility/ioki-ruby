@@ -45,31 +45,37 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       expect(platform_client.rides(real_demo_product_id).first).to be_a(Ioki::Model::Platform::Ride)
       expect(platform_client.users(real_demo_provider_id).first).to be_a(Ioki::Model::Platform::User)
       expect(platform_client.drivers(real_demo_product_id).first).to be_a(Ioki::Model::Platform::Driver)
-      expect(platform_client.driver_vehicle_connections(real_demo_product_id).first).to be_a(Ioki::Model::Platform::DriverVehicleConnection)
+      expect(platform_client.driver_vehicle_connections(real_demo_product_id).first).
+        to be_a(Ioki::Model::Platform::DriverVehicleConnection)
       expect(platform_client.client).to be_a(Ioki::Model::Platform::Client)
       expect(platform_client.providers.first).to be_a(Ioki::Model::Platform::Provider)
       expect(platform_client.products.first).to be_a(Ioki::Model::Platform::Product)
-      expect(platform_client.station_deactivations(real_demo_product_id, station_id).first).to be_a(Ioki::Model::Platform::Deactivation)
+      expect(platform_client.station_deactivations(real_demo_product_id, station_id).first).
+        to be_a(Ioki::Model::Platform::Deactivation)
       expect(platform_client.task_lists(real_demo_product_id).first).to be_a(Ioki::Model::Platform::TaskList)
       expect(platform_client.tasks(real_demo_product_id, task_list_id).first).to be_a(Ioki::Model::Platform::Task)
 
       # expect(platform_client.pauses(real_demo_product_id, task_list_id).first).to be_a(Ioki::Model::Platform::Pause)
       # No task-list-pause defined on the test platform. How can I get one?
 
-      # expect(platform_client.task_list_deactivations(real_demo_product_id, task_list_id).first).to be_a(Ioki::Model::Platform::Deactivation)
+      # expect(platform_client.task_list_deactivations(real_demo_product_id, task_list_id).first).
+      # to be_a(Ioki::Model::Platform::Deactivation)
       # Don't know how to deactivate task lists yet.
 
-      # expect(platform_client.driver_emergencies(real_demo_product_id).first).to be_a(Ioki::Model::Platform::DriverEmergency)
+      # expect(platform_client.driver_emergencies(real_demo_product_id).first).
+      # to be_a(Ioki::Model::Platform::DriverEmergency)
       # feature_not_available. Couldn't find out how to activate it in the test product
 
       # expect(platform_client.receipts(real_demo_provider_id).first).to be_a(Ioki::Model::Platform::Receipt)
       # No receipt defined on the test platform. How can I get one?
 
-      expect(platform_client.current_journey(real_demo_product_id, task_list_id)).to be_a(Ioki::Model::Platform::Journey)
+      expect(platform_client.current_journey(real_demo_product_id, task_list_id)).
+        to be_a(Ioki::Model::Platform::Journey)
       # Has no data here
 
       # user_id = platform_client.users(real_demo_provider_id).first.id
-      # expect(platform_client.service_credits(real_demo_provider_id, user_id).first).to be_a(Ioki::Model::Platform::ServiceCredit)
+      # expect(platform_client.service_credits(real_demo_provider_id, user_id).first).
+      # to be_a(Ioki::Model::Platform::ServiceCredit)
       # No service_credits found for user
 
       # expect(platform_client.webhooks(real_demo_provider_id).first).to be_a(Ioki::Model::Platform::Webhook)

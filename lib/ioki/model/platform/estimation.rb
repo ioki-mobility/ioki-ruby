@@ -20,7 +20,8 @@ module Ioki
         attribute :estimation_type, on: :read, type: :string
         attribute :fare, on: :read, type: :object, model_class: Fare
         attribute :links, on: :read, type: :array, model_class: RideInquiryLink
-        attribute :meta_data, on: :read, type: :object # Quote from the API docs: "Additional metadata about the estimation, no specified format (yet)"
+        # Quote from the API docs: "Additional metadata about the estimation, no specified format (yet)"
+        attribute :meta_data, on: :read, type: :object
         attribute :pickup, on: :read, type: :object, model_class: CalculatedPoint
       end
     end

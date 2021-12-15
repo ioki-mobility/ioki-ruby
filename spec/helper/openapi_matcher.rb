@@ -28,11 +28,15 @@ RSpec::Matchers.define :match_open_api_definition do |scope, model|
   end
 
   define_method :specified_attributes do |actual_model|
-    model_node(actual_model).fetch('properties').keys.map(&:to_sym) - unvalidated_attributes(actual_model) - deprecated_attributes(actual_model)
+    model_node(actual_model).fetch('properties').keys.map(&:to_sym) -
+      unvalidated_attributes(actual_model) -
+      deprecated_attributes(actual_model)
   end
 
   define_method :deprecated_attributes do |actual_model|
-    model_node(actual_model).fetch('properties').select { |_name, attributes| attributes['deprecated'] }.keys.map(&:to_sym)
+    model_node(actual_model).fetch('properties').select do |_name, attributes|
+      attributes['deprecated']
+    end.keys.map(&:to_sym)
   end
 
   define_method :defined_attributes do |actual_model|
@@ -50,7 +54,8 @@ RSpec::Matchers.define :match_open_api_definition do |scope, model|
     return false if model_node(actual_model).nil?
 
     unless (defined_attributes(actual_model) & deprecated_attributes(actual_model)).empty?
-      warn "The following attributes on #{actual_model} are deprecated: #{defined_attributes(actual_model) | deprecated_attributes(actual_model)}."
+      deprecated_attrs = defined_attributes(actual_model) | deprecated_attributes(actual_model)
+      warn "The following attributes on #{actual_model} are deprecated: #{deprecated_attrs}."
     end
 
     specified_attributes(actual_model).sort == defined_attributes(actual_model).sort

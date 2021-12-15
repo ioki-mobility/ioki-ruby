@@ -16,7 +16,8 @@ module Ioki
         attribute :confidence, on: :read, type: :float
         attribute :dropoff, on: :read, type: :object, model_class: CalculatedPoint
         attribute :estimation_type, on: :read, type: :string
-        attribute :meta_data, on: :read, type: :object # Quote from the API docs: "Additional metadata about the estimation, no specified format (yet)"
+        # Quote from the API docs: "Additional metadata about the estimation, no specified format (yet)"
+        attribute :meta_data, on: :read, type: :object
         attribute :pickup, on: :read, type: :object, model_class: CalculatedPoint
       end
     end

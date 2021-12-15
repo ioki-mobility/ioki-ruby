@@ -7,8 +7,10 @@ module Ioki
     module Passenger
       class Booking < Base
         attribute :verification_code, type: :string, on: [:read, :update]
-        attribute :ride_version, type: :integer, on: :create, unvalidated: true # The model does not return it but it's used when sending data to the server.
-        attribute :payment_method, type: :object, on: :create, model_class: PaymentMethod, unvalidated: true # The model does not return it but it's used when sending data to the server.
+        # The model does not return it but it's used when sending data to the server.
+        attribute :ride_version, type: :integer, on: :create, unvalidated: true
+        # The model does not return it but it's used when sending data to the server.
+        attribute :payment_method, type: :object, on: :create, model_class: PaymentMethod, unvalidated: true
       end
     end
   end

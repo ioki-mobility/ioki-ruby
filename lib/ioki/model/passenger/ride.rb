@@ -24,7 +24,8 @@ module Ioki
         attribute :booking, type: :object, on: :read, model_class: Booking
         attribute :pickup, type: :object, on: :read, model_class: CalculatedPoint
         attribute :dropoff, type: :object, on: :read, model_class: CalculatedPoint
-        attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], model_class: CalculatedPoint
+        attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update],
+model_class: CalculatedPoint
         attribute :book_for_others, type: :boolean, on: [:read, :create, :update]
         attribute :cancellable, type: :boolean, on: [:read, :create, :update]
         attribute :cancellation_reason, type: :string, on: [:read, :create, :update]

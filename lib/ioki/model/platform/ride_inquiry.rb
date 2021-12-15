@@ -10,8 +10,10 @@ module Ioki
   module Model
     module Platform
       class RideInquiry < Base
-        attribute :origin, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true # The model does not return it but it's used when sending data to the server.
-        attribute :destination, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true # The model does not return it but it's used when sending data to the server.
+        # The model does not return it but it's used when sending data to the server.
+        attribute :origin, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true
+        # The model does not return it but it's used when sending data to the server.
+        attribute :destination, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true
         attribute :assistances, on: :read, type: :array, model_class: Assistance
         attribute :availability, on: :read, type: :object, model_class: Availability
         attribute :constraints, on: :read, type: :object, model_class: Constraints

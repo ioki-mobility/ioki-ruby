@@ -22,7 +22,8 @@ module Ioki
         attribute :origin,         type: :object,  on: [:create, :read], model_class: RequestedPoint
         attribute :destination,    type: :object,  on: [:create, :read], model_class: RequestedPoint
         attribute :passengers,     type: :array,   on: [:create, :read], model_class: RidePassenger
-        attribute :user_id,        type: :string,  on: [:create, :update], unvalidated: true # The model does not return it but it's used when sending data to the server.
+        # The model does not return it but it's used when sending data to the server.
+        attribute :user_id,        type: :string,  on: [:create, :update], unvalidated: true
         attribute :product_id,     type: :string,  on: [:read, :create, :update]
         attribute :user,           type: :object,  on: :read, model_class: User
         attribute :version,        type: :string,  on: :update
