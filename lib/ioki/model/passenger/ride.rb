@@ -20,12 +20,10 @@ module Ioki
         attribute :destination, type: :object, on: [:create, :read], model_class: RequestedPoint
         attribute :passengers, type: :array, on: [:create, :read], model_class: RidePassenger
         attribute :user, type: :object, on: :read, model_class: User
-        attribute :version, type: :integer, on: [:read, :create, :update]
         attribute :booking, type: :object, on: :read, model_class: Booking
         attribute :pickup, type: :object, on: :read, model_class: CalculatedPoint
         attribute :dropoff, type: :object, on: :read, model_class: CalculatedPoint
-        attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update],
-model_class: CalculatedPoint
+        attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
         attribute :book_for_others, type: :boolean, on: [:read, :create, :update]
         attribute :cancellable, type: :boolean, on: [:read, :create, :update]
         attribute :cancellation_reason, type: :string, on: [:read, :create, :update]
@@ -52,7 +50,7 @@ model_class: CalculatedPoint
         attribute :vehicle, type: :object, model_class: Vehicle, on: [:read, :create, :update]
         attribute :vehicle_reached_dropoff, type: :boolean, on: [:read, :create, :update]
         attribute :vehicle_reached_pickup, type: :boolean, on: [:read, :create, :update]
-        attribute :version, type: :integer, on: [:read, :create, :update]
+        attribute :version, type: :integer, on: [:read, :update]
         attribute :fare, on: :read, type: :object, model_class: Fare
         attribute :ticket, on: :read, type: :object, model_class: Ticket
       end

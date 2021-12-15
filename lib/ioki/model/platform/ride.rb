@@ -26,13 +26,12 @@ module Ioki
         attribute :user_id,        type: :string,  on: [:create, :update], unvalidated: true
         attribute :product_id,     type: :string,  on: [:read, :create, :update]
         attribute :user,           type: :object,  on: :read, model_class: User
-        attribute :version,        type: :string,  on: :update
+        attribute :version,        type: :integer, on: [:read, :update]
         attribute :booking,        type: :object,  on: :read, model_class: Booking
         attribute :pickup,         type: :object,  on: :read, model_class: CalculatedPoint
         attribute :dropoff,        type: :object,  on: :read, model_class: CalculatedPoint
         attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
         attribute :rating,         type: :object,  on: :read, model_class: Rating
-
         attribute :book_for_others, on: :read, type: :boolean
         attribute :cancellable, on: :read, type: :boolean
         attribute :cancellation_reason, on: :read, type: :string
