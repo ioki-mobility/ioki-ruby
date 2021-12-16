@@ -5,21 +5,9 @@ require 'spec_helper'
 RSpec.describe 'OpenApi schema definitions' do
   if API_SPECIFICATIONS[:platform_api]
     describe 'the platform_api definition' do
-      unspecified_models = [
-        Ioki::Model::Platform::Area,
-        Ioki::Model::Platform::Base,
-        Ioki::Model::Platform::UserEmail
-      ]
-      models =
-        Ioki::Model::Platform.
-          constants.
-          select { |constant| Ioki::Model::Platform.const_get(constant).is_a?(Class) }.
-          map { |model| Ioki::Model::Platform.const_get(model) }
-
-      (models - unspecified_models).each do |model|
+      Ioki::Model::Platform.valid_models.each do |model|
         it "ensures #{model} matches the published API specifications" do
-          expect(model).to match_open_api_definition('platform_api', model,
-                                                     specification_scope: 'platform_api--v20210101')
+          expect(model).to match_open_api_definition('platform_api', model)
         end
       end
     end
@@ -27,23 +15,7 @@ RSpec.describe 'OpenApi schema definitions' do
 
   if API_SPECIFICATIONS[:passenger_api]
     describe 'the passenger_api definition' do
-      unspecified_models = [
-        Ioki::Model::Passenger::Base,
-        Ioki::Model::Passenger::Bootstrap,
-        Ioki::Model::Passenger::Cancellation,
-        Ioki::Model::Passenger::Features,
-        Ioki::Model::Passenger::RequestedPoint,
-        Ioki::Model::Passenger::Route,
-        Ioki::Model::Passenger::UserEmail,
-        Ioki::Model::Passenger::UserPhoneNumber
-      ]
-      models =
-        Ioki::Model::Passenger.
-          constants.
-          select { |constant| Ioki::Model::Passenger.const_get(constant).is_a?(Class) }.
-          map { |model| Ioki::Model::Passenger.const_get(model) }
-
-      (models - unspecified_models).each do |model|
+      Ioki::Model::Passenger.valid_models.each do |model|
         it "ensures #{model} matches the published API specifications" do
           expect(model).to match_open_api_definition('passenger_api', model)
         end
@@ -51,18 +23,9 @@ RSpec.describe 'OpenApi schema definitions' do
     end
   end
 
-  if API_SPECIFICATIONS[:passenger_api]
+  if API_SPECIFICATIONS[:driver_api]
     describe 'the driver_api definition' do
-      unspecified_models = [
-        Ioki::Model::Driver::Base
-      ]
-      models =
-        Ioki::Model::Driver.
-          constants.
-          select { |constant| Ioki::Model::Driver.const_get(constant).is_a?(Class) }.
-          map { |model| Ioki::Model::Driver.const_get(model) }
-
-      (models - unspecified_models).each do |model|
+      Ioki::Model::Driver.valid_models.each do |model|
         it "ensures #{model} matches the published API specifications" do
           expect(model).to match_open_api_definition('driver_api', model)
         end

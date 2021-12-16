@@ -31,7 +31,10 @@ RSpec.describe Endpoints do
 
       it 'raises an argument error' do
         expect { described_class.url_elements(path, 'RIDE_ID') }.
-          to raise_error(ArgumentError, 'args: must have an argument for every symbol in :path')
+          to raise_error(
+            ArgumentError,
+            'args: must have an argument for every symbol in :path. path: [:id, :ride_id], args: ["RIDE_ID"]'
+          )
       end
     end
   end

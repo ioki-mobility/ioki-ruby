@@ -103,21 +103,17 @@ RSpec.describe Ioki::PassengerApi do
   describe '#create_cancellation' do
     let(:ride) { Ioki::Model::Passenger::Ride.new(id: 'RIDE_ID') }
     let(:cancellation) do
-      Ioki::Model::Passenger::Cancellation.new(ride_id: 'RIDE_ID', passenger_cancellation_reason: 'Too much traffic')
+      Ioki::Model::Passenger::Cancellation.new(
+        ride_id:                   'RIDE_ID',
+        cancellation_statement_id: 'CANCELLATION_STATEMENT_ID'
+      )
     end
 
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('passenger/rides/RIDE_ID/cancellation')
         expect(params[:body]).to eq(
-          {
-            data: {
-              ride_id:                       'RIDE_ID',
-              ride_version:                  nil,
-              code:                          nil,
-              passenger_cancellation_reason: 'Too much traffic'
-            }
-          }
+          { data: { ride_version: nil, code: nil, cancellation_statement_id: 'CANCELLATION_STATEMENT_ID' } }
         )
 
         [result_with_data, full_response]
@@ -175,7 +171,7 @@ RSpec.describe Ioki::PassengerApi do
   end
 
   describe '#update_user' do
-    let(:email) { Ioki::Model::Passenger::UserEmail.new(email_address: 'patrician@example.com') }
+    let(:email) { Ioki::Model::Passenger::Email.new(email_address: 'patrician@example.com') }
     let(:user) do
       Ioki::Model::Passenger::User.new(first_name: 'Lupe', last_name: 'Smiles', email: email, terms_accepted: true)
     end

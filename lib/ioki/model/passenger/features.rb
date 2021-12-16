@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
+require 'ioki/model/passenger/minimum_age_confirmation'
+
 module Ioki
   module Model
     module Passenger
-      class Features < Base
+      class Features < Ioki::Model::Base
+        # Note that this does not inherit from Base because it does not define :id, :type, :created_at and :updated_at.
+
+        unvalidated true # Specification not available
+
         attribute :analytics_tracking, type: :boolean, on: :read
         attribute :failed_payment_handling, type: :boolean, on: :read
         attribute :marketing_automation, type: :boolean, on: :read
-        attribute :minimum_age_confirmation, type: :boolean, on: :read
+        attribute :minimum_age_confirmation, type: :object, on: :read, model_class: MinimumAgeConfirmation
         attribute :newsletter, type: :boolean, on: :read
         attribute :non_purchasable_personal_discounts, type: :boolean, on: :read
         attribute :payment, type: :boolean, on: :read

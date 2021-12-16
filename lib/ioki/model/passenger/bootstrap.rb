@@ -10,11 +10,11 @@ module Ioki
   module Model
     module Passenger
       class Bootstrap < Base
-        attribute :client, type: :object, on: :read, model_class: Ioki::Model::Passenger::Client
-        attribute :products, type: :array, on: :read, model_class: Ioki::Model::Passenger::Product
-        attribute :provider, type: :object, on: :read, model_class: Ioki::Model::Passenger::Provider
-        attribute :rides_with_failed_payments, type: :array, on: :read, model_class: Ioki::Model::Passenger::Ride
-        attribute :user, type: :object, on: :read, model_class: Ioki::Model::Passenger::User
+        attribute :client, type: :object, on: :read, model_class: Client
+        attribute :products, type: :array, on: :read, model_class: Product
+        attribute :provider, type: :object, on: :read, model_class: Provider
+        attribute :rides_with_failed_payments, type: :array, on: :read, model_class: Ride
+        attribute :user, type: :object, on: :read, model_class: User
       end
     end
   end

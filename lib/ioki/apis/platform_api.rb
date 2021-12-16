@@ -49,6 +49,82 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Platform::DriverVehicleConnection
       ),
+      Endpoints::ShowSingular.new(
+        :client,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Platform::Client
+      ),
+      Endpoints::Show.new(
+        :driver_emergency,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::DriverEmergency
+      ),
+      Endpoints::Index.new(
+        :driver_emergencies,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::DriverEmergency
+      ),
+      Endpoints.crud_endpoints(
+        :pause,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::Pause
+      ),
+      Endpoints.crud_endpoints(
+        :receipt,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::Receipt
+      ),
+      Endpoints.crud_endpoints(
+        :station_deactivation,
+        base_path:   [API_BASE_PATH, 'products', :id, 'stations', :id],
+        paths:       {
+          show:  'deactivation',
+          index: 'deactivations'
+        },
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::Deactivation
+      ),
+      Endpoints.crud_endpoints(
+        :task_list_deactivation,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        paths:       {
+          show:  'deactivation',
+          index: 'deactivations'
+        },
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::Deactivation
+      ),
+      Endpoints::ShowSingular.new(
+        :current_journey,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Platform::Journey
+      ),
+      Endpoints.crud_endpoints(
+        :task_list,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::TaskList
+      ),
+      Endpoints.crud_endpoints(
+        :task,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::Task
+      ),
+      Endpoints.crud_endpoints(
+        :service_credit,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id],
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::ServiceCredit
+      ),
+      Endpoints.crud_endpoints(
+        :webhook,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::Webhook
+      ),
       Endpoints::Index.new(
         :providers,
         base_path:   [API_BASE_PATH],

@@ -46,7 +46,7 @@ module Endpoints
     end
 
     unless path.select { |element| element.is_a?(Symbol) }.size <= args.size
-      raise ArgumentError, 'args: must have an argument for every symbol in :path'
+      raise ArgumentError, "args: must have an argument for every symbol in :path. path: #{path}, args: #{args}"
     end
 
     interpolation_args = path.select { |inner_element| inner_element.is_a?(Symbol) }.zip(args).reverse

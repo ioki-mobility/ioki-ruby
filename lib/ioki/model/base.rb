@@ -27,6 +27,22 @@ module Ioki
           end
         end
 
+        def schema_path
+          nil
+        end
+
+        def specification_scope
+          nil
+        end
+
+        def unvalidated(unvalidated = false)
+          @unvalidated = unvalidated
+        end
+
+        def unvalidated?
+          @unvalidated
+        end
+
         def ancestor_model_classes
           ancestors.select { |k| k <= Ioki::Model::Base }.reverse
         end
@@ -47,7 +63,7 @@ module Ioki
       attr_accessor :_raw_attributes, :_attributes, :_etag
 
       def initialize(raw_attributes = {}, etag = nil)
-        @_raw_attributes = raw_attributes.transform_keys(&:to_sym)
+        @_raw_attributes = (raw_attributes || {}).transform_keys(&:to_sym)
         @_etag = etag
         reset_attributes!
       end
