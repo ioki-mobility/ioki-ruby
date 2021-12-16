@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.0 - 2021-12-16
+* Support all GET endpoints and corresponding models
+
 ## 0.6.2 - 2021-11-30
 * Bugfix
 
