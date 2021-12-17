@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/image_upload'
-require 'ioki/model/passenger/features'
-require 'ioki/model/passenger/service_credit_options'
-
 module Ioki
   module Model
     module Passenger
       class Provider < Base
-        attribute :avatar, on: :read, type: :object, model_class: ImageUpload
-        attribute :avatar_darkmode, on: :read, type: :object, model_class: ImageUpload
+        attribute :avatar, on: :read, type: :object, class_name: 'ImageUpload'
+        attribute :avatar_darkmode, on: :read, type: :object, class_name: 'ImageUpload'
         attribute :city, on: :read, type: :string
         attribute :country_code, on: :read, type: :string
         attribute :currency, on: :read, type: :string
         attribute :current_tos_date, on: :read, type: :date_time
-        attribute :features, on: :read, type: :object, model_class: Features
+        attribute :features, on: :read, type: :object, class_name: 'Features'
         attribute :logpay_payment_method_types, on: :read, type: :array
         attribute :merchant_name, on: :read, type: :string
         attribute :name, on: :read, type: :string
@@ -23,7 +19,7 @@ module Ioki
         attribute :psp, on: :read, type: :string
         attribute :retry_payment_method_types, on: :read, type: :array
         attribute :ride_payment_method_types, on: :read, type: :array
-        attribute :service_credit_options, on: :read, type: :object, model_class: ServiceCreditOptions
+        attribute :service_credit_options, on: :read, type: :object, class_name: 'ServiceCreditOptions'
         attribute :service_credit_payment_method_types, on: :read, type: :array
         attribute :street_name, on: :read, type: :string
         attribute :street_number, on: :read, type: :string

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/task'
-
 module Ioki
   module Model
     module Platform
@@ -15,7 +13,7 @@ module Ioki
         attribute :leg_order, type: :integer, on: :read
         attribute :maneuvers, type: :array, on: :read
         attribute :maneuvers_calculated_at, type: :date_time, on: :read
-        attribute :destination_task, type: :object, on: :read, model_class: Task
+        attribute :destination_task, type: :object, on: :read, class_name: 'Task'
       end
     end
   end

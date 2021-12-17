@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/passenger_options'
-require 'ioki/model/platform/prebooking_threshold'
-
 module Ioki
   module Model
     module Platform
@@ -15,8 +12,8 @@ module Ioki
         attribute :destination_time_based_matching, on: :read, type: :boolean
         attribute :max_wheelchairs, on: :read, type: :integer
         attribute :max_walkers, on: :read, type: :integer
-        attribute :prebooking_threshold, on: :read, type: :object, model_class: PrebookingThreshold
-        attribute :passengers, on: :read, type: :object, model_class: PassengerOptions
+        attribute :prebooking_threshold, on: :read, type: :object, class_name: 'PrebookingThreshold'
+        attribute :passengers, on: :read, type: :object, class_name: 'PassengerOptions'
       end
     end
   end

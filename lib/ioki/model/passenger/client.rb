@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/features'
-
 module Ioki
   module Model
     module Passenger
@@ -18,7 +16,7 @@ module Ioki
         attribute :default_map_center_lng, on: :read, type: :float
         attribute :default_map_zoom_level, on: :read, type: :integer
         attribute :distribution_url,       on: :read, type: :string
-        attribute :features,               on: :read, type: :object, model_class: Features
+        attribute :features,               on: :read, type: :object, class_name: 'Features'
         attribute :help_url,               on: :read, type: :string
         attribute :identifier,             on: :read, type: :string
         attribute :imprint_url,            on: :read, type: :string

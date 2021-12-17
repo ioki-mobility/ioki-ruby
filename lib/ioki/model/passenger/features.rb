@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/minimum_age_confirmation'
-
 module Ioki
   module Model
     module Passenger
@@ -13,7 +11,7 @@ module Ioki
         attribute :analytics_tracking, type: :boolean, on: :read
         attribute :failed_payment_handling, type: :boolean, on: :read
         attribute :marketing_automation, type: :boolean, on: :read
-        attribute :minimum_age_confirmation, type: :object, on: :read, model_class: MinimumAgeConfirmation
+        attribute :minimum_age_confirmation, type: :object, on: :read, class_name: 'MinimumAgeConfirmation'
         attribute :newsletter, type: :boolean, on: :read
         attribute :non_purchasable_personal_discounts, type: :boolean, on: :read
         attribute :payment, type: :boolean, on: :read

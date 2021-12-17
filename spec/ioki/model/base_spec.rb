@@ -115,18 +115,27 @@ RSpec.describe Ioki::Model::Base do
       end
     end
 
-    describe 'for an attribute of type :object with a model_class' do
-      let(:example_class) do
-        example_class_sub = Class.new(Ioki::Model::Base) do
-          attribute :bar, type: :integer, on: :read
-        end
-
+    describe 'for an attribute of type :object with a class_name' do
+      let(:example_referenced_class) do
         Class.new(Ioki::Model::Base) do
-          attribute :foo, type: :object, model_class: example_class_sub, on: :read
+          attribute :bar, type: :integer, on: :read
         end
       end
 
-      it 'gives access to correctly casted values and internally preserves the client' do
+      let(:example_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :foo, type: :object, class_name: 'ExampleReferencedClass', on: :read
+        end
+      end
+
+      before do
+        # Make sure that the mock class is in the correct module.
+        # Equivalent to defining it in that module.
+        Ioki::Model.const_set('ExampleReferencedClass', example_referenced_class)
+        Ioki::Model.const_set('ExampleObjectClassName', example_class)
+      end
+
+      it 'gives access to correctly casted values and internally preserves the class' do
         model = example_class.new({})
         expect(model.foo).to be_nil
         model.foo = { bar: 42 }
@@ -135,15 +144,24 @@ RSpec.describe Ioki::Model::Base do
       end
     end
 
-    describe 'for an attribute of type :array with a model_class' do
-      let(:example_class) do
-        example_class_sub = Class.new(Ioki::Model::Base) do
+    describe 'for an attribute of type :array with a class_name' do
+      let(:example_referenced_class) do
+        Class.new(Ioki::Model::Base) do
           attribute :bar, type: :integer, on: :read
         end
+      end
 
+      let(:example_class) do
         Class.new(Ioki::Model::Base) do
-          attribute :foo, type: :array, model_class: example_class_sub, on: :read
+          attribute :foo, type: :array, class_name: 'ExampleReferencedClass', on: :read
         end
+      end
+
+      before do
+        # Make sure that the mock class is in the correct module.
+        # Equivalent to defining it in that module.
+        Ioki::Model.const_set('ExampleReferencedClass', example_referenced_class)
+        Ioki::Model.const_set('ExampleArrayClassName', example_class)
       end
 
       it 'gives access to correctly casted values and internally preserves the client' do
@@ -512,11 +530,17 @@ RSpec.describe Ioki::Model::Base do
         )
       end
 
-      describe 'with model_class' do
+      describe 'with class_name' do
         let(:example_class) do
           Class.new(Ioki::Model::Base) do
-            attribute :attr, type: :object, model_class: Ioki::Model::Platform::User, on: :read
+            attribute :attr, type: :object, class_name: 'User', on: :read
           end
+        end
+
+        before do
+          # Make sure that the mock class is in the correct module.
+          # Equivalent to defining it in that module.
+          Ioki::Model::Platform.const_set('ExampleObjectUserClassName', example_class)
         end
 
         it 'handles nil correctly' do
@@ -546,11 +570,17 @@ RSpec.describe Ioki::Model::Base do
         )
       end
 
-      context 'with model_class' do
+      context 'with class_name' do
         let(:example_class) do
           Class.new(Ioki::Model::Base) do
-            attribute :attr, type: :array, model_class: Ioki::Model::Platform::User, on: :read
+            attribute :attr, type: :array, class_name: 'User', on: :read
           end
+        end
+
+        before do
+          # Make sure that the mock class is in the correct module.
+          # Equivalent to defining it in that module.
+          Ioki::Model::Platform.const_set('ExampleUserArrayClassName', example_class)
         end
 
         it 'handles nil correctly' do

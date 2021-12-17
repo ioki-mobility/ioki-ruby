@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/money'
-
 module Ioki
   module Model
     module Passenger
@@ -12,8 +10,8 @@ module Ioki
           'passenger_api--product--tipping'
         end
 
-        attribute :minimum, on: :read, type: :object, model_class: Money
-        attribute :suggestions, on: :read, type: :array, model_class: Money
+        attribute :minimum, on: :read, type: :object, class_name: 'Money'
+        attribute :suggestions, on: :read, type: :array, class_name: 'Money'
       end
     end
   end

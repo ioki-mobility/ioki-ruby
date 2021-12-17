@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/email'
-
 module Ioki
   module Model
     module Passenger
       class User < Base
-        attribute :email, on: [:read, :update], type: :object, model_class: Email
+        attribute :email, on: [:read, :update], type: :object, class_name: 'Email'
         attribute :first_name, on: [:read, :update], type: :string
         attribute :last_name, on: [:read, :update], type: :string
         attribute :phone_number, on: :read, type: :string
         attribute :locale, on: :read, type: :string
-
         attribute :airship_named_user_id, on: :read, type: :integer
         attribute :allow_marketing, on: :read, type: :boolean
         attribute :analytics_tracking, on: :read, type: :boolean

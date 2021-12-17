@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/coordinate'
-
 module Ioki
   module Model
     module Platform
@@ -12,8 +10,8 @@ module Ioki
           'bounding_box'
         end
 
-        attribute :min, on: :read, type: :object, model_class: Coordinate
-        attribute :max, on: :read, type: :object, model_class: Coordinate
+        attribute :min, on: :read, type: :object, class_name: 'Coordinate'
+        attribute :max, on: :read, type: :object, class_name: 'Coordinate'
       end
     end
   end

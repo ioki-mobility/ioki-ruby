@@ -87,7 +87,8 @@ module Ioki
 
       def type_cast_attribute_value(attribute, value)
         type = self.class.attribute_definitions.dig(attribute, :type)
-        model_class = self.class.attribute_definitions.dig(attribute, :model_class)
+        class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+        model_class = constantize_in_module(class_name)
 
         return value unless type
         return value if value.nil?
@@ -164,6 +165,15 @@ module Ioki
           value = @_raw_attributes.key?(attribute) ? @_raw_attributes[attribute] : definition[:default]
           public_send("#{attribute}=", value)
         end
+      end
+
+      def constantize_in_module(class_name)
+        return nil if blank?(class_name)
+
+        module_names = self.class.name.split('::')
+        module_names.slice!(-1, 1)
+        module_names << class_name
+        Object.const_get(module_names.join('::'))
       end
 
       def blank?(value)

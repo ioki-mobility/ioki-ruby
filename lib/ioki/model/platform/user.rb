@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/user_email'
-
 module Ioki
   module Model
     module Platform
       class User < Base
         attribute :email,             type: :object,  on: [:read, :create, :update],
-omit_if_blank_on: [:create, :update], model_class: UserEmail
+omit_if_blank_on: [:create, :update], class_name: 'UserEmail'
         attribute :external_id,       type: :string,  on: [:read, :create, :update],
 omit_if_blank_on: [:create, :update]
         attribute :first_name,        type: :string,  on: [:read, :create, :update],
