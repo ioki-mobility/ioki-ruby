@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/coordinate'
-
 module Ioki
   module Model
     module Platform

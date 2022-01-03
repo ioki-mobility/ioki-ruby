@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/mobile_ticket_data'
-
 module Ioki
   module Model
     module Passenger
@@ -10,7 +8,7 @@ module Ioki
         attribute :host, on: :read, type: :string
         attribute :issued_at, on: :read, type: :date_time
         attribute :issuer, on: :read, type: :string
-        attribute :mobile_ticket_data, on: :read, type: :array, model_class: MobileTicketData
+        attribute :mobile_ticket_data, on: :read, type: :array, class_name: 'MobileTicketData'
         attribute :retrieved_at, on: :read, type: :date_time
         attribute :state, on: :read, type: :string
         attribute :ticket_url, on: :read, type: :string

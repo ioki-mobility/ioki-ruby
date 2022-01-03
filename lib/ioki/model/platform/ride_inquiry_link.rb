@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/ride_inquiry_link_android'
-require 'ioki/model/platform/ride_inquiry_link_ios'
-
 module Ioki
   module Model
     module Platform
@@ -14,8 +11,8 @@ module Ioki
           'platform_api--v20210101--ride_inquiry--links'
         end
 
-        attribute :android, on: :read, type: :object, model_class: RideInquiryLinkAndroid
-        attribute :ios, on: :read, type: :object, model_class: RideInquiryLinkIos
+        attribute :android, on: :read, type: :object, class_name: 'RideInquiryLinkAndroid'
+        attribute :ios, on: :read, type: :object, class_name: 'RideInquiryLinkIos'
         attribute :universal_link, on: :read, type: :string
         attribute :web_booking_url, on: :read, type: :string
       end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/deactivation'
-
 module Ioki
   module Model
     module Platform
@@ -20,7 +18,7 @@ module Ioki
         attribute :street_name,   on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :string
         attribute :street_number, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :string
         attribute :active, on: :read, type: :boolean
-        attribute :deactivations, on: :read, type: :array, model_class: Deactivation
+        attribute :deactivations, on: :read, type: :array, class_name: 'Deactivation'
       end
     end
   end

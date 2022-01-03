@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/package'
-
 module Ioki
   module Model
     module Passenger
@@ -13,7 +11,7 @@ module Ioki
           'passenger_api--nested_service_credit_options'
         end
 
-        attribute :packages, on: :read, type: :array, model_class: Package
+        attribute :packages, on: :read, type: :array, class_name: 'Package'
       end
     end
   end

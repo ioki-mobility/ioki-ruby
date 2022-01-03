@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/driver/ride_options'
-require 'ioki/model/driver/cancellation_statement'
-
 module Ioki
   module Model
     module Driver
@@ -15,8 +12,8 @@ module Ioki
         attribute :drivers_can_pause, on: :read, type: :boolean
         attribute :supports_driver_emergency_button, on: :read, type: :boolean
         attribute :supports_tipping, on: :read, type: :boolean
-        attribute :cancellation_statements, on: :read, type: :array, model_class: CancellationStatement
-        attribute :ride_options, on: :read, type: :object, model_class: RideOptions
+        attribute :cancellation_statements, on: :read, type: :array, class_name: 'CancellationStatement'
+        attribute :ride_options, on: :read, type: :object, class_name: 'RideOptions'
       end
     end
   end

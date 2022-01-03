@@ -1,22 +1,18 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/money'
-require 'ioki/model/passenger/payment_method'
-require 'ioki/model/passenger/receipt'
-
 module Ioki
   module Model
     module Passenger
       class PersonalDiscount < Base
-        attribute :absolute_discount_object, on: :read, type: :object, model_class: Money
+        attribute :absolute_discount_object, on: :read, type: :object, class_name: 'Money'
         attribute :channel, on: :read, type: :string
         attribute :consumed, on: :read, type: :boolean
         attribute :description, on: :read, type: :string
         attribute :discount_type, on: :read, type: :string
         attribute :maximum_usages, on: :read, type: :integer
-        attribute :payment_method, on: :read, type: :object, model_class: PaymentMethod
+        attribute :payment_method, on: :read, type: :object, class_name: 'PaymentMethod'
         attribute :product_id, on: :read, type: :string
-        attribute :receipts, on: :read, type: :array, model_class: Receipt
+        attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
         attribute :relative_discount, on: :read, type: :integer
         attribute :title, on: :read, type: :string
         attribute :usages, on: :read, type: :integer

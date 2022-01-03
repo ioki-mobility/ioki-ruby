@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/vehicle'
-
 module Ioki
   module Model
     module Passenger

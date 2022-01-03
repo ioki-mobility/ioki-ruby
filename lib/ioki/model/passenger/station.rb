@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/image_upload'
-
 module Ioki
   module Model
     module Passenger
@@ -16,9 +14,8 @@ module Ioki
         attribute :postal_code,   on: [:read, :update, :create], omit_if_blank_on: [:create, :update], type: :string
         attribute :street_name,   on: [:read, :update, :create], omit_if_blank_on: [:create, :update], type: :string
         attribute :street_number, on: [:read, :update, :create], omit_if_blank_on: [:create, :update], type: :string
-
         attribute :active, on: :read, type: :boolean
-        attribute :avatar, on: :read, type: :object, model_class: ImageUpload
+        attribute :avatar, on: :read, type: :object, class_name: 'ImageUpload'
         attribute :fixed, on: :read, type: :boolean
         attribute :formatted_street, on: :read, type: :string
         attribute :transport_connections_url, on: :read, type: :string

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/passenger/calculated_point'
-
 module Ioki
   module Model
     module Passenger
@@ -14,11 +12,11 @@ module Ioki
 
         attribute :type, on: :read, type: :string
         attribute :confidence, on: :read, type: :float
-        attribute :dropoff, on: :read, type: :object, model_class: CalculatedPoint
+        attribute :dropoff, on: :read, type: :object, class_name: 'CalculatedPoint'
         attribute :estimation_type, on: :read, type: :string
         # Quote from the API docs: "Additional metadata about the estimation, no specified format (yet)"
         attribute :meta_data, on: :read, type: :object
-        attribute :pickup, on: :read, type: :object, model_class: CalculatedPoint
+        attribute :pickup, on: :read, type: :object, class_name: 'CalculatedPoint'
       end
     end
   end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/package'
-
 module Ioki
   module Model
     module Platform
@@ -10,7 +8,7 @@ module Ioki
 
         unvalidated true
 
-        attribute :packages, on: :read, type: :array, model_class: Package
+        attribute :packages, on: :read, type: :array, class_name: 'Package'
       end
     end
   end

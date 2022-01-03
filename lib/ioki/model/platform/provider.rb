@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/service_credit_options'
-
 module Ioki
   module Model
     module Platform
@@ -17,7 +15,7 @@ module Ioki
         attribute :postal_code, on: :read, type: :string
         attribute :psp, on: :read, type: :string
         attribute :ride_payment_method_types, on: :read, type: :array
-        attribute :service_credit_options, on: :read, type: :object, model_class: ServiceCreditOptions
+        attribute :service_credit_options, on: :read, type: :object, class_name: 'ServiceCreditOptions'
         attribute :service_credit_payment_method_types, on: :read, type: :array
         attribute :street_name, on: :read, type: :string
         attribute :street_number, on: :read, type: :string

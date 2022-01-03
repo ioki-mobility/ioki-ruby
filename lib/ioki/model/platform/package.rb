@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/money'
-
 module Ioki
   module Model
     module Platform
@@ -10,8 +8,8 @@ module Ioki
 
         unvalidated true
 
-        attribute :cost_object, on: :read, type: :object, model_class: Money
-        attribute :value_object, on: :read, type: :object, model_class: Money
+        attribute :cost_object, on: :read, type: :object, class_name: 'Money'
+        attribute :value_object, on: :read, type: :object, class_name: 'Money'
       end
     end
   end

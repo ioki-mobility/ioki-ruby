@@ -1,24 +1,18 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/requested_point'
-require 'ioki/model/platform/assistance'
-require 'ioki/model/platform/availability'
-require 'ioki/model/platform/constraints'
-require 'ioki/model/platform/estimation'
-
 module Ioki
   module Model
     module Platform
       class RideInquiry < Base
         # The model does not return it but it's used when sending data to the server.
-        attribute :origin, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true
+        attribute :origin, on: :create, type: :object, class_name: 'RequestedPoint', unvalidated: true
         # The model does not return it but it's used when sending data to the server.
-        attribute :destination, on: :create, type: :object, model_class: RequestedPoint, unvalidated: true
-        attribute :assistances, on: :read, type: :array, model_class: Assistance
-        attribute :availability, on: :read, type: :object, model_class: Availability
-        attribute :constraints, on: :read, type: :object, model_class: Constraints
+        attribute :destination, on: :create, type: :object, class_name: 'RequestedPoint', unvalidated: true
+        attribute :assistances, on: :read, type: :array, class_name: 'Assistance'
+        attribute :availability, on: :read, type: :object, class_name: 'Availability'
+        attribute :constraints, on: :read, type: :object, class_name: 'Constraints'
         attribute :errors, on: :read, type: :array
-        attribute :estimations, on: :read, type: :array, model_class: Estimation
+        attribute :estimations, on: :read, type: :array, class_name: 'Estimation'
       end
     end
   end

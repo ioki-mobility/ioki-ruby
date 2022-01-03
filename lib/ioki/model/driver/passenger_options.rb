@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/driver/passenger_type'
-
 module Ioki
   module Model
     module Driver
@@ -11,7 +9,7 @@ module Ioki
 
         unvalidated true # Specification not available.
 
-        attribute :types, on: :read, type: :array, model_class: PassengerType
+        attribute :types, on: :read, type: :array, class_name: 'PassengerType'
         attribute :wheelchair, on: :read, type: :boolean
         attribute :walker, on: :read, type: :boolean
         attribute :public_transport_ticket, on: :read, type: :boolean

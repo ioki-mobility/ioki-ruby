@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/vehicle_position'
-
 module Ioki
   module Model
     module Platform
@@ -16,11 +14,10 @@ module Ioki
         attribute :storage_spaces,      on: :read, type: :integer
         attribute :walker_bays,         on: :read, type: :integer
         attribute :wheelchair_bays,     on: :read, type: :integer
-
         attribute :autonomous, on: :read, type: :boolean
         attribute :description, on: :read, type: :string
         attribute :external_id, on: :read, type: :string
-        attribute :last_known_position, on: :read, type: :object, model_class: VehiclePosition
+        attribute :last_known_position, on: :read, type: :object, class_name: 'VehiclePosition'
         attribute :phone_number, on: :read, type: :string
         attribute :version, on: :read, type: :integer
       end

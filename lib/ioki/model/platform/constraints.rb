@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ioki/model/platform/area'
-
 module Ioki
   module Model
     module Platform
@@ -15,7 +13,7 @@ module Ioki
         attribute :max_wheelchairs, on: :read, type: :integer
         attribute :max_walkers, on: :read, type: :integer
         attribute :max_storage_spaces, on: :read, type: :integer
-        attribute :area, on: :read, type: :object, model_class: Area
+        attribute :area, on: :read, type: :object, class_name: 'Area'
       end
     end
   end
