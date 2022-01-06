@@ -92,6 +92,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('passenger/rides')
+        expect(params[:body][:data]).not_to have_key(:version)
         [result_with_data, full_response]
       end
 

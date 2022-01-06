@@ -9,7 +9,6 @@ module Ioki
         attribute :destination, type: :object, on: [:create, :read], class_name: 'RequestedPoint'
         attribute :passengers, type: :array, on: [:create, :read], class_name: 'RidePassenger'
         attribute :user, type: :object, on: :read, class_name: 'User'
-        attribute :version, type: :integer, on: [:read, :create, :update]
         attribute :booking, type: :object, on: :read, class_name: 'Booking'
         attribute :pickup, type: :object, on: :read, class_name: 'CalculatedPoint'
         attribute :dropoff, type: :object, on: :read, class_name: 'CalculatedPoint'
