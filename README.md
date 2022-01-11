@@ -35,7 +35,7 @@ Basic usage of a `Ioki::Client`
   products = platform_client.products
   # returns a list of Ioki::Model::Platform::Product instances
 
-  stations = platform_client.stations(products.first, options: { auto_paginate: true })
+  stations = platform_client.stations(products.first, auto_paginate: true)
   # stations are a scoped endpoint within products, to the interface requires
   # either a product or a product id as the first parameter.
   # This call will then fetch the index of stations. This example also shows

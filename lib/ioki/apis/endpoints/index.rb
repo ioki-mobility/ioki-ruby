@@ -23,11 +23,13 @@ module Endpoints
       base_path + [resource_path_name]
     end
 
-    def call(client, args = [], options = {})
+    def call(client, args = [], options = {}, &block)
       auto_paginate = options.delete(:auto_paginate)
 
       if auto_paginate
-        paginated_requests(client, args, options)
+        paginated_requests(client, args, options, &block)
+      elsif block_given?
+        send_request(client, args, options).first.each { |item| block.call(item) }
       else
         send_request(client, args, options).first
       end
@@ -35,9 +37,8 @@ module Endpoints
 
     private
 
-    def paginated_requests(client, args, options)
-      # Accumulates request results, while iterating over pages. The iteration stops based on the response's meta data
-      # so we're incrementing a counter and handling the collection manually.
+    def paginated_requests(client, args, options, &block)
+      # Accumulates request results or yields them to given block while iterating over pages.
 
       results = []
       current_page = 1
@@ -47,7 +48,11 @@ module Endpoints
         options[:params][:page] = current_page
 
         page_results, parsed_response = send_request(client, args, options)
-        results += page_results
+        if block_given?
+          page_results.each { |item| block.call(item) }
+        else
+          results += page_results
+        end
         current_page += 1
 
         break results unless parsed_response.dig('meta', 'last_page') == false
