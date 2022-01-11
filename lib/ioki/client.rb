@@ -12,7 +12,7 @@ module Ioki
       @config = config
 
       api::ENDPOINTS.flatten.compact.each do |endpoint|
-        define_singleton_method(endpoint.name) do |*args|
+        define_singleton_method(endpoint.name) do |*args, &block|
           # Each method defined by the API takes `args` matching the symbols in an enpoint's path, while the last
           # parameter is an optional options hash. The last argument that's not the options hash is also the required
           # model for Update and Create enpoints.
@@ -27,6 +27,8 @@ module Ioki
 
           if [Endpoints::Create, Endpoints::Update].include?(endpoint.class)
             endpoint.call(self, model, args, options)
+          elsif endpoint.is_a? Endpoints::Index
+            endpoint.call(self, args, options, &block)
           else
             endpoint.call(self, args, options)
           end
