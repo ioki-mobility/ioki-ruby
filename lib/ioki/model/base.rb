@@ -141,7 +141,7 @@ module Ioki
 
           next if definition.key?(:omit_if_blank_on) &&
                   Array(definition[:omit_if_blank_on]).include?(usecase) &&
-                  blank?(value)
+                  empty?(value)
 
           data[attribute] = if definition[:type] == :object && value.is_a?(Ioki::Model::Base)
                               value.serialize(usecase)
@@ -168,7 +168,7 @@ module Ioki
       end
 
       def constantize_in_module(class_name)
-        return nil if blank?(class_name)
+        return nil if empty?(class_name)
 
         module_names = self.class.name.split('::')
         module_names.slice!(-1, 1)
@@ -176,7 +176,7 @@ module Ioki
         Object.const_get(module_names.join('::'))
       end
 
-      def blank?(value)
+      def empty?(value)
         value.respond_to?(:empty?) ? !!value.empty? : !value
       end
     end
