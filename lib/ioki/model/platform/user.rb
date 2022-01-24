@@ -21,7 +21,7 @@ omit_if_blank_on: [:create, :update]
         attribute :terms_accepted_at, type: :date_time, on: :read
         # The model does not return it but it's used when sending data to the server.
         attribute :terms_accepted,    type: :boolean, on: [:create, :update], unvalidated: true
-        attribute :version,           type: :integer, on: :read
+        attribute :version,           type: :integer, on: [:read, :update]
       end
     end
   end
