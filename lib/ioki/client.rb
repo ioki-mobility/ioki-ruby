@@ -4,7 +4,7 @@ require 'json'
 
 module Ioki
   class Client
-    VALID_API_NAMESPACES = [:platform, :passenger, :driver].freeze
+    VALID_API_NAMESPACES = [:driver, :operator, :passenger, :platform].freeze
 
     attr_accessor :config
 
@@ -71,6 +71,5 @@ module Ioki
 
       URI.parse(fragments.join('/'))
     end
-
   end
 end
