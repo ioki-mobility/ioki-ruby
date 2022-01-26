@@ -135,6 +135,12 @@ RSpec.describe Ioki::Model::Base do
         Ioki::Model.const_set('ExampleObjectClassName', example_class)
       end
 
+      after do
+        # To suppress "warning: already initialized constant"
+        Ioki::Model.send(:remove_const, 'ExampleReferencedClass')
+        Ioki::Model.send(:remove_const, 'ExampleObjectClassName')
+      end
+
       it 'gives access to correctly casted values and internally preserves the class' do
         model = example_class.new({})
         expect(model.foo).to be_nil
@@ -162,6 +168,12 @@ RSpec.describe Ioki::Model::Base do
         # Equivalent to defining it in that module.
         Ioki::Model.const_set('ExampleReferencedClass', example_referenced_class)
         Ioki::Model.const_set('ExampleArrayClassName', example_class)
+      end
+
+      after do
+        # To suppress "warning: already initialized constant"
+        Ioki::Model.send(:remove_const, 'ExampleReferencedClass')
+        Ioki::Model.send(:remove_const, 'ExampleArrayClassName')
       end
 
       it 'gives access to correctly casted values and internally preserves the client' do
@@ -543,6 +555,11 @@ RSpec.describe Ioki::Model::Base do
           Ioki::Model::Platform.const_set('ExampleObjectUserClassName', example_class)
         end
 
+        after do
+          # To suppress "warning: already initialized constant"
+          Ioki::Model::Platform.send(:remove_const, 'ExampleObjectUserClassName')
+        end
+
         it 'handles nil correctly' do
           expect(model.type_cast_attribute_value(:attr, nil)).to be_nil
         end
@@ -581,6 +598,11 @@ RSpec.describe Ioki::Model::Base do
           # Make sure that the mock class is in the correct module.
           # Equivalent to defining it in that module.
           Ioki::Model::Platform.const_set('ExampleUserArrayClassName', example_class)
+        end
+
+        after do
+          # To suppress "warning: already initialized constant"
+          Ioki::Model::Platform.send(:remove_const, 'ExampleUserArrayClassName')
         end
 
         it 'handles nil correctly' do
