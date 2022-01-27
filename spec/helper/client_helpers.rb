@@ -5,6 +5,10 @@ module ExtendedClientHelpers
     let(client_name) { Ioki::PlatformClient.new }
   end
 
+  def setup_operator_client(client_name)
+    let(client_name) { Ioki::OperatorClient.new }
+  end
+
   def setup_passenger_client(client_name)
     let(client_name) { Ioki::PassengerClient.new }
   end
