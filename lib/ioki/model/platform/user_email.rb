@@ -10,7 +10,9 @@ module Ioki
         unvalidated true
 
         attribute :confirmed,     on: :read, type: :boolean
-        attribute :email_address, on: :read, type: :string
+        attribute :email_address, on: [:read, :update], type: :string
+        attribute :newsletter,    on: [:read, :update], type: :boolean
+        attribute :receipt,       on: [:read, :update], type: :boolean
       end
     end
   end
