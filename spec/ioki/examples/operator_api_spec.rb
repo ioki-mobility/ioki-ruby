@@ -10,7 +10,7 @@ RSpec.describe 'Ioki::OperatorApi', :vcr do
 
   describe 'vehicle endpoint' do
     it 'return their corresponding models' do
-      expect(operator_client.vehicles(real_demo_product_id).first).to be_a(Ioki::Model::Platform::Vehicle)
+      expect(operator_client.vehicles(real_demo_product_id).first).to be_a(Ioki::Model::Operator::Vehicle)
     end
   end
 end
