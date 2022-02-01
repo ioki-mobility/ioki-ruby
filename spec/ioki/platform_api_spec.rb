@@ -548,4 +548,28 @@ RSpec.describe Ioki::PlatformApi do
         to eq(Ioki::Model::Platform::RideInquiry.new)
     end
   end
+
+  describe '#announcements' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/announcements')
+        result_with_index_data
+      end
+
+      expect(platform_client.announcements('0815', options)).
+        to eq([Ioki::Model::Platform::Announcement.new])
+    end
+  end
+
+  describe '#announcement(product_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/announcements/1337')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.announcement('0815', '1337', options)).
+        to eq(Ioki::Model::Platform::Announcement.new)
+    end
+  end
 end

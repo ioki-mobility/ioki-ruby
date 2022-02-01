@@ -167,6 +167,16 @@ module Ioki
         actions:     { 'lock' => :patch, 'unlock' => :patch, 'set_pin' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'drivers', :id],
         model_class: Ioki::Model::Platform::Driver
+      ),
+      Endpoints::Index.new(
+        :announcements,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Announcement
+      ),
+      Endpoints::Show.new(
+        :announcement,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Announcement
       )
     ].freeze
   end
