@@ -168,14 +168,10 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'drivers', :id],
         model_class: Ioki::Model::Platform::Driver
       ),
-      Endpoints::Index.new(
-        :announcements,
-        base_path:   [API_BASE_PATH, 'products', :id],
-        model_class: Ioki::Model::Platform::Announcement
-      ),
-      Endpoints::Show.new(
+      Endpoints.crud_endpoints(
         :announcement,
         base_path:   [API_BASE_PATH, 'products', :id],
+        except:      [:create, :update, :delete],
         model_class: Ioki::Model::Platform::Announcement
       )
     ].freeze
