@@ -8,6 +8,7 @@ module Ioki
         attribute :provider, type: :object, on: :read, class_name: 'Provider'
         attribute :area, type: :object, on: :read, class_name: 'Area'
         attribute :ad_hoc_bookable, on: :read, type: :boolean
+        attribute :announcement, on: :read, type: :object, class_name: 'Announcement'
         attribute :bounding_box, on: :read, type: :object, class_name: 'BoundingBox'
         attribute :description, on: :read, type: :string
         attribute :fixed_stations, on: :read, type: :array, class_name: 'Station'
