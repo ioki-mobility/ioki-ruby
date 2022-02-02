@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Platform
       class Announcement < Base
+        attribute :additional_information_url, on: :read, type: :string
         attribute :ends_at, on: :read, type: :date_time
         attribute :severity, on: :read, type: :string
         attribute :show_on_every_app_start, on: :read, type: :boolean
