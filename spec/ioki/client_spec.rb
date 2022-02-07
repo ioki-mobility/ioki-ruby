@@ -150,6 +150,24 @@ RSpec.describe Ioki::Client do
         expect(e.http_response.env.response_body).to eq(sent_response_body)
         expect(e.api_error).to eq(sent_response_body)
       end
+
+      it 'will expose the HTTP status in the error message' do
+        client_response
+      rescue StandardError => e
+        expect(e.message).to include '422'
+      end
+
+      it 'will expose the requested URL in the error message' do
+        client_response
+      rescue StandardError => e
+        expect(e.message).to include passed_path.to_s
+      end
+
+      it 'will expose the HTTP response body in the error message' do
+        client_response
+      rescue StandardError => e
+        expect(e.message).to include sent_response_body.to_s
+      end
     end
 
     context 'when the underlying http adapter response is without error' do
