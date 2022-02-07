@@ -44,4 +44,29 @@ RSpec.describe Ioki::Error do
       expect(described_class.http_status_code_to_error_class(123)).to eq(Ioki::Error::UnexpectedResponseCode)
     end
   end
+
+  describe 'message' do
+    subject(:error_message) { error.message }
+
+    let(:error) { Ioki::Error::NotAcceptable.new http_response }
+    let(:http_response) { instance_double 'Faraday::Response', status: 406, body: response_body.to_json, env: env }
+    let(:env) { instance_double 'Faraday::Env', url: url }
+    let(:url) { 'https://example.com/api' }
+    let(:response_body) do
+      {
+        'api_errors' => [
+          { 'message' => message_1, 'code' => code },
+          { 'message' => message_2, 'code' => code }
+        ]
+      }
+    end
+    let(:message_1) { 'X-Client-Identifier must be set' }
+    let(:message_2) { 'X-Api-Version must be set' }
+    let(:code) { 'headers_missing_error' }
+
+    it { is_expected.to include url }
+    it { is_expected.to include code }
+    it { is_expected.to include message_1 }
+    it { is_expected.to include message_2 }
+  end
 end

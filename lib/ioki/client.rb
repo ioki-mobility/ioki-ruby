@@ -56,7 +56,7 @@ module Ioki
 
       error_class = Ioki::Error.http_status_code_to_error_class(response.status)
 
-      raise error_class.new(http_response: response) if error_class
+      raise error_class, response if error_class
 
       return response.body, response
     end

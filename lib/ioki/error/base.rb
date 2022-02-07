@@ -5,10 +5,17 @@ module Ioki
     class Base < StandardError
       attr_accessor :http_response
 
-      def initialize(message = nil, http_response: nil)
-        super(message)
-
+      def initialize(http_response)
         @http_response = http_response
+        super http_response_message
+      end
+
+      def http_response_message
+        [
+          http_response&.status,
+          http_response&.env&.url,
+          http_response&.body
+        ].join ' | '
       end
 
       def api_error
