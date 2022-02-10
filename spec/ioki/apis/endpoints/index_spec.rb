@@ -10,20 +10,37 @@ RSpec.describe Endpoints::Index do
   end
   let(:url)         { URI.parse('www.example.org') }
   let(:model_class) { Ioki::Model::Platform::Product }
-  let(:parsed_response) { instance_double(Hash, 'parsed_response', :[] => [], dig: {}) }
-  let(:full_response) { instance_double(Faraday::Response, 'full_response') }
-  let(:endpoint)  { described_class.new('product', base_path: ['base'], model_class: model_class) }
-  let(:params)    { { per_page: 2 } }
+  let(:response)    { Faraday::Response.new }
+  let(:endpoint)    { described_class.new('product', base_path: ['base'], model_class: model_class) }
+  let(:params)      { { per_page: 2 } }
 
   before 'stub client.request' do
     allow(client).to receive(:request) do |params|
       case params.dig(:params, :page)
       when nil, 1
-        { 'data' => [{ 'id' => '001' }, { 'id' => '002' }], 'meta' => { 'page' => 1, 'last_page' => false } }
+        [
+          {
+            'data' => [{ 'id' => '001' }, { 'id' => '002' }],
+            'meta' => { 'page' => 1, 'last_page' => false }
+          },
+          response
+        ]
       when 2
-        { 'data' => [{ 'id' => '003' }, { 'id' => '004' }], 'meta' => { 'page' => 2, 'last_page' => false } }
+        [
+          {
+            'data' => [{ 'id' => '003' }, { 'id' => '004' }],
+            'meta' => { 'page' => 2, 'last_page' => false }
+          },
+          response
+        ]
       when 3
-        { 'data' => [{ 'id' => '005' }], 'meta' => { 'page' => 3, 'last_page' => true } }
+        [
+          {
+            'data' => [{ 'id' => '005' }],
+            'meta' => { 'page' => 3, 'last_page' => true }
+          },
+          response
+        ]
       else
         raise 'unexpected call'
       end
@@ -89,11 +106,11 @@ RSpec.describe Endpoints::Index do
     expect do |block|
       endpoint.call client, [], model_class: model_class, params: params, auto_paginate: true, &block
     end.to yield_successive_args(
-      have_attributes('id' => '001'),
-      have_attributes('id' => '002'),
-      have_attributes('id' => '003'),
-      have_attributes('id' => '004'),
-      have_attributes('id' => '005')
+      [have_attributes('id' => '001'), Faraday::Response],
+      [have_attributes('id' => '002'), Faraday::Response],
+      [have_attributes('id' => '003'), Faraday::Response],
+      [have_attributes('id' => '004'), Faraday::Response],
+      [have_attributes('id' => '005'), Faraday::Response]
     )
   end
 
