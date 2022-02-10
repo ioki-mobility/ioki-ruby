@@ -47,9 +47,9 @@ module Endpoints
         options[:params] ||= {}
         options[:params][:page] = current_page
 
-        page_results, parsed_response = send_request(client, args, options)
+        page_results, parsed_response, response = send_request(client, args, options)
         if block_given?
-          page_results.each { |item| block.call(item) }
+          page_results.each { |item| block.call(item, response) }
         else
           results += page_results
         end
@@ -60,12 +60,12 @@ module Endpoints
     end
 
     def send_request(client, args, options)
-      parsed_response, = client.request(
+      parsed_response, response = client.request(
         url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
         params: options[:params]
       )
 
-      [parsed_response['data'].map { |attr| model_class.new(attr) }, parsed_response]
+      [parsed_response['data'].map { |attr| model_class.new(attr) }, parsed_response, response]
     end
   end
 end
