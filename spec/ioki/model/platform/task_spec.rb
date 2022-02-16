@@ -16,16 +16,16 @@ RSpec.describe Ioki::Model::Platform::Task do
   end
 
   describe 'pause' do
-    subject(:task_list) { described_class.new pause: { id: '123' } }
+    subject(:task_list) { described_class.new pause: nil, pause_id: '123' }
 
-    it { is_expected.to have_attributes pause: have_attributes(id: '123') }
-    it { is_expected.to have_attributes pause: be_a(Ioki::Model::Platform::Pause) }
+    it { is_expected.to have_attributes pause_id: '123' }
+    it { is_expected.not_to respond_to :pause }
   end
 
   describe 'ride' do
-    subject(:task_list) { described_class.new ride: { id: '123' } }
+    subject(:task_list) { described_class.new ride: nil, ride_id: '123' }
 
-    it { is_expected.to have_attributes ride: have_attributes(id: '123') }
-    it { is_expected.to have_attributes ride: be_a(Ioki::Model::Platform::Ride) }
+    it { is_expected.to have_attributes ride_id: '123' }
+    it { is_expected.not_to respond_to :ride }
   end
 end

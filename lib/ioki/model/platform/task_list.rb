@@ -11,7 +11,7 @@ module Ioki
         attribute :deactivations, on: :read, type: :array, class_name: 'Deactivation'
         attribute :driver, on: :read, type: :object, class_name: 'Driver'
         attribute :end_place, on: :read, type: :object, class_name: 'Place'
-        attribute :matching_configuration, on: :read, type: :object, class_name: 'MatchingConfiguration'
+        attribute :matching_configuration_id, on: :read, type: :string
         attribute :paused, on: :read, type: :boolean
         attribute :pauses, on: :read, type: :array, class_name: 'Pause'
         attribute :planned_ends_at, on: :read, type: :date_time

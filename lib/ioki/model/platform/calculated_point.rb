@@ -22,7 +22,6 @@ module Ioki
         attribute :waypoint_type,        on: :read, type: :string
         attribute :walking_duration,     on: :read, type: :integer
         attribute :walking_track,        on: :read, type: :string
-        attribute :station,              on: :read, type: :object, class_name: 'Station'
         attribute :fixed_location,       on: :read, type: :boolean
         attribute :pause_id,             on: :read, type: :string
       end
