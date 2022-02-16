@@ -34,7 +34,7 @@ RSpec.describe Ioki::DriverApi do
       end
 
       expect(driver_client.create_request_token(request_token, options)).
-        to eq(Ioki::Model::Driver::DriverRequestToken.new)
+        to be_a(Ioki::Model::Driver::DriverRequestToken)
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Ioki::DriverApi do
       end
 
       expect(driver_client.product(options)).
-        to eq(Ioki::Model::Driver::Product.new)
+        to be_a(Ioki::Model::Driver::Product)
     end
   end
 end

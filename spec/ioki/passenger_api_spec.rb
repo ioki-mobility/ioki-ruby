@@ -32,7 +32,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.products(options)).
-        to eq([Ioki::Model::Passenger::Product.new])
+        to all(be_a(Ioki::Model::Passenger::Product))
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.product('0815', options)).
-        to eq(Ioki::Model::Passenger::Product.new)
+        to be_a(Ioki::Model::Passenger::Product)
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.station('0815', options)).
-        to eq(Ioki::Model::Passenger::Station.new)
+        to be_a(Ioki::Model::Passenger::Station)
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.bootstrap(options)).
-        to eq(Ioki::Model::Passenger::Bootstrap.new)
+        to be_a(Ioki::Model::Passenger::Bootstrap)
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_ride_inquiry(ride_inquiry, options)).
-        to eq(Ioki::Model::Passenger::RideInquiry.new)
+        to be_a(Ioki::Model::Passenger::RideInquiry)
     end
   end
 
@@ -97,7 +97,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_ride(ride, options)).
-        to eq(Ioki::Model::Passenger::Ride.new)
+        to be_a(Ioki::Model::Passenger::Ride)
     end
   end
 
@@ -121,7 +121,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_cancellation(ride, cancellation)).
-        to eq(Ioki::Model::Passenger::Ride.new)
+        to be_a(Ioki::Model::Passenger::Ride)
     end
   end
 
@@ -137,7 +137,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_booking(ride, booking, options)).
-        to eq(Ioki::Model::Passenger::Booking.new)
+        to be_a(Ioki::Model::Passenger::Booking)
     end
   end
 
@@ -153,7 +153,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_phone_verification_request(phone_verification_request, options)).
-        to eq(Ioki::Model::Passenger::PhoneVerificationRequest.new)
+        to be_a(Ioki::Model::Passenger::PhoneVerificationRequest)
     end
   end
 
@@ -167,7 +167,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.update_user_phone_number(user_phone_number, options.merge(model: user_phone_number))).
-        to eq(Ioki::Model::Passenger::User.new)
+        to be_a(Ioki::Model::Passenger::User)
     end
   end
 
@@ -184,7 +184,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.update_user(user, options)).to eq(Ioki::Model::Passenger::User.new)
+      expect(passenger_client.update_user(user, options)).to be_a(Ioki::Model::Passenger::User)
     end
   end
 
@@ -195,7 +195,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.user(options)).to eq(Ioki::Model::Passenger::User.new)
+      expect(passenger_client.user(options)).to be_a(Ioki::Model::Passenger::User)
     end
   end
 
@@ -210,7 +210,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_rating(ride, rating,
-                                            options)).to eq(Ioki::Model::Passenger::Rating.new)
+                                            options)).to be_a(Ioki::Model::Passenger::Rating)
     end
   end
 
