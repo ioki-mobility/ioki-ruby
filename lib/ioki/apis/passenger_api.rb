@@ -47,6 +47,13 @@ module Ioki
         outgoing_model_class: Ioki::Model::Passenger::Cancellation
       ),
       Endpoints::Create.new(
+        :cancellation_voucher,
+        base_path:            [API_BASE_PATH, 'rides', :id],
+        path:                 'cancellation_voucher',
+        model_class:          Ioki::Model::Passenger::CancellationVoucher,
+        outgoing_model_class: Ioki::Model::Passenger::CancellationVoucher
+      ),
+      Endpoints::Create.new(
         :booking,
         base_path:   [API_BASE_PATH, 'rides', :id],
         path:        'booking',
