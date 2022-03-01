@@ -173,6 +173,18 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         except:      [:create, :update, :delete],
         model_class: Ioki::Model::Platform::Announcement
+      ),
+      Endpoints::Create.new(
+        :phone_verification_request,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        path:        'phone_verification_requests',
+        model_class: Ioki::Model::Platform::PhoneVerificationRequest
+      ),
+      Endpoints::Create.new(
+        :phone_verification,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        path:        'phone_verification_requests/verify',
+        model_class: Ioki::Model::Platform::PhoneVerification
       )
     ].freeze
   end
