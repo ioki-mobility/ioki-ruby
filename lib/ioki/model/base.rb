@@ -58,6 +58,12 @@ module Ioki
             collect(&:class_instance_attribute_definitions).
             reduce(&:merge)
         end
+
+        def descendants
+          ObjectSpace.each_object(singleton_class).reject do |k|
+            k.singleton_class? || k == self
+          end
+        end
       end
 
       attr_accessor :_raw_attributes, :_attributes, :_etag
