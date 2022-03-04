@@ -16,12 +16,12 @@ module Ioki
         attribute :product_id, type: :string
         attribute :state, type: :string
         attribute :current_journey, type: :object, class_name: 'Journey'
-        attribute :deactivations, type: :array
+        attribute :deactivations, type: :array, class_name: 'Deactivation'
         attribute :driver, type: :object, class_name: 'Driver'
         attribute :end_place, type: :object, class_name: 'Place'
-        attribute :pauses, type: :array
+        attribute :pauses, type: :array, class_name: 'Pause'
         attribute :start_place, type: :object, class_name: 'Place'
-        attribute :tasks, type: :array
+        attribute :tasks, type: :array, class_name: 'Task'
         attribute :vehicle, type: :object, class_name: 'Vehicle'
       end
     end

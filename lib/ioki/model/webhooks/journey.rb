@@ -9,7 +9,7 @@ module Ioki
         attribute :created_at, type: :date_time
         attribute :updated_at, type: :date_time
         attribute :version, type: :integer
-        attribute :legs, type: :array
+        attribute :legs, type: :array, class_name: 'Leg'
       end
     end
   end

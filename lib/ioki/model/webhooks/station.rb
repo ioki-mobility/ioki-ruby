@@ -21,7 +21,7 @@ module Ioki
         attribute :station_type, type: :string
         attribute :street_name, type: :string
         attribute :street_number, type: :string
-        attribute :deactivations, type: :array
+        attribute :deactivations, type: :array, class_name: 'Deactivation'
       end
     end
   end

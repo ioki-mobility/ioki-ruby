@@ -30,7 +30,7 @@ module Ioki
         attribute :dropoff_task, type: :object, class_name: 'NestedTask'
         attribute :fare, type: :object, class_name: 'Fare'
         attribute :origin, type: :object, class_name: 'RequestedPoint'
-        attribute :passengers, type: :array
+        attribute :passengers, type: :array, class_name: 'RidePassenger'
         attribute :payment_method, type: :object, class_name: 'PaymentMethod'
         attribute :pickup, type: :object, class_name: 'CalculatedPoint'
         attribute :pickup_task, type: :object, class_name: 'NestedTask'
