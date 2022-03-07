@@ -32,4 +32,14 @@ RSpec.describe 'OpenApi schema definitions' do
       end
     end
   end
+
+  if API_SPECIFICATIONS[:webhooks_api]
+    describe 'the webhooks_api definition' do
+      Ioki::Model::Webhooks::Base.descendants.each do |model|
+        it "ensures #{model} matches the published API specifications" do
+          expect(model).to match_open_api_definition('webhooks_api', model)
+        end
+      end
+    end
+  end
 end
