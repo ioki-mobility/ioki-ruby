@@ -56,7 +56,7 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
 
-        attribute :description, 
+        attribute :description,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
