@@ -27,7 +27,7 @@ module Ioki
         raise Ioki::Error::WebhookSignatureMissing if blank? @signature
         raise Ioki::Error::WebhookBodyMissing if blank? @body
         raise Ioki::Error::WebhookSignatureKeyMissing if blank? ENV['WEBHOOK_SIGNATURE_KEY']
-        raise Ioki::Error::WebhookSignatureInvalid unless secure_compare @signature, calculated_signature
+        raise Ioki::Error::WebhookSignatureInvalid unless OpenSSL.secure_compare @signature, calculated_signature
       end
 
       private
@@ -38,17 +38,6 @@ module Ioki
           ENV['WEBHOOK_SIGNATURE_KEY'],  # First: The pre-shared key
           @body                          # Second: The data to verify
         )
-      end
-
-      # almost verbatim copy of ActiveSupport::SecurityUtils#fixed_length_secure_compare
-      def secure_compare(a, b)
-        raise Ioki::Error::WebhookSignatureInvalid unless a.bytesize == b.bytesize
-
-        l = a.unpack "C#{a.bytesize}"
-
-        res = 0
-        b.each_byte { |byte| res |= byte ^ l.shift }
-        res == 0
       end
 
       def blank?(val)
