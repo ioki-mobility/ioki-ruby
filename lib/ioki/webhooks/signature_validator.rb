@@ -18,9 +18,9 @@ require 'openssl'
 module Ioki
   module Webhooks
     class SignatureValidator
-      def initialize(signature:, body:)
-        @signature = signature
+      def initialize(body:, signature:)
         @body = body
+        @signature = signature
       end
 
       def call

@@ -15,6 +15,7 @@ require 'ioki/apis/passenger_api'
 require 'ioki/apis/platform_api'
 require 'ioki/version'
 require 'ioki/webhooks/signature_validator'
+require 'ioki/webhooks/event'
 
 module Ioki
   class << self
