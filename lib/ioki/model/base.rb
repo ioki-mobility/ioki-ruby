@@ -5,6 +5,8 @@ require 'date'
 module Ioki
   module Model
     class Base
+      extend Ioki::Support::ModuleMixins
+
       class << self
         def class_instance_attribute_definitions
           @class_instance_attribute_definitions ||= {}
@@ -57,12 +59,6 @@ module Ioki
           ancestor_model_classes.
             collect(&:class_instance_attribute_definitions).
             reduce(&:merge)
-        end
-
-        def descendants
-          ObjectSpace.each_object(singleton_class).reject do |k|
-            k.singleton_class? || k == self
-          end
         end
       end
 
@@ -147,7 +143,7 @@ module Ioki
 
           next if definition.key?(:omit_if_blank_on) &&
                   Array(definition[:omit_if_blank_on]).include?(usecase) &&
-                  empty?(value)
+                  Ioki::Support.blank?(value)
 
           data[attribute] = if definition[:type] == :object && value.is_a?(Ioki::Model::Base)
                               value.serialize(usecase)
@@ -174,16 +170,9 @@ module Ioki
       end
 
       def constantize_in_module(class_name)
-        return nil if empty?(class_name)
+        return nil if Ioki::Support.blank?(class_name)
 
-        module_names = self.class.name.split('::')
-        module_names.slice!(-1, 1)
-        module_names << class_name
-        Object.const_get(module_names.join('::'))
-      end
-
-      def empty?(value)
-        value.respond_to?(:empty?) ? !!value.empty? : !value
+        self.class.module_parent.const_get class_name
       end
     end
   end

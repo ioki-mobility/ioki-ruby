@@ -24,9 +24,9 @@ module Ioki
       end
 
       def call
-        raise Ioki::Error::WebhookSignatureMissing if blank? @signature
-        raise Ioki::Error::WebhookBodyMissing if blank? @body
-        raise Ioki::Error::WebhookSignatureKeyMissing if blank? ENV['WEBHOOK_SIGNATURE_KEY']
+        raise Ioki::Error::WebhookSignatureMissing if Ioki::Support.blank? @signature
+        raise Ioki::Error::WebhookBodyMissing if Ioki::Support.blank? @body
+        raise Ioki::Error::WebhookSignatureKeyMissing if Ioki::Support.blank? ENV['WEBHOOK_SIGNATURE_KEY']
         raise Ioki::Error::WebhookSignatureInvalid unless OpenSSL.secure_compare @signature, calculated_signature
       end
 
@@ -38,10 +38,6 @@ module Ioki
           ENV['WEBHOOK_SIGNATURE_KEY'],  # First: The pre-shared key
           @body                          # Second: The data to verify
         )
-      end
-
-      def blank?(val)
-        val.nil? || val == ''
       end
     end
   end

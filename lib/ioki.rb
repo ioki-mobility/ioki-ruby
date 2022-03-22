@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'ioki/support'
 require 'ioki/configuration'
 require 'ioki/model'
 require 'ioki/error'
