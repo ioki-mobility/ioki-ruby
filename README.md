@@ -114,6 +114,41 @@ the values in `Ioki.config`. Ioki.config will respect the values set up by
 `Ioki.configure`. If not set, it will take the ENV value and finally fall back
 for most configurable attributes to a baked in default.
 
+## Webhooks
+
+Webhooks are a way to receive updates about changes when they happen on the
+backend servers. They are **pushed** to your application, where the other APIs
+are **pulled** from the backend. In this regard they are very different from
+the Platform/Driver/Passenger/Operator API. What they have in common, is that
+the data is serialized in a specific manner, which ioki-ruby can turn into a
+model in the Ioki::Model::Webhooks module.
+
+When you have the requests POST body in a `params` hash, you can convert that
+to an `Event` instance, which has a `model` attribute which is the deserialized
+webhook `data` as a model:
+
+```ruby
+  @event = Ioki::Webhooks::Event.new params
+  @model = @event.model
+  # The event also gives you access to other attributes:
+  puts @event.provider_id
+  puts @event.event_type
+  puts @event.created_at
+```
+
+Because the data is pushed to your application via the internet to a public
+endpoint in your application, the webhook data is signed by the ioki webhooks
+API to authenticate it using a preshared secret, which you need to set as the
+`WEBHOOK_SIGNATURE_KEY` ENV variable.
+
+```
+# Set ENV['WEBHOOK_SIGNATURE_KEY'] first...
+# Then run the validation on the request:
+
+Ioki::Webhooks::SignatureValidator.new(body: request.body.read, signature: request.headers['X-Signature']).call
+
+```
+
 ## Logger
 
 The logger can be set to any object that implements the ruby `Logger` contract,

@@ -43,5 +43,13 @@ module Ioki
         end
       end
     end
+
+    class WebhookBodyMissing < StandardError; end
+
+    class WebhookSignatureMissing < StandardError; end
+
+    class WebhookSignatureInvalid < StandardError; end
+
+    class WebhookSignatureKeyMissing < StandardError; end
   end
 end
