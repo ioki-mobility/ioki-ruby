@@ -124,7 +124,7 @@ the data is serialized in a specific manner, which ioki-ruby can turn into a
 model in the Ioki::Model::Webhooks module.
 
 When you have the requests POST body in a `params` hash, you can convert that
-to a `Event` instance, which has a `model` attribute which is the deserialized
+to an `Event` instance, which has a `model` attribute which is the deserialized
 webhook `data` as a model:
 
 ```ruby
