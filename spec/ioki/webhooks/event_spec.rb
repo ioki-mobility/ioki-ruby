@@ -39,10 +39,6 @@ RSpec.describe Ioki::Webhooks::Event do
     expect(event.action).to eq 'created'
   end
 
-  it 'can camelize strings' do
-    expect(event.send(:camelize, 'task_list')).to eq('TaskList')
-  end
-
   it 'has the correct id' do
     expect(event.id).to eq params['id']
   end

@@ -15,23 +15,11 @@ module Ioki
       end
 
       def model_class_name
-        camelize data['type']
+        Ioki::Support.camelize data['type']
       end
 
       def action
         event_type&.split('.')&.last
-      end
-
-      private
-
-      def camelize(term)
-        string = term.to_s.sub(/^[a-z\d]*/) { |match| match.capitalize! || match }
-        string.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
-          word = Regexp.last_match(2)
-          substituted = word.capitalize! || word
-          Regexp.last_match(1) ? "::#{substituted}" : substituted
-        end
-        string
       end
 
     end

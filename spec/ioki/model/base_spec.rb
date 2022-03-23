@@ -145,7 +145,7 @@ RSpec.describe Ioki::Model::Base do
         model = example_class.new({})
         expect(model.foo).to be_nil
         model.foo = { bar: 42 }
-        expect(model.foo).to be_kind_of(described_class)
+        expect(model.foo).to be_kind_of(example_referenced_class)
         expect(model.foo.bar).to eq(42)
       end
     end
@@ -181,9 +181,9 @@ RSpec.describe Ioki::Model::Base do
         expect(model.foo).to be_nil
         model.foo = [{ bar: '42' }, { bar: '43' }]
         expect(model.foo).to be_kind_of(Array)
-        expect(model.foo.first).to be_kind_of(described_class)
+        expect(model.foo.first).to be_kind_of(example_referenced_class)
         expect(model.foo.first.bar).to eq(42)
-        expect(model.foo.last).to be_kind_of(described_class)
+        expect(model.foo.last).to be_kind_of(example_referenced_class)
         expect(model.foo.last.bar).to eq(43)
       end
     end
@@ -637,6 +637,12 @@ RSpec.describe Ioki::Model::Base do
           expect(result.last.email).to eq('mail2@example.com')
         end
       end
+    end
+  end
+
+  describe '#constantize_in_module' do
+    it 'returns a module of the given name in the same parent module' do
+      expect(Ioki::Model::Platform::Pause.new.send(:constantize_in_module, 'Place')).to eq Ioki::Model::Platform::Place
     end
   end
 end
