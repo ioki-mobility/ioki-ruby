@@ -8,7 +8,7 @@ gemspec
 gem 'rake', '~> 12.0'
 gem 'rspec', '~> 3.0'
 gem 'awesome_print'
-gem 'pry'
+gem 'debug'
 
 group :development, :test do
   gem 'rubocop', require: false

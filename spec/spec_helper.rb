@@ -7,7 +7,7 @@ end
 
 require 'bundler/setup'
 require 'awesome_print'
-require 'pry'
+require 'debug'
 require 'ioki'
 require 'vcr'
 require 'webmock/rspec'
