@@ -11,7 +11,7 @@ task :console do
   require 'irb'
   require 'irb/completion'
   require 'awesome_print'
-  require 'pry'
+  require 'debug'
   require 'ioki'
 
   def reload!
