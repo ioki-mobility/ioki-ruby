@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0 - 2022-03-30
+* Adds Operator API support
+* Adds webhooks models and webhooks support
+* Many Bugfixes and improvements
+
 ## 0.7.0 - 2021-12-16
 * Support all GET endpoints and corresponding models
 
