@@ -2,6 +2,7 @@
 
 require 'ioki/model'
 require 'ioki/apis/endpoints/endpoints'
+require 'ioki/apis/endpoints/vehicle_connection'
 
 module Ioki
   class DriverApi
@@ -17,7 +18,13 @@ module Ioki
         :product,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::Product
-      )
+      ),
+      Endpoints::ShowSingular.new(
+        :driver,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::Driver
+      ),
+      Endpoints::VehicleConnection.new
     ].freeze
   end
 end
