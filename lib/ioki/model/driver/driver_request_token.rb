@@ -4,12 +4,17 @@ module Ioki
   module Model
     module Driver
       class DriverRequestToken < Base
-        # The model does not return it but it's used when sending data to the server.
+        # The model does not return them but they're used when sending data to the server:
         attribute :username, on: :create, type: :string, unvalidated: true
-        # The model does not return it but it's used when sending data to the server.
         attribute :pin, on: :create, type: :string, unvalidated: true
+        # This is what we care about:
         attribute :token, on: :read, type: :string
         attribute :driver_id, on: :read, type: :string
+        # This is not so interesting:
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
       end
     end
   end
