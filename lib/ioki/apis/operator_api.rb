@@ -12,6 +12,11 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Operator::Product
       ),
+      Endpoints::Show.new(
+        :product,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::Product
+      ),
       Endpoints.crud_endpoints(
         :vehicle,
         base_path:   [API_BASE_PATH, 'products', :id],
