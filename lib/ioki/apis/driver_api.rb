@@ -31,7 +31,7 @@ module Ioki
         :tasks,
         base_path:   [API_BASE_PATH, 'vehicle'],
         model_class: Ioki::Model::Driver::Task
-      ),
+      )
     ].freeze
   end
 end
