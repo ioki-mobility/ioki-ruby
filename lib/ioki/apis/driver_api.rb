@@ -31,6 +31,41 @@ module Ioki
         :tasks,
         base_path:   [API_BASE_PATH, 'vehicle'],
         model_class: Ioki::Model::Driver::Task
+      ),
+      Endpoints::Create.new(
+        :task_confirmation,
+        base_path:            [API_BASE_PATH, 'tasks', :id],
+        path:                 'confirmation',
+        model_class:          Ioki::Model::Driver::Ride,
+        outgoing_model_class: Ioki::Model::Driver::Task
+      ),
+      Endpoints::Create.new(
+        :task_rejection,
+        base_path:            [API_BASE_PATH, 'tasks', :id],
+        path:                 'rejection',
+        model_class:          Ioki::Model::Driver::Ride,
+        outgoing_model_class: Ioki::Model::Driver::Task
+      ),
+      Endpoints::Create.new(
+        :task_cancellation,
+        base_path:            [API_BASE_PATH, 'tasks', :id],
+        path:                 'cancellation',
+        model_class:          Ioki::Model::Driver::Ride,
+        outgoing_model_class: Ioki::Model::Driver::Task
+      ),
+      Endpoints::Create.new(
+        :task_completion,
+        base_path:            [API_BASE_PATH, 'tasks', :id],
+        path:                 'completion',
+        model_class:          Ioki::Model::Driver::Ride,
+        outgoing_model_class: Ioki::Model::Driver::Task
+      ),
+      Endpoints::Create.new(
+        :task_phone_call,
+        base_path:            [API_BASE_PATH, 'tasks', :id],
+        path:                 'phone_call',
+        model_class:          Ioki::Model::Driver::Ride,
+        outgoing_model_class: Ioki::Model::Driver::Task
       )
     ].freeze
   end

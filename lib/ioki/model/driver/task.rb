@@ -8,7 +8,7 @@ module Ioki
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
-        attribute :version, on: :read, type: :integer
+        attribute :version, on: [:read, :create], type: :integer
         attribute :acceptable, on: :read, type: :boolean
         attribute :accepted_at, on: :read, type: :date_time
         attribute :cancellable, on: :read, type: :boolean
