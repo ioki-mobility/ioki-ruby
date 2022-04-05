@@ -26,7 +26,12 @@ module Ioki
         model_class: Ioki::Model::Driver::Driver
       ),
       Endpoints::Driver::CreateVehicleConnection.new,
-      Endpoints::Driver::DeleteVehicleConnection.new
+      Endpoints::Driver::DeleteVehicleConnection.new,
+      Endpoints::Index.new(
+        :tasks,
+        base_path:   [API_BASE_PATH, 'vehicle'],
+        model_class: Ioki::Model::Driver::Task
+      ),
     ].freeze
   end
 end
