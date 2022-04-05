@@ -2,7 +2,8 @@
 
 require 'ioki/model'
 require 'ioki/apis/endpoints/endpoints'
-require 'ioki/apis/endpoints/vehicle_connection'
+require 'ioki/apis/endpoints/driver/create_vehicle_connection'
+require 'ioki/apis/endpoints/driver/delete_vehicle_connection'
 
 module Ioki
   class DriverApi
@@ -24,7 +25,8 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::Driver
       ),
-      Endpoints::VehicleConnection.new
+      Endpoints::Driver::CreateVehicleConnection.new,
+      Endpoints::Driver::DeleteVehicleConnection.new
     ].freeze
   end
 end

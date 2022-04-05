@@ -2,6 +2,7 @@
 
 require 'ioki/model'
 require 'ioki/apis/endpoints/endpoints'
+require 'ioki/apis/endpoints/passenger/update_language'
 
 module Ioki
   class PassengerApi
@@ -88,7 +89,7 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::Station
       ),
-      Endpoints::UpdateLanguage.new
+      Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end
 end
