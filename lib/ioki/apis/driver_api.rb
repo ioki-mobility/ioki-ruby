@@ -30,6 +30,21 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::Vehicle
       ),
+      Endpoints::Endpoint.new(
+        :vehicle,
+        action:         'pause',
+        request_method: :post,
+        path:           [API_BASE_PATH, 'vehicle'],
+        model_class:    Ioki::Model::Driver::Vehicle
+      ),
+      Endpoints::Endpoint.new(
+        :vehicle,
+        method_name:    :vehicle_unpause,
+        action:         'pause',
+        request_method: :delete,
+        path:           [API_BASE_PATH, 'vehicle'],
+        model_class:    Ioki::Model::Driver::Vehicle
+      ),
       Endpoints::Driver::CreateVehicleConnection.new,
       Endpoints::Driver::DeleteVehicleConnection.new,
       Endpoints::Index.new(

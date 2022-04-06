@@ -60,8 +60,10 @@ RSpec.describe Ioki::DriverApi do
     end
   end
 
-  describe '#vehicle' do
-    it 'calls request on the client with expected params' do
+  describe 'vehicle' do
+    let(:vehicle) { Ioki::Model::Driver::Task.new id: 'veh_123' }
+
+    it '#vehicle calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/vehicle')
         [result_with_data, full_response]
@@ -69,12 +71,32 @@ RSpec.describe Ioki::DriverApi do
 
       expect(driver_client.vehicle(options)).to be_a(Ioki::Model::Driver::Vehicle)
     end
+
+    it '#vehicle_pause calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/vehicle/pause')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(driver_client.vehicle_pause).to be_a(Ioki::Model::Driver::Vehicle)
+    end
+
+    it '#vehicle_unpause calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/vehicle/pause')
+        expect(params[:method]).to eq(:delete)
+        [result_with_data, full_response]
+      end
+
+      expect(driver_client.vehicle_unpause).to be_a(Ioki::Model::Driver::Vehicle)
+    end
   end
 
-  describe '#create_vehicle_connection' do
-    let(:vehicle_connections) { Ioki::Model::Driver::VehicleConnection.new license_plate: '123' }
+  describe 'vehicle_connection' do
+    let(:vehicle_connection) { Ioki::Model::Driver::VehicleConnection.new license_plate: '123' }
 
-    it 'calls request on the client with expected params' do
+    it '#create_vehicle_connection calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/vehicle_connection')
         expect(params[:method]).to eq(:post)
@@ -82,14 +104,10 @@ RSpec.describe Ioki::DriverApi do
         [nil, full_response]
       end
 
-      driver_client.create_vehicle_connection(vehicle_connections, options)
+      driver_client.create_vehicle_connection(vehicle_connection, options)
     end
-  end
 
-  describe '#delete_vehicle_connection' do
-    let(:vehicle_connections) { Ioki::Model::Driver::VehicleConnection.new license_plate: '123' }
-
-    it 'calls request on the client with expected params' do
+    it '#delete_vehicle_connection calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/vehicle_connection')
         expect(params[:method]).to eq(:delete)
@@ -97,87 +115,73 @@ RSpec.describe Ioki::DriverApi do
         [{}, full_response]
       end
 
-      driver_client.delete_vehicle_connection(vehicle_connections, options)
-    end
-  end
-
-  describe '#tasks' do
-    it 'calls request on the client with expected params' do
-      expect(driver_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('driver/vehicle/tasks')
-        [{ 'data' => [{ id: 'xyz_123' }] }, full_response]
-      end
-      expect(driver_client.tasks).to all(be_a(Ioki::Model::Driver::Task))
+      driver_client.delete_vehicle_connection(vehicle_connection, options)
     end
   end
 
   describe 'tasks' do
     let(:task) { Ioki::Model::Driver::Task.new id: 'xyz_123' }
 
-    describe '#task_confirmation' do
-      it 'calls request on the client with expected params' do
-        expect(driver_client).to receive(:request) do |params|
-          expect(params[:url].to_s).to eq('driver/tasks/xyz_123/confirmation')
-          expect(params[:method]).to eq(:post)
-          [{ 'data' => { id: 'abc_123' } }, full_response]
-        end
-        expect(driver_client.task_confirmation(task)).to be_a(Ioki::Model::Driver::Ride)
+    it '#tasks calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/vehicle/tasks')
+        [{ 'data' => [{ id: 'xyz_123' }] }, full_response]
       end
+      expect(driver_client.tasks).to all(be_a(Ioki::Model::Driver::Task))
     end
 
-    describe '#task_rejection' do
-      it 'calls request on the client with expected params' do
-        expect(driver_client).to receive(:request) do |params|
-          expect(params[:url].to_s).to eq('driver/tasks/xyz_123/rejection')
-          expect(params[:method]).to eq(:post)
-          [{ 'data' => { id: 'abc_123' } }, full_response]
-        end
-        expect(driver_client.task_rejection(task)).to be_a(Ioki::Model::Driver::Ride)
+    it '#task_confirmation calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tasks/xyz_123/confirmation')
+        expect(params[:method]).to eq(:post)
+        [{ 'data' => { id: 'abc_123' } }, full_response]
       end
+      expect(driver_client.task_confirmation(task)).to be_a(Ioki::Model::Driver::Ride)
     end
 
-    describe '#task_cancellation' do
-      it 'calls request on the client with expected params' do
-        expect(driver_client).to receive(:request) do |params|
-          expect(params[:url].to_s).to eq('driver/tasks/xyz_123/cancellation')
-          expect(params[:method]).to eq(:post)
-          [{ 'data' => { id: 'abc_123' } }, full_response]
-        end
-        expect(driver_client.task_cancellation(task)).to be_a(Ioki::Model::Driver::Ride)
+    it '#task_rejection calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tasks/xyz_123/rejection')
+        expect(params[:method]).to eq(:post)
+        [{ 'data' => { id: 'abc_123' } }, full_response]
       end
+      expect(driver_client.task_rejection(task)).to be_a(Ioki::Model::Driver::Ride)
     end
 
-    describe '#task_completion' do
-      it 'calls request on the client with expected params' do
-        expect(driver_client).to receive(:request) do |params|
-          expect(params[:url].to_s).to eq('driver/tasks/xyz_123/completion')
-          expect(params[:method]).to eq(:post)
-          [{ 'data' => { id: 'abc_123' } }, full_response]
-        end
-        expect(driver_client.task_completion(task)).to be_a(Ioki::Model::Driver::Ride)
+    it '#task_cancellation calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tasks/xyz_123/cancellation')
+        expect(params[:method]).to eq(:post)
+        [{ 'data' => { id: 'abc_123' } }, full_response]
       end
+      expect(driver_client.task_cancellation(task)).to be_a(Ioki::Model::Driver::Ride)
     end
 
-    describe '#task_phone_call' do
-      it 'calls request on the client with expected params' do
-        expect(driver_client).to receive(:request) do |params|
-          expect(params[:url].to_s).to eq('driver/tasks/xyz_123/phone_call')
-          expect(params[:method]).to eq(:post)
-          [{}, full_response]
-        end
-        driver_client.task_phone_call(task)
+    it '#task_completion calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tasks/xyz_123/completion')
+        expect(params[:method]).to eq(:post)
+        [{ 'data' => { id: 'abc_123' } }, full_response]
       end
+      expect(driver_client.task_completion(task)).to be_a(Ioki::Model::Driver::Ride)
     end
 
-    describe '#task_reached_location' do
-      it 'calls request on the client with expected params' do
-        expect(driver_client).to receive(:request) do |params|
-          expect(params[:url].to_s).to eq('driver/tasks/xyz_123/reached_location')
-          expect(params[:method]).to eq(:patch)
-          [{}, full_response]
-        end
-        driver_client.task_reached_location(task)
+    it '#task_phone_call calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tasks/xyz_123/phone_call')
+        expect(params[:method]).to eq(:post)
+        [{}, full_response]
       end
+      driver_client.task_phone_call(task)
+    end
+
+    it '#task_reached_location calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tasks/xyz_123/reached_location')
+        expect(params[:method]).to eq(:patch)
+        [{}, full_response]
+      end
+      driver_client.task_reached_location(task)
     end
   end
 end
