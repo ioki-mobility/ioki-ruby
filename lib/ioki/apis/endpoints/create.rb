@@ -4,16 +4,17 @@ module Endpoints
   class Create
     attr_reader :base_path, :model_class, :resource, :path
 
-    def initialize(resource, base_path:, model_class:, outgoing_model_class: nil, path: nil)
+    def initialize(resource, base_path:, model_class:, outgoing_model_class: nil, path: nil, method_name: nil)
       @base_path = base_path
       @path = path
       @resource = resource.to_s
       @model_class = model_class
       @outgoing_model_class = outgoing_model_class
+      @method_name = method_name
     end
 
     def name
-      "create_#{resource}"
+      @method_name || "create_#{resource}"
     end
 
     def resource_path_name
