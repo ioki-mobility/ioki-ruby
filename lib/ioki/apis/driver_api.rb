@@ -25,6 +25,11 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::Driver
       ),
+      Endpoints::ShowSingular.new(
+        :vehicle,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::Vehicle
+      ),
       Endpoints::Driver::CreateVehicleConnection.new,
       Endpoints::Driver::DeleteVehicleConnection.new,
       Endpoints::Index.new(

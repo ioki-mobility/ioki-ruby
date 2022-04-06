@@ -60,6 +60,17 @@ RSpec.describe Ioki::DriverApi do
     end
   end
 
+  describe '#vehicle' do
+    it 'calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/vehicle')
+        [result_with_data, full_response]
+      end
+
+      expect(driver_client.vehicle(options)).to be_a(Ioki::Model::Driver::Vehicle)
+    end
+  end
+
   describe '#create_vehicle_connection' do
     let(:vehicle_connections) { Ioki::Model::Driver::VehicleConnection.new license_plate: '123' }
 
