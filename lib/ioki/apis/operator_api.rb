@@ -7,15 +7,11 @@ module Ioki
   class OperatorApi
     API_BASE_PATH = 'operator'
     ENDPOINTS = [
-      Endpoints::Index.new(
-        :products,
-        base_path:   [API_BASE_PATH],
-        model_class: Ioki::Model::Operator::Product
-      ),
-      Endpoints::Show.new(
+      Endpoints.crud_endpoints(
         :product,
         base_path:   [API_BASE_PATH],
-        model_class: Ioki::Model::Operator::Product
+        model_class: Ioki::Model::Operator::Product,
+        except:      [:create, :update, :delete]
       ),
       Endpoints.crud_endpoints(
         :vehicle,
