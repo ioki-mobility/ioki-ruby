@@ -119,6 +119,23 @@ RSpec.describe Ioki::DriverApi do
     end
   end
 
+  describe 'vehicle_position' do
+    let(:vehicle_position) do
+      Ioki::Model::Driver::VehiclePosition.new lat: 1.0, lng: 2.0, recorded_at: '2012-12-12T12:12:12Z'
+    end
+
+    it '#vehicle_position calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/vehicle/positions')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to include(data: hash_including(lat: 1.0, lng: 2.0, recorded_at: '2012-12-12T12:12:12Z'))
+        [nil, full_response]
+      end
+
+      driver_client.vehicle_position(vehicle_position, options)
+    end
+  end
+
   describe 'tasks' do
     let(:task) { Ioki::Model::Driver::Task.new id: 'xyz_123' }
 

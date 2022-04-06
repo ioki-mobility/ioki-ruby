@@ -4,6 +4,7 @@ require 'ioki/model'
 require 'ioki/apis/endpoints/endpoints'
 require 'ioki/apis/endpoints/driver/create_vehicle_connection'
 require 'ioki/apis/endpoints/driver/delete_vehicle_connection'
+require 'ioki/apis/endpoints/driver/vehicle_position'
 
 module Ioki
   class DriverApi
@@ -45,6 +46,7 @@ module Ioki
         path:           [API_BASE_PATH, 'vehicle'],
         model_class:    Ioki::Model::Driver::Vehicle
       ),
+      Endpoints::Driver::VehiclePosition.new,
       Endpoints::Driver::CreateVehicleConnection.new,
       Endpoints::Driver::DeleteVehicleConnection.new,
       Endpoints::Index.new(
