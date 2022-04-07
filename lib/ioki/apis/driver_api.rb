@@ -99,6 +99,14 @@ module Ioki
         method_name:    :task_reached_location,
         request_method: :patch,
         path:           [API_BASE_PATH, 'tasks', :id]
+      ),
+      Endpoints::Create.new(
+        :ride,
+        method_name:          :ride_fare_preview,
+        base_path:            [API_BASE_PATH, 'rides', :id],
+        path:                 'fare_preview',
+        model_class:          Ioki::Model::Driver::Fare,
+        outgoing_model_class: Ioki::Model::Driver::Passengers
       )
     ].freeze
   end
