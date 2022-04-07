@@ -107,6 +107,14 @@ module Ioki
         path:                 'fare_preview',
         model_class:          Ioki::Model::Driver::Fare,
         outgoing_model_class: Ioki::Model::Driver::Passengers
+      ),
+      Endpoints::Create.new(
+        :ride,
+        method_name:          :ride_passengers,
+        base_path:            [API_BASE_PATH, 'rides', :id],
+        path:                 'passengers',
+        model_class:          Ioki::Model::Driver::Ride,
+        outgoing_model_class: Ioki::Model::Driver::Passengers
       )
     ].freeze
   end

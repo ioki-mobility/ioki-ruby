@@ -204,7 +204,7 @@ RSpec.describe Ioki::DriverApi do
 
   describe 'rides' do
     let(:ride) { Ioki::Model::Driver::Ride.new id: 'xyz_123' }
-    let(:passengers) { Ioki::Model::Driver::Passengers.new passengers: [passenger] }
+    let(:passengers) { Ioki::Model::Driver::Passengers.new passengers: [passenger], ride_version: 0 }
     let(:passenger) { Ioki::Model::Driver::Passenger.new type: "adult", first_name: "Max", last_name: "Mustermann" }
     it '#ride_fare_preview calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
@@ -215,6 +215,16 @@ RSpec.describe Ioki::DriverApi do
         [{ 'data' => { id: 'preview' } }, full_response]
       end
       expect(driver_client.ride_fare_preview(ride, passengers)).to be_a(Ioki::Model::Driver::Fare)
+    end
+    it '#ride_passengers calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/rides/xyz_123/passengers')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to include(data: include(ride_version: 0, passengers: all(include(type: "adult"))))
+
+        [{ 'data' => { id: 'rid_123' } }, full_response]
+      end
+      expect(driver_client.ride_passengers(ride, passengers)).to be_a(Ioki::Model::Driver::Ride)
     end
   end
 end
