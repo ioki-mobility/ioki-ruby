@@ -115,6 +115,21 @@ module Ioki
         path:                 'passengers',
         model_class:          Ioki::Model::Driver::Ride,
         outgoing_model_class: Ioki::Model::Driver::Passengers
+      ),
+      Endpoints::Index.new(
+        :tips,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::Tip
+      ),
+      Endpoints::ShowSingular.new(
+        :monthly_tip_sums,
+        base_path:   [API_BASE_PATH, 'tips'],
+        model_class: Ioki::Model::Driver::MonthlyTipSum
+      ),
+      Endpoints::Show.new(
+        :tip,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::Tip
       )
     ].freeze
   end

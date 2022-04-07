@@ -229,4 +229,28 @@ RSpec.describe Ioki::DriverApi do
       expect(driver_client.ride_passengers(ride, passengers)).to be_a(Ioki::Model::Driver::Ride)
     end
   end
+
+  describe 'tips' do
+    it '#tips calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tips')
+        [{ 'data' => [{ id: 'xyz_123' }] }, full_response]
+      end
+      expect(driver_client.tips).to all(be_a(Ioki::Model::Driver::Tip))
+    end
+    it '#monthly_tip_sums calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tips/monthly_tip_sums')
+        [{ 'data' => { 'date': '2022-03-01' } }, full_response]
+      end
+      expect(driver_client.monthly_tip_sums).to be_a(Ioki::Model::Driver::MonthlyTipSum)
+    end
+    it '#tip calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/tips/tip_123')
+        [{ 'data' => { 'id': 'tip_123' } }, full_response]
+      end
+      expect(driver_client.tip('tip_123')).to be_a(Ioki::Model::Driver::Tip)
+    end
+  end
 end
