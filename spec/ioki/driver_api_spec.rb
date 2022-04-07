@@ -238,17 +238,19 @@ RSpec.describe Ioki::DriverApi do
       end
       expect(driver_client.tips).to all(be_a(Ioki::Model::Driver::Tip))
     end
+
     it '#monthly_tip_sums calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/tips/monthly_tip_sums')
-        [{ 'data' => { 'date': '2022-03-01' } }, full_response]
+        [{ 'data' => { date: '2022-03-01' } }, full_response]
       end
       expect(driver_client.monthly_tip_sums).to be_a(Ioki::Model::Driver::MonthlyTipSum)
     end
+
     it '#tip calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/tips/tip_123')
-        [{ 'data' => { 'id': 'tip_123' } }, full_response]
+        [{ 'data' => { id: 'tip_123' } }, full_response]
       end
       expect(driver_client.tip('tip_123')).to be_a(Ioki::Model::Driver::Tip)
     end
@@ -258,10 +260,87 @@ RSpec.describe Ioki::DriverApi do
     it '#journey calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/journey')
-        [{ 'data' => { 'id': 'jny_123' } }, full_response]
+        [{ 'data' => { id: 'jny_123' } }, full_response]
       end
       expect(driver_client.journey).to be_a(Ioki::Model::Driver::Journey)
     end
+  end
 
+  describe 'driver_emergency' do
+    let(:driver_emergency) { Ioki::Model::Driver::DriverEmergency.new }
+
+    it '#create_driver_emergency calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/emergencies')
+        expect(params[:method]).to eq(:post)
+        [{ 'data' => { id: 'dre_123' } }, full_response]
+      end
+      expect(driver_client.create_driver_emergency(driver_emergency)).to be_a(Ioki::Model::Driver::DriverEmergency)
+    end
+  end
+
+  describe 'driver_report' do
+    let(:driver_report) { Ioki::Model::Driver::DriverReport.new driver_report_attributes }
+    let(:driver_report_attributes) do
+      {
+        driver_report_type: 'bug_report',
+        category:           'bad_route',
+        message:            'message'
+      }
+    end
+
+    it '#create_driver_report calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/reports')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to include(data: include(driver_report_attributes))
+        [{ 'data' => driver_report_attributes.merge(id: 'drr_123') }, full_response]
+      end
+      response = driver_client.create_driver_report(driver_report)
+      expect(response).to be_a(Ioki::Model::Driver::DriverReport)
+      expect(response).to have_attributes(driver_report_attributes)
+      expect(response).to have_attributes(id: 'drr_123')
+    end
+  end
+
+  describe 'firebase_token' do
+    it '#firebase_token calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('driver/firebase_token')
+        [{ 'data' => { id: nil, jwt: 'jwt123', encryption_key: 'key123' } }, full_response]
+      end
+      response = driver_client.firebase_token
+      expect(response).to be_a(Ioki::Model::Driver::FirebaseToken)
+      expect(response).to have_attributes(jwt: 'jwt123', encryption_key: 'key123')
+    end
+  end
+
+  describe 'confirm_firebase_push' do
+    let(:driver) { Ioki::Model::Driver::DriverReport.new id: 'drv_987' }
+    let(:firebase_debug_record) do
+      {
+        path:    '/driver/<driver_id>/current_vehicle_connection/cancelled_tasks',
+        payload: {
+          updated_at:       '2022-01-05T08:35:58Z',
+          randomized_value: 'a4a54f83f1e55808c5d85ddfa17ce9d6',
+          debug_id:         debug_id
+        }
+      }
+    end
+    let(:debug_id) { 'fdr_792c0e71-a843-4a0e-b0dc-83823657dc7f' }
+
+    it '#confirm_firebase_push calls request on the client with expected params' do
+      expect(driver_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq("driver/firebase_debug_records/#{debug_id}/confirm")
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to be_a(Hash)
+        expect(params[:body]).to have_key(:path)
+        expect(params[:body]).to include(
+          payload: include(debug_id: debug_id, updated_at: be_a(String), randomized_value: be_a(String))
+        )
+        [{}, full_response]
+      end
+      driver_client.confirm_firebase_push(debug_id, firebase_debug_record)
+    end
   end
 end

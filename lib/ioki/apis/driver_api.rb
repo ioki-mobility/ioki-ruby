@@ -5,6 +5,7 @@ require 'ioki/apis/endpoints/endpoints'
 require 'ioki/apis/endpoints/driver/create_vehicle_connection'
 require 'ioki/apis/endpoints/driver/delete_vehicle_connection'
 require 'ioki/apis/endpoints/driver/vehicle_position'
+require 'ioki/apis/endpoints/driver/confirm_firebase_push'
 
 module Ioki
   class DriverApi
@@ -135,7 +136,25 @@ module Ioki
         :journey,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::Journey
-      )
+      ),
+      Endpoints::Create.new(
+        :driver_emergency,
+        base_path:   [API_BASE_PATH],
+        path:        'emergencies',
+        model_class: Ioki::Model::Driver::DriverEmergency
+      ),
+      Endpoints::Create.new(
+        :driver_report,
+        base_path:   [API_BASE_PATH],
+        path:        'reports',
+        model_class: Ioki::Model::Driver::DriverReport
+      ),
+      Endpoints::ShowSingular.new(
+        :firebase_token,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::FirebaseToken
+      ),
+      Endpoints::Driver::ConfirmFirebasePush.new
     ].freeze
   end
 end
