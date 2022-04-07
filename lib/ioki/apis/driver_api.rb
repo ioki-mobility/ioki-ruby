@@ -130,6 +130,11 @@ module Ioki
         :tip,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::Tip
+      ),
+      Endpoints::ShowSingular.new(
+        :journey,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::Journey
       )
     ].freeze
   end
