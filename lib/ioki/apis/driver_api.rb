@@ -134,7 +134,7 @@ module Ioki
       ),
       Endpoints::ShowSingular.new(
         :journey,
-        base_path:   [API_BASE_PATH],
+        base_path:   [API_BASE_PATH, 'vehicle'],
         model_class: Ioki::Model::Driver::Journey
       ),
       Endpoints::Create.new(

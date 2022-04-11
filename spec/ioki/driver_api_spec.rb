@@ -259,7 +259,7 @@ RSpec.describe Ioki::DriverApi do
   describe 'journey' do
     it '#journey calls request on the client with expected params' do
       expect(driver_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('driver/journey')
+        expect(params[:url].to_s).to eq('driver/vehicle/journey')
         [{ 'data' => { id: 'jny_123' } }, full_response]
       end
       expect(driver_client.journey).to be_a(Ioki::Model::Driver::Journey)
