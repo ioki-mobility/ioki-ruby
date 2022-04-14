@@ -77,6 +77,11 @@ module Ioki
         model_class: Ioki::Model::Platform::Receipt
       ),
       Endpoints.crud_endpoints(
+        :place,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Place
+      ),
+      Endpoints.crud_endpoints(
         :station_deactivation,
         base_path:   [API_BASE_PATH, 'products', :id, 'stations', :id],
         paths:       {
