@@ -10,6 +10,10 @@ module Ioki
         attribute :planned_ends_at, on: :read, type: :date_time
         attribute :planned_starts_at, on: :read, type: :date_time
         attribute :preserve_duration, on: :read, type: :boolean
+
+        attribute :ends_at, on: :create, type: :date_time
+        attribute :starts_at, on: :create, type: :date_time
+        attribute :place_id, on: :create, type: :object, class_name: 'Place'
       end
     end
   end
