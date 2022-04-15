@@ -12,12 +12,13 @@ module Ioki
         attribute :driver, on: :read, type: :object, class_name: 'Driver'
         attribute :ends_at, on: :create, type: :date_time
         attribute :end_place, on: :read, type: :object, class_name: 'Place'
-        attribute :end_place_id, on: :create, type: :object, class_name: 'Place'
+        attribute :matching_configuration_id, on: :create, type: :string
         attribute :matching_configuration, on: :read, type: :object, class_name: 'MatchingConfiguration'
+        attribute :end_place_id, on: :create, type: :object, class_name: 'Place'
         attribute :paused, on: :read, type: :boolean
         attribute :pauses, on: [:read, :create], type: :array, class_name: 'Pause'
-        attribute :planned_ends_at, on: [:read, :create], type: :date_time
-        attribute :planned_starts_at, on: [:read, :create], type: :date_time
+        attribute :planned_ends_at, on: :read, type: :date_time
+        attribute :planned_starts_at, on: :read, type: :date_time
         attribute :prebookable, on: [:read, :create], type: :boolean
         attribute :product_id, on: :read, type: :string
         attribute :starts_at, on: :create, type: :date_time
