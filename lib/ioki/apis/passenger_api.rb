@@ -15,6 +15,12 @@ module Ioki
         except:      [:update, :delete]
       ),
       Endpoints::ShowSingular.new(
+        :current_ride,
+        base_path:   [],
+        path:        [API_BASE_PATH, 'rides', 'current'],
+        model_class: Ioki::Model::Passenger::Ride
+      ),
+      Endpoints::ShowSingular.new(
         :bootstrap,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::Bootstrap
