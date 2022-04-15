@@ -13,7 +13,7 @@ module Ioki
 
         attribute :ends_at, on: :create, type: :date_time
         attribute :starts_at, on: :create, type: :date_time
-        attribute :place_id, on: :create, type: :object, class_name: 'Place'
+        attribute :place_id, on: :create, type: :string
       end
     end
   end
