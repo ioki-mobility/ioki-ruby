@@ -3,13 +3,12 @@
 module Ioki
   module Model
     module Driver
-      class CancellationStatement < Base
+      class ImageUpload < Base
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
-        attribute :identifier, on: :read, type: :string
-        attribute :title, on: :read, type: :string
+        attribute :versions, on: :read, type: :object
       end
     end
   end

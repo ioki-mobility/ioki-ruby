@@ -21,7 +21,7 @@ module Ioki
           f.response :logger, config.logger, config.logger_options do |logger|
             logger.filter(/(X-Client-Secret: ")([^"]+)/, '\1[REMOVED]')
             logger.filter(/(Authorization: ")([^"]+)/, '\1[REMOVED]')
-            logger.filter(/("token":")([^"]+)/, '\1[REMOVED]')
+            logger.filter(/("token"=>")([^"]+)/, '\1[REMOVED]')
           end
         end
         f.response :json # decode response bodies as JSON

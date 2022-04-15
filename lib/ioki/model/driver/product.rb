@@ -5,6 +5,10 @@ module Ioki
     module Driver
       class Product < Base
         attribute :name, on: :read, type: :string
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :auto_accept_by_driver_client, on: :read, type: :boolean
         attribute :driver_client_can_reject_task, on: :read, type: :boolean
         attribute :driver_emergency_phone_number, on: :read, type: :string

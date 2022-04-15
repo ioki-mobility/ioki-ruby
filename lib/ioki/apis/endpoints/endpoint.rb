@@ -4,16 +4,17 @@ module Endpoints
   class Endpoint
     attr_reader :resource, :action, :request_method, :path, :model_class
 
-    def initialize(resource, action:, request_method:, path:, model_class: nil)
+    def initialize(resource, action:, request_method:, path:, model_class: nil, method_name: nil)
       @resource = resource
       @action = action
       @request_method = request_method
       @path = path
       @model_class = model_class
+      @method_name = method_name
     end
 
     def name
-      "#{resource}_#{action}"
+      @method_name || "#{resource}_#{action}"
     end
 
     def call(client, args = [], options = {})

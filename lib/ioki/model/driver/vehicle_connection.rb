@@ -3,10 +3,10 @@
 module Ioki
   module Model
     module Driver
-      class PassengerType < Base
+      class VehicleConnection < Base
         unvalidated true # Specification not available.
 
-        attribute :type, on: :read, type: :string
+        attribute :license_plate, on: :create, type: :string
       end
     end
   end
