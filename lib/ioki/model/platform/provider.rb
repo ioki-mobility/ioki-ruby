@@ -5,12 +5,12 @@ module Ioki
     module Platform
       class Provider < Base
         attribute :city, on: :read, type: :string
-        attribute :name, on: :read, type: :string
         attribute :country_code, on: :read, type: :string
         attribute :currency, on: :read, type: :string
         attribute :current_tos_date, on: :read, type: :date_time
         attribute :logpay_payment_method_types, on: :read, type: :array
         attribute :merchant_name, on: :read, type: :string
+        attribute :name, on: :read, type: :string
         attribute :personal_discount_payment_method_types, on: :read, type: :array
         attribute :postal_code, on: :read, type: :string
         attribute :psp, on: :read, type: :string
