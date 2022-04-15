@@ -17,7 +17,7 @@ module Ioki
         attribute :phone_number, on: [:read, :create, :update], type: :string
         attribute :seats, on: [:read, :create, :update], type: :integer
         attribute :storage_spaces, on: [:read, :create, :update], type: :integer
-        attribute :vehicle_type, on: [:read, :create, :update], type: :integer
+        attribute :vehicle_type, on: [:read, :create, :update], type: :string
         attribute :version, on: [:read, :update], type: :integer
         attribute :walker_bays, on: [:read, :create, :update], type: :integer
         attribute :wheelchair_bays, on: [:read, :create, :update], type: :integer
