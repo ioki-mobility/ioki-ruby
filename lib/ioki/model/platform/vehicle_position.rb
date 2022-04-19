@@ -10,17 +10,19 @@ module Ioki
           'platform_api--v20210101--vehicle_position_without_vehicle'
         end
 
-        attribute :accuracy, on: :read, type: :float
-        attribute :altitude, on: :read, type: :float
-        attribute :altitude_accuracy, on: :read, type: :float
+        attribute :accuracy, on: [:read, :create], type: :float
+        attribute :altitude, on: [:read, :create], type: :float
+        attribute :altitude_accuracy, on: [:read, :create], type: :float
         attribute :created_at, on: :read, type: :date_time
-        attribute :heading, on: :read, type: :float
+        attribute :heading, on: [:read, :create], type: :float
         attribute :id, on: :read, type: :string
-        attribute :lat, on: :read, type: :float
-        attribute :lng, on: :read, type: :float
+        attribute :lat, on: [:read, :create], type: :float
+        attribute :lng, on: [:read, :create], type: :float
+        attribute :on_route, on: :create, type: :boolean
         attribute :product_id, on: :read, type: :string
-        attribute :recorded_at, on: :read, type: :date_time
-        attribute :speed, on: :read, type: :float
+        attribute :recorded_at, on: [:read, :create], type: :date_time
+        attribute :source, on: :create, type: :string
+        attribute :speed, on: [:read, :create], type: :float
         attribute :type, on: :read, type: :string
       end
     end
