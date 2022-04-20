@@ -31,8 +31,7 @@ RSpec.describe Ioki::PassengerApi do
         result_with_index_data
       end
 
-      expect(passenger_client.products(options)).
-        to eq([Ioki::Model::Passenger::Product.new])
+      expect(passenger_client.products(options)).to all(be_a(Ioki::Model::Passenger::Product))
     end
   end
 
@@ -43,8 +42,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.product('0815', options)).
-        to eq(Ioki::Model::Passenger::Product.new)
+      expect(passenger_client.product('0815', options)).to be_a Ioki::Model::Passenger::Product
     end
   end
 
@@ -55,8 +53,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.station('0815', options)).
-        to eq(Ioki::Model::Passenger::Station.new)
+      expect(passenger_client.station('0815', options)).to be_a Ioki::Model::Passenger::Station
     end
   end
 
@@ -67,8 +64,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.bootstrap(options)).
-        to eq(Ioki::Model::Passenger::Bootstrap.new)
+      expect(passenger_client.bootstrap(options)).to be_a Ioki::Model::Passenger::Bootstrap
     end
   end
 
@@ -81,8 +77,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_ride_inquiry(ride_inquiry, options)).
-        to eq(Ioki::Model::Passenger::RideInquiry.new)
+      expect(passenger_client.create_ride_inquiry(ride_inquiry, options)).to be_a Ioki::Model::Passenger::RideInquiry
     end
   end
 
@@ -96,8 +91,18 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_ride(ride, options)).
-        to eq(Ioki::Model::Passenger::Ride.new)
+      expect(passenger_client.create_ride(ride, options)).to be_a Ioki::Model::Passenger::Ride
+    end
+  end
+
+  describe '#current_ride' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/rides/current')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.current_ride(options)).to be_a Ioki::Model::Passenger::Ride
     end
   end
 
@@ -120,8 +125,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_cancellation(ride, cancellation)).
-        to eq(Ioki::Model::Passenger::Ride.new)
+      expect(passenger_client.create_cancellation(ride, cancellation)).to be_a Ioki::Model::Passenger::Ride
     end
   end
 
@@ -136,8 +140,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_booking(ride, booking, options)).
-        to eq(Ioki::Model::Passenger::Booking.new)
+      expect(passenger_client.create_booking(ride, booking, options)).to be_a Ioki::Model::Passenger::Booking
     end
   end
 
@@ -153,7 +156,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.create_phone_verification_request(phone_verification_request, options)).
-        to eq(Ioki::Model::Passenger::PhoneVerificationRequest.new)
+        to be_a Ioki::Model::Passenger::PhoneVerificationRequest
     end
   end
 
@@ -167,7 +170,7 @@ RSpec.describe Ioki::PassengerApi do
       end
 
       expect(passenger_client.update_user_phone_number(user_phone_number, options.merge(model: user_phone_number))).
-        to eq(Ioki::Model::Passenger::User.new)
+        to be_a Ioki::Model::Passenger::User
     end
   end
 
@@ -183,8 +186,7 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:body][:data]).to match(hash_including(first_name: 'Lupe', last_name: 'Smiles'))
         [result_with_data, full_response]
       end
-
-      expect(passenger_client.update_user(user, options)).to eq(Ioki::Model::Passenger::User.new)
+      expect(passenger_client.update_user(user, options)).to be_a Ioki::Model::Passenger::User
     end
   end
 
@@ -194,8 +196,7 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:url].to_s).to eq('passenger/user')
         [result_with_data, full_response]
       end
-
-      expect(passenger_client.user(options)).to eq(Ioki::Model::Passenger::User.new)
+      expect(passenger_client.user(options)).to be_a Ioki::Model::Passenger::User
     end
   end
 
@@ -209,8 +210,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_rating(ride, rating,
-                                            options)).to eq(Ioki::Model::Passenger::Rating.new)
+      expect(passenger_client.create_rating(ride, rating, options)).to be_a Ioki::Model::Passenger::Rating
     end
   end
 
