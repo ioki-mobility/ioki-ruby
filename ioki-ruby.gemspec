@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = Ioki::VERSION
   spec.authors       = ['IOKI']
   spec.email         = ['info@ioki.com']
+  spec.license       = 'MIT'
 
   spec.summary       = <<-SUMMARY
     The ioki Gem provides a rubyesque way of accessing the ioki Rest APIs.
