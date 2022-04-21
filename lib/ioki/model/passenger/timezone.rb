@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class Timezone < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
-
+      class Timezone < Base
         unvalidated true # No specification available.
 
         attribute :identifier, on: :read, type: :string

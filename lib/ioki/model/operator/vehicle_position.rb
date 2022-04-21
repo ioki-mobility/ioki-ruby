@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class VehiclePosition < Ioki::Model::Base
-        # Note that this does not inherit from Base because :updated_atis not defined.
-
+      class VehiclePosition < Base
         def self.schema_path
           'operator_api--v20210101--vehicle_position_without_vehicle'
         end

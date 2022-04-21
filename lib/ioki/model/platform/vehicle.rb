@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class Vehicle < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :autonomous, on: :read, type: :boolean
         attribute :connected_driver_id, on: :read, type: :string
         attribute :description, on: [:read, :create, :update], type: :string

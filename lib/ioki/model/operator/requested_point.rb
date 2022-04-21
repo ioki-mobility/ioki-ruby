@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class RequestedPoint < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :city,             type: :string,    on: [:create, :read], omit_if_blank_on: :create
         attribute :country,          type: :string,    on: [:create, :read], omit_if_blank_on: :create
         attribute :county,           type: :string,    on: [:create, :read], omit_if_blank_on: :create

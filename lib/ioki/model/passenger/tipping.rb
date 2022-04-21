@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class Tipping < Ioki::Model::Base
-        # Note that this does not inherit from Base because :created_at, :updated_at, :type and :id are not defined.
-
+      class Tipping < Base
         def self.schema_path
           'passenger_api--product--tipping'
         end

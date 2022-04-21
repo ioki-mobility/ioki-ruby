@@ -3,12 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class PaymentMethodSummary < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
-        def self.specification_scope
-          'operator_api--v20210101'
-        end
-
+      class PaymentMethodSummary < Base
         attribute :type, on: :read, type: :string
         attribute :brand, on: :read, type: :string
         attribute :expiration, on: :read, type: :date_time

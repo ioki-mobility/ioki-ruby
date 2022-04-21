@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class Vehicle < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :fuel_type, on: :read, type: :string
         attribute :license_plate, on: :read, type: :string
         attribute :manufacturer, on: :read, type: :string

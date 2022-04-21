@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class Driver < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :connected_vehicle_id, on: :read, type: :string
         attribute :display_name, on: :read, type: :string
         attribute :external_id, on: [:create, :update], omit_if_blank_on: [:create, :update], type: :string

@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class Task < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :acceptable, on: :read, type: :boolean
         attribute :accepted_at, on: :read, type: :date_time
         attribute :calculated_point, on: :read, type: :object, class_name: 'CalculatedPoint'

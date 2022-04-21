@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class Station < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :station_type,  on: [:read, :create, :update], type: :string
         attribute :location_name, on: [:read, :create, :update], type: :string
         attribute :lat,           on: [:read, :create, :update], type: :float

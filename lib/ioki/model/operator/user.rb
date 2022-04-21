@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class User < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :email,             type: :object,  on: [:read, :create, :update],
 omit_if_blank_on: [:create, :update], class_name: 'UserEmail'
         attribute :external_id,       type: :string,  on: [:read, :create, :update],

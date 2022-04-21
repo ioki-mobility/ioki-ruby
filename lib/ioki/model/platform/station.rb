@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class Station < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :active, on: :read, type: :boolean
         attribute :city,          on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :string
         attribute :country,       on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :string

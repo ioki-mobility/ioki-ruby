@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class BoundingBox < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not define :created_at, :id, :type and :updated_at.
-
+      class BoundingBox < Base
         def self.schema_path
           'bounding_box'
         end

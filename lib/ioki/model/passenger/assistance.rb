@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class Assistance < Ioki::Model::Base
-        # Note that this does not inherit from Base because :created_at, :updated_at and :id are not defined.
-
+      class Assistance < Base
         def self.schema_path
           'passenger_api--ride_inquiry--assistance'
         end

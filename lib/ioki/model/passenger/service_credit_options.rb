@@ -3,10 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class ServiceCreditOptions < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at, :type and
-        # :id.
-
+      class ServiceCreditOptions < Base
         def self.schema_path
           'passenger_api--nested_service_credit_options'
         end
