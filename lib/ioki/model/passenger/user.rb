@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class User < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :email, on: [:read, :update], type: :object, class_name: 'Email'
         attribute :first_name, on: [:read, :update], type: :string
         attribute :last_name, on: [:read, :update], type: :string

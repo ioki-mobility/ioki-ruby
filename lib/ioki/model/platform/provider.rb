@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class Provider < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :city, on: :read, type: :string
         attribute :country_code, on: :read, type: :string
         attribute :currency, on: :read, type: :string

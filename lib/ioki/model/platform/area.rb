@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Platform
-      class Area < Ioki::Model::Base
-        # Note that this does not inherit from Base because :type behaves differently here.
-
+      class Area < Base
         unvalidated true
 
         attribute :coordinates, type: :array, on: :read

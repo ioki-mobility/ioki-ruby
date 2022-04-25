@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Platform
-      class Route < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
-
+      class Route < Base
         unvalidated true # No specification available
 
         attribute :track, type: :string, on: :read

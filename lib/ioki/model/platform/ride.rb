@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class Ride < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :book_for_others, on: [:read, :create, :update], type: :boolean
         attribute :booking, type: :object, on: :read, class_name: 'Booking'
         attribute :cancellable, on: :read, type: :boolean

@@ -3,13 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class RidePassenger < Ioki::Model::Base
-        # Note that this does not inherit from Base because :type behaves differently here.
-
-        def self.schema_path
-          'operator_api--v20210101--ride_passenger'
-        end
-
+      class RidePassenger < Base
         attribute :type,                    type: :string, on: [:create, :update]
         attribute :bahncard,                type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]
         attribute :blue_badge,              type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]

@@ -3,10 +3,7 @@
 module Ioki
   module Model
     module Driver
-      class PrebookingThreshold < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :type, :id, :created_at and
-        # :updated_at.
-
+      class PrebookingThreshold < Base
         unvalidated true # Specification not available.
 
         attribute :min, on: :read, type: :integer

@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Platform
       class PhoneVerification < Base
+        unvalidated true
+
         attribute :phone_number, on: :create, type: :string
         attribute :code, on: :create, type: :string
       end

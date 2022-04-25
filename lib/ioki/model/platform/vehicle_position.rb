@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Platform
-      class VehiclePosition < Ioki::Model::Base
-        # Note that this does not inherit from Base because :updated_atis not defined.
-
+      class VehiclePosition < Base
         def self.schema_path
           'platform_api--v20210101--vehicle_position_without_vehicle'
         end
@@ -18,10 +16,10 @@ module Ioki
         attribute :id, on: :read, type: :string
         attribute :lat, on: [:read, :create], type: :float
         attribute :lng, on: [:read, :create], type: :float
-        attribute :on_route, on: :create, type: :boolean
+        attribute :on_route, on: :create, type: :boolean, unvalidated: true
         attribute :product_id, on: :read, type: :string
         attribute :recorded_at, on: [:read, :create], type: :date_time
-        attribute :source, on: :create, type: :string
+        attribute :source, on: :create, type: :string, unvalidated: true
         attribute :speed, on: [:read, :create], type: :float
         attribute :type, on: :read, type: :string
       end

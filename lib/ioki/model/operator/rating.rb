@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class Rating < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :version, on: :read, type: :integer
         attribute :vehicle_rating, on: :read, type: :integer
         attribute :service_rating, on: :read, type: :integer

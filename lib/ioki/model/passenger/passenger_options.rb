@@ -3,10 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class PassengerOptions < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :type, :id, :created_at and
-        # :updated_at.
-
+      class PassengerOptions < Base
         unvalidated true # Specification not available.
 
         attribute :types, on: :read, type: :array, class_name: 'PassengerType'

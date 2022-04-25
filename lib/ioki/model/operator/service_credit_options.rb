@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class ServiceCreditOptions < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not define :id, :type, :created_at and :updated_at.
-
+      class ServiceCreditOptions < Base
         unvalidated true
 
         attribute :packages, on: :read, type: :array, class_name: 'Package'

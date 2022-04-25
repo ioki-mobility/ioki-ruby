@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Platform
-      class PassengerType < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not define :id, :type, :created_at and :updated_at.
-
+      class PassengerType < Base
         unvalidated true # Specification not available.
 
         attribute :type, on: :read, type: :string

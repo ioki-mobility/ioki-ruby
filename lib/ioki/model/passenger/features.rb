@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class Features < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not define :id, :type, :created_at and :updated_at.
-
+      class Features < Base
         unvalidated true # Specification not available
 
         attribute :analytics_tracking, type: :boolean, on: :read

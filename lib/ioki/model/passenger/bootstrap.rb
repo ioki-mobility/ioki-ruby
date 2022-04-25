@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class Bootstrap < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :client, type: :object, on: :read, class_name: 'Client'
         attribute :products, type: :array, on: :read, class_name: 'Product'
         attribute :provider, type: :object, on: :read, class_name: 'Provider'

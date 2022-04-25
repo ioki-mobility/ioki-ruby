@@ -3,10 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class RideInquiryLink < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at, :type and
-        # :id.
-
+      class RideInquiryLink < Base
         def self.schema_path
           'operator_api--v20210101--ride_inquiry--links'
         end
