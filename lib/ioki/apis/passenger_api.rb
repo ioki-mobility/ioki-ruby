@@ -90,6 +90,12 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::NotificationSettings
       ),
+      Endpoints::ShowSingular.new(
+        :default_notification_settings,
+        path:        ['passenger', 'notification_settings/defaults'],
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::NotificationSettings
+      ),
       Endpoints::UpdateSingular.new(
         :notification_settings,
         path:                 'notification_settings',
