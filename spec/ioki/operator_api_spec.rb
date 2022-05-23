@@ -200,6 +200,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#drivers_regenerate_pin(product_id, driver_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711/regenerate_pin')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.drivers_regenerate_pin('0815', '4711')).to be_a(Ioki::Model::Operator::Driver)
+    end
+  end
+
   describe '#drivers_set_pin(product_id, driver_id, pin)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|

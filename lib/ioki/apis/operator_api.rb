@@ -30,7 +30,7 @@ module Ioki
       ),
       Endpoints.custom_endpoints(
         'drivers',
-        actions:     { 'lock' => :patch, 'unlock' => :patch, 'set_pin' => :patch },
+        actions:     { 'lock' => :patch, 'unlock' => :patch, 'regenerate_pin' => :patch, 'set_pin' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'drivers', :id],
         model_class: Ioki::Model::Operator::Driver
       )
