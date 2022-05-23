@@ -111,4 +111,104 @@ RSpec.describe Ioki::OperatorApi do
         to eq(Ioki::Model::Operator::Vehicle.new)
     end
   end
+
+  describe '#drivers(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers')
+        result_with_index_data
+      end
+
+      expect(operator_client.drivers('0815', options)).
+        to eq([Ioki::Model::Operator::Driver.new])
+    end
+  end
+
+  describe '#driver(product_id, driver_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.driver('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::Driver.new)
+    end
+  end
+
+  describe '#create_driver(product_id, driver)' do
+    let(:driver) { Ioki::Model::Operator::Driver.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_driver('0815', driver, options)).
+        to eq(Ioki::Model::Operator::Driver.new)
+    end
+  end
+
+  describe '#update_driver(product_id, driver)' do
+    let(:driver) { Ioki::Model::Operator::Driver.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_driver('0815', driver, options)).
+        to eq(Ioki::Model::Operator::Driver.new)
+    end
+  end
+
+  describe '#delete_driver(product_id, driver_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711')
+        result_with_data
+      end
+
+      expect(operator_client.delete_driver('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::Driver.new)
+    end
+  end
+
+  describe '#drivers_lock(product_id, driver_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711/lock')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.drivers_lock('0815', '4711')).to be_a(Ioki::Model::Operator::Driver)
+    end
+  end
+
+  describe '#drivers_unlock(product_id, driver_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711/unlock')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.drivers_unlock('0815', '4711')).to be_a(Ioki::Model::Operator::Driver)
+    end
+  end
+
+  describe '#drivers_set_pin(product_id, driver_id, pin)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711/set_pin')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.drivers_set_pin('0815', '4711', '123456')).to be_a(Ioki::Model::Operator::Driver)
+    end
+  end
 end

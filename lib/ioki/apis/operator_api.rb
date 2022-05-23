@@ -22,6 +22,17 @@ module Ioki
         :permissions,
         base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::Permission
+      ),
+      Endpoints.crud_endpoints(
+        :driver,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Driver
+      ),
+      Endpoints.custom_endpoints(
+        'drivers',
+        actions:     { 'lock' => :patch, 'unlock' => :patch, 'set_pin' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'drivers', :id],
+        model_class: Ioki::Model::Operator::Driver
       )
     ].freeze
   end
