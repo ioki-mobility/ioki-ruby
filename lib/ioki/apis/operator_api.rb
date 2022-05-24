@@ -17,6 +17,11 @@ module Ioki
         :vehicle,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Vehicle
+      ),
+      Endpoints::Index.new(
+        :permissions,
+        base_path:   [API_BASE_PATH, 'admin'],
+        model_class: Ioki::Model::Operator::Permission
       )
     ].freeze
   end
