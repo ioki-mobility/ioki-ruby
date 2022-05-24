@@ -98,10 +98,9 @@ module Ioki
       ),
       Endpoints::UpdateSingular.new(
         :notification_settings,
-        path:                 'notification_settings',
-        base_path:            [API_BASE_PATH],
-        outgoing_model_class: Ioki::Model::Passenger::NotificationSettingsWithVersion,
-        model_class:          Ioki::Model::Passenger::NotificationSettings
+        path:        'notification_settings',
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::NotificationSettings
       ),
       Endpoints::Create.new(
         :rating,
