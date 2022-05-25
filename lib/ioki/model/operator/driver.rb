@@ -57,6 +57,10 @@ module Ioki
                   omit_if_blank_on: [:create, :read],
                   type:             :string
 
+        attribute :pin,
+                  on:   :read,
+                  type: :string
+
         attribute :version,
                   on:   :read,
                   type: :integer
