@@ -77,7 +77,7 @@ module Ioki
       ),
       Endpoints.crud_endpoints(
         :line_stop,
-        base_path:   [API_BASE_PATH, 'lines', :id],
+        base_path:   [API_BASE_PATH, 'products', :id, 'lines', :id],
         except:      [:update],
         model_class: Ioki::Model::Platform::LineStop
       ),
