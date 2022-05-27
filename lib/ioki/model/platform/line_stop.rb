@@ -10,9 +10,9 @@ module Ioki
         attribute :updated_at, on: :read, type: :date_time
         attribute :tier, on: [:read, :create], type: :integer
         attribute :relative_time, on: [:read, :create], type: :integer
-        attribute :supports_pickup, on: :read, type: :boolean
-        attribute :supports_dropoff, on: :read, type: :boolean
-        attribute :supports_pass_through, on: :read, type: :boolean
+        attribute :supports_pickup, on: [:read, :create], type: :boolean
+        attribute :supports_dropoff, on: [:read, :create], type: :boolean
+        attribute :supports_pass_through, on: [:read, :create], type: :boolean
         attribute :station_id, on: [:read, :create], type: :string
         attribute :version, on: :read, type: :integer
       end
