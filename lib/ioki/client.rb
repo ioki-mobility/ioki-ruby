@@ -25,7 +25,7 @@ module Ioki
           options = args.last.is_a?(::Hash) ? args.pop : {}
           model = args.last
 
-          if [Endpoints::Create, Endpoints::Update].include?(endpoint.class)
+          if [Endpoints::Create, Endpoints::Update, Endpoints::UpdateSingular].include?(endpoint.class)
             endpoint.call(self, model, args, options)
           elsif endpoint.is_a? Endpoints::Index
             endpoint.call(self, args, options, &block)

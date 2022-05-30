@@ -6,6 +6,7 @@ require_relative 'show'
 require_relative 'show_singular'
 require_relative 'index'
 require_relative 'update'
+require_relative 'update_singular'
 require_relative 'delete'
 
 module Endpoints
