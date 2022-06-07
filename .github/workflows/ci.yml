@@ -1,4 +1,4 @@
-name: CI for all of schalter
+name: CI for all of ioki-ruby
 
 on: [push]
 
