@@ -260,6 +260,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/places')
+        expect(params[:method]).to eq(:post)
         [result_with_data, full_response]
       end
 
@@ -274,6 +275,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/places/4711')
+        expect(params[:method]).to eq(:patch)
         [result_with_data, full_response]
       end
 
@@ -286,6 +288,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/places/4711')
+        expect(params[:method]).to eq(:delete)
         result_with_data
       end
 
