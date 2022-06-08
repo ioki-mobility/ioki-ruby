@@ -229,4 +229,71 @@ RSpec.describe Ioki::OperatorApi do
       expect(operator_client.drivers_set_pin('0815', '4711', '123456')).to be_a(Ioki::Model::Operator::Driver)
     end
   end
+
+  describe '#places(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/places')
+        result_with_index_data
+      end
+
+      expect(operator_client.places('0815', options)).
+        to eq([Ioki::Model::Operator::Place.new])
+    end
+  end
+
+  describe '#place(product_id, place_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/places/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.place('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::Place.new)
+    end
+  end
+
+  describe '#create_place(product_id, place)' do
+    let(:place) { Ioki::Model::Operator::Place.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/places')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_place('0815', place, options)).
+        to eq(Ioki::Model::Operator::Place.new)
+    end
+  end
+
+  describe '#update_place(product_id, place)' do
+    let(:place) { Ioki::Model::Operator::Place.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/places/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_place('0815', place, options)).
+        to eq(Ioki::Model::Operator::Place.new)
+    end
+  end
+
+  describe '#delete_place(product_id, place_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/places/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_place('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::Place.new)
+    end
+  end
 end
