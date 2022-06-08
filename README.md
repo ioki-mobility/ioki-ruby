@@ -35,18 +35,22 @@ Basic usage of a `Ioki::Client`
   products = platform_client.products
   # returns a list of Ioki::Model::Platform::Product instances
 
-  stations = platform_client.stations(products.first, auto_paginate: true)
-  # stations are a scoped endpoint within products, to the interface requires
+  stations = platform_client.stations(products.first, paginate: true)
+  # stations are a scoped endpoint within products, so the interface requires
   # either a product or a product id as the first parameter.
-  # This call will then fetch the index of stations. This example also shows
-  # auto_pagination, which keeps calling the index until the last page was
-  # fetched. Bear in mind, that auto_pagination might be extremely expensive.
+  # This call will then fetch the index of stations. Use `paginate: true` to
+  # receive pagination information in the response. Otherwise, only the data of
+  # the first page is returned.
+  unless stations.meta.last_page
+    next_page = stations.meta.page + 1
+    stations = platform_client.stations(products.first, params: {page: next_page}, paginate: true)
+  end
 
   new_station = Ioki::Model::Platform::Station.new(
     location_name: 'Test',
     station_type: 'virtual',
-    lat: stations.first.lat,
-    lng: stations.first.lng
+    lat: stations.data.first.lat,
+    lng: stations.data.first.lng
   )
 
   created_station = platform_client.create_station(products.first, new_station)
@@ -57,6 +61,12 @@ Basic usage of a `Ioki::Client`
 
   platform_client.delete_station(products.first, created_station)
   # will delete the formerly created station
+
+  stations = platform_client.stations(products.first, auto_paginate: true)
+  # This example shows auto_pagination, which keeps calling the index until the
+  # last page was fetched. Bear in mind, that auto_pagination might be extremely
+  # expensive.
+  first_station = stations.first
 ```
 
 See `spec/ioki/examples` for more examples.

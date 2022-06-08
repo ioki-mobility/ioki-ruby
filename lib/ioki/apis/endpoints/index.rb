@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../model/response'
+
 module Endpoints
   class Index
     attr_reader :model_class, :base_path, :resource, :path
@@ -24,9 +26,15 @@ module Endpoints
     end
 
     def call(client, args = [], options = {}, &block)
+      options = options.dup
+      paginate = options.delete(:paginate)
       auto_paginate = options.delete(:auto_paginate)
 
-      if auto_paginate
+      if paginate
+        data, parsed_response = send_request(client, args, options)
+
+        Ioki::Model::Response.new(data, parsed_response.dig('meta'))
+      elsif auto_paginate
         paginated_requests(client, args, options, &block)
       elsif block_given?
         send_request(client, args, options).first.each { |item| block.call(item) }
