@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.0 - 2022-06-13
+* Operator API: Adds create and delete endpoints for products
+* Operator API: Adds endpoint for permissions of the current operator
+* Operator API: Adds endpoints to manage drivers
+* Operator API: Adds endpoints to manage places within products
+* Platform API: Adds endpoints to manage places within products
+* Platform API: Adds support for more attributes in various models
+* Driver API: Adds API with various endpoints
+* Passenger API: Adds endpoint for current ride
+* Passenger API: Adds endpoints for notification settings
+* Adds support for returning pagination info when using `params: {paginate: true}`
+* Many other improvements
+
 ## 0.8.0 - 2022-03-30
 * Adds Operator API support
 * Adds webhooks models and webhooks support
