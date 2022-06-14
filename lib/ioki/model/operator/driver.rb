@@ -24,14 +24,9 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :locked_at,
+        attribute :display_name,
                   on:   :read,
-                  type: :date_time
-
-        attribute :username,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  type: :string
 
         attribute :first_name,
                   on:               [:create, :read, :update],
@@ -43,14 +38,14 @@ module Ioki
                   omit_if_blank_on: [:create, :update],
                   type:             :string
 
-        attribute :display_name,
-                  on:   :read,
-                  type: :string
-
         attribute :locale,
                   on:               [:create, :read, :update],
                   omit_if_blank_on: [:create, :read],
                   type:             :string
+
+        attribute :locked_at,
+                  on:   :read,
+                  type: :date_time
 
         attribute :phone_number,
                   on:               [:create, :read, :update],
@@ -60,6 +55,11 @@ module Ioki
         attribute :pin,
                   on:   :read,
                   type: :string
+
+        attribute :username,
+                  on:               [:create, :read, :update],
+                  omit_if_blank_on: [:create, :update],
+                  type:             :string
 
         attribute :version,
                   on:   :read,
