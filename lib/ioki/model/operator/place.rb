@@ -24,6 +24,10 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
+        attribute :description,
+                  on:   [:create, :read, :update],
+                  type: :string
+
         attribute :lat,
                   on:   [:create, :read, :update],
                   type: :float
@@ -40,8 +44,8 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
-        attribute :product_id,
-                  on:   :read,
+        attribute :slug,
+                  on:   [:create, :read, :update],
                   type: :string
 
         attribute :street_name,
@@ -52,13 +56,9 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
-        attribute :description,
-                  on:   [:create, :read, :update],
-                  type: :string
-
-        attribute :slug,
-                  on:   [:create, :read, :update],
-                  type: :string
+        attribute :version,
+                  on:   :read,
+                  type: :integer
       end
     end
   end
