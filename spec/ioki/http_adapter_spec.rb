@@ -60,6 +60,14 @@ RSpec.describe Ioki::HttpAdapter do
     it { is_expected.to include 'X-Client-Secret'     => config.api_client_secret }
     it { is_expected.to include 'X-Client-Version'    => config.api_client_version }
     it { is_expected.to include 'Authorization'       => "Bearer #{config.api_token}" }
+
+    context 'when there is a header without a value' do
+      before do
+        config.api_client_identifier = nil
+      end
+
+      it { is_expected.not_to include 'X-Client-Identifier' }
+    end
   end
 
   describe 'logger' do

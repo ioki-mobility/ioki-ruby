@@ -41,7 +41,7 @@ module Ioki
         'X-Client-Identifier' => config.api_client_identifier,
         'X-Client-Secret'     => config.api_client_secret,
         'X-Client-Version'    => config.api_client_version
-      }
+      }.compact { |_key, value| !value.nil? }
     end
   end
 end
