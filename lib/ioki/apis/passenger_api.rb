@@ -113,6 +113,13 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::Station
       ),
+      Endpoints::Create.new(
+        :logpay_customer,
+        base_path:            [API_BASE_PATH],
+        path:                 'logpay/customer',
+        model_class:          Ioki::Model::Passenger::LogpayUrl,
+        outgoing_model_class: Ioki::Model::Passenger::LogpayCustomer
+      ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end
