@@ -1,5 +1,8 @@
 # Changelog
 
+## unreleased
+* Passenger API: Adds logpay customer
+
 ## 0.9.0 - 2022-06-13
 * Operator API: Adds create and delete endpoints for products
 * Operator API: Adds endpoint for permissions of the current operator

@@ -24,6 +24,7 @@ module Ioki
         attribute :provider_id, type: :string, on: :read
         attribute :terms_accepted, type: :boolean, on: [:create, :update], unvalidated: true
         attribute :terms_accepted_at, type: :date_time, on: :read
+        attribute :logpay_customer_set, on: :read, type: :boolean
         attribute :version, type: :integer, on: [:read, :update]
       end
     end

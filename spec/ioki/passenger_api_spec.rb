@@ -225,4 +225,35 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client.update_language('fr')).to eq(result_with_data)
     end
   end
+
+  describe '#create_logpay_customer' do
+    let(:customer) do
+      Ioki::Model::Passenger::LogpayCustomer.new(
+        payment_method_type: 'card',
+        email:               'muster@example.com',
+        person:              Ioki::Model::Passenger::LogpayPerson.new(
+          gender:   'FEMALE',
+          forename: 'Sarah',
+          surname:  'Muster',
+          birth:    '1980-06-01'
+        ),
+        address_residence:   Ioki::Model::Passenger::LogpayAddressResidence.new(
+          to1:       'Sarah Muster',
+          street:    'Musterstrasse 13',
+          post_code: '90000',
+          place:     'Musterhausen',
+          country:   'DE'
+        )
+      )
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/logpay/customer')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_logpay_customer(customer)).to be_a Ioki::Model::Passenger::LogpayUrl
+    end
+  end
 end
