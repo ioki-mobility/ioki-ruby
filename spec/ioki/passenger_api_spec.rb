@@ -273,4 +273,15 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client.create_logpay_payment_method(payment_method)).to be_a Ioki::Model::Passenger::LogpayUrl
     end
   end
+
+  describe '#payment_methods' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/payment_methods')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.payment_methods).to all(be_a(Ioki::Model::Passenger::PaymentMethod))
+    end
+  end
 end
