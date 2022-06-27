@@ -127,6 +127,11 @@ module Ioki
         model_class:          Ioki::Model::Passenger::LogpayUrl,
         outgoing_model_class: Ioki::Model::Passenger::LogpayPaymentMethod
       ),
+      Endpoints::Index.new(
+        :payment_methods,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PaymentMethod
+      ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end
