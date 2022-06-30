@@ -39,7 +39,7 @@ module Ioki
                   omit_if_blank_on: [:create, :update],
                   type:             :string
 
-        attribute :county, 
+        attribute :county,
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
                   type:             :string
@@ -89,7 +89,7 @@ module Ioki
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
                   type:             :string
-        
+
         attribute :street_name,
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
@@ -99,7 +99,7 @@ module Ioki
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
                   type:             :string
-        
+
         attribute :tariff_codes,
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
