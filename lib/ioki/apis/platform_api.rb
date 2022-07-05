@@ -123,6 +123,12 @@ module Ioki
         except:      [:create, :update, :delete],
         model_class: Ioki::Model::Platform::TaskList
       ),
+      Endpoints.custom_endpoints(
+        'task_list',
+        actions:     { 'reassign' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Platform::TaskList
+      ),
       Endpoints.crud_endpoints(
         :task,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],

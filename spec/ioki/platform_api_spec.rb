@@ -639,4 +639,17 @@ RSpec.describe Ioki::PlatformApi do
         to eq(Ioki::Model::Platform::LineStop.new)
     end
   end
+
+  describe '#task_list_reassign(product_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/1337/reassign')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(platform_client.task_list_reassign('0815', '1337', options)).
+        to eq(Ioki::Model::Platform::TaskList.new)
+    end
+  end
 end
