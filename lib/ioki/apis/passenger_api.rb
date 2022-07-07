@@ -132,6 +132,17 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::PaymentMethod
       ),
+      Endpoints::Index.new(
+        :service_credits,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::ServiceCredit
+      ),
+      Endpoints::Create.new(
+        :service_credit,
+        base_path:            [API_BASE_PATH],
+        model_class:          Ioki::Model::Passenger::ServiceCredit,
+        outgoing_model_class: Ioki::Model::Passenger::ServiceCreditCreate
+      ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end

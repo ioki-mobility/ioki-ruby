@@ -214,6 +214,37 @@ RSpec.describe Ioki::PassengerApi do
     end
   end
 
+  describe '#service_credits' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/service_credits')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.service_credits).to all(be_a(Ioki::Model::Passenger::ServiceCredit))
+    end
+  end
+
+  describe '#create_service_credit' do
+    let(:service_credit) do
+      Ioki::Model::Passenger::ServiceCreditCreate.new(
+        payment_method: { payment_method_type: 'card' },
+        cost:           500,
+        value:          100
+      )
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/service_credits')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_service_credit(service_credit, options)).
+        to be_a Ioki::Model::Passenger::ServiceCredit
+    end
+  end
+
   describe '#update_language' do
     it 'internally dispatches to the correct client methods' do
       expect(passenger_client).to receive(:request) do |params|
