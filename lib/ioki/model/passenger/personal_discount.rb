@@ -14,7 +14,7 @@ module Ioki
         attribute :description, on: :read, type: :string
         attribute :discount_type, on: :read, type: :string
         attribute :maximum_usages, on: :read, type: :integer
-        attribute :payment_method, on: :read, type: :object, class_name: 'PaymentMethod'
+        attribute :payment_method, on: [:read, :create], type: :object, class_name: 'PaymentMethod'
         attribute :product_id, on: :read, type: :string
         attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
         attribute :relative_discount, on: :read, type: :integer
@@ -23,6 +23,9 @@ module Ioki
         attribute :valid_from, on: :read, type: :date_time
         attribute :valid_until, on: :read, type: :date_time
         attribute :validity, on: :read, type: :string
+
+        attribute :personal_discount_type_id, on: :create, type: :string
+        attribute :paypal_secure_element, on: :create, type: :string, omit_if_nil_on: :create
       end
     end
   end
