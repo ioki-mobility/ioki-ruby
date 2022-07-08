@@ -315,4 +315,48 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client.payment_methods).to all(be_a(Ioki::Model::Passenger::PaymentMethod))
     end
   end
+
+  describe '#personal_discounts' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/personal_discounts')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.personal_discounts).to all(be_a(Ioki::Model::Passenger::PersonalDiscount))
+    end
+  end
+
+  describe '#personal_discount_types' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/personal_discount_types')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.personal_discount_types).to all(be_a(Ioki::Model::Passenger::PersonalDiscountType))
+    end
+  end
+
+  describe '#create_personal_discount' do
+    let(:personal_discount) do
+      Ioki::Model::Passenger::PersonalDiscount.new(
+        personal_discount_type_id: 'ped_1',
+        payment_method:            {
+          payment_method_type: 'card',
+          id:                  'pam_1'
+        }
+      )
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/personal_discounts')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_personal_discount(personal_discount)).
+        to be_a Ioki::Model::Passenger::PersonalDiscount
+    end
+  end
 end
