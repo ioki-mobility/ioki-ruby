@@ -143,6 +143,21 @@ module Ioki
         model_class:          Ioki::Model::Passenger::ServiceCredit,
         outgoing_model_class: Ioki::Model::Passenger::ServiceCreditCreate
       ),
+      Endpoints::Index.new(
+        :personal_discounts,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PersonalDiscount
+      ),
+      Endpoints::Create.new(
+        :personal_discount,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PersonalDiscount
+      ),
+      Endpoints::Index.new(
+        :personal_discount_types,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PersonalDiscountType
+      ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end
