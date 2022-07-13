@@ -67,8 +67,9 @@ module Ioki
                   type: :boolean
 
         attribute :start_location,
-                  on:   :read,
-                  type: :object
+                  on:        :read,
+                  type:      :object,
+                  class_name: ['Place', 'Station']
 
         attribute :start_place,
                   on:         :read,

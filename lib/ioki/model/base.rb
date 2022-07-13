@@ -90,6 +90,21 @@ module Ioki
       def type_cast_attribute_value(attribute, value)
         type = self.class.attribute_definitions.dig(attribute, :type)
         class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+
+        ap class_name
+
+        if class_name.is_a?(Array) && !value.dig('type').nil?
+          serialized_object = value['type'].split('_').map(&:capitalize).join('')
+          if class_name.include?(serialized_object)
+            class_name = serialized_object
+          end
+        end
+
+        #class_name = if value.is_a?(Hash) && type == :object && !value['type'].nil?
+        #  value['type'].split('_').map(&:capitalize).join('')
+        #else
+        #  self.class.attribute_definitions.dig(attribute, :class_name)
+        #end
         model_class = constantize_in_module(class_name)
 
         return value unless type
