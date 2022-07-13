@@ -66,7 +66,7 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
-        attribute :start_location
+        attribute :start_location,
                   on:   :read,
                   type: :object
 
