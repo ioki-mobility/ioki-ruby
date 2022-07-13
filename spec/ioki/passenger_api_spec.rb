@@ -316,6 +316,20 @@ RSpec.describe Ioki::PassengerApi do
     end
   end
 
+  describe '#delete_payment_method' do
+    let(:payment_method) { Ioki::Model::Passenger::PersonalDiscount.new(id: 'pam_1') }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq("passenger/payment_methods/#{payment_method.id}")
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.delete_payment_method(payment_method)).
+        to be_a Ioki::Model::Passenger::PaymentMethod
+    end
+  end
+
   describe '#personal_discounts' do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
