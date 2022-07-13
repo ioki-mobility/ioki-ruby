@@ -55,6 +55,17 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::MatchingConfiguration,
         except:      [:create, :update, :delete]
+      ),
+      Endpoints.crud_endpoints(
+        :task_list,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::TaskList
+      ),
+      Endpoints.custom_endpoints(
+        'task_lists',
+        actions:     { 'reassign' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Operator::TaskList
       )
     ].freeze
   end
