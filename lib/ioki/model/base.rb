@@ -91,20 +91,8 @@ module Ioki
         type = self.class.attribute_definitions.dig(attribute, :type)
         class_name = self.class.attribute_definitions.dig(attribute, :class_name)
 
-        ap class_name
+        class_name = class_name_from_value_type(class_name, value)
 
-        if class_name.is_a?(Array) && !value.dig('type').nil?
-          serialized_object = value['type'].split('_').map(&:capitalize).join('')
-          if class_name.include?(serialized_object)
-            class_name = serialized_object
-          end
-        end
-
-        #class_name = if value.is_a?(Hash) && type == :object && !value['type'].nil?
-        #  value['type'].split('_').map(&:capitalize).join('')
-        #else
-        #  self.class.attribute_definitions.dig(attribute, :class_name)
-        #end
         model_class = constantize_in_module(class_name)
 
         return value unless type
@@ -188,6 +176,17 @@ module Ioki
         return nil if Ioki::Support.blank?(class_name)
 
         self.class.module_parent.const_get class_name
+      end
+
+      def class_name_from_value_type(class_name, value)
+        return class_name unless class_name.is_a?(Array)
+        return nil if value.nil?
+        
+        class_name_from_value_type = value['type'].split('_').map(&:capitalize).join('')
+
+        return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+
+        nil
       end
     end
   end
