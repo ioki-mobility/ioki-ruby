@@ -29,21 +29,22 @@ module Ioki
                   type: :date_time
 
         attribute :ad_hoc_bookable,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :boolean
 
         attribute :deactivated,
                   on:   :read,
                   type: :boolean
 
+        attribute :end_location,
+                  on:         [:create, :read, :update],
+                  type:       :object,
+                  class_name: ['Place', 'Station']
+
         attribute :end_place,
-                  on:         :read,
+                  on:         [:create, :read, :update],
                   type:       :object,
                   class_name: 'Place'
-
-        attribute :end_location,
-                  on:   :read,
-                  type: :object
 
         # attribute :matching_configuration,
         #           on:         :read,
@@ -55,33 +56,37 @@ module Ioki
                   type: :boolean
 
         attribute :planned_ends_at,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :date_time
 
         attribute :planned_starts_at,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :date_time
 
         attribute :prebookable,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :boolean
 
         attribute :start_location,
-                  on:        :read,
-                  type:      :object,
+                  on:         [:create, :read, :update],
+                  type:       :object,
                   class_name: ['Place', 'Station']
 
         attribute :start_place,
-                  on:         :read,
+                  on:         [:create, :read, :update],
                   type:       :object,
                   class_name: 'Place'
 
         attribute :state,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :string
 
+        attribute :state_options,
+                  on:   :read,
+                  type: :array
+
         attribute :vehicle,
-                  on:         :read,
+                  on:         [:create, :read],
                   type:       :object,
                   class_name: 'Vehicle'
       end
