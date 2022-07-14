@@ -181,7 +181,7 @@ module Ioki
       def class_name_from_value_type(class_name, value)
         return class_name unless class_name.is_a?(Array)
         return nil if value.nil?
-        
+
         class_name_from_value_type = value['type'].split('_').map(&:capitalize).join('')
 
         return class_name_from_value_type if class_name.include?(class_name_from_value_type)

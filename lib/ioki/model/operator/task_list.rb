@@ -39,7 +39,7 @@ module Ioki
         attribute :end_location,
                   on:         [:create, :read, :update],
                   type:       :object,
-                  class_name: ['Place', 'Station']
+                  class_name: %w[Place Station]
 
         attribute :end_place,
                   on:         [:create, :read, :update],
@@ -70,7 +70,7 @@ module Ioki
         attribute :start_location,
                   on:         [:create, :read, :update],
                   type:       :object,
-                  class_name: ['Place', 'Station']
+                  class_name: %w[Place Station]
 
         attribute :start_place,
                   on:         [:create, :read, :update],
