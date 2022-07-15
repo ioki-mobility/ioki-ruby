@@ -6,7 +6,7 @@ module DummyClassHelpers
     let(name.to_s) do
       klass = Class.new(superclass, &block)
 
-      module_name.const_set (name.to_s + SecureRandom.hex(5)).split('_').collect!{ |w| w.capitalize }.join, klass
+      module_name.const_set (name.to_s + SecureRandom.hex(5)).split('_').collect!(&:capitalize).join, klass
     end
   end
 end
