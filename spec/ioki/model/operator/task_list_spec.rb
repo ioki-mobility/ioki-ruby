@@ -64,7 +64,7 @@ RSpec.describe Ioki::Model::Operator::TaskList do
               class_name: %w[Place Station]
   end
 
-  context 'defined attributes' do
+  describe 'defined attributes' do
     it { is_expected.to define_attribute(:id).as(:string) }
     it { is_expected.to define_attribute(:type).as(:string) }
     it { is_expected.to define_attribute(:created_at).as(:date_time) }
