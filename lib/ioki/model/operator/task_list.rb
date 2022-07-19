@@ -55,11 +55,11 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
-        attribute :planned_ends_at,
+        attribute :ends_at,
                   on:   [:create, :read, :update],
                   type: :date_time
 
-        attribute :planned_starts_at,
+        attribute :starts_at,
                   on:   [:create, :read, :update],
                   type: :date_time
 
@@ -85,10 +85,9 @@ module Ioki
                   on:   :read,
                   type: :array
 
-        attribute :vehicle,
-                  on:         [:create, :read],
-                  type:       :object,
-                  class_name: 'Vehicle'
+        attribute :vehicle_id,
+                  on:   [:create, :read],
+                  type: :string
       end
     end
   end
