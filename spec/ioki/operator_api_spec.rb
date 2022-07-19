@@ -296,4 +296,95 @@ RSpec.describe Ioki::OperatorApi do
         to eq(Ioki::Model::Operator::Place.new)
     end
   end
+
+  describe '#stations(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations')
+        result_with_index_data
+      end
+
+      expect(operator_client.stations('0815', options)).
+        to eq([Ioki::Model::Operator::Station.new])
+    end
+  end
+
+  describe '#station(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.station('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::Station.new)
+    end
+  end
+
+  describe '#create_station(product_id, station)' do
+    let(:station) { Ioki::Model::Operator::Station.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_station('0815', station, options)).
+        to eq(Ioki::Model::Operator::Station.new)
+    end
+  end
+
+  describe '#update_station(product_id, station)' do
+    let(:station) { Ioki::Model::Operator::Station.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_station('0815', station, options)).
+        to eq(Ioki::Model::Operator::Station.new)
+    end
+  end
+
+  describe '#delete_station(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_station('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::Station.new)
+    end
+  end
+
+  describe '#stations_fix(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/fix')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.stations_fix('0815', '4711')).to be_a(Ioki::Model::Operator::Station)
+    end
+  end
+
+  describe '#stations_unfix(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/unfix')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.stations_unfix('0815', '4711')).to be_a(Ioki::Model::Operator::Station)
+    end
+  end
 end

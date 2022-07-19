@@ -38,6 +38,17 @@ module Ioki
         :place,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Place
+      ),
+      Endpoints.crud_endpoints(
+        :station,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Station
+      ),
+      Endpoints.custom_endpoints(
+        'stations',
+        actions:     { 'fix' => :patch, 'unfix' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'stations', :id],
+        model_class: Ioki::Model::Operator::Station
       )
     ].freeze
   end
