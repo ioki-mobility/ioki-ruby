@@ -37,19 +37,30 @@ module Ioki
                   type: :boolean
 
         attribute :end_location,
-                  on:         [:create, :read, :update],
+                  on:         :read,
                   type:       :object,
                   class_name: %w[Place Station]
 
+        attribute :end_location_id,
+                  on:   [:create, :read, :update],
+                  type: :string
+
+        attribute :end_location_type,
+                  on:   [:create, :read, :update],
+                  type: :string
+
         attribute :end_place,
-                  on:         [:create, :read, :update],
+                  on:         :read,
                   type:       :object,
                   class_name: 'Place'
 
-        # attribute :matching_configuration,
-        #           on:         :read,
-        #           type:       :object,
-        #           class_name: 'MatchingConfiguration'
+        attribute :end_place_id,
+                  on:   [:create, :read, :update],
+                  type: :string
+
+        attribute :matching_configuration_id,
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :paused,
                   on:   :read,
@@ -68,14 +79,26 @@ module Ioki
                   type: :boolean
 
         attribute :start_location,
-                  on:         [:create, :read, :update],
+                  on:         :read,
                   type:       :object,
                   class_name: %w[Place Station]
 
+        attribute :start_location_id,
+                  on:   [:create, :read, :update],
+                  type: :string
+
+        attribute :start_location_type,
+                  on:   [:create, :read, :update],
+                  type: :string
+
         attribute :start_place,
-                  on:         [:create, :read, :update],
+                  on:         :read,
                   type:       :object,
                   class_name: 'Place'
+
+        attribute :start_place_id,
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :state,
                   on:   [:create, :read, :update],
@@ -86,7 +109,7 @@ module Ioki
                   type: :array
 
         attribute :vehicle_id,
-                  on:   [:create, :read],
+                  on:   [:create, :read, :reassign],
                   type: :string
       end
     end
