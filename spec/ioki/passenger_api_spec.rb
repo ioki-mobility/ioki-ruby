@@ -373,4 +373,14 @@ RSpec.describe Ioki::PassengerApi do
         to be_a Ioki::Model::Passenger::PersonalDiscount
     end
   end
+
+  describe '#available_notification_settings' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/notification_settings/available')
+        [result_with_data, full_response]
+      end
+      expect(passenger_client.available_notification_settings).to be_a Ioki::Model::Passenger::NotificationSettings
+    end
+  end
 end
