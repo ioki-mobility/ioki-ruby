@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class PaymentMethod < Base
         attribute :type, on: :read, type: :string
-        attribute :id, on: :read, type: :string
+        attribute :id, on: [:read, :create], omit_if_nil_on: :create, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
         attribute :id, on: :create, type: :string, omit_if_blank_on: :create

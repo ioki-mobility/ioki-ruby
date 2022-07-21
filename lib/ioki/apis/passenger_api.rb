@@ -92,7 +92,13 @@ module Ioki
       ),
       Endpoints::ShowSingular.new(
         :default_notification_settings,
-        path:        ['passenger', 'notification_settings/defaults'],
+        path:        %w[passenger notification_settings defaults],
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::NotificationSettings
+      ),
+      Endpoints::ShowSingular.new(
+        :available_notification_settings,
+        path:        %w[passenger notification_settings available],
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::NotificationSettings
       ),
@@ -119,6 +125,49 @@ module Ioki
         path:                 'logpay/customer',
         model_class:          Ioki::Model::Passenger::LogpayUrl,
         outgoing_model_class: Ioki::Model::Passenger::LogpayCustomer
+      ),
+      Endpoints::Create.new(
+        :logpay_payment_method,
+        base_path:            [API_BASE_PATH],
+        path:                 'logpay/payment_method',
+        model_class:          Ioki::Model::Passenger::LogpayUrl,
+        outgoing_model_class: Ioki::Model::Passenger::LogpayPaymentMethod
+      ),
+      Endpoints::Index.new(
+        :payment_methods,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PaymentMethod
+      ),
+      Endpoints::Delete.new(
+        :payment_method,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PaymentMethod
+      ),
+      Endpoints::Index.new(
+        :service_credits,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::ServiceCredit
+      ),
+      Endpoints::Create.new(
+        :service_credit,
+        base_path:            [API_BASE_PATH],
+        model_class:          Ioki::Model::Passenger::ServiceCredit,
+        outgoing_model_class: Ioki::Model::Passenger::ServiceCreditCreate
+      ),
+      Endpoints::Index.new(
+        :personal_discounts,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PersonalDiscount
+      ),
+      Endpoints::Create.new(
+        :personal_discount,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PersonalDiscount
+      ),
+      Endpoints::Index.new(
+        :personal_discount_types,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PersonalDiscountType
       ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
