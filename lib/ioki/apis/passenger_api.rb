@@ -98,7 +98,7 @@ module Ioki
       ),
       Endpoints::ShowSingular.new(
         :available_notification_settings,
-        path:        ['passenger', 'notification_settings/available'],
+        path:        %w[passenger notification_settings available],
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::NotificationSettings
       ),
