@@ -12,6 +12,7 @@ module Ioki
         attribute :country_code, on: :read, type: :string
         attribute :currency, on: :read, type: :string
         attribute :current_tos_date, on: :read, type: :date_time
+        attribute :features, on: :read, type: :object, class_name: 'Features'
         attribute :logpay_payment_method_types, on: :read, type: :array
         attribute :merchant_name, on: :read, type: :string
         attribute :name, on: :read, type: :string
