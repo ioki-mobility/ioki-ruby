@@ -480,6 +480,16 @@ RSpec.describe Ioki::OperatorApi do
   end
 
   describe '#task_lists_reassign(product_id, task_list_id)' do
+    let(:options) do
+      {
+        body: {
+          'data' => {
+            'vehicle_id' => 'vehicle_123456'
+          }
+        }
+      }
+    end
+
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/reassign')
@@ -487,7 +497,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.task_lists_reassign('0815', '4711')).to be_a(Ioki::Model::Operator::TaskList)
+      expect(operator_client.task_lists_reassign('0815', '4711', options)).
+        to be_a(Ioki::Model::Operator::TaskList)
     end
   end
 end
