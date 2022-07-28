@@ -77,18 +77,16 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     it { is_expected.to define_attribute(:end_location).as(:object).with(class_name: %w[Place Station]) }
     it { is_expected.to define_attribute(:end_location_id).as(:string) }
     it { is_expected.to define_attribute(:end_location_type).as(:string) }
-    it { is_expected.to define_attribute(:end_place).as(:object).with(class_name: 'Place') }
-    it { is_expected.to define_attribute(:end_place_id).as(:string) }
+    it { is_expected.to define_attribute(:ends_at).as(:date_time) }
     it { is_expected.to define_attribute(:matching_configuration_id).as(:string) }
     it { is_expected.to define_attribute(:paused).as(:boolean) }
-    it { is_expected.to define_attribute(:ends_at).as(:date_time) }
-    it { is_expected.to define_attribute(:starts_at).as(:date_time) }
+    it { is_expected.to define_attribute(:planned_ends_at).as(:date_time) }
+    it { is_expected.to define_attribute(:planned_starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:prebookable).as(:boolean) }
     it { is_expected.to define_attribute(:start_location).as(:object).with(class_name: %w[Place Station]) }
     it { is_expected.to define_attribute(:start_location_id).as(:string) }
     it { is_expected.to define_attribute(:start_location_type).as(:string) }
-    it { is_expected.to define_attribute(:start_place).as(:object).with(class_name: 'Place') }
-    it { is_expected.to define_attribute(:start_place_id).as(:string) }
+    it { is_expected.to define_attribute(:starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:state).as(:string) }
     it { is_expected.to define_attribute(:state_options).as(:array) }
     it { is_expected.to define_attribute(:vehicle_id).as(:string) }

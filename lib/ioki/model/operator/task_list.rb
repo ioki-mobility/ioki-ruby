@@ -42,21 +42,19 @@ module Ioki
                   class_name: %w[Place Station]
 
         attribute :end_location_id,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: :read,
+                  type:           :string
 
         attribute :end_location_type,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: :read,
+                  type:           :string
 
-        attribute :end_place,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Place'
-
-        attribute :end_place_id,
-                  on:   [:create, :read, :update],
-                  type: :string
+        attribute :ends_at,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: :read,
+                  type:           :date_time
 
         attribute :matching_configuration_id,
                   on:   [:create, :read, :update],
@@ -66,12 +64,12 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
-        attribute :ends_at,
-                  on:   [:create, :read, :update],
+        attribute :planned_ends_at,
+                  on:   :read,
                   type: :date_time
 
-        attribute :starts_at,
-                  on:   [:create, :read, :update],
+        attribute :planned_starts_at,
+                  on:   :read,
                   type: :date_time
 
         attribute :prebookable,
@@ -84,21 +82,19 @@ module Ioki
                   class_name: %w[Place Station]
 
         attribute :start_location_id,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: :read,
+                  type:           :string
 
         attribute :start_location_type,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:               [:create, :read, :update],
+                  omit_if_blank_on: :read,
+                  type:             :string
 
-        attribute :start_place,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Place'
-
-        attribute :start_place_id,
-                  on:   [:create, :read, :update],
-                  type: :string
+        attribute :starts_at,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: :read,
+                  type:           :date_time
 
         attribute :state,
                   on:   [:create, :read, :update],
