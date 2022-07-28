@@ -22,6 +22,7 @@ module Ioki
         attribute :ride_rating_criteria, on: :read, type: :array
         attribute :service_time_info, on: :read, type: :string
         attribute :timezone, on: :read, type: :object, class_name: 'Timezone'
+        attribute :tipping, on: :read, type: :object, class_name: 'Tipping'
         attribute :version, on: :read, type: :integer
       end
     end
