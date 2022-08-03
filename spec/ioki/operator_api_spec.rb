@@ -387,4 +387,28 @@ RSpec.describe Ioki::OperatorApi do
       expect(operator_client.stations_unfix('0815', '4711')).to be_a(Ioki::Model::Operator::Station)
     end
   end
+
+  describe '#matching_configurations(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/matching_configurations')
+        result_with_index_data
+      end
+
+      expect(operator_client.matching_configurations('0815', options)).
+        to eq([Ioki::Model::Operator::MatchingConfiguration.new])
+    end
+  end
+
+  describe '#matching_configuration(product_id, matching_configuration_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/matching_configurations/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.matching_configuration('0815', '4711', options)).
+        to eq(Ioki::Model::Operator::MatchingConfiguration.new)
+    end
+  end
 end

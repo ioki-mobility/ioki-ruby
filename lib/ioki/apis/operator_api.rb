@@ -49,6 +49,12 @@ module Ioki
         actions:     { 'fix' => :patch, 'unfix' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'stations', :id],
         model_class: Ioki::Model::Operator::Station
+      ),
+      Endpoints.crud_endpoints(
+        :matching_configuration,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::MatchingConfiguration,
+        except:      [:create, :update, :delete]
       )
     ].freeze
   end
