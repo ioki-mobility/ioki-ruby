@@ -56,9 +56,9 @@ module Ioki
         end
 
         def attribute_definitions
-          ancestor_model_classes.
-            collect(&:class_instance_attribute_definitions).
-            reduce(&:merge)
+          ancestor_model_classes
+            .collect(&:class_instance_attribute_definitions)
+            .reduce(&:merge)
         end
       end
 

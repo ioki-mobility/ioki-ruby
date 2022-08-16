@@ -31,8 +31,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.providers(options)).
-        to eq([Ioki::Model::Platform::Provider.new])
+      expect(platform_client.providers(options))
+        .to eq([Ioki::Model::Platform::Provider.new])
     end
   end
 
@@ -43,8 +43,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.provider('0815', options)).
-        to eq(Ioki::Model::Platform::Provider.new)
+      expect(platform_client.provider('0815', options))
+        .to eq(Ioki::Model::Platform::Provider.new)
     end
   end
 
@@ -55,8 +55,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.products(options)).
-        to eq([Ioki::Model::Platform::Product.new])
+      expect(platform_client.products(options))
+        .to eq([Ioki::Model::Platform::Product.new])
     end
   end
 
@@ -67,8 +67,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.product('0815', options)).
-        to eq(Ioki::Model::Platform::Product.new)
+      expect(platform_client.product('0815', options))
+        .to eq(Ioki::Model::Platform::Product.new)
     end
   end
 
@@ -79,8 +79,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.stations('0815', options)).
-        to eq([Ioki::Model::Platform::Station.new])
+      expect(platform_client.stations('0815', options))
+        .to eq([Ioki::Model::Platform::Station.new])
     end
   end
 
@@ -91,8 +91,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.station('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Station.new)
+      expect(platform_client.station('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Station.new)
     end
   end
 
@@ -105,8 +105,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_station('0815', station, options)).
-        to eq(Ioki::Model::Platform::Station.new)
+      expect(platform_client.create_station('0815', station, options))
+        .to eq(Ioki::Model::Platform::Station.new)
     end
   end
 
@@ -120,8 +120,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_station('0815', station, options)).
-        to eq(Ioki::Model::Platform::Station.new)
+      expect(platform_client.update_station('0815', station, options))
+        .to eq(Ioki::Model::Platform::Station.new)
     end
   end
 
@@ -132,8 +132,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_station('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Station.new)
+      expect(platform_client.delete_station('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Station.new)
     end
   end
 
@@ -144,8 +144,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.vehicles('0815', options)).
-        to eq([Ioki::Model::Platform::Vehicle.new])
+      expect(platform_client.vehicles('0815', options))
+        .to eq([Ioki::Model::Platform::Vehicle.new])
     end
   end
 
@@ -156,8 +156,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.vehicle('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Vehicle.new)
+      expect(platform_client.vehicle('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Vehicle.new)
     end
   end
 
@@ -170,8 +170,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_vehicle('0815', vehicle, options)).
-        to eq(Ioki::Model::Platform::Vehicle.new)
+      expect(platform_client.create_vehicle('0815', vehicle, options))
+        .to eq(Ioki::Model::Platform::Vehicle.new)
     end
   end
 
@@ -184,8 +184,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_vehicle('0815', vehicle, options)).
-        to eq(Ioki::Model::Platform::Vehicle.new)
+      expect(platform_client.update_vehicle('0815', vehicle, options))
+        .to eq(Ioki::Model::Platform::Vehicle.new)
     end
   end
 
@@ -196,8 +196,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_vehicle('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Vehicle.new)
+      expect(platform_client.delete_vehicle('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Vehicle.new)
     end
   end
 
@@ -208,8 +208,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.rides('0815', options)).
-        to eq([Ioki::Model::Platform::Ride.new])
+      expect(platform_client.rides('0815', options))
+        .to eq([Ioki::Model::Platform::Ride.new])
     end
   end
 
@@ -220,8 +220,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.ride('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Ride.new)
+      expect(platform_client.ride('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Ride.new)
     end
   end
 
@@ -234,8 +234,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_ride('0815', ride, options)).
-        to eq(Ioki::Model::Platform::Ride.new)
+      expect(platform_client.create_ride('0815', ride, options))
+        .to eq(Ioki::Model::Platform::Ride.new)
     end
   end
 
@@ -246,8 +246,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.users('0815', options)).
-        to eq([Ioki::Model::Platform::User.new])
+      expect(platform_client.users('0815', options))
+        .to eq([Ioki::Model::Platform::User.new])
     end
   end
 
@@ -258,8 +258,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.user('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::User.new)
+      expect(platform_client.user('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::User.new)
     end
   end
 
@@ -272,8 +272,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_user('0815', user, options)).
-        to eq(Ioki::Model::Platform::User.new)
+      expect(platform_client.create_user('0815', user, options))
+        .to eq(Ioki::Model::Platform::User.new)
     end
   end
 
@@ -286,8 +286,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_user('0815', user, options)).
-        to eq(Ioki::Model::Platform::User.new)
+      expect(platform_client.update_user('0815', user, options))
+        .to eq(Ioki::Model::Platform::User.new)
     end
   end
 
@@ -298,8 +298,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_user('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::User.new)
+      expect(platform_client.delete_user('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::User.new)
     end
   end
 
@@ -310,8 +310,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.drivers('0815', options)).
-        to eq([Ioki::Model::Platform::Driver.new])
+      expect(platform_client.drivers('0815', options))
+        .to eq([Ioki::Model::Platform::Driver.new])
     end
   end
 
@@ -322,8 +322,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.driver('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Driver.new)
+      expect(platform_client.driver('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Driver.new)
     end
   end
 
@@ -336,8 +336,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_driver('0815', driver, options)).
-        to eq(Ioki::Model::Platform::Driver.new)
+      expect(platform_client.create_driver('0815', driver, options))
+        .to eq(Ioki::Model::Platform::Driver.new)
     end
   end
 
@@ -350,8 +350,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_driver('0815', driver, options)).
-        to eq(Ioki::Model::Platform::Driver.new)
+      expect(platform_client.update_driver('0815', driver, options))
+        .to eq(Ioki::Model::Platform::Driver.new)
     end
   end
 
@@ -362,8 +362,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_driver('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Driver.new)
+      expect(platform_client.delete_driver('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Driver.new)
     end
   end
 
@@ -374,8 +374,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.driver_vehicle_connections('0815', options)).
-        to eq([Ioki::Model::Platform::DriverVehicleConnection.new])
+      expect(platform_client.driver_vehicle_connections('0815', options))
+        .to eq([Ioki::Model::Platform::DriverVehicleConnection.new])
     end
   end
 
@@ -386,8 +386,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.driver_vehicle_connection('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
+      expect(platform_client.driver_vehicle_connection('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
     end
   end
 
@@ -400,8 +400,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_driver_vehicle_connection('0815', driver_vehicle_connection, options)).
-        to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
+      expect(platform_client.create_driver_vehicle_connection('0815', driver_vehicle_connection, options))
+        .to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
     end
   end
 
@@ -414,8 +414,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_driver_vehicle_connection('0815', driver_vehicle_connection, options)).
-        to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
+      expect(platform_client.update_driver_vehicle_connection('0815', driver_vehicle_connection, options))
+        .to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
     end
   end
 
@@ -426,8 +426,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_driver_vehicle_connection('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
+      expect(platform_client.delete_driver_vehicle_connection('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::DriverVehicleConnection.new)
     end
   end
 
@@ -476,8 +476,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_rating('0815', rating, options)).
-        to eq(Ioki::Model::Platform::Rating.new)
+      expect(platform_client.create_rating('0815', rating, options))
+        .to eq(Ioki::Model::Platform::Rating.new)
     end
   end
 
@@ -490,8 +490,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_rating('0815', '4711', rating, options)).
-        to eq(Ioki::Model::Platform::Rating.new)
+      expect(platform_client.update_rating('0815', '4711', rating, options))
+        .to eq(Ioki::Model::Platform::Rating.new)
     end
   end
 
@@ -502,8 +502,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_rating('0815', '4711', '1337', options)).
-        to eq(Ioki::Model::Platform::Rating.new)
+      expect(platform_client.delete_rating('0815', '4711', '1337', options))
+        .to eq(Ioki::Model::Platform::Rating.new)
     end
   end
 
@@ -516,8 +516,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_booking('0815', '4711', booking, options)).
-        to eq(Ioki::Model::Platform::Booking.new)
+      expect(platform_client.create_booking('0815', '4711', booking, options))
+        .to eq(Ioki::Model::Platform::Booking.new)
     end
   end
 
@@ -530,8 +530,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_request_token('0815', '4711', passenger_request_token, options)).
-        to eq(Ioki::Model::Platform::PassengerRequestToken.new)
+      expect(platform_client.create_request_token('0815', '4711', passenger_request_token, options))
+        .to eq(Ioki::Model::Platform::PassengerRequestToken.new)
     end
   end
 
@@ -544,8 +544,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_ride_inquiry('0815', ride_inquiry, options)).
-        to eq(Ioki::Model::Platform::RideInquiry.new)
+      expect(platform_client.create_ride_inquiry('0815', ride_inquiry, options))
+        .to eq(Ioki::Model::Platform::RideInquiry.new)
     end
   end
 
@@ -556,8 +556,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.announcements('0815', options)).
-        to eq([Ioki::Model::Platform::Announcement.new])
+      expect(platform_client.announcements('0815', options))
+        .to eq([Ioki::Model::Platform::Announcement.new])
     end
   end
 
@@ -568,8 +568,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.announcement('0815', '1337', options)).
-        to eq(Ioki::Model::Platform::Announcement.new)
+      expect(platform_client.announcement('0815', '1337', options))
+        .to eq(Ioki::Model::Platform::Announcement.new)
     end
   end
 
@@ -582,8 +582,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_line('0815', line, options)).
-        to eq(Ioki::Model::Platform::Line.new)
+      expect(platform_client.create_line('0815', line, options))
+        .to eq(Ioki::Model::Platform::Line.new)
     end
   end
 
@@ -597,8 +597,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_line('0815', line, options)).
-        to eq(Ioki::Model::Platform::Line.new)
+      expect(platform_client.update_line('0815', line, options))
+        .to eq(Ioki::Model::Platform::Line.new)
     end
   end
 
@@ -609,8 +609,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_line('0815', '4711', options)).
-        to eq(Ioki::Model::Platform::Line.new)
+      expect(platform_client.delete_line('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Line.new)
     end
   end
 
@@ -623,8 +623,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_line_stop('0815', '0815', line_stop, options)).
-        to eq(Ioki::Model::Platform::LineStop.new)
+      expect(platform_client.create_line_stop('0815', '0815', line_stop, options))
+        .to eq(Ioki::Model::Platform::LineStop.new)
     end
   end
 
@@ -635,8 +635,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_line_stop('0815', '0815', '4711', options)).
-        to eq(Ioki::Model::Platform::LineStop.new)
+      expect(platform_client.delete_line_stop('0815', '0815', '4711', options))
+        .to eq(Ioki::Model::Platform::LineStop.new)
     end
   end
 
@@ -648,8 +648,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.task_list_reassign('0815', '1337', options)).
-        to eq(Ioki::Model::Platform::TaskList.new)
+      expect(platform_client.task_list_reassign('0815', '1337', options))
+        .to eq(Ioki::Model::Platform::TaskList.new)
     end
   end
 end

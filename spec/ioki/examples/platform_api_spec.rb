@@ -34,9 +34,9 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       platform_client.task_lists(real_demo_product_id, params: { per_page: 1, page: 1 }).first.id
     end
     let(:station_id) do
-      platform_client.stations(real_demo_product_id, params: { page: 2 }).
-        find { |station| station.location_name == 'Deaktivierungstest' }.
-        id
+      platform_client.stations(real_demo_product_id, params: { page: 2 })
+        .find { |station| station.location_name == 'Deaktivierungstest' }
+        .id
     end
 
     it 'return their corresponding models' do
@@ -45,13 +45,13 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       expect(platform_client.rides(real_demo_product_id).first).to be_a(Ioki::Model::Platform::Ride)
       expect(platform_client.users(real_demo_provider_id).first).to be_a(Ioki::Model::Platform::User)
       expect(platform_client.drivers(real_demo_product_id).first).to be_a(Ioki::Model::Platform::Driver)
-      expect(platform_client.driver_vehicle_connections(real_demo_product_id).first).
-        to be_a(Ioki::Model::Platform::DriverVehicleConnection)
+      expect(platform_client.driver_vehicle_connections(real_demo_product_id).first)
+        .to be_a(Ioki::Model::Platform::DriverVehicleConnection)
       expect(platform_client.client).to be_a(Ioki::Model::Platform::Client)
       expect(platform_client.providers.first).to be_a(Ioki::Model::Platform::Provider)
       expect(platform_client.products.first).to be_a(Ioki::Model::Platform::Product)
-      expect(platform_client.station_deactivations(real_demo_product_id, station_id).first).
-        to be_a(Ioki::Model::Platform::Deactivation)
+      expect(platform_client.station_deactivations(real_demo_product_id, station_id).first)
+        .to be_a(Ioki::Model::Platform::Deactivation)
       expect(platform_client.task_lists(real_demo_product_id).first).to be_a(Ioki::Model::Platform::TaskList)
       expect(platform_client.tasks(real_demo_product_id, task_list_id).first).to be_a(Ioki::Model::Platform::Task)
 
@@ -69,8 +69,8 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       # expect(platform_client.receipts(real_demo_provider_id).first).to be_a(Ioki::Model::Platform::Receipt)
       # No receipt defined on the test platform. How can I get one?
 
-      expect(platform_client.current_journey(real_demo_product_id, task_list_id)).
-        to be_a(Ioki::Model::Platform::Journey)
+      expect(platform_client.current_journey(real_demo_product_id, task_list_id))
+        .to be_a(Ioki::Model::Platform::Journey)
       # Has no data here
 
       # user_id = platform_client.users(real_demo_provider_id).first.id

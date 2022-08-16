@@ -28,7 +28,7 @@ module Ioki
         if defined?(@parent_name)
           @parent_name
         else
-          parent_name = name =~ /::[^:]+\z/ ? -Regexp.last_match.pre_match : nil
+          parent_name = (name =~ /::[^:]+\z/) ? -Regexp.last_match.pre_match : nil
           @parent_name = parent_name unless frozen?
           parent_name
         end

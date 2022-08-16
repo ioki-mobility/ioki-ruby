@@ -38,8 +38,8 @@ RSpec.describe Endpoints::Endpoint do
       end
 
       it 'wraps the response in a model' do
-        expect(endpoint.call(client, [model_class: Ioki::Model::Bread])).
-          to eq Ioki::Model::Bread.new(grain_type: 'wheat')
+        expect(endpoint.call(client, [model_class: Ioki::Model::Bread]))
+          .to eq Ioki::Model::Bread.new(grain_type: 'wheat')
       end
     end
   end

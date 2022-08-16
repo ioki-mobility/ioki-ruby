@@ -22,10 +22,11 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.2')
 
   spec.metadata = {
-    'homepage_uri'    => spec.homepage,
-    'changelog_uri'   => "https://github.com/ioki-mobility/ioki-ruby/releases/tag/v#{spec.version}",
-    'source_code_uri' => 'https://github.com/ioki-mobility/ioki-ruby',
-    'bug_tracker_uri' => 'https://github.com/ioki-mobility/ioki-ruby/issues'
+    'homepage_uri'          => spec.homepage,
+    'changelog_uri'         => "https://github.com/ioki-mobility/ioki-ruby/releases/tag/v#{spec.version}",
+    'source_code_uri'       => 'https://github.com/ioki-mobility/ioki-ruby',
+    'bug_tracker_uri'       => 'https://github.com/ioki-mobility/ioki-ruby/issues',
+    'rubygems_mfa_required' => 'true'
   }
 
   spec.require_paths = ['lib']

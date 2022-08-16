@@ -45,10 +45,10 @@ RSpec::Matchers.define :match_open_api_definition do |scope, model|
   end
 
   define_method :unvalidated_attributes do |actual_model|
-    actual_model.
-      attribute_definitions.
-      select { |_key, definition| definition[:unvalidated] }.
-      keys
+    actual_model
+      .attribute_definitions
+      .select { |_key, definition| definition[:unvalidated] }
+      .keys
   end
 
   match do |actual_model|
