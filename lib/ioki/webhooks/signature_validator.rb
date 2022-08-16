@@ -26,7 +26,7 @@ module Ioki
       def call
         raise Ioki::Error::WebhookSignatureMissing if Ioki::Support.blank? @signature
         raise Ioki::Error::WebhookBodyMissing if Ioki::Support.blank? @body
-        raise Ioki::Error::WebhookSignatureKeyMissing if Ioki::Support.blank? ENV['WEBHOOK_SIGNATURE_KEY']
+        raise Ioki::Error::WebhookSignatureKeyMissing if Ioki::Support.blank? ENV.fetch('WEBHOOK_SIGNATURE_KEY', nil)
         raise Ioki::Error::WebhookSignatureInvalid unless OpenSSL.secure_compare @signature, calculated_signature
       end
 
