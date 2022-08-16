@@ -17,21 +17,21 @@ RSpec.describe Endpoints do
     end
 
     it 'raises an error if the argument does not respond_to the interpolation method' do
-      expect { described_class.url_elements([:id], 1) }.
-        to raise_error(NoMethodError, /undefined method `id' for 1:Integer/)
+      expect { described_class.url_elements([:id], 1) }
+        .to raise_error(NoMethodError, /undefined method `id' for 1:Integer/)
     end
 
     it 'raises an error if the path consists of something else than Strings and Symbols' do
-      expect { described_class.url_elements([1], 'RIDE_ID') }.
-        to raise_error(ArgumentError, 'path: must consist of Strings and Symbols only')
+      expect { described_class.url_elements([1], 'RIDE_ID') }
+        .to raise_error(ArgumentError, 'path: must consist of Strings and Symbols only')
     end
 
     context 'with more interpolation variables in the path than given arguments' do
       let(:path) { [:id, :ride_id] }
 
       it 'raises an argument error' do
-        expect { described_class.url_elements(path, 'RIDE_ID') }.
-          to raise_error(
+        expect { described_class.url_elements(path, 'RIDE_ID') }
+          .to raise_error(
             ArgumentError,
             'args: must have an argument for every symbol in :path. path: [:id, :ride_id], args: ["RIDE_ID"]'
           )

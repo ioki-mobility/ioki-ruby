@@ -33,8 +33,8 @@ RSpec.describe Ioki::DriverApi do
         [result_with_data, full_response]
       end
 
-      expect(driver_client.create_request_token(request_token, options)).
-        to be_a(Ioki::Model::Driver::DriverRequestToken)
+      expect(driver_client.create_request_token(request_token, options))
+        .to be_a(Ioki::Model::Driver::DriverRequestToken)
     end
   end
 

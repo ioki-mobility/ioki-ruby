@@ -155,8 +155,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_phone_verification_request(phone_verification_request, options)).
-        to be_a Ioki::Model::Passenger::PhoneVerificationRequest
+      expect(passenger_client.create_phone_verification_request(phone_verification_request, options))
+        .to be_a Ioki::Model::Passenger::PhoneVerificationRequest
     end
   end
 
@@ -169,8 +169,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.update_user_phone_number(user_phone_number, options.merge(model: user_phone_number))).
-        to be_a Ioki::Model::Passenger::User
+      expect(passenger_client.update_user_phone_number(user_phone_number, options.merge(model: user_phone_number)))
+        .to be_a Ioki::Model::Passenger::User
     end
   end
 
@@ -240,8 +240,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_service_credit(service_credit, options)).
-        to be_a Ioki::Model::Passenger::ServiceCredit
+      expect(passenger_client.create_service_credit(service_credit, options))
+        .to be_a Ioki::Model::Passenger::ServiceCredit
     end
   end
 
@@ -325,8 +325,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.delete_payment_method(payment_method)).
-        to be_a Ioki::Model::Passenger::PaymentMethod
+      expect(passenger_client.delete_payment_method(payment_method))
+        .to be_a Ioki::Model::Passenger::PaymentMethod
     end
   end
 
@@ -369,8 +369,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_personal_discount(personal_discount)).
-        to be_a Ioki::Model::Passenger::PersonalDiscount
+      expect(passenger_client.create_personal_discount(personal_discount))
+        .to be_a Ioki::Model::Passenger::PersonalDiscount
     end
   end
 

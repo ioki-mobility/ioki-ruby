@@ -34,9 +34,9 @@ module Ioki
 
       def calculated_signature
         'sha256=' + OpenSSL::HMAC.hexdigest(
-          OpenSSL::Digest.new('sha256'), # The algorithm to use: SHA256
-          ENV['WEBHOOK_SIGNATURE_KEY'],  # First: The pre-shared key
-          @body                          # Second: The data to verify
+          OpenSSL::Digest.new('sha256'),           # The algorithm to use: SHA256
+          ENV.fetch('WEBHOOK_SIGNATURE_KEY', nil), # First: The pre-shared key
+          @body                                    # Second: The data to verify
         )
       end
     end
