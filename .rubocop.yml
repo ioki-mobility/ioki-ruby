@@ -5,6 +5,14 @@ inherit_from:
   - https://dbdrive.github.io/triebwerk/rubocop_common.yml
 
 # Custom configuration
+Metrics/ParameterLists:
+  Exclude:
+    - 'lib/ioki/apis/endpoints/create.rb'
+    - 'lib/ioki/apis/endpoints/endpoint.rb'
+
+Style/OpenStructUse:
+  Enabled: no
+
 RSpec/DescribeClass:
   Exclude:
     - spec/ioki/examples/*
