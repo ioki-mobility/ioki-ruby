@@ -59,7 +59,7 @@ RSpec.describe Ioki::Webhooks::SignatureValidator do
 
   context 'when the WEBHOOK_SIGNATURE_KEY ENV variable is nil' do
     before do
-      allow(ENV).to receive(:[]).with('WEBHOOK_SIGNATURE_KEY').and_return(nil)
+      allow(ENV).to receive(:fetch).with('WEBHOOK_SIGNATURE_KEY', nil).and_return(nil)
     end
 
     it 'raises a Ioki::Error::WebhookSignatureKeyMissing' do
@@ -69,7 +69,7 @@ RSpec.describe Ioki::Webhooks::SignatureValidator do
 
   context 'when the WEBHOOK_SIGNATURE_KEY ENV variable is empty' do
     before do
-      allow(ENV).to receive(:[]).with('WEBHOOK_SIGNATURE_KEY').and_return('')
+      allow(ENV).to receive(:fetch).with('WEBHOOK_SIGNATURE_KEY', nil).and_return('')
     end
 
     it 'raises a Ioki::Error::WebhookSignatureKeyMissing' do
@@ -81,8 +81,8 @@ RSpec.describe Ioki::Webhooks::SignatureValidator do
     let(:signature_key) { SecureRandom.alphanumeric(24) }
 
     before do
-      allow(ENV).to receive(:[]).with(any_args).and_call_original
-      allow(ENV).to receive(:[]).with('WEBHOOK_SIGNATURE_KEY').and_return(signature_key)
+      allow(ENV).to receive(:fetch).with(any_args).and_call_original
+      allow(ENV).to receive(:fetch).with('WEBHOOK_SIGNATURE_KEY', nil).and_return(signature_key)
     end
 
     it 'raises a Ioki::Error::WebhookSignatureInvalid' do
