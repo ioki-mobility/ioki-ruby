@@ -43,7 +43,7 @@ RSpec.describe Ioki::Configuration do
 
   describe 'default values and resetting' do
     before do
-      allow(ENV).to receive(:[]).and_return(nil)
+      allow(ENV).to receive(:fetch).and_return(nil)
       stub_const(
         'EXPECTED_DEFAULTS',
         {
