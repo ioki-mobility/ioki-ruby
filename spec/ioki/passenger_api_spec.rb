@@ -136,7 +136,7 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('passenger/rides/RIDE_ID/booking')
-        expect(params[:body]).to eq({ data: { ride_version: 2, payment_method: nil } })
+        expect(params[:body]).to eq({ data: { ride_version: 2 } })
         [result_with_data, full_response]
       end
 

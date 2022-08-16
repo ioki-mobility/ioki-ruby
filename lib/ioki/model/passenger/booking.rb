@@ -12,7 +12,7 @@ module Ioki
         # The model does not return it but it's used when sending data to the server.
         attribute :ride_version, type: :integer, on: :create, unvalidated: true
         # The model does not return it but it's used when sending data to the server.
-        attribute :payment_method, type: :object, on: :create, class_name: 'PaymentMethod', unvalidated: true
+        attribute :payment_method, type: :object, on: :create, class_name: 'PaymentMethod', unvalidated: true, omit_if_nil_on: :create
       end
     end
   end
