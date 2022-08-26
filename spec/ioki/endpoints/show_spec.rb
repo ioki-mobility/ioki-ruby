@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Endpoints::Show do
+RSpec.describe Ioki::Endpoints::Show do
   let(:url)         { URI.parse('www.example.org') }
   let(:model_class) { Ioki::Model::Platform::Product }
   let(:parsed_data) { { 'data' => { 'id' => '0815' } } }

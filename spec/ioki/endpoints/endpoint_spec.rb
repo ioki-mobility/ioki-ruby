@@ -8,7 +8,7 @@ module Ioki
   end
 end
 
-RSpec.describe Endpoints::Endpoint do
+RSpec.describe Ioki::Endpoints::Endpoint do
   describe '.initialize' do
     it 'succeeds with required arguments' do
       described_class.new('bread', action: 'get', request_method: :get, path: ['bakery'])

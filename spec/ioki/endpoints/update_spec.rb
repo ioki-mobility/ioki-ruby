@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Endpoints::Update do
+RSpec.describe Ioki::Endpoints::Update do
   describe '#call' do
     let(:url)         { URI.parse('www.example.org') }
     let(:model_class) { Ioki::Model::Platform::Product }

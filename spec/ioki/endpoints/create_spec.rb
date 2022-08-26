@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Endpoints::Create do
+RSpec.describe Ioki::Endpoints::Create do
   let(:url)              { URI.parse('www.example.org') }
   let(:model_class)      { Ioki::Model::Platform::Product }
   let(:model)            { Ioki::Model::Platform::Product.new }

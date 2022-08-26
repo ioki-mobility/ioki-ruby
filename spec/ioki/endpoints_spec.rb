@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Endpoints do
+RSpec.describe Ioki::Endpoints do
   describe '.url_elements' do
     it 'creates a concrete path from one with placeholders and corresponding string args' do
       expect(described_class.url_elements([:id], 'RIDE_ID')).to eq ['RIDE_ID']
