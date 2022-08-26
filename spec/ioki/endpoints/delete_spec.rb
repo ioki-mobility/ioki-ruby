@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Endpoints::Delete do
+RSpec.describe Ioki::Endpoints::Delete do
   let(:model_class) { Ioki::Model::Platform::Product }
   let(:client)      { instance_double(Ioki::Client, 'client', build_request_url: 'url') }
   let(:endpoint)    { described_class.new('product', base_path: ['base_path'], model_class: model_class) }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Endpoints::Index do
+RSpec.describe Ioki::Endpoints::Index do
   let(:client) do
     instance_double(
       Ioki::Client,
