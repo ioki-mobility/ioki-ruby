@@ -40,9 +40,12 @@ module Ioki
                   type:           :string
 
         attribute :fuel_type,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :string
+                  on:   [:create, :read, :update],
+                  type: :string
+
+        attribute :fuel_type_options,
+                  on:   :read,
+                  type: :array
 
         attribute :last_known_position,
                   on:         :read,
