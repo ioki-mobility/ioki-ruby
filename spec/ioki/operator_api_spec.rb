@@ -419,8 +419,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_index_data
       end
 
-      expect(operator_client.task_lists('0815', options)).
-        to eq([Ioki::Model::Operator::TaskList.new])
+      expect(operator_client.task_lists('0815', options))
+        .to eq([Ioki::Model::Operator::TaskList.new])
     end
   end
 
@@ -431,8 +431,8 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.task_list('0815', '4711', options)).
-        to eq(Ioki::Model::Operator::TaskList.new)
+      expect(operator_client.task_list('0815', '4711', options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
     end
   end
 
@@ -446,8 +446,8 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.create_task_list('0815', task_list, options)).
-        to eq(Ioki::Model::Operator::TaskList.new)
+      expect(operator_client.create_task_list('0815', task_list, options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
     end
   end
 
@@ -461,8 +461,8 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.update_task_list('0815', task_list, options)).
-        to eq(Ioki::Model::Operator::TaskList.new)
+      expect(operator_client.update_task_list('0815', task_list, options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
     end
   end
 
@@ -474,8 +474,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.delete_task_list('0815', '4711', options)).
-        to eq(Ioki::Model::Operator::TaskList.new)
+      expect(operator_client.delete_task_list('0815', '4711', options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
     end
   end
 
@@ -497,8 +497,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.task_lists_reassign('0815', '4711', options)).
-        to be_a(Ioki::Model::Operator::TaskList)
+      expect(operator_client.task_lists_reassign('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::TaskList)
     end
   end
 end
