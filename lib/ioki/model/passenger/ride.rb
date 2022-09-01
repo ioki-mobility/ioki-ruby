@@ -36,7 +36,7 @@ module Ioki
         attribute :route, type: :object, class_name: 'Route', on: [:read, :create, :update]
         attribute :state, type: :string, on: [:read, :create, :update]
         attribute :support_uri, type: :string, on: [:read, :create, :update]
-        attribute :tip, type: :float, on: [:read, :create, :update]
+        attribute :tip, type: :object, class_name: 'Tip', on: [:read, :create, :update]
         attribute :tippable, type: :boolean, on: [:read, :create, :update]
         attribute :valid_for_driver_until, type: :date_time, on: [:read, :create, :update]
         attribute :valid_for_passenger_until, type: :date_time, on: [:read, :create, :update]
