@@ -383,4 +383,27 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client.available_notification_settings).to be_a Ioki::Model::Passenger::NotificationSettings
     end
   end
+
+  describe '#create_tip' do
+    let(:ride) { Ioki::Model::Passenger::Ride.new(id: 'RIDE_ID') }
+    let(:tip) do
+      Ioki::Model::Passenger::TipCreate.new(
+        amount:         100,
+        payment_method: {
+          payment_method_type: 'card',
+          id:                  'pam_1'
+        }
+      )
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/rides/RIDE_ID/tip')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_tip(ride, tip))
+        .to be_a Ioki::Model::Passenger::Tip
+    end
+  end
 end

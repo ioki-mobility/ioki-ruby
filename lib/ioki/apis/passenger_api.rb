@@ -169,6 +169,13 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::PersonalDiscountType
       ),
+      Endpoints::Create.new(
+        :tip,
+        base_path:            [API_BASE_PATH, 'rides', :id],
+        path:                 'tip',
+        model_class:          Ioki::Model::Passenger::Tip,
+        outgoing_model_class: Ioki::Model::Passenger::TipCreate
+      ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end
