@@ -182,6 +182,29 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 You can use `rake c` to start an interactive console. If you make code changes entering `reload!` in the console will load the current files again.
 
+## Release
+
+Change the version number in 'lib/ioki/version.rb' to `1.2.3`. We use semantic versioning: https://semver.org/
+
+Once this version number has been pushed to github, you have to tag that commit with the same version number. This can be done locally or on github.com when creating the release.
+
+### Create the tag locally
+
+Tag the commit in which you changed the version number and push it to github
+
+```
+git tag -a '1.2.3' 0000COMMITHASHID00000000COMMITHASHID0000 -m 'Releasing Version 1.2.3'
+git push --atomic origin main '1.2.3'
+```
+
+### Create the release
+
+How to create the release, with or without creating a tag on github is described here:
+
+https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+
+Please do make use of the release notes feature to automatically create a changelog.
+
 ## Testing
 
 ioki-ruby uses Faraday under the hood to make requests to the API.
