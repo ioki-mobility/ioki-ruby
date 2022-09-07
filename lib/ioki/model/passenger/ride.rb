@@ -46,6 +46,7 @@ module Ioki
         attribute :version, type: :integer, on: [:read, :update]
         attribute :fare, on: :read, type: :object, class_name: 'Fare'
         attribute :ticket, on: :read, type: :object, class_name: 'Ticket'
+        attribute :offered_solutions, on: :read, type: :array, class_name: 'OfferedSolution'
       end
     end
   end
