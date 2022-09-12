@@ -30,6 +30,8 @@ module Ioki
                   on:          :create,
                   unvalidated: true
 
+        attribute :solution_id, type: :string, on: :create, omit_if_nil_on: :create
+
         # The model does not return it but it's used when sending data to the server.
         attribute :payment_method,
                   type:           :object,
