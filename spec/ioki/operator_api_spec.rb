@@ -411,4 +411,94 @@ RSpec.describe Ioki::OperatorApi do
         .to eq(Ioki::Model::Operator::MatchingConfiguration.new)
     end
   end
+
+  describe '#task_lists(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists')
+        result_with_index_data
+      end
+
+      expect(operator_client.task_lists('0815', options))
+        .to eq([Ioki::Model::Operator::TaskList.new])
+    end
+  end
+
+  describe '#task_list(product_id, task_list_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.task_list('0815', '4711', options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
+    end
+  end
+
+  describe '#create_task_list(product_id, task_list)' do
+    let(:task_list) { Ioki::Model::Operator::TaskList.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_task_list('0815', task_list, options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
+    end
+  end
+
+  describe '#update_task_list(product_id, task_list)' do
+    let(:task_list) { Ioki::Model::Operator::TaskList.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_task_list('0815', task_list, options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
+    end
+  end
+
+  describe '#delete_task_list(product_id, task_list_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_task_list('0815', '4711', options))
+        .to eq(Ioki::Model::Operator::TaskList.new)
+    end
+  end
+
+  describe '#task_lists_reassign(product_id, task_list_id)' do
+    let(:options) do
+      {
+        body: {
+          'data' => {
+            'vehicle_id' => 'vehicle_123456'
+          }
+        }
+      }
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/reassign')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.task_lists_reassign('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::TaskList)
+    end
+  end
 end

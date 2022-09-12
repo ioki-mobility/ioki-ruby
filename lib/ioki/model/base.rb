@@ -90,6 +90,9 @@ module Ioki
       def type_cast_attribute_value(attribute, value)
         type = self.class.attribute_definitions.dig(attribute, :type)
         class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+
+        class_name = class_name_from_value_type(class_name, value)
+
         model_class = constantize_in_module(class_name)
 
         return value unless type
@@ -173,6 +176,23 @@ module Ioki
         return nil if Ioki::Support.blank?(class_name)
 
         self.class.module_parent.const_get class_name
+      end
+
+      def class_name_from_value_type(class_name, value)
+        return class_name unless class_name.is_a?(Array)
+        return nil if value.nil?
+
+        class_name_from_value_type = Support.camelize(value_type(value))
+
+        return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+
+        nil
+      end
+
+      def value_type(value)
+        return value.attributes[:type] if value.respond_to?(:attributes)
+
+        value['type']
       end
     end
   end
