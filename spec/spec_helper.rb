@@ -15,7 +15,6 @@ require 'helper/string_helper'
 require 'helper/client_helpers'
 require 'helper/openapi_matcher'
 require 'helper/define_attribute_matcher'
-require 'helper/dummy_class_helpers'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

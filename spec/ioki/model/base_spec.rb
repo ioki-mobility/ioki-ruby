@@ -570,6 +570,52 @@ RSpec.describe Ioki::Model::Base do
           expect(result.email).to eq('mail1@example.com')
         end
       end
+
+      describe 'with multiple class_names' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :attr, type: :object, class_name: %w[Station Place], on: :read
+          end
+        end
+
+        before do
+          Ioki::Model::Operator.const_set('ExampleObjectClassName', example_class)
+        end
+
+        after do
+          # To suppress "warning: already initialized constant"
+          Ioki::Model::Operator.send(:remove_const, 'ExampleObjectClassName')
+        end
+
+        it 'handles nil correctly' do
+          expect(model.type_cast_attribute_value(:attr, nil)).to be_nil
+        end
+
+        context 'when the value of type is not in the class_name array' do
+          it 'returns a hash' do
+            result = model.type_cast_attribute_value(:attr, { 'type' => 'user' } )
+            expect(result).to_not be_kind_of(Ioki::Model::Operator::User)
+            expect(result).to be_kind_of(Hash)
+            expect(result).to eq({ 'type' => 'user' })
+          end
+        end
+
+        context 'when the value of type is station' do
+          it 'returns a station model' do
+            result = model.type_cast_attribute_value(:attr, { 'type' => 'station' } )
+            expect(result).to be_kind_of(Ioki::Model::Operator::Station)
+            expect(result.type).to eq('station')
+          end
+        end
+
+        context 'when the value of type is place' do
+          it 'returns a place model' do
+            result = model.type_cast_attribute_value(:attr, { 'type' => 'place' } )
+            expect(result).to be_kind_of(Ioki::Model::Operator::Place)
+            expect(result.type).to eq('place')
+          end
+        end
+      end
     end
 
     describe 'type: :array' do

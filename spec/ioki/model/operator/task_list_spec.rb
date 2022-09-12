@@ -2,7 +2,7 @@
 
 RSpec.describe Ioki::Model::Operator::TaskList do
   let(:task_list) do
-    task_list_model.new(
+    described_class.new(
       {
         start_location: start_location_params,
         end_location:   end_location_params
@@ -50,18 +50,6 @@ RSpec.describe Ioki::Model::Operator::TaskList do
       expect(task_list.end_location.attributes[:lat]).to eq(end_location_params['lat'])
       expect(task_list.end_location.attributes[:lng]).to eq(end_location_params['lng'])
     end
-  end
-
-  dummy_class(:task_list_model, Ioki::Model::Operator, Ioki::Model::Base) do
-    attribute :start_location,
-              on:         [:create, :read, :update],
-              type:       :object,
-              class_name: %w[Place Station]
-
-    attribute :end_location,
-              on:         [:create, :read, :update],
-              type:       :object,
-              class_name: %w[Place Station]
   end
 
   describe 'defined attributes' do
