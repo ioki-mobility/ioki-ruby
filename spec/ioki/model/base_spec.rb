@@ -591,29 +591,23 @@ RSpec.describe Ioki::Model::Base do
           expect(model.type_cast_attribute_value(:attr, nil)).to be_nil
         end
 
-        context 'when the value of type is not in the class_name array' do
-          it 'returns a hash' do
-            result = model.type_cast_attribute_value(:attr, { 'type' => 'user' } )
-            expect(result).to_not be_kind_of(Ioki::Model::Operator::User)
-            expect(result).to be_kind_of(Hash)
-            expect(result).to eq({ 'type' => 'user' })
-          end
+        it 'returns a hash when value type is not in class_name array' do
+          result = model.type_cast_attribute_value(:attr, { 'type' => 'user' })
+          expect(result).not_to be_kind_of(Ioki::Model::Operator::User)
+          expect(result).to be_kind_of(Hash)
+          expect(result).to eq({ 'type' => 'user' })
         end
 
-        context 'when the value of type is station' do
-          it 'returns a station model' do
-            result = model.type_cast_attribute_value(:attr, { 'type' => 'station' } )
-            expect(result).to be_kind_of(Ioki::Model::Operator::Station)
-            expect(result.type).to eq('station')
-          end
+        it 'returns a station model when value type is station' do
+          result = model.type_cast_attribute_value(:attr, { 'type' => 'station' })
+          expect(result).to be_kind_of(Ioki::Model::Operator::Station)
+          expect(result.type).to eq('station')
         end
 
-        context 'when the value of type is place' do
-          it 'returns a place model' do
-            result = model.type_cast_attribute_value(:attr, { 'type' => 'place' } )
-            expect(result).to be_kind_of(Ioki::Model::Operator::Place)
-            expect(result.type).to eq('place')
-          end
+        it 'returns a place model when value type is place' do
+          result = model.type_cast_attribute_value(:attr, { 'type' => 'place' })
+          expect(result).to be_kind_of(Ioki::Model::Operator::Place)
+          expect(result.type).to eq('place')
         end
       end
     end
