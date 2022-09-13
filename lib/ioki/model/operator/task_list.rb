@@ -65,10 +65,10 @@ module Ioki
                   type: :boolean
 
         attribute :pauses,
-                  on: [:read, :create],
+                  on:               [:read, :create],
                   omit_if_blank_on: [:create],
-                  type: :array,
-                  class_name: 'Pause'
+                  type:             :array,
+                  class_name:       'Pause'
 
         attribute :planned_ends_at,
                   on:   :read,

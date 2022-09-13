@@ -71,7 +71,7 @@ module Ioki
         :pause,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::Pause
-      ),
+      )
     ].freeze
   end
 end
