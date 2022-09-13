@@ -66,7 +66,12 @@ module Ioki
         actions:     { 'reassign' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::TaskList
-      )
+      ),
+      Endpoints.crud_endpoints(
+        :pause,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Operator::Pause
+      ),
     ].freeze
   end
 end

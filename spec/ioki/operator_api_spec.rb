@@ -501,4 +501,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::TaskList)
     end
   end
+
+  describe '#pauses(product_id, task_list_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/pauses')
+        result_with_index_data
+      end
+
+      expect(operator_client.pauses('0815', '4711', options))
+        .to eq([Ioki::Model::Operator::Pause.new])
+    end
+  end
+
+  describe '#pause(product_id, task_list_id, pause_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/pauses/5105')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.pause('0815', '4711', '5105', options))
+        .to eq(Ioki::Model::Operator::Pause.new)
+    end
+  end
+
+  describe '#create_pause(product_id, task_list_id, pause)' do
+    let(:pause) { Ioki::Model::Operator::Pause.new({ id: '5105' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/pauses')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_pause('0815', '4711', pause, options))
+        .to eq(Ioki::Model::Operator::Pause.new)
+    end
+  end
+
+  describe '#update_pause(product_id, task_list_id, pause)' do
+    let(:pause) { Ioki::Model::Operator::Pause.new({ id: '5105' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/pauses/5105')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_pause('0815', '4711', pause, options))
+        .to eq(Ioki::Model::Operator::Pause.new)
+    end
+  end
+
+  describe '#delete_pause(product_id, task_list_id, pause_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/pauses/5105')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_pause('0815', '4711', '5105', options))
+        .to eq(Ioki::Model::Operator::Pause.new)
+    end
+  end
 end
