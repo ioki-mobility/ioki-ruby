@@ -30,7 +30,7 @@ module Ioki
 
         attribute :ends_at,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
+                  omit_if_nil_on: [:read, :update],
                   type:           :date_time
 
         attribute :place,
@@ -40,7 +40,7 @@ module Ioki
 
         attribute :place_id,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
+                  omit_if_nil_on: [:create, :read, :update],
                   type:           :string
 
         attribute :planned_ends_at,
@@ -52,12 +52,13 @@ module Ioki
                   type: :date_time
 
         attribute :preserve_duration,
-                  on:   [:create, :read, :update],
-                  type: :boolean
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :read, :update],
+                  type:           :boolean
 
         attribute :starts_at,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
+                  omit_if_nil_on: [:read, :update],
                   type:           :date_time
       end
     end
