@@ -40,8 +40,9 @@ module Ioki
                   type:           :string
 
         attribute :fuel_type,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :last_known_position,
                   on:         :read,
@@ -49,8 +50,9 @@ module Ioki
                   class_name: 'VehiclePosition'
 
         attribute :license_plate,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :manufacturer,
                   on:             [:create, :read, :update],
@@ -63,8 +65,9 @@ module Ioki
                   type:           :string
 
         attribute :nickname,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :phone_number,
                   on:   [:create, :read, :update],
