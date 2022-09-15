@@ -29,8 +29,9 @@ module Ioki
                   type: :date_time
 
         attribute :ad_hoc_bookable,
-                  on:   [:create, :read, :update],
-                  type: :boolean
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
 
         attribute :deactivated,
                   on:   :read,
@@ -42,33 +43,32 @@ module Ioki
                   class_name: %w[Place Station]
 
         attribute :end_location_id,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
-                  type:           :string
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :end_location_type,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
-                  type:           :string
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :ends_at,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
+                  omit_if_nil_on: [:create, :update],
                   type:           :date_time
 
         attribute :matching_configuration_id,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :paused,
                   on:   :read,
                   type: :boolean
 
         attribute :pauses,
-                  on:               [:read, :create],
-                  omit_if_blank_on: [:create],
-                  type:             :array,
-                  class_name:       'Pause'
+                  on:             [:read, :create],
+                  omit_if_nil_on: [:create],
+                  type:           :array,
+                  class_name:     'Pause'
 
         attribute :planned_ends_at,
                   on:   :read,
@@ -79,8 +79,9 @@ module Ioki
                   type: :date_time
 
         attribute :prebookable,
-                  on:   [:create, :read, :update],
-                  type: :boolean
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
 
         attribute :start_location,
                   on:         :read,
@@ -89,30 +90,28 @@ module Ioki
 
         attribute :start_location_id,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
+                  omit_if_nil_on: [:create, :update],
                   type:           :string
 
         attribute :start_location_type,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: :read,
-                  type:             :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :starts_at,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: :read,
+                  omit_if_nil_on: [:create, :update],
                   type:           :date_time
 
         attribute :state,
-                  on:   [:create, :read, :update],
-                  type: :string
-
-        attribute :state_options,
-                  on:   :read,
-                  type: :array
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :vehicle_id,
-                  on:   [:create, :read, :reassign],
-                  type: :string
+                  on:             [:create, :read, :reassign],
+                  omit_if_nil_on: [:create, :reassign],
+                  type:           :string
       end
     end
   end
