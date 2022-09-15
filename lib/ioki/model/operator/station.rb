@@ -25,24 +25,20 @@ module Ioki
                   type: :boolean
 
         attribute :boarding_time,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :integer
+                  on:   [:read, :create, :update],
+                  type: :integer
 
         attribute :city,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :country,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :county,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :deactivations,
                   on:         :read,
@@ -50,70 +46,66 @@ module Ioki
                   class_name: 'Deactivation'
 
         attribute :description,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :dhid,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :fixed,
                   on:   :read,
                   type: :boolean
 
         attribute :lat,
-                  on:   [:read, :create, :update],
-                  type: :float
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :float
 
         attribute :lng,
-                  on:   [:read, :create, :update],
-                  type: :float
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :float
 
         attribute :location_name,
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
+
+        attribute :parking_time,
+                  on:   [:read, :create, :update],
+                  type: :integer
+
+        attribute :postal_code,
                   on:   [:read, :create, :update],
                   type: :string
 
-        attribute :parking_time,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :integer
-
-        attribute :postal_code,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
-
         attribute :station_type,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :street_name,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :street_number,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :tariff_codes,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :array
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :array
 
         attribute :walker_boarding_time,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :integer
+                  on:   [:read, :create, :update],
+                  type: :integer
 
         attribute :wheelchair_boarding_time,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :integer
+                  on:   [:read, :create, :update],
+                  type: :integer
       end
     end
   end
