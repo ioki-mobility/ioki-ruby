@@ -29,37 +29,35 @@ module Ioki
                   type: :string
 
         attribute :first_name,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :last_name,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :locale,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: [:create, :read],
-                  type:             :string
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :locked_at,
                   on:   :read,
                   type: :date_time
 
         attribute :phone_number,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: [:create, :read],
-                  type:             :string
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :pin,
                   on:   :read,
                   type: :string
 
         attribute :username,
-                  on:               [:create, :read, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :version,
                   on:   :read,
