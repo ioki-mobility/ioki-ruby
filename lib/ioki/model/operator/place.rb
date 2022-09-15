@@ -25,28 +25,33 @@ module Ioki
                   type: :string
 
         attribute :description,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :lat,
-                  on:   [:create, :read, :update],
-                  type: :float
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :float
 
         attribute :lng,
-                  on:   [:create, :read, :update],
-                  type: :float
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :float
 
         attribute :location_name,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :postal_code,
                   on:   [:create, :read, :update],
                   type: :string
 
         attribute :slug,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :street_name,
                   on:   [:create, :read, :update],
