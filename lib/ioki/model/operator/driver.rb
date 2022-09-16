@@ -39,8 +39,10 @@ module Ioki
                   type:           :string
 
         attribute :locale,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:               [:create, :read, :update],
+                  omit_if_nil_on:   [:create, :update],
+                  omit_if_blank_on: [:create, :update],
+                  type:             :string
 
         attribute :locked_at,
                   on:   :read,
