@@ -68,6 +68,7 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     it { is_expected.to define_attribute(:ends_at).as(:date_time) }
     it { is_expected.to define_attribute(:matching_configuration_id).as(:string) }
     it { is_expected.to define_attribute(:paused).as(:boolean) }
+    it { is_expected.to define_attribute(:pauses).as(:array).with(class_name: 'Pause') }
     it { is_expected.to define_attribute(:planned_ends_at).as(:date_time) }
     it { is_expected.to define_attribute(:planned_starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:prebookable).as(:boolean) }
