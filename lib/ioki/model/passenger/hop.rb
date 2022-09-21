@@ -8,8 +8,10 @@ module Ioki
         attribute :duration, on: :read, type: :integer
         attribute :track, on: :read, type: :string
         attribute :transport_mode, on: :read, type: :string
-        attribute :from, on: :read, type: :object, class_name: 'CalculatedPoint'
-        attribute :to, on: :read, type: :object, class_name: 'CalculatedPoint'
+        attribute :from, on: :read, type: :object,
+          class_name: ['CalculatedPoint', 'RequestedPoint', 'PublicTransportStop']
+        attribute :to, on: :read, type: :object,
+          class_name: ['CalculatedPoint', 'RequestedPoint', 'PublicTransportStop']
         attribute :vehicle, on: :read, type: :object, class_name: 'Vehicle'
         attribute :details, on: :read, type: :object, class_name: 'HopDetails'
       end
