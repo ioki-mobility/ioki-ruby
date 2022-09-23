@@ -14,7 +14,7 @@ module Ioki
 
         attribute :created_at,
                   on:   :read,
-                  type: :date_time 
+                  type: :date_time
 
         attribute :updated_at,
                   on:   :read,
@@ -153,7 +153,7 @@ module Ioki
                   type: :date_time
 
         attribute :valid_for_passenger_until,
-                  on: :read,
+                  on:   :read,
                   type: :date_time
 
         attribute :vehicle_id,
