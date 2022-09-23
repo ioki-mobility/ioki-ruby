@@ -6,7 +6,9 @@ module Ioki
       class Route < Base
         unvalidated true # No specification available
 
-        attribute :track, type: :string, on: :read
+        attribute :track,
+                  on:   :read,
+                  type: :string
       end
     end
   end
