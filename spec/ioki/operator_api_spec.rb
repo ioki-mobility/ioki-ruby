@@ -32,7 +32,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.products(options))
-        .to eq([Ioki::Model::Operator::Product.new])
+        .to all(be_a(Ioki::Model::Operator::Product))
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.product('0815', options))
-        .to eq(Ioki::Model::Operator::Product.new)
+        .to be_a(Ioki::Model::Operator::Product)
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.vehicles('0815', options))
-        .to eq([Ioki::Model::Operator::Vehicle.new])
+        .to all(be_a(Ioki::Model::Operator::Vehicle))
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.vehicle('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Vehicle.new)
+        .to be_a(Ioki::Model::Operator::Vehicle)
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_vehicle('0815', vehicle, options))
-        .to eq(Ioki::Model::Operator::Vehicle.new)
+        .to be_a(Ioki::Model::Operator::Vehicle)
     end
   end
 
@@ -98,7 +98,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_vehicle('0815', vehicle, options))
-        .to eq(Ioki::Model::Operator::Vehicle.new)
+        .to be_a(Ioki::Model::Operator::Vehicle)
     end
   end
 
@@ -111,7 +111,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_vehicle('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Vehicle.new)
+        .to be_a(Ioki::Model::Operator::Vehicle)
     end
   end
 
@@ -123,7 +123,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.drivers('0815', options))
-        .to eq([Ioki::Model::Operator::Driver.new])
+        .to all(be_a(Ioki::Model::Operator::Driver))
     end
   end
 
@@ -135,7 +135,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.driver('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Driver.new)
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -150,7 +150,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_driver('0815', driver, options))
-        .to eq(Ioki::Model::Operator::Driver.new)
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -165,7 +165,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_driver('0815', driver, options))
-        .to eq(Ioki::Model::Operator::Driver.new)
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -178,7 +178,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_driver('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Driver.new)
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -190,7 +190,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.drivers_lock('0815', '4711')).to be_a(Ioki::Model::Operator::Driver)
+      expect(operator_client.drivers_lock('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -202,7 +203,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.drivers_unlock('0815', '4711')).to be_a(Ioki::Model::Operator::Driver)
+      expect(operator_client.drivers_unlock('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -214,7 +216,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.drivers_regenerate_pin('0815', '4711')).to be_a(Ioki::Model::Operator::Driver)
+      expect(operator_client.drivers_regenerate_pin('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -226,7 +229,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.drivers_set_pin('0815', '4711', '123456')).to be_a(Ioki::Model::Operator::Driver)
+      expect(operator_client.drivers_set_pin('0815', '4711', '123456'))
+        .to be_a(Ioki::Model::Operator::Driver)
     end
   end
 
@@ -238,7 +242,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.places('0815', options))
-        .to eq([Ioki::Model::Operator::Place.new])
+        .to all(be_a(Ioki::Model::Operator::Place))
     end
   end
 
@@ -250,7 +254,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.place('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Place.new)
+        .to be_a(Ioki::Model::Operator::Place)
     end
   end
 
@@ -265,7 +269,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_place('0815', place, options))
-        .to eq(Ioki::Model::Operator::Place.new)
+        .to be_a(Ioki::Model::Operator::Place)
     end
   end
 
@@ -280,7 +284,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_place('0815', place, options))
-        .to eq(Ioki::Model::Operator::Place.new)
+        .to be_a(Ioki::Model::Operator::Place)
     end
   end
 
@@ -293,7 +297,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_place('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Place.new)
+        .to be_a(Ioki::Model::Operator::Place)
     end
   end
 
@@ -305,7 +309,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.stations('0815', options))
-        .to eq([Ioki::Model::Operator::Station.new])
+        .to all(be_a(Ioki::Model::Operator::Station))
     end
   end
 
@@ -317,7 +321,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.station('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Station.new)
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
@@ -332,7 +336,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_station('0815', station, options))
-        .to eq(Ioki::Model::Operator::Station.new)
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
@@ -347,7 +351,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_station('0815', station, options))
-        .to eq(Ioki::Model::Operator::Station.new)
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
@@ -360,7 +364,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_station('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Station.new)
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
@@ -372,7 +376,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.stations_fix('0815', '4711')).to be_a(Ioki::Model::Operator::Station)
+      expect(operator_client.stations_fix('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
@@ -384,7 +389,8 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.stations_unfix('0815', '4711')).to be_a(Ioki::Model::Operator::Station)
+      expect(operator_client.stations_unfix('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
@@ -396,7 +402,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.matching_configurations('0815', options))
-        .to eq([Ioki::Model::Operator::MatchingConfiguration.new])
+        .to all(be_a(Ioki::Model::Operator::MatchingConfiguration))
     end
   end
 
@@ -408,7 +414,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.matching_configuration('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::MatchingConfiguration.new)
+        .to be_a(Ioki::Model::Operator::MatchingConfiguration)
     end
   end
 
@@ -420,7 +426,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.task_lists('0815', options))
-        .to eq([Ioki::Model::Operator::TaskList.new])
+        .to all(be_a(Ioki::Model::Operator::TaskList))
     end
   end
 
@@ -432,7 +438,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.task_list('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::TaskList.new)
+        .to be_a(Ioki::Model::Operator::TaskList)
     end
   end
 
@@ -447,7 +453,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_task_list('0815', task_list, options))
-        .to eq(Ioki::Model::Operator::TaskList.new)
+        .to be_a(Ioki::Model::Operator::TaskList)
     end
   end
 
@@ -462,7 +468,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_task_list('0815', task_list, options))
-        .to eq(Ioki::Model::Operator::TaskList.new)
+        .to be_a(Ioki::Model::Operator::TaskList)
     end
   end
 
@@ -475,7 +481,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_task_list('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::TaskList.new)
+        .to be_a(Ioki::Model::Operator::TaskList)
     end
   end
 
@@ -510,7 +516,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.pauses('0815', '4711', options))
-        .to eq([Ioki::Model::Operator::Pause.new])
+        .to all(be_a(Ioki::Model::Operator::Pause))
     end
   end
 
@@ -522,7 +528,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.pause('0815', '4711', '5105', options))
-        .to eq(Ioki::Model::Operator::Pause.new)
+        .to be_a(Ioki::Model::Operator::Pause)
     end
   end
 
@@ -537,7 +543,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_pause('0815', '4711', pause, options))
-        .to eq(Ioki::Model::Operator::Pause.new)
+        .to be_a(Ioki::Model::Operator::Pause)
     end
   end
 
@@ -552,7 +558,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_pause('0815', '4711', pause, options))
-        .to eq(Ioki::Model::Operator::Pause.new)
+        .to be_a(Ioki::Model::Operator::Pause)
     end
   end
 
@@ -565,7 +571,31 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_pause('0815', '4711', '5105', options))
-        .to eq(Ioki::Model::Operator::Pause.new)
+        .to be_a(Ioki::Model::Operator::Pause)
+    end
+  end
+
+  describe '#rides(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/rides')
+        result_with_index_data
+      end
+
+      expect(operator_client.rides('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Ride))
+    end
+  end
+
+  describe '#ride(product_id, ride_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/rides/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.ride('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Ride)
     end
   end
 end
