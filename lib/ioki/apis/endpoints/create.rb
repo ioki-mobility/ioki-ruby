@@ -23,7 +23,7 @@ module Ioki
       end
 
       def full_path
-        base_path + [resource_path_name]
+        (base_path + [resource_path_name]).flatten
       end
 
       def call(client, model, args = [], options = {})

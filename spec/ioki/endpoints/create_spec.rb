@@ -45,4 +45,15 @@ RSpec.describe Ioki::Endpoints::Create do
       end
     end
   end
+
+  it 'supports an array as a path' do
+    endpoint = described_class.new(
+      'ride',
+      base_path:   ['passenger'],
+      path:        ['rides', 'current'],
+      model_class: model_class
+    )
+
+    expect(endpoint.full_path).to eq(['passenger', 'rides', 'current'])
+  end
 end
