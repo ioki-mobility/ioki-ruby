@@ -24,6 +24,14 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
+        attribute :country,
+                  on:   [:read, :create, :update],
+                  type: :string
+
+        attribute :county,
+                  on:   [:read, :create, :update],
+                  type: :string
+
         attribute :description,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
