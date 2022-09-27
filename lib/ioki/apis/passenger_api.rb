@@ -122,14 +122,14 @@ module Ioki
       Endpoints::Create.new(
         :logpay_customer,
         base_path:            [API_BASE_PATH],
-        path:                 'logpay/customer',
+        path:                 ['logpay', 'customer'],
         model_class:          Ioki::Model::Passenger::LogpayUrl,
         outgoing_model_class: Ioki::Model::Passenger::LogpayCustomer
       ),
       Endpoints::Create.new(
         :logpay_payment_method,
         base_path:            [API_BASE_PATH],
-        path:                 'logpay/payment_method',
+        path:                 ['logpay', 'payment_method'],
         model_class:          Ioki::Model::Passenger::LogpayUrl,
         outgoing_model_class: Ioki::Model::Passenger::LogpayPaymentMethod
       ),
