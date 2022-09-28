@@ -8,6 +8,12 @@ module Ioki
     API_BASE_PATH = 'operator'
     ENDPOINTS = [
       Endpoints.crud_endpoints(
+        :provider,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::Provider,
+        except:      [:create, :update, :delete]
+      ),
+      Endpoints.crud_endpoints(
         :product,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Operator::Product,

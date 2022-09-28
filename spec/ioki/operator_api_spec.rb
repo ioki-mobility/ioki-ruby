@@ -24,6 +24,30 @@ RSpec.describe Ioki::OperatorApi do
   let(:full_response) { instance_double(Faraday::Response, 'full_response', headers: {}) }
   let(:options) { { options: :example } }
 
+  describe '#providers' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers')
+        result_with_index_data
+      end
+
+      expect(operator_client.providers(options))
+        .to eq([Ioki::Model::Operator::Provider.new])
+    end
+  end
+
+  describe '#provider(id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.provider('0815', options))
+        .to eq(Ioki::Model::Operator::Provider.new)
+    end
+  end
+
   describe '#products' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
