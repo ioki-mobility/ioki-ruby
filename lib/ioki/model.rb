@@ -25,7 +25,7 @@ Dir[File.join(__dir__, 'model', 'webhooks', '*')].reject do |filename|
 end.sort.each { |file| require file }
 Dir[File.join(__dir__, 'model', 'reporting', '*')].reject do |filename|
   filename == File.join(__dir__, 'model', 'reporting', 'base.rb')
-end
+end.sort.each { |file| require file }
 
 module Ioki
   module Model
