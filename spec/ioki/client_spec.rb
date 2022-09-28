@@ -19,7 +19,7 @@ RSpec.describe Ioki::Client do
   let(:stubs) { Faraday::Adapter::Test::Stubs.new }
 
   describe 'constants' do
-    it { expect(described_class::VALID_API_NAMESPACES).to eq([:driver, :operator, :passenger, :platform]) }
+    it { expect(described_class::VALID_API_NAMESPACES).to eq([:driver, :operator, :passenger, :platform, :reporting]) }
   end
 
   describe 'initializiation and configuration:' do

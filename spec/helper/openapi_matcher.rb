@@ -6,7 +6,8 @@ API_SPECIFICATION_PATHS = {
   platform_api:  'spec/fixtures/open_api_definitions/platform_api.json',
   passenger_api: 'spec/fixtures/open_api_definitions/passenger_api.json',
   driver_api:    'spec/fixtures/open_api_definitions/driver_api.json',
-  webhooks_api:  'spec/fixtures/open_api_definitions/webhooks_api.json'
+  webhooks_api:  'spec/fixtures/open_api_definitions/webhooks_api.json',
+  reporting_api: 'spec/fixtures/open_api_definitions/reporting_api.json'
 }.freeze
 
 API_SPECIFICATIONS =

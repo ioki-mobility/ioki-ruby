@@ -5,6 +5,7 @@ require 'ioki/model/driver/base'
 require 'ioki/model/operator/base'
 require 'ioki/model/passenger/base'
 require 'ioki/model/platform/base'
+require 'ioki/model/reporting/base'
 require 'ioki/model/webhooks/base'
 
 Dir[File.join(__dir__, 'model', 'platform', '*')].reject do |filename|
@@ -22,6 +23,9 @@ end.sort.each { |file| require file }
 Dir[File.join(__dir__, 'model', 'webhooks', '*')].reject do |filename|
   filename == File.join(__dir__, 'model', 'webhooks', 'base.rb')
 end.sort.each { |file| require file }
+Dir[File.join(__dir__, 'model', 'reporting', '*')].reject do |filename|
+  filename == File.join(__dir__, 'model', 'reporting', 'base.rb')
+end
 
 module Ioki
   module Model
