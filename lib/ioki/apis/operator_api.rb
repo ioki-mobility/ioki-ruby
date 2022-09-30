@@ -88,11 +88,11 @@ module Ioki
         :task_list_deactivation,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         paths:       {
-          show:  'deactivation',
-          index: 'deactivations',
+          show:   'deactivations',
+          index:  'deactivations',
           create: 'deactivations',
-          update: 'deactivation',
-          delete: 'deactivation'
+          update: 'deactivations',
+          delete: 'deactivations'
         },
         model_class: Ioki::Model::Operator::Deactivation
       )
