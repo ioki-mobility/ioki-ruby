@@ -25,7 +25,7 @@ module Ioki
                   type: :date_time
 
         attribute :starts_at,
-                  on:   [:create, :read, :update]
+                  on:   [:create, :read, :update],
                   type: :date_time
       end
     end
