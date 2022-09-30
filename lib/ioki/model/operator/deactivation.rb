@@ -22,12 +22,12 @@ module Ioki
 
         attribute :ends_at,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :udpate],
+                  omit_if_nil_on: [:create, :update],
                   type:           :date_time
 
         attribute :starts_at,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :udpate],
+                  omit_if_nil_on: [:create, :update],
                   type:           :date_time
       end
     end
