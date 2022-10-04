@@ -631,7 +631,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.task_list_deactivations('0815', '4711', options))
-        .to all(be_a(Ioki::Model::Operator::Deactivation.new))
+        .to all(be_a(Ioki::Model::Operator::Deactivation))
     end
   end
 
