@@ -623,7 +623,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#deactivations(product_id, task_list_id)' do
+  describe '#task_list_deactivations(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/deactivations')
@@ -631,11 +631,11 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.task_list_deactivations('0815', '4711', options))
-        .to eq([Ioki::Model::Operator::Deactivation.new])
+        .to all(be_a(Ioki::Model::Operator::Deactivation.new))
     end
   end
 
-  describe '#deactivation(product_id, task_list_id, deactivation_id)' do
+  describe '#task_list_deactivation(product_id, task_list_id, deactivation_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/deactivations/5105')
@@ -643,7 +643,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.task_list_deactivation('0815', '4711', '5105', options))
-        .to eq(Ioki::Model::Operator::Deactivation.new)
+        .to be_a(Ioki::Model::Operator::Deactivation)
     end
   end
 
@@ -658,7 +658,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_task_list_deactivation('0815', '4711', deactivation, options))
-        .to eq(Ioki::Model::Operator::Deactivation.new)
+        .to be_a(Ioki::Model::Operator::Deactivation)
     end
   end
 
@@ -673,7 +673,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_task_list_deactivation('0815', '4711', deactivation, options))
-        .to eq(Ioki::Model::Operator::Deactivation.new)
+        .to be_a(Ioki::Model::Operator::Deactivation)
     end
   end
 
@@ -686,7 +686,74 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_task_list_deactivation('0815', '4711', '5105', options))
-        .to eq(Ioki::Model::Operator::Deactivation.new)
+        .to be_a(Ioki::Model::Operator::Deactivation)
+    end
+  end
+
+  describe '#station_deactivations(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/deactivations')
+        result_with_index_data
+      end
+
+      expect(operator_client.station_deactivations('0815', '4711', options))
+        .to all(be_a(Ioki::Model::Operator::Deactivation))
+    end
+  end
+
+  describe '#station_deactivation(product_id, station_id, deactivation_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/deactivations/5105')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.station_deactivation('0815', '4711', '5105', options))
+        .to be_a(Ioki::Model::Operator::Deactivation)
+    end
+  end
+
+  describe '#create_station_deactivation(product_id, station_id, deactivation)' do
+    let(:deactivation) { Ioki::Model::Operator::Deactivation.new({ id: '5105' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/deactivations')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_station_deactivation('0815', '4711', deactivation, options))
+        .to be_a(Ioki::Model::Operator::Deactivation)
+    end
+  end
+
+  describe '#update_station_deactivation(product_id, station_id, deactivation)' do
+    let(:deactivation) { Ioki::Model::Operator::Deactivation.new({ id: '5105' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/deactivations/5105')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_station_deactivation('0815', '4711', deactivation, options))
+        .to be_a(Ioki::Model::Operator::Deactivation)
+    end
+  end
+
+  describe '#delete_station_deactivation(product_id, station_id, deactivation_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/deactivations/5105')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_station_deactivation('0815', '4711', '5105', options))
+        .to be_a(Ioki::Model::Operator::Deactivation)
     end
   end
 end
