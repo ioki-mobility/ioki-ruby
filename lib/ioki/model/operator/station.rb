@@ -81,6 +81,10 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
+        attribute :station_category_id,
+                  on:   [:create, :update, :read],
+                  type: :string
+
         attribute :station_type,
                   on:             [:read, :create, :update],
                   omit_if_nil_on: [:create, :update],
