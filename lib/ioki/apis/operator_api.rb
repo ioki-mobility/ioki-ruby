@@ -77,6 +77,12 @@ module Ioki
         :pause,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::Pause
+      ),
+      Endpoints.crud_endpoints(
+        :ride,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Ride,
+        except:      [:create, :update, :delete]
       )
     ].freeze
   end

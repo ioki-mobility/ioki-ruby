@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class Booking < Base
+      class CancellationStatement < Base
         attribute :type,
                   on:   :read,
                   type: :string
@@ -20,7 +20,15 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :verification_code,
+        attribute :group,
+                  on:   :read,
+                  type: :string
+
+        attribute :identifier,
+                  on:   :read,
+                  type: :string
+
+        attribute :title,
                   on:   :read,
                   type: :string
       end
