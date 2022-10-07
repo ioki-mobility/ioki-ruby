@@ -32,7 +32,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.providers(options))
-        .to eq([Ioki::Model::Operator::Provider.new])
+        .to all(be_a(Ioki::Model::Operator::Provider))
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.provider('0815', options))
-        .to eq(Ioki::Model::Operator::Provider.new)
+        .to be_a(Ioki::Model::Operator::Provider)
     end
   end
 
