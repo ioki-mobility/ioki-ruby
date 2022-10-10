@@ -83,6 +83,30 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Ride,
         except:      [:create, :update, :delete]
+      ),
+      Endpoints.crud_endpoints(
+        :task_list_deactivation,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        paths:       {
+          show:   'deactivations',
+          index:  'deactivations',
+          create: 'deactivations',
+          update: 'deactivations',
+          delete: 'deactivations'
+        },
+        model_class: Ioki::Model::Operator::Deactivation
+      ),
+      Endpoints.crud_endpoints(
+        :station_deactivation,
+        base_path:   [API_BASE_PATH, 'products', :id, 'stations', :id],
+        paths:       {
+          show:   'deactivations',
+          index:  'deactivations',
+          create: 'deactivations',
+          update: 'deactivations',
+          delete: 'deactivations'
+        },
+        model_class: Ioki::Model::Operator::Deactivation
       )
     ].freeze
   end
