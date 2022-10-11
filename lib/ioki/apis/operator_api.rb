@@ -124,6 +124,12 @@ module Ioki
         :station_categories,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::StationCategory
+      ),
+      Endpoints.crud_endpoints(
+        :driver_vehicle_connection,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::DriverVehicleConnection,
+        except:      [:update]
       )
     ].freeze
   end
