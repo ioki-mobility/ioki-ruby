@@ -824,7 +824,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-    describe '#driver_vehicle_connections(product_id, driver_vehicle_connection_id)' do
+  describe '#driver_vehicle_connections(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/driver_vehicle_connections')
@@ -848,7 +848,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#create_driver_vehicle_connection(product_id, driver_vehicle_connection_id)' do
+  describe '#create_driver_vehicle_connection(product_id, driver_id, vehicle_id)' do
     let(:driver_vehicle_connection) { Ioki::Model::Operator::DriverVehicleConnection.new({ id: '5105' }) }
 
     it 'calls request on the client with expected params' do
