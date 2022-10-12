@@ -875,4 +875,80 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::DriverVehicleConnection)
     end
   end
+
+  describe '#tasks(product_id, task_list_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks')
+        result_with_index_data
+      end
+
+      expect(operator_client.tasks('0815', '4711', options))
+        .to all(be_a(Ioki::Model::Operator::Task))
+    end
+  end
+
+  describe '#task(product_id, task_list_id, task_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.task('0815', '4711', '5105', options))
+        .to be_a(Ioki::Model::Operator::Task)
+    end
+  end
+
+  describe '#tasks_confirmation(product_id, task_list_id, task_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/confirmation')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.tasks_confirmation('0815', '4711', '5105'))
+        .to be_a(Ioki::Model::Operator::Task)
+    end
+  end
+
+  describe '#tasks_completion(product_id, task_list_id, task_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/completion')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.tasks_completion('0815', '4711', '5105'))
+        .to be_a(Ioki::Model::Operator::Task)
+    end
+  end
+
+  describe '#tasks_rejection(product_id, task_list_id, task_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/rejection')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.tasks_rejection('0815', '4711', '5105'))
+        .to be_a(Ioki::Model::Operator::Task)
+    end
+  end
+
+  describe '#tasks_cancellation(product_id, task_list_id, task_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/cancellation')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.tasks_cancellation('0815', '4711', '5105'))
+        .to be_a(Ioki::Model::Operator::Task)
+    end
+  end
 end
