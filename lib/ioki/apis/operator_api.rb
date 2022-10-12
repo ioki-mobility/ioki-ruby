@@ -140,10 +140,10 @@ module Ioki
       Endpoints.custom_endpoints(
         'tasks',
         actions:     {
-          'confirmation' => :patch,
-          'completion'   => :patch,
-          'rejection'    => :patch,
-          'cancellation' => :patch
+          'confirmation' => :post,
+          'completion'   => :post,
+          'rejection'    => :post,
+          'cancellation' => :post
         },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id, 'tasks', :id],
         model_class: Ioki::Model::Operator::Task

@@ -904,7 +904,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/confirmation')
-        expect(params[:method]).to eq(:patch)
+        expect(params[:method]).to eq(:post)
         result_with_data
       end
 
@@ -917,7 +917,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/completion')
-        expect(params[:method]).to eq(:patch)
+        expect(params[:method]).to eq(:post)
         result_with_data
       end
 
@@ -930,7 +930,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/rejection')
-        expect(params[:method]).to eq(:patch)
+        expect(params[:method]).to eq(:post)
         result_with_data
       end
 
@@ -943,7 +943,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/tasks/5105/cancellation')
-        expect(params[:method]).to eq(:patch)
+        expect(params[:method]).to eq(:post)
         result_with_data
       end
 
