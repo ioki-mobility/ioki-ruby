@@ -130,6 +130,23 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::DriverVehicleConnection,
         except:      [:update]
+      ),
+      Endpoints.crud_endpoints(
+        :task,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Operator::Task,
+        except:      [:create, :update, :delete]
+      ),
+      Endpoints.custom_endpoints(
+        'tasks',
+        actions:     {
+          'confirmation' => :post,
+          'completion'   => :post,
+          'rejection'    => :post,
+          'cancellation' => :post
+        },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id, 'tasks', :id],
+        model_class: Ioki::Model::Operator::Task
       )
     ].freeze
   end
