@@ -823,4 +823,56 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::StationCategory)
     end
   end
+
+  describe '#driver_vehicle_connections(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_vehicle_connections')
+        result_with_index_data
+      end
+
+      expect(operator_client.driver_vehicle_connections('0815', options))
+        .to all(be_a(Ioki::Model::Operator::DriverVehicleConnection))
+    end
+  end
+
+  describe '#driver_vehicle_connection(product_id, driver_vehicle_connection_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_vehicle_connections/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.driver_vehicle_connection('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::DriverVehicleConnection)
+    end
+  end
+
+  describe '#create_driver_vehicle_connection(product_id, driver_id, vehicle_id)' do
+    let(:driver_vehicle_connection) { Ioki::Model::Operator::DriverVehicleConnection.new({ id: '5105' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_vehicle_connections')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_driver_vehicle_connection('0815', driver_vehicle_connection, options))
+        .to be_a(Ioki::Model::Operator::DriverVehicleConnection)
+    end
+  end
+
+  describe '#delete_driver_vehicle_connection(product_id, driver_vehicle_connection_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_vehicle_connections/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_driver_vehicle_connection('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::DriverVehicleConnection)
+    end
+  end
 end
