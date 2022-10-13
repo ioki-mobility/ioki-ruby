@@ -107,6 +107,23 @@ module Ioki
           delete: 'deactivations'
         },
         model_class: Ioki::Model::Operator::Deactivation
+      ),
+      Endpoints.crud_endpoints(
+        :station_category,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        paths:       {
+          show:   'station_categories',
+          create: 'station_categories',
+          update: 'station_categories',
+          delete: 'station_categories'
+        },
+        model_class: Ioki::Model::Operator::StationCategory,
+        except:      [:index]
+      ),
+      Endpoints::Index.new(
+        :station_categories,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::StationCategory
       )
     ].freeze
   end

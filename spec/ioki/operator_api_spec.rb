@@ -32,7 +32,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.providers(options))
-        .to eq([Ioki::Model::Operator::Provider.new])
+        .to all(be_a(Ioki::Model::Operator::Provider))
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.provider('0815', options))
-        .to eq(Ioki::Model::Operator::Provider.new)
+        .to be_a(Ioki::Model::Operator::Provider)
     end
   end
 
@@ -754,6 +754,73 @@ RSpec.describe Ioki::OperatorApi do
 
       expect(operator_client.delete_station_deactivation('0815', '4711', '5105', options))
         .to be_a(Ioki::Model::Operator::Deactivation)
+    end
+  end
+
+  describe '#station_categories(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/station_categories')
+        result_with_index_data
+      end
+
+      expect(operator_client.station_categories('0815', options))
+        .to all(be_a(Ioki::Model::Operator::StationCategory))
+    end
+  end
+
+  describe '#station_category(product_id, station_category_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/station_categories/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.station_category('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::StationCategory)
+    end
+  end
+
+  describe '#create_station_category(product_id, station_category)' do
+    let(:station_category) { Ioki::Model::Operator::StationCategory.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/station_categories')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_station_category('0815', station_category, options))
+        .to be_a(Ioki::Model::Operator::StationCategory)
+    end
+  end
+
+  describe '#update_station_category(product_id, station_category)' do
+    let(:station_category) { Ioki::Model::Operator::StationCategory.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/station_categories/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_station_category('0815', station_category, options))
+        .to be_a(Ioki::Model::Operator::StationCategory)
+    end
+  end
+
+  describe '#delete_station_category(product_id, station_category_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/station_categories/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_station_category('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::StationCategory)
     end
   end
 end
