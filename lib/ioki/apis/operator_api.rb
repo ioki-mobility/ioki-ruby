@@ -147,6 +147,17 @@ module Ioki
         },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id, 'tasks', :id],
         model_class: Ioki::Model::Operator::Task
+      ),
+      Endpoints.crud_endpoints(
+        :rating,
+        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
+        paths:       {
+          create: 'rating',
+          update: 'rating',
+          delete: 'rating'
+        },
+        model_class: Ioki::Model::Operator::Rating,
+        except:      [:index, :show]
       )
     ].freeze
   end
