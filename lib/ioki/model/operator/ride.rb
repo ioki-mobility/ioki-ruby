@@ -119,6 +119,11 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :rating,
+                  on:   :read,
+                  type: :object,
+                  class_name: 'Rating'
+
         attribute :ride_series_id,
                   on:   :read,
                   type: :string
