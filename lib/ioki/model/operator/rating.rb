@@ -40,6 +40,10 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :integer
 
+        attribute :ride_version,
+                  on:   [:create, :read, :update],
+                  type: :integer
+
         attribute :service_rating,
                   on:   [:create, :read, :update],
                   type: :integer
