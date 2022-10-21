@@ -120,8 +120,8 @@ module Ioki
                   type: :boolean
 
         attribute :rating,
-                  on:   :read,
-                  type: :object,
+                  on:         :read,
+                  type:       :object,
                   class_name: 'Rating'
 
         attribute :ride_series_id,
