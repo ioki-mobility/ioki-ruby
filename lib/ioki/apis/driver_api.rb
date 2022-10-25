@@ -154,7 +154,12 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Driver::FirebaseToken
       ),
-      Endpoints::Driver::ConfirmFirebasePush.new
+      Endpoints::Driver::ConfirmFirebasePush.new,
+      Endpoints::ShowSingular.new(
+        :client,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Driver::Client
+      )
     ].freeze
   end
 end

@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://demo.io.ki/api/platform/client
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Language:
+      - de
+      X-Api-Version:
+      - '20210101'
+      X-Client-Version:
+      - 0.0.1
+      User-Agent:
+      - Faraday v1.10.2
+      Authorization:
+      - "<Authorization>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      X-Request-Id:
+      - d335e44c-d2f7-483d-8f5e-bb18e16080fe
+      Date:
+      - Tue, 25 Oct 2022 14:42:37 GMT
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: '{"data":{"allows_external_payment":false,"current_version":"0.0.1","identifier":"dev.platformapi.test.backend","min_version":"0.0.1","name":"Client for ioki platform","type":"client"}}'
+  recorded_at: Tue, 25 Oct 2022 14:42:37 GMT
+recorded_with: VCR 6.0.0
