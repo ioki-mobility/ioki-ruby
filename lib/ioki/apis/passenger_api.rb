@@ -26,6 +26,11 @@ module Ioki
         model_class: Ioki::Model::Passenger::Bootstrap
       ),
       Endpoints::ShowSingular.new(
+        :client,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::Client
+      ),
+      Endpoints::ShowSingular.new(
         :user,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::User

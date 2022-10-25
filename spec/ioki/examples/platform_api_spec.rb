@@ -82,4 +82,10 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       # No webhook defined on demo product
     end
   end
+
+  describe 'show endpoints' do
+    it 'return their corresponding models' do
+      expect(platform_client.client).to be_a(Ioki::Model::Platform::Client)
+    end
+  end
 end

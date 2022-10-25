@@ -7,6 +7,11 @@ module Ioki
   class PlatformApi
     API_BASE_PATH = 'platform'
     ENDPOINTS = [
+      Endpoints::ShowSingular.new(
+        :client,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Platform::Client
+      ),
       Endpoints.crud_endpoints(
         :station,
         base_path:   [API_BASE_PATH, 'products', :id],
