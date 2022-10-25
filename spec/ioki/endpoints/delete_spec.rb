@@ -17,7 +17,7 @@ RSpec.describe Ioki::Endpoints::Delete do
 
     result = endpoint.call(client, ['0815'], params: params)
 
-    expect(result).to be_kind_of(Ioki::Model::Platform::Product)
+    expect(result).to be_a(Ioki::Model::Platform::Product)
     expect(result.id).to eq('0815')
   end
 end

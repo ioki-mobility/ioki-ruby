@@ -28,7 +28,7 @@ RSpec.describe Ioki::Endpoints::Update do
 
       result = endpoint.call(client, model, ['0815'], model_class: model_class, params: params)
 
-      expect(result).to be_kind_of(Ioki::Model::Platform::Product)
+      expect(result).to be_a(Ioki::Model::Platform::Product)
       expect(result).not_to eq(model)
       expect(result.id).to eq('0815')
       expect(result.name).to eq('attributes altered by server')

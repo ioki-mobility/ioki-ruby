@@ -27,7 +27,7 @@ RSpec.describe Ioki::Endpoints::Show do
 
     result = endpoint.call(client, ['0815'], { params: params })
 
-    expect(result).to be_kind_of(model_class)
+    expect(result).to be_a(model_class)
     expect(result.id).to eq('0815')
   end
 

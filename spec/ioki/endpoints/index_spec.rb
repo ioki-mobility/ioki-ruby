@@ -55,15 +55,15 @@ RSpec.describe Ioki::Endpoints::Index do
   it 'returns a two element Array' do
     result = endpoint.call client, [], model_class: model_class, params: params
 
-    expect(result).to be_kind_of(Array)
+    expect(result).to be_a(Array)
     expect(result.size).to eq(2)
   end
 
   it 'returns an Array of the correct model_class' do
     result = endpoint.call client, [], model_class: model_class, params: params
 
-    expect(result.first).to be_kind_of(model_class)
-    expect(result.last).to be_kind_of(model_class)
+    expect(result.first).to be_a(model_class)
+    expect(result.last).to be_a(model_class)
   end
 
   it 'returns an Array with the correct attributes' do
@@ -91,7 +91,7 @@ RSpec.describe Ioki::Endpoints::Index do
   it 'provides a way to auto_paginate all elements' do
     result = endpoint.call client, [], model_class: model_class, params: params, auto_paginate: true
 
-    expect(result).to be_kind_of(Array)
+    expect(result).to be_a(Array)
     expect(result.size).to eq(5)
     expect(result.map(&:id)).to eq(%w[001 002 003 004 005])
   end
@@ -99,13 +99,13 @@ RSpec.describe Ioki::Endpoints::Index do
   it 'paginates and returns the first page' do
     result = endpoint.call client, [], model_class: model_class, params: params, paginate: true
 
-    expect(result).to be_kind_of(Ioki::Model::Response)
+    expect(result).to be_a(Ioki::Model::Response)
 
-    expect(result.data).to be_kind_of(Array)
+    expect(result.data).to be_a(Array)
     expect(result.data.size).to eq(2)
     expect(result.data.map(&:id)).to eq(%w[001 002])
 
-    expect(result.meta).to be_kind_of(Ioki::Model::Meta)
+    expect(result.meta).to be_a(Ioki::Model::Meta)
     expect(result.meta.page).to eq 1
     expect(result.meta.last_page).to be false
   end
@@ -113,13 +113,13 @@ RSpec.describe Ioki::Endpoints::Index do
   it 'paginates and returns another page' do
     result = endpoint.call client, [], model_class: model_class, params: params.merge(page: 3), paginate: true
 
-    expect(result).to be_kind_of(Ioki::Model::Response)
+    expect(result).to be_a(Ioki::Model::Response)
 
-    expect(result.data).to be_kind_of(Array)
+    expect(result.data).to be_a(Array)
     expect(result.data.size).to eq(1)
     expect(result.data.map(&:id)).to eq(%w[005])
 
-    expect(result.meta).to be_kind_of(Ioki::Model::Meta)
+    expect(result.meta).to be_a(Ioki::Model::Meta)
     expect(result.meta.page).to eq 3
     expect(result.meta.last_page).to be true
   end
