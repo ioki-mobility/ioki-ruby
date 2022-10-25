@@ -4,11 +4,11 @@ require 'spec_helper'
 
 RSpec.describe Ioki do
   it 'has a version number' do
-    expect(Ioki::VERSION).not_to be nil
+    expect(Ioki::VERSION).not_to be_nil
   end
 
   it 'is a module carrying a config' do
-    expect(described_class.config).to be_kind_of(Ioki::Configuration)
+    expect(described_class.config).to be_a(Ioki::Configuration)
   end
 
   it 'is a module that can yield the config for initializers to be changed' do

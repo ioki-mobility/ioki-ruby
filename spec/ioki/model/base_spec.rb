@@ -21,7 +21,7 @@ RSpec.describe Ioki::Model::Base do
 
   describe '#inspect' do
     it 'gives a debug representation of the object' do
-      expect(model.inspect).to be_kind_of(String)
+      expect(model.inspect).to be_a(String)
     end
   end
 
@@ -111,7 +111,7 @@ RSpec.describe Ioki::Model::Base do
         model = example_class.new
         expect(model.foo).to be_nil
         model.foo = '2020-01-01 12:34:56'
-        expect(model.foo).to be_kind_of(DateTime)
+        expect(model.foo).to be_a(DateTime)
       end
     end
 
@@ -145,7 +145,7 @@ RSpec.describe Ioki::Model::Base do
         model = example_class.new({})
         expect(model.foo).to be_nil
         model.foo = { bar: 42 }
-        expect(model.foo).to be_kind_of(example_referenced_class)
+        expect(model.foo).to be_a(example_referenced_class)
         expect(model.foo.bar).to eq(42)
       end
     end
@@ -180,10 +180,10 @@ RSpec.describe Ioki::Model::Base do
         model = example_class.new({})
         expect(model.foo).to be_nil
         model.foo = [{ bar: '42' }, { bar: '43' }]
-        expect(model.foo).to be_kind_of(Array)
-        expect(model.foo.first).to be_kind_of(example_referenced_class)
+        expect(model.foo).to be_a(Array)
+        expect(model.foo.first).to be_a(example_referenced_class)
         expect(model.foo.first.bar).to eq(42)
-        expect(model.foo.last).to be_kind_of(example_referenced_class)
+        expect(model.foo.last).to be_a(example_referenced_class)
         expect(model.foo.last.bar).to eq(43)
       end
     end
@@ -480,24 +480,24 @@ RSpec.describe Ioki::Model::Base do
       end
 
       it 'handles a boolean correctly' do
-        expect(model.type_cast_attribute_value(:attr, true)).to eq(true)
+        expect(model.type_cast_attribute_value(:attr, true)).to be(true)
       end
 
       it 'handles input to get converted correctly' do
-        expect(model.type_cast_attribute_value(:attr, 'foobar')).to eq(false)
+        expect(model.type_cast_attribute_value(:attr, 'foobar')).to be(false)
 
-        expect(model.type_cast_attribute_value(:attr, 0)).to eq(false)
-        expect(model.type_cast_attribute_value(:attr, false)).to eq(false)
-        expect(model.type_cast_attribute_value(:attr, 'false')).to eq(false)
-        expect(model.type_cast_attribute_value(:attr, 'f')).to eq(false)
-        expect(model.type_cast_attribute_value(:attr, '0')).to eq(false)
-        expect(model.type_cast_attribute_value(:attr, '')).to eq(false)
+        expect(model.type_cast_attribute_value(:attr, 0)).to be(false)
+        expect(model.type_cast_attribute_value(:attr, false)).to be(false)
+        expect(model.type_cast_attribute_value(:attr, 'false')).to be(false)
+        expect(model.type_cast_attribute_value(:attr, 'f')).to be(false)
+        expect(model.type_cast_attribute_value(:attr, '0')).to be(false)
+        expect(model.type_cast_attribute_value(:attr, '')).to be(false)
 
-        expect(model.type_cast_attribute_value(:attr, 1)).to eq(true)
-        expect(model.type_cast_attribute_value(:attr, true)).to eq(true)
-        expect(model.type_cast_attribute_value(:attr, 'true')).to eq(true)
-        expect(model.type_cast_attribute_value(:attr, 't')).to eq(true)
-        expect(model.type_cast_attribute_value(:attr, '1')).to eq(true)
+        expect(model.type_cast_attribute_value(:attr, 1)).to be(true)
+        expect(model.type_cast_attribute_value(:attr, true)).to be(true)
+        expect(model.type_cast_attribute_value(:attr, 'true')).to be(true)
+        expect(model.type_cast_attribute_value(:attr, 't')).to be(true)
+        expect(model.type_cast_attribute_value(:attr, '1')).to be(true)
       end
     end
 
@@ -566,7 +566,7 @@ RSpec.describe Ioki::Model::Base do
 
         it 'handles an object correctly' do
           result = model.type_cast_attribute_value(:attr, { email: 'mail1@example.com' })
-          expect(result).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result).to be_a(Ioki::Model::Platform::User)
           expect(result.email).to eq('mail1@example.com')
         end
       end
@@ -593,20 +593,20 @@ RSpec.describe Ioki::Model::Base do
 
         it 'returns a hash when value type is not in class_name array' do
           result = model.type_cast_attribute_value(:attr, { 'type' => 'user' })
-          expect(result).not_to be_kind_of(Ioki::Model::Operator::User)
-          expect(result).to be_kind_of(Hash)
+          expect(result).not_to be_a(Ioki::Model::Operator::User)
+          expect(result).to be_a(Hash)
           expect(result).to eq({ 'type' => 'user' })
         end
 
         it 'returns a station model when value type is station' do
           result = model.type_cast_attribute_value(:attr, { 'type' => 'station' })
-          expect(result).to be_kind_of(Ioki::Model::Operator::Station)
+          expect(result).to be_a(Ioki::Model::Operator::Station)
           expect(result.type).to eq('station')
         end
 
         it 'returns a place model when value type is place' do
           result = model.type_cast_attribute_value(:attr, { 'type' => 'place' })
-          expect(result).to be_kind_of(Ioki::Model::Operator::Place)
+          expect(result).to be_a(Ioki::Model::Operator::Place)
           expect(result.type).to eq('place')
         end
       end
@@ -652,11 +652,11 @@ RSpec.describe Ioki::Model::Base do
         it 'handles an array of hashes correctly' do
           result = model.type_cast_attribute_value(:attr,
                                                    [{ email: 'mail1@example.com' }, { email: 'mail2@example.com' }])
-          expect(result).to be_kind_of(Array)
+          expect(result).to be_a(Array)
           expect(result.size).to eq(2)
-          expect(result.first).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result.first).to be_a(Ioki::Model::Platform::User)
           expect(result.first.email).to eq('mail1@example.com')
-          expect(result.last).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result.last).to be_a(Ioki::Model::Platform::User)
           expect(result.last.email).to eq('mail2@example.com')
         end
 
@@ -669,11 +669,11 @@ RSpec.describe Ioki::Model::Base do
             ]
           )
 
-          expect(result).to be_kind_of(Array)
+          expect(result).to be_a(Array)
           expect(result.size).to eq(2)
-          expect(result.first).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result.first).to be_a(Ioki::Model::Platform::User)
           expect(result.first.email).to eq('mail1@example.com')
-          expect(result.last).to be_kind_of(Ioki::Model::Platform::User)
+          expect(result.last).to be_a(Ioki::Model::Platform::User)
           expect(result.last.email).to eq('mail2@example.com')
         end
       end

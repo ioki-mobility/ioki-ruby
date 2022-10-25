@@ -11,7 +11,9 @@ end
 RSpec.describe Ioki::Endpoints::Endpoint do
   describe '.initialize' do
     it 'succeeds with required arguments' do
-      described_class.new('bread', action: 'get', request_method: :get, path: ['bakery'])
+      expect do
+        described_class.new('bread', action: 'get', request_method: :get, path: ['bakery'])
+      end.not_to raise_error ArgumentError
     end
   end
 
