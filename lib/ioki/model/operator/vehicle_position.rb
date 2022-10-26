@@ -44,9 +44,17 @@ module Ioki
                   on:   [:create, :read],
                   type: :float
 
+        attribute :on_route,
+                  on:   [:create, :read],
+                  type: :boolean
+
         attribute :recorded_at,
                   on:   [:create, :read],
                   type: :date_time
+
+        attribute :source,
+                  on:   [:create, :read],
+                  type: :string
 
         attribute :speed,
                   on:   [:create, :read],
