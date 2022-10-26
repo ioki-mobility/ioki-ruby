@@ -992,17 +992,17 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#create_vehicle_position(product_id, vehicle_id, vehicle_position)' do
+  describe '#create_position(product_id, vehicle_id, vehicle_position)' do
     let(:vehicle_position) { Ioki::Model::Operator::VehiclePosition.new({ id: '5105' }) }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/vehicle_positions')
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/positions')
         expect(params[:method]).to eq(:post)
         [result_with_data, full_response]
       end
 
-      expect(operator_client.create_vehicle_position('0815', '4711', vehicle_position, options))
+      expect(operator_client.create_position('0815', '4711', vehicle_position, options))
         .to be_a(Ioki::Model::Operator::VehiclePosition)
     end
   end

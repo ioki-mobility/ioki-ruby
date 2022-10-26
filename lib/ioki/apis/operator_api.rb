@@ -160,7 +160,7 @@ module Ioki
         except:      [:index, :show]
       ),
       Endpoints.crud_endpoints(
-        :vehicle_position,
+        :position,
         base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
         model_class: Ioki::Model::Operator::VehiclePosition,
         except:      [:show, :index, :update, :delete]
