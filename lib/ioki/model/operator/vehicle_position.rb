@@ -45,8 +45,9 @@ module Ioki
                   type: :float
 
         attribute :on_route,
-                  on:   [:create, :read],
-                  type: :boolean
+                  on:             [:create, :read],
+                  omit_if_nil_on: :create,
+                  type:           :boolean
 
         attribute :recorded_at,
                   on:   [:create, :read],
