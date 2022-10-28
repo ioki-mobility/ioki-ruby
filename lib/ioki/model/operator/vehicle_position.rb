@@ -8,18 +8,58 @@ module Ioki
           'operator_api--v20210101--vehicle_position_without_vehicle'
         end
 
-        attribute :accuracy, on: :read, type: :float
-        attribute :altitude, on: :read, type: :float
-        attribute :altitude_accuracy, on: :read, type: :float
-        attribute :created_at, on: :read, type: :date_time
-        attribute :heading, on: :read, type: :float
-        attribute :id, on: :read, type: :string
-        attribute :lat, on: :read, type: :float
-        attribute :lng, on: :read, type: :float
-        attribute :product_id, on: :read, type: :string
-        attribute :recorded_at, on: :read, type: :date_time
-        attribute :speed, on: :read, type: :float
-        attribute :type, on: :read, type: :string
+        attribute :type,
+                  on:   :read,
+                  type: :string
+
+        attribute :id,
+                  on:   :read,
+                  type: :string
+
+        attribute :created_at,
+                  on:   :read,
+                  type: :date_time
+
+        attribute :accuracy,
+                  on:   [:create, :read],
+                  type: :float
+
+        attribute :altitude,
+                  on:   [:create, :read],
+                  type: :float
+
+        attribute :altitude_accuracy,
+                  on:   [:create, :read],
+                  type: :float
+
+        attribute :heading,
+                  on:   [:create, :read],
+                  type: :float
+
+        attribute :lat,
+                  on:   [:create, :read],
+                  type: :float
+
+        attribute :lng,
+                  on:   [:create, :read],
+                  type: :float
+
+        attribute :on_route,
+                  on:             [:create, :read],
+                  omit_if_nil_on: :create,
+                  type:           :boolean
+
+        attribute :recorded_at,
+                  on:   [:create, :read],
+                  type: :date_time
+
+        attribute :source,
+                  on:   [:create, :read],
+                  type: :string
+
+        attribute :speed,
+                  on:   [:create, :read],
+                  type: :float
       end
     end
   end

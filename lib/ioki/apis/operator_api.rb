@@ -158,6 +158,12 @@ module Ioki
         },
         model_class: Ioki::Model::Operator::Rating,
         except:      [:index, :show]
+      ),
+      Endpoints.crud_endpoints(
+        :position,
+        base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
+        model_class: Ioki::Model::Operator::VehiclePosition,
+        except:      [:show, :index, :update, :delete]
       )
     ].freeze
   end
