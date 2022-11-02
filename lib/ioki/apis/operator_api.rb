@@ -59,8 +59,7 @@ module Ioki
       Endpoints.crud_endpoints(
         :matching_configuration,
         base_path:   [API_BASE_PATH, 'products', :id],
-        model_class: Ioki::Model::Operator::MatchingConfiguration,
-        except:      [:create, :update, :delete]
+        model_class: Ioki::Model::Operator::MatchingConfiguration
       ),
       Endpoints.crud_endpoints(
         :task_list,
