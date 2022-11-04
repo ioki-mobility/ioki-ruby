@@ -26,8 +26,8 @@ module Ioki
                   class_name: 'Area'
 
         attribute :area_geojson,
-                  on:         [:create, :update],
-                  type:       :string
+                  on:   [:create, :update],
+                  type: :string
 
         attribute :description,
                   on:   [:create, :read, :update],
