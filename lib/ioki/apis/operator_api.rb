@@ -73,6 +73,12 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::TaskList
       ),
+      Endpoints.custom_endpoints(
+        'task_lists',
+        actions:     { 'current_journey' => :get },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Operator::Journey
+      ),
       Endpoints.crud_endpoints(
         :pause,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],

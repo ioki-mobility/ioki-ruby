@@ -532,6 +532,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#task_lists_current_journey(product_id, task_list_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/current_journey')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.task_lists_current_journey('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Journey)
+    end
+  end
+
   describe '#pauses(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
