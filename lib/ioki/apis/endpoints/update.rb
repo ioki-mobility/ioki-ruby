@@ -39,6 +39,8 @@ module Ioki
           params: options[:params]
         )
 
+        return if parsed_response.nil?
+
         model_class.new(parsed_response['data'], response.headers[:etag])
       end
     end
