@@ -159,6 +159,8 @@ module Ioki
       end
 
       def ==(other)
+        return false unless other.respond_to?(:attributes)
+
         attributes == other.attributes
       end
 

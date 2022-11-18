@@ -685,4 +685,51 @@ RSpec.describe Ioki::Model::Base do
       expect(Ioki::Model::Platform::Pause.new.send(:constantize_in_module, 'Place')).to eq Ioki::Model::Platform::Place
     end
   end
+
+  describe '#==' do
+    context 'when a model is compared with nil' do
+      it 'returns false' do
+        expect(model == nil).to be_falsy
+      end
+    end
+
+    context 'when a model is compared with a String' do
+      it 'returns false' do
+        expect(model == 'some_string').to be_falsy
+      end
+    end
+
+    context 'when a model is compared with another Ioki::Model' do
+      let(:other_example_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :baz, on: :read
+        end
+      end
+
+      let(:other_model) { other_example_class.new }
+
+      it 'returns false' do
+        expect(model == other_model).to be_falsy
+      end
+    end
+
+    context 'when a model is compared with the same Ioki::Model' do
+      context 'with different attributes' do
+        let(:same_model) { example_class.new(other_attributes) }
+        let(:other_attributes) { { bar: 'baz' } }
+
+        it 'returns false' do
+          expect(model == same_model).to be_falsy
+        end
+      end
+
+      context 'with the same attributes' do
+        let(:same_model) { example_class.new(attributes) }
+
+        it 'returns true' do
+          expect(model == same_model).to be_truthy
+        end
+      end
+    end
+  end
 end
