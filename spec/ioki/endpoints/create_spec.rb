@@ -12,18 +12,20 @@ RSpec.describe Ioki::Endpoints::Create do
   before { allow(model).to receive(:serialize).with(:create).and_return(serialized_model) }
 
   describe '#call' do
+    let(:response) do
+      [
+        { 'data' => { 'id' => '0815', name: 'attributes altered by server' } },
+        instance_double(Faraday::Response, headers: { etag: 'ETAG' })
+      ]
+    end
+
     it 'calls #request on the client, sending serialized modeldata and instantiating a new class from the result' do
       expect(client).to receive(:request).with(
         url:    url,
         method: :post,
         body:   { data: serialized_model },
         params: params
-      ).and_return(
-        [
-          { 'data' => { 'id' => '0815', name: 'attributes altered by server' } },
-          instance_double(Faraday::Response, headers: { etag: 'ETAG' })
-        ]
-      )
+      ).and_return(response)
 
       result = endpoint.call(client, model, [], params: params)
 
@@ -42,6 +44,23 @@ RSpec.describe Ioki::Endpoints::Create do
           ArgumentError,
           "#{model} is not an instance of #{Ioki::Model::Platform::Product}"
         )
+      end
+    end
+
+    context 'when the response body is empty' do
+      let(:response) { nil }
+
+      it 'returns nil' do
+        expect(client).to receive(:request).with(
+          url:    url,
+          method: :post,
+          body:   { data: serialized_model },
+          params: params
+        ).and_return(response)
+
+        result = endpoint.call(client, model, [], params: params)
+
+        expect(result).to be_nil
       end
     end
   end
