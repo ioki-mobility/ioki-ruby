@@ -689,7 +689,7 @@ RSpec.describe Ioki::Model::Base do
   describe '#==' do
     context 'when a model is compared with nil' do
       it 'returns false' do
-        expect(model == nil).to be_falsy
+        expect(model).not_to be_nil
       end
     end
 
