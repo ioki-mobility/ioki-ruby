@@ -442,6 +442,49 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#create_matching_configuration(product_id, matching_configuration)' do
+    let(:matching_configuration) { Ioki::Model::Operator::MatchingConfiguration.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/matching_configurations')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_matching_configuration('0815', matching_configuration, options))
+        .to be_a(Ioki::Model::Operator::MatchingConfiguration)
+    end
+  end
+
+  describe '#update_matching_configuration(product_id, matching_configuration)' do
+    let(:matching_configuration) { Ioki::Model::Operator::MatchingConfiguration.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/matching_configurations/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_matching_configuration('0815', matching_configuration, options))
+        .to be_a(Ioki::Model::Operator::MatchingConfiguration)
+    end
+  end
+
+  describe '#delete_matching_configuration(product_id, matching_configuration_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/matching_configurations/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_matching_configuration('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::MatchingConfiguration)
+    end
+  end
+
   describe '#task_lists(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
