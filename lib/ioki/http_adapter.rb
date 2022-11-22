@@ -24,8 +24,10 @@ module Ioki
             logger.filter(/("token"=>")([^"]+)/, '\1[REMOVED]')
           end
         end
-        f.response :json # decode response bodies as JSON
-        f.request :json # encode request bodies as JSON
+        # decode response bodies with content_type 'json' as JSON
+        f.response :json, content_type: /\bjson$/
+        # encode request bodies as JSON
+        f.request :json
       end
     end
 
