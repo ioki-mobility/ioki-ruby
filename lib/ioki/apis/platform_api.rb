@@ -212,6 +212,17 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         path:        'phone_verification_requests/verify',
         model_class: Ioki::Model::Platform::PhoneVerification
+      ),
+      Endpoints.crud_endpoints(
+        :operator,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Platform::Operator
+      ),
+      Endpoints.custom_endpoints(
+        'operators',
+        actions:     { 'set_default' => :patch },
+        path:        [API_BASE_PATH, 'providers', :id, 'operators', :id],
+        model_class: Ioki::Model::Platform::Operator
       )
     ].freeze
   end

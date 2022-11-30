@@ -652,4 +652,84 @@ RSpec.describe Ioki::PlatformApi do
         .to eq(Ioki::Model::Platform::TaskList.new)
     end
   end
+
+  describe '#operators' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators')
+        result_with_index_data
+      end
+
+      expect(platform_client.operators('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Operator))
+    end
+  end
+
+  describe '#operator(provider_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/1337')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.operator('0815', '1337', options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#create_operator(provider_id, operator)' do
+    let(:operator) { Ioki::Model::Platform::Operator.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_operator('0815', operator, options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#update_operator(provider_id, operator)' do
+    let(:operator) { Ioki::Model::Platform::Operator.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.update_operator('0815', operator, options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#delete_line(provider_id, operator_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(platform_client.delete_operator('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#operators_set_default(provider_id, operator_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/4711/set_default')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(platform_client.operators_set_default('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
 end
