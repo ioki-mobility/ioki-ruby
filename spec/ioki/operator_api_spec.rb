@@ -1049,4 +1049,28 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::VehiclePosition)
     end
   end
+
+  describe '#operators(provider_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/operators')
+        result_with_index_data
+      end
+
+      expect(operator_client.operators('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Operator))
+    end
+  end
+
+  describe '#operator(provider_id, operator_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.operator('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Operator)
+    end
+  end
 end

@@ -163,6 +163,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
         model_class: Ioki::Model::Operator::VehiclePosition,
         except:      [:show, :index, :update, :delete]
+      ),
+      Endpoints.crud_endpoints(
+        :operator,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Operator::Operator,
+        except:      [:create, :update, :delete]
       )
     ].freeze
   end
