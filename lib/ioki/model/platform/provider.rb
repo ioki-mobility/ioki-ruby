@@ -41,6 +41,11 @@ module Ioki
                   type:       :object,
                   class_name: 'Operator'
 
+        attribute :features,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Features'
+
         attribute :logpay_payment_method_types,
                   on:   :read,
                   type: :array
