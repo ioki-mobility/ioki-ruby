@@ -72,7 +72,7 @@ module Ioki
 
         attribute :ride_payment_method_types,
                   on:   :read,
-                  type: :array 
+                  type: :array
 
         attribute :service_credit_options,
                   on:         :read,
