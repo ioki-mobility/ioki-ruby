@@ -223,6 +223,18 @@ module Ioki
         actions:     { 'set_default' => :patch },
         path:        [API_BASE_PATH, 'providers', :id, 'operators', :id],
         model_class: Ioki::Model::Platform::Operator
+      ),
+      Endpoints.custom_endpoints(
+        :captcha,
+        actions:     { 'regenerate' => :patch },
+        path:        [API_BASE_PATH, 'captchas', :id],
+        model_class: Ioki::Model::Platform::Captcha
+      ),
+      Endpoints::Create.new(
+        :captcha_solution,
+        base_path:   [API_BASE_PATH, 'captchas', :id],
+        path:        'solution',
+        model_class: Ioki::Model::Platform::Captcha
       )
     ].freeze
   end

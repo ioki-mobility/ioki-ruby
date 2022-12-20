@@ -732,4 +732,31 @@ RSpec.describe Ioki::PlatformApi do
         .to be_a(Ioki::Model::Platform::Operator)
     end
   end
+
+  describe '#create_captcha_solution(id, captcha)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/captchas/0815/solution')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      captcha = Ioki::Model::Platform::Captcha.new(solution: 'w3sd')
+      expect(platform_client.create_captcha_solution('0815', captcha, options))
+        .to eq(Ioki::Model::Platform::Captcha.new)
+    end
+  end
+
+  describe '#captcha_regenerate(id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/captchas/0815/regenerate')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.captcha_regenerate('0815', options))
+        .to eq(Ioki::Model::Platform::Captcha.new)
+    end
+  end
 end

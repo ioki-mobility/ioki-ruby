@@ -14,6 +14,7 @@ module Ioki
         attribute :updated_at, on: :read, type: :date_time
         attribute :phone_number, on: [:read, :create], type: :string
         attribute :locale, on: [:create], type: :string, unvalidated: true
+        attribute :captcha, type: :object, on: :read, class_name: 'Captcha'
       end
     end
   end
