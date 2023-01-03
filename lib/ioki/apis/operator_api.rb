@@ -154,17 +154,6 @@ module Ioki
         model_class: Ioki::Model::Operator::Task
       ),
       Endpoints.crud_endpoints(
-        :rating,
-        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
-        paths:       {
-          create: 'rating',
-          update: 'rating',
-          delete: 'rating'
-        },
-        model_class: Ioki::Model::Operator::Rating,
-        except:      [:index, :show]
-      ),
-      Endpoints.crud_endpoints(
         :position,
         base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
         model_class: Ioki::Model::Operator::VehiclePosition,

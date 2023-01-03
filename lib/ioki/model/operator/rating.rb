@@ -21,11 +21,11 @@ module Ioki
                   type: :date_time
 
         attribute :comment,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
 
         attribute :driver_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :editable,
@@ -33,35 +33,35 @@ module Ioki
                   type: :boolean
 
         attribute :punctuality_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :ride_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :ride_version,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :service_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :vehicle_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :vehicle_cleanliness_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :version,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
 
         attribute :waiting_time_rating,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :integer
       end
     end
