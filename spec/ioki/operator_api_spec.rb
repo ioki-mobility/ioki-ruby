@@ -1007,46 +1007,6 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#create_rating(product_id, ride_id)' do
-    let(:rating) { Ioki::Model::Operator::Rating.new({ id: '4711' }) }
-
-    it 'calls request on the client with expected params' do
-      expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/rides/4711/rating')
-        [result_with_data, full_response]
-      end
-
-      expect(operator_client.create_rating('0815', rating, options))
-        .to be_a(Ioki::Model::Operator::Rating)
-    end
-  end
-
-  describe '#update_rating(product_id, ride_id, rating)' do
-    let(:rating) { Ioki::Model::Operator::Rating.new({ id: '1337' }) }
-
-    it 'calls request on the client with expected params' do
-      expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/rides/4711/rating/1337')
-        [result_with_data, full_response]
-      end
-
-      expect(operator_client.update_rating('0815', '4711', rating, options))
-        .to be_a(Ioki::Model::Operator::Rating)
-    end
-  end
-
-  describe '#delete_rating(product_id, rating_id)' do
-    it 'calls request on the client with expected params' do
-      expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/rides/4711/rating/1337')
-        result_with_data
-      end
-
-      expect(operator_client.delete_rating('0815', '4711', '1337', options))
-        .to be_a(Ioki::Model::Operator::Rating)
-    end
-  end
-
   describe '#create_position(product_id, vehicle_id, vehicle_position)' do
     let(:vehicle_position) { Ioki::Model::Operator::VehiclePosition.new({ id: '5105' }) }
 
