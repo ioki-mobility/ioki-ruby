@@ -235,6 +235,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'captchas', :id],
         path:        'solution',
         model_class: Ioki::Model::Platform::Captcha
+      ),
+      Endpoints::Create.new(
+        :client_challenge,
+        base_path:   [API_BASE_PATH, 'client_challenges', :id],
+        path:        'solution',
+        model_class: Ioki::Model::Platform::ClientChallenge
       )
     ].freeze
   end
