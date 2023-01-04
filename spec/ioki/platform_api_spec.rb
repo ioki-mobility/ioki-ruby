@@ -759,4 +759,18 @@ RSpec.describe Ioki::PlatformApi do
         .to eq(Ioki::Model::Platform::Captcha.new)
     end
   end
+
+  describe '#create_client_challenge(id, client_challenge)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/client_challenges/0815/solution')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      client_challenge = Ioki::Model::Platform::ClientChallenge.new(solution: 'w3sd', nonce: '1234')
+      expect(platform_client.create_client_challenge('0815', client_challenge, options))
+        .to eq(Ioki::Model::Platform::ClientChallenge.new)
+    end
+  end
 end
