@@ -149,6 +149,11 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::PaymentMethod
       ),
+      Endpoints::Create.new(
+        :payment_method,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PaymentMethod
+      ),
       Endpoints::Delete.new(
         :payment_method,
         base_path:   [API_BASE_PATH],
