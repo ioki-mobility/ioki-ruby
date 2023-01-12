@@ -138,8 +138,19 @@ module Ioki
         model_class:          Ioki::Model::Passenger::LogpayUrl,
         outgoing_model_class: Ioki::Model::Passenger::LogpayPaymentMethod
       ),
+      Endpoints::Create.new(
+        :logpay_paypal_client_token,
+        base_path:   [API_BASE_PATH],
+        path:        ['logpay', 'paypal_client_token'],
+        model_class: Ioki::Model::Passenger::LogpayPaypalClientToken
+      ),
       Endpoints::Index.new(
         :payment_methods,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::PaymentMethod
+      ),
+      Endpoints::Create.new(
+        :payment_method,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::PaymentMethod
       ),

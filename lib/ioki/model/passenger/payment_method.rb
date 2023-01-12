@@ -12,6 +12,8 @@ module Ioki
         attribute :payment_method_type, on: :create, type: :string
         attribute :attached, on: :read, type: :boolean
         attribute :summary, on: :read, type: :object, class_name: 'PaymentMethodSummary'
+
+        attribute :details, on: :create, type: :object, class_name: 'PaymentMethodDetails', omit_if_blank_on: :create
       end
     end
   end
