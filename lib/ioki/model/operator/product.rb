@@ -14,6 +14,7 @@ module Ioki
         attribute :ad_hoc_bookable, on: :read, type: :boolean
         attribute :bounding_box, on: :read, type: :object, class_name: 'BoundingBox'
         attribute :default_end_place_id, on: :read, type: :string
+        attribute :default_matching_configuration, on: :read, type: :object, class_name: 'MatchingConfiguration'
         attribute :default_start_place_id, on: :read, type: :string
         attribute :description, on: :read, type: :string
         attribute :fixed_stations, on: :read, type: :array, class_name: 'Station'
