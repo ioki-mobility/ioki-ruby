@@ -782,8 +782,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.user_email('0815', '1337', options)).
-        to eq(Ioki::Model::Platform::UserEmail.new)
+      expect(platform_client.user_email('0815', '1337', options))
+        .to eq(Ioki::Model::Platform::UserEmail.new)
     end
   end
 end
