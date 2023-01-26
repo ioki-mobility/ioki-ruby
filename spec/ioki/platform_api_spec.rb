@@ -570,7 +570,6 @@ RSpec.describe Ioki::PlatformApi do
 
       expect(platform_client.announcement('0815', '1337', options))
         .to be_a(Ioki::Model::Platform::Announcement)
-      end
     end
   end
 
