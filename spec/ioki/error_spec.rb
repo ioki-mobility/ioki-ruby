@@ -49,8 +49,8 @@ RSpec.describe Ioki::Error do
     subject(:error_message) { error.message }
 
     let(:error) { Ioki::Error::NotAcceptable.new http_response }
-    let(:http_response) { instance_double 'Faraday::Response', status: 406, body: response_body.to_json, env: env }
-    let(:env) { instance_double 'Faraday::Env', url: url }
+    let(:http_response) { instance_double Faraday::Response, status: 406, body: response_body.to_json, env: env }
+    let(:env) { instance_double Faraday::Env, url: url }
     let(:url) { 'https://example.com/api' }
     let(:response_body) do
       {

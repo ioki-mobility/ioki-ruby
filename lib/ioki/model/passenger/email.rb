@@ -3,11 +3,7 @@
 module Ioki
   module Model
     module Passenger
-      class Email < Ioki::Model::Base
-        def self.specification_scope
-          'passenger_api'
-        end
-
+      class Email < Base
         attribute :type, on: :read, type: :string
         attribute :confirmed, on: :read, type: :boolean
         attribute :email_address, on: [:read, :update], type: :string

@@ -3,9 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class Money < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at and :id.
-
+      class Money < Base
         def self.schema_path
           'money'
         end

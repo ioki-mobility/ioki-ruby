@@ -43,8 +43,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.provider('0815', options)).
-        to be_a(Ioki::Model::Platform::Provider)
+      expect(platform_client.provider('0815', options))
+        .to be_a(Ioki::Model::Platform::Provider.new)
     end
   end
 
@@ -55,8 +55,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.products(options)).
-        to all(be_a(Ioki::Model::Platform::Product))
+      expect(platform_client.products(options))
+        .to be_a([Ioki::Model::Platform::Product.new])
     end
   end
 
@@ -67,8 +67,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.product('0815', options)).
-        to be_a(Ioki::Model::Platform::Product)
+      expect(platform_client.product('0815', options))
+        .to be_a(Ioki::Model::Platform::Product.new)
     end
   end
 
@@ -79,8 +79,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.stations('0815', options)).
-        to all(be_a(Ioki::Model::Platform::Station))
+      expect(platform_client.stations('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Station))
     end
   end
 
@@ -91,8 +91,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.station('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Station)
+      expect(platform_client.station('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Station)
     end
   end
 
@@ -105,8 +105,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_station('0815', station, options)).
-        to be_a(Ioki::Model::Platform::Station)
+      expect(platform_client.create_station('0815', station, options))
+        .to be_a(Ioki::Model::Platform::Station)
     end
   end
 
@@ -120,8 +120,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_station('0815', station, options)).
-        to be_a(Ioki::Model::Platform::Station)
+      expect(platform_client.update_station('0815', station, options))
+        .to be_a(Ioki::Model::Platform::Station)
     end
   end
 
@@ -132,8 +132,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_station('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Station)
+      expect(platform_client.delete_station('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Station)
     end
   end
 
@@ -144,8 +144,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.vehicles('0815', options)).
-        to all(be_a(Ioki::Model::Platform::Vehicle))
+      expect(platform_client.vehicles('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Vehicle))
     end
   end
 
@@ -156,8 +156,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.vehicle('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Vehicle)
+      expect(platform_client.vehicle('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Vehicle)
     end
   end
 
@@ -170,8 +170,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_vehicle('0815', vehicle, options)).
-        to be_a(Ioki::Model::Platform::Vehicle)
+      expect(platform_client.create_vehicle('0815', vehicle, options))
+        .to be_a(Ioki::Model::Platform::Vehicle)
     end
   end
 
@@ -184,8 +184,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_vehicle('0815', vehicle, options)).
-        to be_a(Ioki::Model::Platform::Vehicle)
+      expect(platform_client.update_vehicle('0815', vehicle, options))
+        .to be_a(Ioki::Model::Platform::Vehicle)
     end
   end
 
@@ -196,8 +196,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_vehicle('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Vehicle)
+      expect(platform_client.delete_vehicle('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Vehicle)
     end
   end
 
@@ -208,8 +208,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.rides('0815', options)).
-        to all(be_a(Ioki::Model::Platform::Ride))
+      expect(platform_client.rides('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Ride))
     end
   end
 
@@ -220,8 +220,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.ride('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Ride)
+      expect(platform_client.ride('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Ride)
     end
   end
 
@@ -234,8 +234,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_ride('0815', ride, options)).
-        to be_a(Ioki::Model::Platform::Ride)
+      expect(platform_client.create_ride('0815', ride, options))
+        .to be_a(Ioki::Model::Platform::Ride)
     end
   end
 
@@ -246,8 +246,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.users('0815', options)).
-        to all(be_a(Ioki::Model::Platform::User))
+      expect(platform_client.users('0815', options))
+        .to all(be_a(Ioki::Model::Platform::User))
     end
   end
 
@@ -258,8 +258,9 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.user('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::User)
+
+      expect(platform_client.user('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::User)
     end
   end
 
@@ -272,8 +273,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_user('0815', user, options)).
-        to be_a(Ioki::Model::Platform::User)
+      expect(platform_client.create_user('0815', user, options))
+        .to be_a(Ioki::Model::Platform::User)
     end
   end
 
@@ -286,8 +287,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_user('0815', user, options)).
-        to be_a(Ioki::Model::Platform::User)
+      expect(platform_client.update_user('0815', user, options))
+        .to be_a(Ioki::Model::Platform::User)
     end
   end
 
@@ -298,8 +299,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_user('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::User)
+      expect(platform_client.delete_user('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::User)
     end
   end
 
@@ -310,8 +311,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.drivers('0815', options)).
-        to all(be_a(Ioki::Model::Platform::Driver))
+      expect(platform_client.drivers('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Driver))
     end
   end
 
@@ -322,8 +323,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.driver('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Driver)
+      expect(platform_client.driver('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Driver)
     end
   end
 
@@ -336,8 +337,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_driver('0815', driver, options)).
-        to be_a(Ioki::Model::Platform::Driver)
+      expect(platform_client.create_driver('0815', driver, options))
+        .to be_a(Ioki::Model::Platform::Driver)
     end
   end
 
@@ -350,8 +351,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_driver('0815', driver, options)).
-        to be_a(Ioki::Model::Platform::Driver)
+      expect(platform_client.update_driver('0815', driver, options))
+        .to be_a(Ioki::Model::Platform::Driver)
     end
   end
 
@@ -362,8 +363,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_driver('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::Driver)
+      expect(platform_client.delete_driver('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Driver)
     end
   end
 
@@ -374,8 +375,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.driver_vehicle_connections('0815', options)).
-        to all(be_a(Ioki::Model::Platform::DriverVehicleConnection))
+      expect(platform_client.driver_vehicle_connections('0815', options))
+        .to all(be_a(Ioki::Model::Platform::DriverVehicleConnection))
     end
   end
 
@@ -386,8 +387,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.driver_vehicle_connection('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::DriverVehicleConnection)
+      expect(platform_client.driver_vehicle_connection('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::DriverVehicleConnection)
     end
   end
 
@@ -400,8 +401,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_driver_vehicle_connection('0815', driver_vehicle_connection, options)).
-        to be_a(Ioki::Model::Platform::DriverVehicleConnection)
+      expect(platform_client.create_driver_vehicle_connection('0815', driver_vehicle_connection, options))
+        .to be_a(Ioki::Model::Platform::DriverVehicleConnection)
     end
   end
 
@@ -414,8 +415,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_driver_vehicle_connection('0815', driver_vehicle_connection, options)).
-        to be_a(Ioki::Model::Platform::DriverVehicleConnection)
+      expect(platform_client.update_driver_vehicle_connection('0815', driver_vehicle_connection, options))
+        .to be_a(Ioki::Model::Platform::DriverVehicleConnection)
     end
   end
 
@@ -426,8 +427,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_driver_vehicle_connection('0815', '4711', options)).
-        to be_a(Ioki::Model::Platform::DriverVehicleConnection)
+      expect(platform_client.delete_driver_vehicle_connection('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::DriverVehicleConnection)
     end
   end
 
@@ -476,8 +477,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_rating('0815', rating, options)).
-        to be_a(Ioki::Model::Platform::Rating)
+      expect(platform_client.create_rating('0815', rating, options))
+        .to be_a(Ioki::Model::Platform::Rating)
     end
   end
 
@@ -490,8 +491,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.update_rating('0815', '4711', rating, options)).
-        to be_a(Ioki::Model::Platform::Rating)
+      expect(platform_client.update_rating('0815', '4711', rating, options))
+        .to be_a(Ioki::Model::Platform::Rating)
     end
   end
 
@@ -502,8 +503,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_data
       end
 
-      expect(platform_client.delete_rating('0815', '4711', '1337', options)).
-        to be_a(Ioki::Model::Platform::Rating)
+      expect(platform_client.delete_rating('0815', '4711', '1337', options))
+        .to be_a(Ioki::Model::Platform::Rating)
     end
   end
 
@@ -516,8 +517,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_booking('0815', '4711', booking, options)).
-        to be_a(Ioki::Model::Platform::Booking)
+      expect(platform_client.create_booking('0815', '4711', booking, options))
+        .to be_a(Ioki::Model::Platform::Booking)
     end
   end
 
@@ -530,8 +531,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_request_token('0815', '4711', passenger_request_token, options)).
-        to be_a(Ioki::Model::Platform::PassengerRequestToken)
+      expect(platform_client.create_request_token('0815', '4711', passenger_request_token, options))
+        .to be_a(Ioki::Model::Platform::PassengerRequestToken)
     end
   end
 
@@ -544,8 +545,8 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.create_ride_inquiry('0815', ride_inquiry, options)).
-        to be_a(Ioki::Model::Platform::RideInquiry)
+      expect(platform_client.create_ride_inquiry('0815', ride_inquiry, options))
+        .to be_a(Ioki::Model::Platform::RideInquiry)
     end
   end
 
@@ -556,8 +557,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.announcements('0815', options)).
-        to all(be_a(Ioki::Model::Platform::Announcement))
+      expect(platform_client.announcements('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Announcement))
     end
   end
 
@@ -568,8 +569,210 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-      expect(platform_client.announcement('0815', '1337', options)).
-        to be_a(Ioki::Model::Platform::Announcement)
+      expect(platform_client.announcement('0815', '1337', options))
+        .to be_a(Ioki::Model::Platform::Announcement)
+      end
+    end
+  end
+
+  describe '#create_line(product_id, line)' do
+    let(:line) { Ioki::Model::Platform::Line.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/lines')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_line('0815', line, options))
+        .to eq(Ioki::Model::Platform::Line.new)
+    end
+  end
+
+  describe '#update_line(product_id, line)' do
+    let(:line) { Ioki::Model::Platform::Line.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/lines/4711')
+        expect(params[:method]).to eq :patch
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.update_line('0815', line, options))
+        .to eq(Ioki::Model::Platform::Line.new)
+    end
+  end
+
+  describe '#delete_line(product_id, line_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/lines/4711')
+        result_with_data
+      end
+
+      expect(platform_client.delete_line('0815', '4711', options))
+        .to eq(Ioki::Model::Platform::Line.new)
+    end
+  end
+
+  describe '#create_line_stop(product_id, line_id, line_stop)' do
+    let(:line_stop) { Ioki::Model::Platform::LineStop.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/lines/0815/line_stops')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_line_stop('0815', '0815', line_stop, options))
+        .to eq(Ioki::Model::Platform::LineStop.new)
+    end
+  end
+
+  describe '#delete_line_stop(product_id, line_id, line_stop_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/lines/0815/line_stops/4711')
+        result_with_data
+      end
+
+      expect(platform_client.delete_line_stop('0815', '0815', '4711', options))
+        .to eq(Ioki::Model::Platform::LineStop.new)
+    end
+  end
+
+  describe '#task_list_reassign(product_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/1337/reassign')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(platform_client.task_list_reassign('0815', '1337', options))
+        .to eq(Ioki::Model::Platform::TaskList.new)
+    end
+  end
+
+  describe '#operators' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators')
+        result_with_index_data
+      end
+
+      expect(platform_client.operators('0815', options))
+        .to all(be_a(Ioki::Model::Platform::Operator))
+    end
+  end
+
+  describe '#operator(provider_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/1337')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.operator('0815', '1337', options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#create_operator(provider_id, operator)' do
+    let(:operator) { Ioki::Model::Platform::Operator.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_operator('0815', operator, options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#update_operator(provider_id, operator)' do
+    let(:operator) { Ioki::Model::Platform::Operator.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.update_operator('0815', operator, options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#delete_line(provider_id, operator_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(platform_client.delete_operator('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#operators_set_default(provider_id, operator_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/operators/4711/set_default')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(platform_client.operators_set_default('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::Operator)
+    end
+  end
+
+  describe '#create_captcha_solution(id, captcha)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/captchas/0815/solution')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      captcha = Ioki::Model::Platform::Captcha.new(solution: 'w3sd')
+      expect(platform_client.create_captcha_solution('0815', captcha, options))
+        .to eq(Ioki::Model::Platform::Captcha.new)
+    end
+  end
+
+  describe '#captcha_regenerate(id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/captchas/0815/regenerate')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.captcha_regenerate('0815', options))
+        .to eq(Ioki::Model::Platform::Captcha.new)
+    end
+  end
+
+  describe '#create_client_challenge(id, client_challenge)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/client_challenges/0815/solution')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      client_challenge = Ioki::Model::Platform::ClientChallenge.new(solution: 'w3sd', nonce: '1234')
+      expect(platform_client.create_client_challenge('0815', client_challenge, options))
+        .to eq(Ioki::Model::Platform::ClientChallenge.new)
     end
   end
 end

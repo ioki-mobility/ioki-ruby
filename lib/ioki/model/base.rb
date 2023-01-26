@@ -5,6 +5,8 @@ require 'date'
 module Ioki
   module Model
     class Base
+      extend Ioki::Support::ModuleMixins
+
       class << self
         def class_instance_attribute_definitions
           @class_instance_attribute_definitions ||= {}
@@ -54,9 +56,9 @@ module Ioki
         end
 
         def attribute_definitions
-          ancestor_model_classes.
-            collect(&:class_instance_attribute_definitions).
-            reduce(&:merge)
+          ancestor_model_classes
+            .collect(&:class_instance_attribute_definitions)
+            .reduce(&:merge)
         end
       end
 
@@ -88,6 +90,9 @@ module Ioki
       def type_cast_attribute_value(attribute, value)
         type = self.class.attribute_definitions.dig(attribute, :type)
         class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+
+        class_name = class_name_from_value_type(class_name, value)
+
         model_class = constantize_in_module(class_name)
 
         return value unless type
@@ -141,7 +146,7 @@ module Ioki
 
           next if definition.key?(:omit_if_blank_on) &&
                   Array(definition[:omit_if_blank_on]).include?(usecase) &&
-                  empty?(value)
+                  Ioki::Support.blank?(value)
 
           data[attribute] = if definition[:type] == :object && value.is_a?(Ioki::Model::Base)
                               value.serialize(usecase)
@@ -154,6 +159,8 @@ module Ioki
       end
 
       def ==(other)
+        return false unless other.respond_to?(:attributes)
+
         attributes == other.attributes
       end
 
@@ -168,16 +175,26 @@ module Ioki
       end
 
       def constantize_in_module(class_name)
-        return nil if empty?(class_name)
+        return nil if Ioki::Support.blank?(class_name)
 
-        module_names = self.class.name.split('::')
-        module_names.slice!(-1, 1)
-        module_names << class_name
-        Object.const_get(module_names.join('::'))
+        self.class.module_parent.const_get class_name
       end
 
-      def empty?(value)
-        value.respond_to?(:empty?) ? !!value.empty? : !value
+      def class_name_from_value_type(class_name, value)
+        return class_name unless class_name.is_a?(Array)
+        return nil if value.nil?
+
+        class_name_from_value_type = Support.camelize(value_type(value))
+
+        return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+
+        nil
+      end
+
+      def value_type(value)
+        return value.attributes[:type] if value.respond_to?(:attributes)
+
+        value['type']
       end
     end
   end

@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class Ride < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :state, type: :string, on: :read
         attribute :origin, type: :object, on: [:create, :read], class_name: 'RequestedPoint'
         attribute :destination, type: :object, on: [:create, :read], class_name: 'RequestedPoint'
@@ -32,7 +36,7 @@ module Ioki
         attribute :route, type: :object, class_name: 'Route', on: [:read, :create, :update]
         attribute :state, type: :string, on: [:read, :create, :update]
         attribute :support_uri, type: :string, on: [:read, :create, :update]
-        attribute :tip, type: :float, on: [:read, :create, :update]
+        attribute :tip, type: :object, class_name: 'Tip', on: [:read, :create, :update]
         attribute :tippable, type: :boolean, on: [:read, :create, :update]
         attribute :valid_for_driver_until, type: :date_time, on: [:read, :create, :update]
         attribute :valid_for_passenger_until, type: :date_time, on: [:read, :create, :update]
@@ -42,6 +46,7 @@ module Ioki
         attribute :version, type: :integer, on: [:read, :update]
         attribute :fare, on: :read, type: :object, class_name: 'Fare'
         attribute :ticket, on: :read, type: :object, class_name: 'Ticket'
+        attribute :offered_solutions, on: :read, type: :array, class_name: 'OfferedSolution'
       end
     end
   end

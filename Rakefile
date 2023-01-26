@@ -11,14 +11,14 @@ task :console do
   require 'irb'
   require 'irb/completion'
   require 'awesome_print'
-  require 'pry'
+  require 'debug'
   require 'ioki'
 
   def reload!
     original_warn_level = $VERBOSE
     $VERBOSE = nil
 
-    files = $LOADED_FEATURES.select { |feat| feat =~ %r{/ioki/} }
+    files = $LOADED_FEATURES.grep(%r{/ioki/})
 
     files.each { |file| load file }
   ensure

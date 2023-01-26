@@ -7,6 +7,11 @@ module Ioki
   class PlatformApi
     API_BASE_PATH = 'platform'
     ENDPOINTS = [
+      Endpoints::ShowSingular.new(
+        :client,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Platform::Client
+      ),
       Endpoints.crud_endpoints(
         :station,
         base_path:   [API_BASE_PATH, 'products', :id],
@@ -71,10 +76,26 @@ module Ioki
         model_class: Ioki::Model::Platform::Pause
       ),
       Endpoints.crud_endpoints(
+        :line,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Line
+      ),
+      Endpoints.crud_endpoints(
+        :line_stop,
+        base_path:   [API_BASE_PATH, 'products', :id, 'lines', :id],
+        except:      [:update],
+        model_class: Ioki::Model::Platform::LineStop
+      ),
+      Endpoints.crud_endpoints(
         :receipt,
         base_path:   [API_BASE_PATH, 'providers', :id],
         except:      [:create, :update, :delete],
         model_class: Ioki::Model::Platform::Receipt
+      ),
+      Endpoints.crud_endpoints(
+        :place,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Place
       ),
       Endpoints.crud_endpoints(
         :station_deactivation,
@@ -105,6 +126,12 @@ module Ioki
         :task_list,
         base_path:   [API_BASE_PATH, 'products', :id],
         except:      [:create, :update, :delete],
+        model_class: Ioki::Model::Platform::TaskList
+      ),
+      Endpoints.custom_endpoints(
+        'task_list',
+        actions:     { 'reassign' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Platform::TaskList
       ),
       Endpoints.crud_endpoints(
@@ -173,6 +200,47 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         except:      [:create, :update, :delete],
         model_class: Ioki::Model::Platform::Announcement
+      ),
+      Endpoints::Create.new(
+        :phone_verification_request,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        path:        'phone_verification_requests',
+        model_class: Ioki::Model::Platform::PhoneVerificationRequest
+      ),
+      Endpoints::Create.new(
+        :phone_verification,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        path:        'phone_verification_requests/verify',
+        model_class: Ioki::Model::Platform::PhoneVerification
+      ),
+      Endpoints.crud_endpoints(
+        :operator,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Platform::Operator
+      ),
+      Endpoints.custom_endpoints(
+        'operators',
+        actions:     { 'set_default' => :patch },
+        path:        [API_BASE_PATH, 'providers', :id, 'operators', :id],
+        model_class: Ioki::Model::Platform::Operator
+      ),
+      Endpoints.custom_endpoints(
+        :captcha,
+        actions:     { 'regenerate' => :patch },
+        path:        [API_BASE_PATH, 'captchas', :id],
+        model_class: Ioki::Model::Platform::Captcha
+      ),
+      Endpoints::Create.new(
+        :captcha_solution,
+        base_path:   [API_BASE_PATH, 'captchas', :id],
+        path:        'solution',
+        model_class: Ioki::Model::Platform::Captcha
+      ),
+      Endpoints::Create.new(
+        :client_challenge,
+        base_path:   [API_BASE_PATH, 'client_challenges', :id],
+        path:        'solution',
+        model_class: Ioki::Model::Platform::ClientChallenge
       )
     ].freeze
   end

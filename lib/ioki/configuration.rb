@@ -54,12 +54,12 @@ module Ioki
       prefix = ['IOKI', env_prefix].reject(&:empty?).join('_')
 
       {
-        api_base_url:          ENV["#{prefix}_API_BASE_URL"],
-        api_version:           ENV["#{prefix}_API_VERSION"],
-        api_client_identifier: ENV["#{prefix}_API_CLIENT_IDENTIFIER"],
-        api_client_secret:     ENV["#{prefix}_API_CLIENT_SECRET"],
-        api_client_version:    ENV["#{prefix}_API_CLIENT_VERSION"],
-        api_token:             ENV["#{prefix}_API_TOKEN"]
+        api_base_url:          ENV.fetch("#{prefix}_API_BASE_URL", nil),
+        api_version:           ENV.fetch("#{prefix}_API_VERSION", nil),
+        api_client_identifier: ENV.fetch("#{prefix}_API_CLIENT_IDENTIFIER", nil),
+        api_client_secret:     ENV.fetch("#{prefix}_API_CLIENT_SECRET", nil),
+        api_client_version:    ENV.fetch("#{prefix}_API_CLIENT_VERSION", nil),
+        api_token:             ENV.fetch("#{prefix}_API_TOKEN", nil)
       }.reject { |_key, value| value.nil? || value.to_s == '' }
     end
   end

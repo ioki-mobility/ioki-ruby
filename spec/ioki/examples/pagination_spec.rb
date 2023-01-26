@@ -17,8 +17,8 @@ RSpec.describe 'paginated call to an indexed resource', :vcr do
   end
 
   it 'returns the same result for page 0 and page 1' do
-    expect(platform_client.rides(product, params: { per_page: 5, page: 0 })).
-      to eq platform_client.rides(product, params: { per_page: 5, page: 1 })
+    expect(platform_client.rides(product, params: { per_page: 5, page: 0 }))
+      .to eq platform_client.rides(product, params: { per_page: 5, page: 1 })
   end
 
   it 'returns the results in the same order if collecting different pages' do

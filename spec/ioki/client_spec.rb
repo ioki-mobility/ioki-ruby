@@ -24,7 +24,7 @@ RSpec.describe Ioki::Client do
 
   describe 'initializiation and configuration:' do
     it 'carries its own config' do
-      expect(client.config).to be_kind_of(Ioki::Configuration)
+      expect(client.config).to be_a(Ioki::Configuration)
     end
 
     describe 'config defaults' do
@@ -45,7 +45,7 @@ RSpec.describe Ioki::Client do
     end
 
     it 'has a Faraday http_adapter' do
-      expect(client.config.http_adapter).to be_kind_of(Faraday::Connection)
+      expect(client.config.http_adapter).to be_a(Faraday::Connection)
     end
 
     it 'uses the given Faraday http_adapter' do
@@ -146,7 +146,7 @@ RSpec.describe Ioki::Client do
       it 'will expose through this error the api_error as a hash with information' do
         client_response
       rescue StandardError => e
-        expect(e).to be_kind_of(Ioki::Error::UnprocessableEntity)
+        expect(e).to be_a(Ioki::Error::UnprocessableEntity)
         expect(e.http_response.env.response_body).to eq(sent_response_body)
         expect(e.api_error).to eq(sent_response_body)
       end
@@ -186,7 +186,7 @@ RSpec.describe Ioki::Client do
         end
 
         it 'will return nil' do
-          expect(client_response[0]).to eq(nil)
+          expect(client_response[0]).to be_nil
         end
       end
 
@@ -196,7 +196,7 @@ RSpec.describe Ioki::Client do
         end
 
         it 'will return nil' do
-          expect(client_response[0]).to eq(nil)
+          expect(client_response[0]).to be_nil
         end
       end
 

@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class Station < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :location_name, on: [:read, :update, :create], type: :string
         attribute :lat,           on: [:read, :update, :create], type: :float
         attribute :lng,           on: [:read, :update, :create], type: :float

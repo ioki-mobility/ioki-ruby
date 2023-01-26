@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Platform
       class PersonalDiscount < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :absolute_discount_object, on: :read, type: :object, class_name: 'Money'
         attribute :channel, on: :read, type: :string
         attribute :consumed, on: :read, type: :boolean

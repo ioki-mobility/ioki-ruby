@@ -4,6 +4,11 @@ module Ioki
   module Model
     module Platform
       class Leg < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
+        attribute :destination_task, type: :object, on: :read, class_name: 'Task'
         attribute :destination_task_calculated_time, type: :string, on: :read
         attribute :destination_task_waypoint_type, type: :string, on: :read
         attribute :distance, type: :integer, on: :read
@@ -13,7 +18,6 @@ module Ioki
         attribute :leg_order, type: :integer, on: :read
         attribute :maneuvers, type: :array, on: :read
         attribute :maneuvers_calculated_at, type: :date_time, on: :read
-        attribute :destination_task, type: :object, on: :read, class_name: 'Task'
       end
     end
   end

@@ -3,10 +3,7 @@
 module Ioki
   module Model
     module Platform
-      class RideInquiryLinkIos < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at, :type and
-        # :id.
-
+      class RideInquiryLinkIos < Base
         unvalidated true # No specification available.
 
         attribute :ios_store_url, on: :read, type: :string

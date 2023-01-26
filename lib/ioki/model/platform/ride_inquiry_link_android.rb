@@ -3,10 +3,7 @@
 module Ioki
   module Model
     module Platform
-      class RideInquiryLinkAndroid < Ioki::Model::Base
-        # Note that this does not inherit from Base because it does not implement :created_at, :updated_at, :type and
-        # :id.
-
+      class RideInquiryLinkAndroid < Base
         unvalidated true # No specification available.
 
         attribute :android_store_url, on: :read, type: :string

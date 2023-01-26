@@ -5,7 +5,8 @@ require 'rspec/expectations'
 API_SPECIFICATION_PATHS = {
   platform_api:  'spec/fixtures/open_api_definitions/platform_api.json',
   passenger_api: 'spec/fixtures/open_api_definitions/passenger_api.json',
-  driver_api:    'spec/fixtures/open_api_definitions/driver_api.json'
+  driver_api:    'spec/fixtures/open_api_definitions/driver_api.json',
+  webhooks_api:  'spec/fixtures/open_api_definitions/webhooks_api.json'
 }.freeze
 
 API_SPECIFICATIONS =
@@ -44,10 +45,10 @@ RSpec::Matchers.define :match_open_api_definition do |scope, model|
   end
 
   define_method :unvalidated_attributes do |actual_model|
-    actual_model.
-      attribute_definitions.
-      select { |_key, definition| definition[:unvalidated] }.
-      keys
+    actual_model
+      .attribute_definitions
+      .select { |_key, definition| definition[:unvalidated] }
+      .keys
   end
 
   match do |actual_model|

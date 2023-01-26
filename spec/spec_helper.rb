@@ -7,13 +7,14 @@ end
 
 require 'bundler/setup'
 require 'awesome_print'
-require 'pry'
+require 'debug'
 require 'ioki'
 require 'vcr'
 require 'webmock/rspec'
 require 'helper/string_helper'
 require 'helper/client_helpers'
 require 'helper/openapi_matcher'
+require 'helper/define_attribute_matcher'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

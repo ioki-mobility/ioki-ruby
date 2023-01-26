@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class ServiceCredit < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :admin, on: :read, type: :object, class_name: 'Admin'
         attribute :balance, on: :read, type: :object, class_name: 'Money'
         attribute :channel, on: :read, type: :string

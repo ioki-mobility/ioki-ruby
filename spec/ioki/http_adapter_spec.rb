@@ -42,7 +42,7 @@ RSpec.describe Ioki::HttpAdapter do
   end
 
   it 'logs the request if logger is present' do
-    config.logger = ::Logger.new(STDOUT)
+    config.logger = Logger.new(STDOUT)
     expect(config.logger).to receive(:info).at_least(:once)
     http_adapter.get('platform/providers')
   end
@@ -60,10 +60,18 @@ RSpec.describe Ioki::HttpAdapter do
     it { is_expected.to include 'X-Client-Secret'     => config.api_client_secret }
     it { is_expected.to include 'X-Client-Version'    => config.api_client_version }
     it { is_expected.to include 'Authorization'       => "Bearer #{config.api_token}" }
+
+    context 'when there is a header without a value' do
+      before do
+        config.api_client_identifier = nil
+      end
+
+      it { is_expected.not_to include 'X-Client-Identifier' }
+    end
   end
 
   describe 'logger' do
-    let(:logger) { instance_double(::Logger, 'logger') }
+    let(:logger) { instance_double(Logger, 'logger') }
 
     it 'uses the correct encoding from the Content-Type header' do
       stub_request(:get, 'https://app.io.ki/api/platform/products').to_return(

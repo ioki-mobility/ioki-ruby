@@ -21,11 +21,13 @@ module Ioki
           f.response :logger, config.logger, config.logger_options do |logger|
             logger.filter(/(X-Client-Secret: ")([^"]+)/, '\1[REMOVED]')
             logger.filter(/(Authorization: ")([^"]+)/, '\1[REMOVED]')
-            logger.filter(/("token":")([^"]+)/, '\1[REMOVED]')
+            logger.filter(/("token"=>")([^"]+)/, '\1[REMOVED]')
           end
         end
-        f.response :json # decode response bodies as JSON
-        f.request :json # encode request bodies as JSON
+        # decode response bodies with content_type 'json' as JSON
+        f.response :json, content_type: /\bjson$/
+        # encode request bodies as JSON
+        f.request :json
       end
     end
 
@@ -41,7 +43,7 @@ module Ioki
         'X-Client-Identifier' => config.api_client_identifier,
         'X-Client-Secret'     => config.api_client_secret,
         'X-Client-Version'    => config.api_client_version
-      }
+      }.compact { |_key, value| !value.nil? }
     end
   end
 end

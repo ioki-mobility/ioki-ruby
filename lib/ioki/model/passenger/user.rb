@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class User < Base
+        attribute :type, on: :read, type: :string
+        attribute :id, on: :read, type: :string
+        attribute :created_at, on: :read, type: :date_time
+        attribute :updated_at, on: :read, type: :date_time
         attribute :email, on: [:read, :update], type: :object, class_name: 'Email'
         attribute :first_name, on: [:read, :update], type: :string
         attribute :last_name, on: [:read, :update], type: :string
@@ -17,11 +21,13 @@ module Ioki
         attribute :failed_payments, on: :read, type: :boolean
         attribute :logpay_customer_set, on: :read, type: :boolean
         attribute :minimum_age_confirmed, on: :read, type: :boolean
+        attribute :notification_settings, on: [:read, :update], type: :object, class_name: 'NotificationSettings'
         attribute :referral_code, on: :read, type: :string
         attribute :referring_user_set, on: :read, type: :boolean
         attribute :registered, on: :read, type: :boolean
         attribute :remaining_referrals, on: :read, type: :integer
         attribute :unique_customer_id, on: :read, type: :string
+        attribute :logpay_customer_set, on: :read, type: :boolean
         attribute :version, on: [:read, :update], type: :integer
       end
     end
