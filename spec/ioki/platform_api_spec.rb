@@ -258,7 +258,6 @@ RSpec.describe Ioki::PlatformApi do
         [result_with_data, full_response]
       end
 
-
       expect(platform_client.user('0815', '4711', options))
         .to be_a(Ioki::Model::Platform::User)
     end

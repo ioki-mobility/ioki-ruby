@@ -77,8 +77,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_ride_inquiry(ride_inquiry, options)).
-        to be_a(Ioki::Model::Passenger::RideInquiry)
+      expect(passenger_client.create_ride_inquiry(ride_inquiry, options))
+        .to be_a(Ioki::Model::Passenger::RideInquiry)
     end
   end
 
@@ -92,8 +92,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_ride(ride, options)).
-        to be_a(Ioki::Model::Passenger::Ride)
+      expect(passenger_client.create_ride(ride, options))
+        .to be_a(Ioki::Model::Passenger::Ride)
     end
   end
 
@@ -127,8 +127,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_cancellation(ride, cancellation)).
-        to be_a(Ioki::Model::Passenger::Ride)
+      expect(passenger_client.create_cancellation(ride, cancellation))
+        .to be_a(Ioki::Model::Passenger::Ride)
     end
   end
 
@@ -143,8 +143,8 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.create_booking(ride, booking, options)).
-        to be_a(Ioki::Model::Passenger::Booking)
+      expect(passenger_client.create_booking(ride, booking, options))
+        .to be_a(Ioki::Model::Passenger::Booking)
     end
   end
 
@@ -158,7 +158,6 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:url].to_s).to eq('passenger/phone_verification_requests')
         [result_with_data, full_response]
       end
-
 
       expect(passenger_client.create_phone_verification_request(phone_verification_request, options))
         .to be_a Ioki::Model::Passenger::PhoneVerificationRequest
@@ -215,7 +214,6 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:url].to_s).to eq('passenger/rides/RIDE_ID/rating')
         [result_with_data, full_response]
       end
-
 
       expect(passenger_client.create_rating(ride, rating, options)).to be_a Ioki::Model::Passenger::Rating
     end
