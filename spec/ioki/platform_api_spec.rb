@@ -31,8 +31,8 @@ RSpec.describe Ioki::PlatformApi do
         result_with_index_data
       end
 
-      expect(platform_client.providers(options)).
-        to all(be_a(Ioki::Model::Platform::Provider))
+      expect(platform_client.providers(options))
+        .to all(be_a(Ioki::Model::Platform::Provider))
     end
   end
 
