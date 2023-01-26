@@ -28,7 +28,12 @@ module Ioki
         # :show can optionally use the model for caching.
         model = options[:model] if options[:model].is_a?(model_class)
         attributes, etag = model_params(client, args, options, model)
-        model_class.new(attributes, etag)
+
+        if model_class == Array
+          attributes
+        else
+          model_class.new(attributes, etag)
+        end
       end
 
       private
