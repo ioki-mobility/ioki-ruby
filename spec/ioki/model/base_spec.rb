@@ -222,6 +222,7 @@ RSpec.describe Ioki::Model::Base do
           expect(model.foo).to eq('21')
           expect(model._attributes).to eq(foo: '21')
           expect(model._raw_attributes).to eq(foo: 21, baz: 42)
+          expect(model.data).to eq(foo: '21')
         end
       end
     end
@@ -730,6 +731,90 @@ RSpec.describe Ioki::Model::Base do
           expect(model == same_model).to be_truthy
         end
       end
+    end
+  end
+
+  describe 'array body' do
+    let(:example_class) { Ioki::Model::Passenger::NotificationSettings }
+
+    it 'allows an array' do
+      model = example_class.new([])
+
+      expect(model.serialize).to eq []
+    end
+
+    context 'with hash objects in array' do
+      let(:attributes) do
+        [
+          {
+            'id'       => 'ride',
+            'name'     => 'ride',
+            'channels' => %w[sms email],
+            'type'     => 'notification_setting'
+          },
+          {
+            'id'       => 'booking',
+            'name'     => 'booking',
+            'channels' => %w[sms],
+            'type'     => 'notification_setting'
+          }
+        ]
+      end
+
+      it 'parses objects in array' do
+        expect(model.data).to eq [
+          Ioki::Model::Passenger::NotificationSetting.new(
+            id:       'ride',
+            name:     'ride',
+            channels: %w[sms email],
+            type:     'notification_setting'
+          ),
+          Ioki::Model::Passenger::NotificationSetting.new(
+            id:       'booking',
+            name:     'booking',
+            channels: %w[sms],
+            type:     'notification_setting'
+          )
+        ]
+      end
+    end
+
+    it 'serializes objects in array' do
+      model = example_class.new([
+        Ioki::Model::Passenger::NotificationSetting.new(
+          name:     'ride',
+          channels: %w[sms email]
+        ),
+        Ioki::Model::Passenger::NotificationSetting.new(
+          name:     'booking',
+          channels: %w[sms]
+        )
+      ])
+
+      expect(model.serialize(:update)).to eq [
+        {
+          name:     'ride',
+          channels: %w[sms email]
+        },
+        {
+          name:     'booking',
+          channels: %w[sms]
+        }
+      ]
+    end
+  end
+
+  describe 'string body' do
+    let(:example_class) do
+      Class.new(Ioki::Model::Base) do
+        base 'String'
+      end
+    end
+
+    it 'allows a string' do
+      model = example_class.new('test')
+
+      expect(model.serialize).to eq 'test'
     end
   end
 end

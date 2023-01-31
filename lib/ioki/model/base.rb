@@ -60,13 +60,26 @@ module Ioki
             .collect(&:class_instance_attribute_definitions)
             .reduce(&:merge)
         end
+
+        def base(class_name, item_class_name: nil)
+          define_method :set_base_class do
+            @_base_class_name = class_name
+            @_item_class_name = item_class_name
+          end
+        end
       end
 
       attr_accessor :_raw_attributes, :_attributes, :_etag
 
-      def initialize(raw_attributes = {}, etag = nil)
+      def initialize(raw_attributes = base_class.new, etag = nil)
+        set_base_class if respond_to?(:set_base_class)
+
         @_initial_attributes = raw_attributes
-        @_raw_attributes = (raw_attributes || {}).transform_keys(&:to_sym)
+        @_raw_attributes = if raw_attributes.is_a?(Hash)
+                             (raw_attributes || {}).transform_keys(&:to_sym)
+                           else
+                             raw_attributes || base_class.new
+                           end
         @_etag = etag
         reset_attributes!
       end
@@ -86,6 +99,26 @@ module Ioki
       def attributes(**attributes)
         attributes.each { |a, v| set_attribute(a, v) }
         @_attributes
+      end
+
+      def data
+        return attributes if base_class == Hash
+
+        case base_class.to_s
+        when 'Array'
+          _raw_attributes.map do |item|
+            class_name = class_name_from_value_type(@_item_class_name, item)
+            model_class = constantize_in_module(class_name)
+
+            model_class.new(item)
+          end
+        else
+          _raw_attributes
+        end
+      end
+
+      def base_class
+        Object.const_get(@_base_class_name || 'Hash')
       end
 
       def type_cast_attribute_value(attribute, value)
@@ -136,6 +169,12 @@ module Ioki
       # may get overridden in hard ways by subclasses. This default
       # implementation should bring us a long way.
       def serialize(usecase = :read)
+        if !@_raw_attributes.is_a?(Hash)
+          return @_raw_attributes.map { |object| object.serialize(usecase) } if @_raw_attributes.is_a?(Array)
+
+          return @_raw_attributes
+        end
+
         self.class.attribute_definitions.each_with_object({}) do |(attribute, definition), data|
           value = public_send(attribute)
 
@@ -173,6 +212,8 @@ module Ioki
 
       def reset_attributes!
         @_attributes = {}
+        return if !@_raw_attributes.is_a?(Hash)
+
         self.class.attribute_definitions.each do |attribute, definition|
           value = @_raw_attributes.key?(attribute) ? @_raw_attributes[attribute] : definition[:default]
           public_send("#{attribute}=", value)

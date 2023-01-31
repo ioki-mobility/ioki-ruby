@@ -381,7 +381,7 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:url].to_s).to eq('passenger/notification_settings/available')
         [result_with_array_data, full_response]
       end
-      expect(passenger_client.available_notification_settings).to be_a Array
+      expect(passenger_client.available_notification_settings).to be_a Ioki::Model::Passenger::NotificationSettings
     end
   end
 
@@ -391,7 +391,7 @@ RSpec.describe Ioki::PassengerApi do
         expect(params[:url].to_s).to eq('passenger/notification_settings/defaults')
         [result_with_array_data, full_response]
       end
-      expect(passenger_client.default_notification_settings).to be_a Array
+      expect(passenger_client.default_notification_settings).to be_a Ioki::Model::Passenger::NotificationSettings
     end
   end
 
