@@ -773,4 +773,17 @@ RSpec.describe Ioki::PlatformApi do
         .to eq(Ioki::Model::Platform::ClientChallenge.new)
     end
   end
+
+  describe '#user_delete_email(provider_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/1337/email')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(platform_client.user_email('0815', '1337', options))
+        .to eq(Ioki::Model::Platform::UserEmail.new)
+    end
+  end
 end

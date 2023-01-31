@@ -6,10 +6,32 @@ module Ioki
       class UserEmail < Base
         unvalidated true
 
-        attribute :confirmed,     on: :read, type: :boolean
-        attribute :email_address, on: [:create, :read, :update], type: :string
-        attribute :newsletter,    on: [:create, :read, :update], type: :boolean
-        attribute :receipt,       on: [:create, :read, :update], type: :boolean
+        attribute :confirmed,
+                  on:   :read,
+                  type: :boolean
+
+        attribute :confirmed_email_address,
+                  on:                      [:create, :update],
+                  type:                    :string,
+                  omit_if_not_provided_on: [:create, :update]
+
+        attribute :email_address,
+                  on:                      [:create, :read, :update],
+                  type:                    :string,
+                  omit_if_not_provided_on: [:create, :update]
+
+        attribute :newsletter,
+                  on:   [:create, :read, :update],
+                  type: :boolean
+
+        attribute :receipt,
+                  on:   [:create, :read, :update],
+                  type: :boolean
+
+        attribute :unconfirmed_email_address,
+                  on:                      [:create, :update],
+                  type:                    :string,
+                  omit_if_not_provided_on: [:create, :update]
       end
     end
   end

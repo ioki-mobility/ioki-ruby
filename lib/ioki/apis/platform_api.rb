@@ -44,6 +44,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Platform::User
       ),
+      Endpoints.custom_endpoints(
+        'user',
+        actions:     { 'email' => :delete },
+        path:        [API_BASE_PATH, 'providers', :id, 'users', :id],
+        model_class: Ioki::Model::Platform::UserEmail
+      ),
       Endpoints.crud_endpoints(
         :driver,
         base_path:   [API_BASE_PATH, 'products', :id],
