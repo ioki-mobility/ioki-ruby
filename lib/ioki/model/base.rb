@@ -65,6 +65,7 @@ module Ioki
       attr_accessor :_raw_attributes, :_attributes, :_etag
 
       def initialize(raw_attributes = {}, etag = nil)
+        @_initial_attributes = raw_attributes
         @_raw_attributes = (raw_attributes || {}).transform_keys(&:to_sym)
         @_etag = etag
         reset_attributes!
@@ -147,6 +148,10 @@ module Ioki
           next if definition.key?(:omit_if_blank_on) &&
                   Array(definition[:omit_if_blank_on]).include?(usecase) &&
                   Ioki::Support.blank?(value)
+
+          next if definition.key?(:omit_if_not_provided_on) &&
+                  Array(definition[:omit_if_not_provided_on]).include?(usecase) &&
+                  !@_initial_attributes.key?(attribute)
 
           data[attribute] = if definition[:type] == :object && value.is_a?(Ioki::Model::Base)
                               value.serialize(usecase)
