@@ -4,12 +4,13 @@ module Ioki
   module Model
     module Passenger
       class NotificationSettings < Base
-        attribute :type, on: :read, type: :string
-        attribute :ride_notifications, on: [:read, :update], type: :array
-        attribute :booking_notifications, on: [:read, :update], type: :array
-        attribute :booking_by_operator_notifications, on: [:read, :update], type: :array
-        attribute :payment_notifications, on: [:read, :update], type: :array
-        attribute :referral_notifications, on: [:read, :update], type: :array
+        attribute :root, on: [:read, :update], type: :array
+
+        def serialize(usecase = :read)
+          serialized_data = super(usecase)
+
+          serialized_data[:root]
+        end
       end
     end
   end

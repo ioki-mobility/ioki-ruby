@@ -21,7 +21,7 @@ module Ioki
         attribute :failed_payments, on: :read, type: :boolean
         attribute :logpay_customer_set, on: :read, type: :boolean
         attribute :minimum_age_confirmed, on: :read, type: :boolean
-        attribute :notification_settings, on: [:read, :update], type: :object, class_name: 'NotificationSettings'
+        attribute :notification_settings, on: [:read, :update], type: :array
         attribute :referral_code, on: :read, type: :string
         attribute :referring_user_set, on: :read, type: :boolean
         attribute :registered, on: :read, type: :boolean

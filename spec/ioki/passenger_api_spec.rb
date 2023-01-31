@@ -20,6 +20,7 @@ RSpec.describe Ioki::PassengerApi do
     )
   end
   let(:result_with_data) { instance_double(Hash, 'result double with data', '[]' => {}) }
+  let(:result_with_array_data) { instance_double(Hash, 'result double with data', '[]' => []) }
   let(:result_with_index_data) { instance_double(Hash, 'result double with data', '[]' => [{}]) }
   let(:full_response) { instance_double(Faraday::Response, 'full_response', headers: {}) }
   let(:options) { { options: :example } }
@@ -378,9 +379,19 @@ RSpec.describe Ioki::PassengerApi do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('passenger/notification_settings/available')
-        [result_with_data, full_response]
+        [result_with_array_data, full_response]
       end
-      expect(passenger_client.available_notification_settings).to be_a Ioki::Model::Passenger::NotificationSettings
+      expect(passenger_client.available_notification_settings).to be_a Array
+    end
+  end
+
+  describe '#default_notification_settings' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/notification_settings/defaults')
+        [result_with_array_data, full_response]
+      end
+      expect(passenger_client.default_notification_settings).to be_a Array
     end
   end
 
