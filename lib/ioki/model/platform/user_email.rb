@@ -11,12 +11,14 @@ module Ioki
                   type: :boolean
 
         attribute :confirmed_email_address,
-                  on:   [:create, :update],
-                  type: :string
+                  on:                      [:create, :update],
+                  type:                    :string,
+                  omit_if_not_provided_on: [:create, :update]
 
         attribute :email_address,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:                      [:create, :read, :update],
+                  type:                    :string,
+                  omit_if_not_provided_on: [:create, :update]
 
         attribute :newsletter,
                   on:   [:create, :read, :update],
@@ -27,8 +29,9 @@ module Ioki
                   type: :boolean
 
         attribute :unconfirmed_email_address,
-                  on:   [:create, :update],
-                  type: :string
+                  on:                      [:create, :update],
+                  type:                    :string,
+                  omit_if_not_provided_on: [:create, :update]
       end
     end
   end
