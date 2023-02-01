@@ -15,7 +15,7 @@ module Ioki
                   type: :string
 
         attribute :small,
-                  on: :read,
+                  on:   :read,
                   type: :string
 
         attribute :mini,
