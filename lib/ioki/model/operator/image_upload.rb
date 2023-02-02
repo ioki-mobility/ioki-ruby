@@ -22,7 +22,7 @@ module Ioki
 
         attribute :versions,
                   on:         :read,
-                  type:       :array,
+                  type:       :object,
                   class_name: 'ImageVersion'
       end
     end
