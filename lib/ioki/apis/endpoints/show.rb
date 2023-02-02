@@ -29,11 +29,7 @@ module Ioki
         model = options[:model] if options[:model].is_a?(model_class)
         attributes, etag = model_params(client, args, options, model)
 
-        if model_class == Array
-          attributes
-        else
-          model_class.new(attributes, etag)
-        end
+        model_class.new(attributes, etag)
       end
 
       private

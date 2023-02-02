@@ -93,19 +93,19 @@ module Ioki
         :notification_settings,
         path:        'notification_settings',
         base_path:   [API_BASE_PATH],
-        model_class: Array
+        model_class: Ioki::Model::Passenger::NotificationSettings
       ),
       Endpoints::ShowSingular.new(
         :default_notification_settings,
         path:        %w[passenger notification_settings defaults],
         base_path:   [API_BASE_PATH],
-        model_class: Array
+        model_class: Ioki::Model::Passenger::NotificationSettings
       ),
       Endpoints::ShowSingular.new(
         :available_notification_settings,
         path:        %w[passenger notification_settings available],
         base_path:   [API_BASE_PATH],
-        model_class: Array
+        model_class: Ioki::Model::Passenger::NotificationSettings
       ),
       Endpoints.crud_endpoints(
         :notification_setting,
