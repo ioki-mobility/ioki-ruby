@@ -25,6 +25,11 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
 
+        attribute :avatar,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ImageUpload'
+
         attribute :connected_driver_id,
                   on:   :read,
                   type: :string
@@ -68,6 +73,11 @@ module Ioki
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
+
+        attribute :num_wheelchair_bays_as_storages,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
 
         attribute :operator_id,
                   on:             [:create, :read, :update],
