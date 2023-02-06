@@ -5,9 +5,7 @@ require 'spec_helper'
 RSpec.describe Ioki::PassengerApi do
   let(:passenger_client) do
     Ioki::Client.new(
-      instance_double(
-        Ioki::Configuration,
-        :config,
+      Ioki::Configuration.new(
         api_base_url:          'https://app.io.ki/api',
         api_version:           '1',
         api_client_identifier: 'ID',

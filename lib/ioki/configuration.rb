@@ -24,6 +24,7 @@ module Ioki
     ].freeze
 
     attr_accessor(*CONFIG_KEYS)
+    attr_accessor :custom_http_adapter
 
     def initialize(params = {})
       params = DEFAULT_VALUES.merge(params)
@@ -38,6 +39,7 @@ module Ioki
       @language = params[:language]
       # you can pass in a custom Faraday::Connection instance:
       @http_adapter = params[:http_adapter] || Ioki::HttpAdapter.get(self)
+      @custom_http_adapter = !!params[:http_adapter]
     end
 
     def self.from_env(env_prefix = '')
@@ -48,6 +50,7 @@ module Ioki
       CONFIG_KEYS.each do |key|
         send("#{key}=", DEFAULT_VALUES.merge(self.class.values_from_env)[key])
       end
+      @custom_http_adapter = nil
     end
 
     def self.values_from_env(env_prefix = '')
