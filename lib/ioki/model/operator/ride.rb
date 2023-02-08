@@ -55,6 +55,11 @@ module Ioki
                   type:       :object,
                   class_name: 'RequestedPoint'
 
+        attribute :driver,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Driver'
+
         attribute :driver_id,
                   on:   :read,
                   type: :string
@@ -160,6 +165,11 @@ module Ioki
         attribute :valid_for_passenger_until,
                   on:   :read,
                   type: :date_time
+
+        attribute :vehicle,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Vehicle'
 
         attribute :vehicle_id,
                   on:   :read,
