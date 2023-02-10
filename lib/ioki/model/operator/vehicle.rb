@@ -25,11 +25,6 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
 
-        attribute :avatar,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'ImageUpload'
-
         attribute :connected_driver_id,
                   on:   :read,
                   type: :string
@@ -48,6 +43,11 @@ module Ioki
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
+
+        attribute :image,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ImageUpload'
 
         attribute :last_known_position,
                   on:         :read,

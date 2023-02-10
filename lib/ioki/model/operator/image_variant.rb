@@ -3,22 +3,22 @@
 module Ioki
   module Model
     module Operator
-      class ImageVersion < Base
+      class ImageVariant < Base
         unvalidated true # Specification not available
 
-        attribute :large,
+        attribute :height,
                   on:   :read,
                   type: :string
 
-        attribute :medium,
+        attribute :name,
                   on:   :read,
                   type: :string
 
-        attribute :small,
+        attribute :url,
                   on:   :read,
                   type: :string
 
-        attribute :mini,
+        attribute :width,
                   on:   :read,
                   type: :string
       end
