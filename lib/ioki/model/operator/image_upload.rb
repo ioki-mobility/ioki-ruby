@@ -20,10 +20,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :versions,
+        attribute :variants,
                   on:         :read,
-                  type:       :object,
-                  class_name: 'ImageVersion'
+                  type:       :array,
+                  class_name: 'ImageVariant'
       end
     end
   end
