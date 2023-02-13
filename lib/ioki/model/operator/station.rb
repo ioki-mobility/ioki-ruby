@@ -54,6 +54,11 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
+        attribute :external_id,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
+
         attribute :fixed,
                   on:   :read,
                   type: :boolean
