@@ -7,6 +7,7 @@ module Ioki
         # The model does not return them but they're used when sending data to the server:
         attribute :username, on: :create, type: :string, unvalidated: true
         attribute :pin, on: :create, type: :string, unvalidated: true
+        attribute :password, on: :create, type: :string, unvalidated: true
         # This is what we care about:
         attribute :token, on: :read, type: :string
         attribute :driver_id, on: :read, type: :string
