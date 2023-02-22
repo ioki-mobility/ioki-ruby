@@ -53,10 +53,15 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :password,
+                  on:   :read,
+                  type: :string
+
         attribute :phone_number,
                   on:   [:create, :read, :update],
                   type: :string
 
+        # Deprecated
         attribute :pin,
                   on:   :read,
                   type: :string
