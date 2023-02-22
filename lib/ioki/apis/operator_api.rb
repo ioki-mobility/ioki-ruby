@@ -39,8 +39,6 @@ module Ioki
         actions:     {
           'lock'                => :patch,
           'unlock'              => :patch,
-          'regenerate_pin'      => :patch,
-          'set_pin'             => :patch,
           'regenerate_password' => :patch,
           'set_password'        => :patch
         },

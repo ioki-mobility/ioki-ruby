@@ -61,11 +61,6 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
-        # Deprecated
-        attribute :pin,
-                  on:   :read,
-                  type: :string
-
         attribute :username,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
