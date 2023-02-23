@@ -22,7 +22,7 @@ module Ioki
       Endpoints.custom_endpoints(
         'products',
         actions:     { 'product_validations' => :get },
-        path:        [API_BASE_PATH],
+        path:        [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::ProductValidation
       ),
       Endpoints.crud_endpoints(
