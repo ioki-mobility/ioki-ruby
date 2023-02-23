@@ -19,6 +19,12 @@ module Ioki
         model_class: Ioki::Model::Operator::Product,
         except:      [:create, :update, :delete]
       ),
+      Endpoints.custom_endpoints(
+        'products',
+        actions:     { 'product_validations' => :get },
+        path:        [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::ProductValidation
+      ),
       Endpoints.crud_endpoints(
         :vehicle,
         base_path:   [API_BASE_PATH, 'products', :id],
