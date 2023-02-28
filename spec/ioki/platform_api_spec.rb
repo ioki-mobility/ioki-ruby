@@ -786,4 +786,76 @@ RSpec.describe Ioki::PlatformApi do
         .to eq(Ioki::Model::Platform::UserEmail.new)
     end
   end
+
+  describe '#product_personal_discounts(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/personal_discounts')
+        result_with_index_data
+      end
+
+      expect(platform_client.product_personal_discounts('0815', options))
+        .to all(be_a(Ioki::Model::Platform::PersonalDiscount))
+    end
+  end
+
+  describe '#product_personal_discount(product_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/personal_discounts/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.product_personal_discount('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::PersonalDiscount)
+    end
+  end
+
+  describe '#provider_personal_discounts(provider_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/personal_discounts')
+        result_with_index_data
+      end
+
+      expect(platform_client.provider_personal_discounts('0815', options))
+        .to all(be_a(Ioki::Model::Platform::PersonalDiscount))
+    end
+  end
+
+  describe '#provider_personal_discount(provider_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/personal_discounts/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.provider_personal_discount('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::PersonalDiscount)
+    end
+  end
+
+  describe '#user_personal_discounts(provider_id, user_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/23/personal_discounts')
+        result_with_index_data
+      end
+
+      expect(platform_client.user_personal_discounts('0815', '23', options))
+        .to all(be_a(Ioki::Model::Platform::PersonalDiscount))
+    end
+  end
+
+  describe '#user_personal_discount(provider_id, user_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/users/23/personal_discounts/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.user_personal_discount('0815', '23', '4711', options))
+        .to be_a(Ioki::Model::Platform::PersonalDiscount)
+    end
+  end
 end

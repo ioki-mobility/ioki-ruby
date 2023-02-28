@@ -247,6 +247,27 @@ module Ioki
         base_path:   [API_BASE_PATH, 'client_challenges', :id],
         path:        'solution',
         model_class: Ioki::Model::Platform::ClientChallenge
+      ),
+      Endpoints.crud_endpoints(
+        :product_personal_discount,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        except:      [:create, :update, :delete],
+        paths:       { index: 'personal_discounts', show: 'personal_discounts' },
+        model_class: Ioki::Model::Platform::PersonalDiscount
+      ),
+      Endpoints.crud_endpoints(
+        :provider_personal_discount,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        except:      [:create, :update, :delete],
+        paths:       { index: 'personal_discounts', show: 'personal_discounts' },
+        model_class: Ioki::Model::Platform::PersonalDiscount
+      ),
+      Endpoints.crud_endpoints(
+        :user_personal_discount,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id],
+        except:      [:create, :update, :delete],
+        paths:       { index: 'personal_discounts', show: 'personal_discounts' },
+        model_class: Ioki::Model::Platform::PersonalDiscount
       )
     ].freeze
   end
