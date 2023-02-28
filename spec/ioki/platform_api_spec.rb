@@ -44,7 +44,7 @@ RSpec.describe Ioki::PlatformApi do
       end
 
       expect(platform_client.provider('0815', options))
-        .to be_a(Ioki::Model::Platform::Provider.new)
+        .to be_a(Ioki::Model::Platform::Provider)
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Ioki::PlatformApi do
       end
 
       expect(platform_client.products(options))
-        .to be_a([Ioki::Model::Platform::Product.new])
+        .to all(be_a(Ioki::Model::Platform::Product))
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe Ioki::PlatformApi do
       end
 
       expect(platform_client.product('0815', options))
-        .to be_a(Ioki::Model::Platform::Product.new)
+        .to be_a(Ioki::Model::Platform::Product)
     end
   end
 

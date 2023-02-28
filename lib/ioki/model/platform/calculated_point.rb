@@ -22,7 +22,6 @@ module Ioki
         attribute :negotiation_time_max, on: :read, type: :date_time
         attribute :pause_id,             on: :read, type: :string
         attribute :postal_code,          on: :read, type: :string
-        attribute :station,              on: :read, type: :object, class_name: 'Station'
         attribute :station_id,           on: :read, type: :string
         attribute :street_name,          on: :read, type: :string
         attribute :street_number,        on: :read, type: :string

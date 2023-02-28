@@ -23,7 +23,7 @@ RSpec.describe Ioki::Model::Platform::Task do
   end
 
   describe 'ride' do
-    subject(:task_list) { described_class.new ride: nil, ride_id: '123' }
+    subject(:task_list) { described_class.new ride_id: '123' }
 
     it { is_expected.to have_attributes ride_id: '123' }
     it { is_expected.not_to respond_to :ride }
@@ -33,5 +33,5 @@ RSpec.describe Ioki::Model::Platform::Task do
   it { is_expected.to define_attribute(:type).as(:string) }
   it { is_expected.to define_attribute(:created_at).as(:date_time) }
   it { is_expected.to define_attribute(:updated_at).as(:date_time) }
-  it { is_expected.to define_attribute(:ride).as(:object).with(class_name: 'Ride') }
+  it { is_expected.to define_attribute(:ride_id).as(:string) }
 end
