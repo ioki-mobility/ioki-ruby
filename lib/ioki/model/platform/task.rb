@@ -18,9 +18,9 @@ module Ioki
         attribute :completer, on: :read, type: :object # No model_class b/c it can have one of several types.
         attribute :completer_id, on: :read, type: :string
         attribute :completer_type, on: :read, type: :string
-        attribute :pause, on: :read, type: :object, class_name: 'Pause'
+        attribute :pause_id, on: :read, type: :string
         attribute :rejectable, on: :read, type: :boolean
-        attribute :ride, on: :read, type: :object, class_name: 'Ride'
+        attribute :ride_id, on: :read, type: :string
         attribute :state, on: :read, type: :string
         attribute :task_list_id, on: :read, type: :string
         attribute :waypoint_type, on: :read, type: :string
