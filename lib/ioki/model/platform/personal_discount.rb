@@ -20,6 +20,7 @@ module Ioki
         attribute :relative_discount, on: :read, type: :integer
         attribute :title, on: :read, type: :string
         attribute :usages, on: :read, type: :integer
+        attribute :user_id, on: :read, type: :string
         attribute :valid_from, on: :read, type: :date_time
         attribute :valid_until, on: :read, type: :date_time
         attribute :validity, on: :read, type: :string
