@@ -16,19 +16,17 @@ RSpec.describe Ioki::Configuration do
   end
 
   it 'defines multiple configurable properties' do
-    expect(described_class::CONFIG_KEYS).to match_array(
-      [
-        :http_adapter,
-        :logger,
-        :logger_options,
-        :api_base_url,
-        :api_version,
-        :api_client_identifier,
-        :api_client_secret,
-        :api_client_version,
-        :api_token,
-        :language
-      ]
+    expect(described_class::CONFIG_KEYS).to contain_exactly(
+      :http_adapter,
+      :logger,
+      :logger_options,
+      :api_base_url,
+      :api_version,
+      :api_client_identifier,
+      :api_client_secret,
+      :api_client_version,
+      :api_token,
+      :language
     )
   end
 
