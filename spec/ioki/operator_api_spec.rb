@@ -587,7 +587,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#task_lists_reassign(product_id, task_list_id)' do
+  describe '#task_lists_recalculate(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/recalculate')
