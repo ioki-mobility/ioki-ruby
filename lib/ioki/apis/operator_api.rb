@@ -79,7 +79,7 @@ module Ioki
       ),
       Endpoints.custom_endpoints(
         'task_lists',
-        actions:     { 'reassign' => :patch },
+        actions:     { 'reassign' => :patch, 'recalculate' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::TaskList
       ),
