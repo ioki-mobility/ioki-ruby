@@ -26,7 +26,7 @@ module Ioki
 
         attribute :affected_items,
                   on:         :read,
-                  type:       :object,
+                  type:       :array,
                   class_name: 'AffectedItem'
       end
     end

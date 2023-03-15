@@ -6,7 +6,7 @@ module Ioki
       class ProductValidation < Base
         attribute :product_bulletins,
                   on:         :read,
-                  type:       :object,
+                  type:       :array,
                   class_name: 'ProductBulletin'
       end
     end
