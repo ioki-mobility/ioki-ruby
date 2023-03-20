@@ -467,6 +467,18 @@ RSpec.describe Ioki::PlatformApi do
     end
   end
 
+  describe '#drivers_set_password(product_id, driver_id, password)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/drivers/4711/set_password')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(platform_client.drivers_set_password('0815', '4711', '123456')).to be_a(Ioki::Model::Platform::Driver)
+    end
+  end
+
   describe '#create_rating(product_id, ride_id)' do
     let(:rating) { Ioki::Model::Platform::Rating.new({ id: '4711' }) }
 

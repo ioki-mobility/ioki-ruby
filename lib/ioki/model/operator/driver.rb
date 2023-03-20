@@ -53,12 +53,12 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :phone_number,
-                  on:   [:create, :read, :update],
+        attribute :password,
+                  on:   :read,
                   type: :string
 
-        attribute :pin,
-                  on:   :read,
+        attribute :phone_number,
+                  on:   [:create, :read, :update],
                   type: :string
 
         attribute :username,
