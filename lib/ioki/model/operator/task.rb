@@ -28,6 +28,11 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :calculated_point,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'CalculatedPoint'
+
         attribute :calculated_point_id,
                   on:   :read,
                   type: :string
