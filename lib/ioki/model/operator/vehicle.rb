@@ -109,7 +109,7 @@ module Ioki
                   type:           :integer
 
         attribute :version,
-                  on:   :read,
+                  on:   [:update, :read],
                   type: :integer
       end
     end

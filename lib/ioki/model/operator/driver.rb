@@ -67,7 +67,7 @@ module Ioki
                   type:           :string
 
         attribute :version,
-                  on:   :read,
+                  on:   [:update, :read],
                   type: :integer
       end
     end
