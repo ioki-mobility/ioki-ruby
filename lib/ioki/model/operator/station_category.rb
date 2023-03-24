@@ -34,6 +34,10 @@ module Ioki
                   on:             [:create, :update, :read],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
+
+        attribute :version,
+                  on:   [:read, :update],
+                  type: :integer
       end
     end
   end

@@ -80,7 +80,7 @@ module Ioki
                   type:           :boolean
 
         attribute :version,
-                  on:   :read,
+                  on:   [:read, :update],
                   type: :integer
       end
     end
