@@ -6,7 +6,7 @@ require 'securerandom'
 
 RSpec.describe Ioki::Webhooks::SignatureValidator do
   subject(:validator) do
-    described_class.new signature: signature, body: body
+    described_class.new signature: signature, body: body, signature_key: signature_key
   end
 
   let(:body) do
@@ -24,6 +24,7 @@ RSpec.describe Ioki::Webhooks::SignatureValidator do
   end
   let(:signature) { 'sha256=' + signature_sha256 }
   let(:signature_sha256) { 'NotAnActualSignatureButItHasTheCorrectLengthSoThatsFineAndOkayOK' }
+  let(:signature_key) { 'signature_key' }
 
   context 'when signature is nil' do
     let(:signature) { nil }
@@ -57,33 +58,24 @@ RSpec.describe Ioki::Webhooks::SignatureValidator do
     end
   end
 
-  context 'when the WEBHOOK_SIGNATURE_KEY ENV variable is nil' do
-    before do
-      allow(ENV).to receive(:fetch).with('WEBHOOK_SIGNATURE_KEY', nil).and_return(nil)
-    end
+  context 'when the signature_key is nil' do
+    let(:signature_key) { nil }
 
     it 'raises a Ioki::Error::WebhookSignatureKeyMissing' do
       expect { validator.call }.to raise_error Ioki::Error::WebhookSignatureKeyMissing
     end
   end
 
-  context 'when the WEBHOOK_SIGNATURE_KEY ENV variable is empty' do
-    before do
-      allow(ENV).to receive(:fetch).with('WEBHOOK_SIGNATURE_KEY', nil).and_return('')
-    end
+  context 'when the signature_key is empty' do
+    let(:signature_key) { '' }
 
     it 'raises a Ioki::Error::WebhookSignatureKeyMissing' do
       expect { validator.call }.to raise_error Ioki::Error::WebhookSignatureKeyMissing
     end
   end
 
-  context 'when the WEBHOOK_SIGNATURE_KEY ENV variable is present' do
+  context 'when the signature_key is present' do
     let(:signature_key) { SecureRandom.alphanumeric(24) }
-
-    before do
-      allow(ENV).to receive(:fetch).with(any_args).and_call_original
-      allow(ENV).to receive(:fetch).with('WEBHOOK_SIGNATURE_KEY', nil).and_return(signature_key)
-    end
 
     it 'raises a Ioki::Error::WebhookSignatureInvalid' do
       expect { validator.call }.to raise_error Ioki::Error::WebhookSignatureInvalid

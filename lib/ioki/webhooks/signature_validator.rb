@@ -18,25 +18,28 @@ require 'openssl'
 module Ioki
   module Webhooks
     class SignatureValidator
-      def initialize(body:, signature:)
+      def initialize(body:, signature:, signature_key:)
         @body = body
         @signature = signature
+        @signature_key = signature_key
       end
 
       def call
         raise Ioki::Error::WebhookSignatureMissing if Ioki::Support.blank? @signature
         raise Ioki::Error::WebhookBodyMissing if Ioki::Support.blank? @body
-        raise Ioki::Error::WebhookSignatureKeyMissing if Ioki::Support.blank? ENV.fetch('WEBHOOK_SIGNATURE_KEY', nil)
-        raise Ioki::Error::WebhookSignatureInvalid unless OpenSSL.secure_compare @signature, calculated_signature
+        raise Ioki::Error::WebhookSignatureKeyMissing if Ioki::Support.blank? @signature_key
+
+        valid_signature = OpenSSL.secure_compare @signature, calculated_signature
+        raise Ioki::Error::WebhookSignatureInvalid unless valid_signature
       end
 
       private
 
       def calculated_signature
         'sha256=' + OpenSSL::HMAC.hexdigest(
-          OpenSSL::Digest.new('sha256'),           # The algorithm to use: SHA256
-          ENV.fetch('WEBHOOK_SIGNATURE_KEY', nil), # First: The pre-shared key
-          @body                                    # Second: The data to verify
+          OpenSSL::Digest.new('sha256'), # The algorithm to use: SHA256
+          @signature_key,                # First: The pre-shared key
+          @body                          # Second: The data to verify
         )
       end
     end

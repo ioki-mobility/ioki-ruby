@@ -148,14 +148,17 @@ webhook `data` as a model:
 
 Because the data is pushed to your application via the internet to a public
 endpoint in your application, the webhook data is signed by the ioki webhooks
-API to authenticate it using a preshared secret, which you need to set as the
-`WEBHOOK_SIGNATURE_KEY` ENV variable.
+API to authenticate it using a preshared secret, which you need to provide.
 
 ```
-# Set ENV['WEBHOOK_SIGNATURE_KEY'] first...
-# Then run the validation on the request:
+# Set ENV['IOKI_WEBHOOK_SIGNATURE_KEY'] first...
+# Then run the validation on the request
 
-Ioki::Webhooks::SignatureValidator.new(body: request.body.read, signature: request.headers['X-Signature']).call
+Ioki::Webhooks::SignatureValidator.new(
+  body:          request.body.read,
+  signature:     request.headers['X-Signature'],
+  signature_key: ENV.fetch('IOKI_WEBHOOK_SIGNATURE_KEY', nil)
+).call
 
 ```
 
