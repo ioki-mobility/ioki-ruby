@@ -18,7 +18,7 @@ require 'openssl'
 module Ioki
   module Webhooks
     class SignatureValidator
-      def initialize(body:, signature:, signature_key:)
+      def initialize(body:, signature:, signature_key: ENV.fetch('WEBHOOK_SIGNATURE_KEY', nil))
         @body = body
         @signature = signature
         @signature_key = signature_key
