@@ -15,6 +15,7 @@ RSpec.describe Ioki::HttpAdapter do
       api_client_secret:     SecureRandom.alphanumeric,
       api_client_version:    'api_client_version',
       api_token:             SecureRandom.alphanumeric,
+      api_bleeding_edge:     false,
       language:              :'en-BZ',
       logger:                logger,
       logger_options:        { headers: true, bodies: true }
@@ -59,6 +60,7 @@ RSpec.describe Ioki::HttpAdapter do
     it { is_expected.to include 'X-Client-Identifier' => config.api_client_identifier }
     it { is_expected.to include 'X-Client-Secret'     => config.api_client_secret }
     it { is_expected.to include 'X-Client-Version'    => config.api_client_version }
+    it { is_expected.not_to include 'X-Bleeding-Edge' => config.api_bleeding_edge }
     it { is_expected.to include 'Authorization'       => "Bearer #{config.api_token}" }
 
     context 'when there is a header without a value' do
@@ -67,6 +69,14 @@ RSpec.describe Ioki::HttpAdapter do
       end
 
       it { is_expected.not_to include 'X-Client-Identifier' }
+    end
+
+    context 'when bleeding edge is set' do
+      before do
+        config.api_bleeding_edge = true
+      end
+
+      it { is_expected.to include 'X-Bleeding-Edge' => config.api_bleeding_edge.to_s }
     end
   end
 

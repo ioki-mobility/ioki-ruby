@@ -26,6 +26,7 @@ RSpec.describe Ioki::Configuration do
       :api_client_secret,
       :api_client_version,
       :api_token,
+      :api_bleeding_edge,
       :language
     )
   end
@@ -51,6 +52,7 @@ RSpec.describe Ioki::Configuration do
           api_client_secret:     nil,
           api_client_version:    nil,
           api_token:             nil,
+          api_bleeding_edge:     false,
           language:              'de',
           logger_options:        described_class::DEFAULT_VALUES[:logger_options]
         }.freeze
@@ -90,7 +92,8 @@ RSpec.describe Ioki::Configuration do
         'IOKI_API_CLIENT_IDENTIFIER' => 'CLIENT_IDENTIFIER',
         'IOKI_API_CLIENT_SECRET'     => 'CLIENT_SECRET',
         'IOKI_API_CLIENT_VERSION'    => 'CLIENT_VERSION',
-        'IOKI_API_TOKEN'             => 'API_TOKEN'
+        'IOKI_API_TOKEN'             => 'API_TOKEN',
+        'IOKI_API_BLEEDING_EDGE'     => 'true'
       )
 
       config_from_env = described_class.from_env
@@ -101,6 +104,7 @@ RSpec.describe Ioki::Configuration do
       expect(config_from_env.api_client_secret).to eq 'CLIENT_SECRET'
       expect(config_from_env.api_client_version).to eq 'CLIENT_VERSION'
       expect(config_from_env.api_token).to eq 'API_TOKEN'
+      expect(config_from_env.api_bleeding_edge).to be true
     end
   end
 end
