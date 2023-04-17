@@ -39,6 +39,7 @@ module Ioki
         'Accept-Language'     => config.language.to_s,
         # api_headers
         'X-Api-Version'       => config.api_version,
+        'X-Bleeding-Edge'     => config.api_bleeding_edge ? 'true' : nil,
         # client_headers
         'X-Client-Identifier' => config.api_client_identifier,
         'X-Client-Secret'     => config.api_client_secret,

@@ -87,6 +87,7 @@ initializer you could do it like this:
       cfg.api_base_url          = 'https://demo.io.ki/api/'
       cfg.api_client_identifier = 'com.ioki.example.client'
       cfg.api_client_version    = '0.0.1'
+      cfg.api_bleeding_edge     = false
 
       # As you should not put secrets into your source code, you probably want
       # to NOT use these:
@@ -109,6 +110,7 @@ and api_client_secret. You can setup these ENV variables:
   ENV['IOKI_API_CLIENT_SECRET']
   ENV['IOKI_API_CLIENT_VERSION']
   ENV['IOKI_API_TOKEN']
+  ENV['IOKI_API_BLEEDING_EDGE']
 ```
 
 or define them for one of the three supported apis with a prefix:
