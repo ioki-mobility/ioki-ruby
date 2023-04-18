@@ -15,7 +15,6 @@ RSpec.describe Ioki::HttpAdapter do
       api_client_secret:     SecureRandom.alphanumeric,
       api_client_version:    'api_client_version',
       api_token:             SecureRandom.alphanumeric,
-      api_bleeding_edge:     false,
       language:              :'en-BZ',
       logger:                logger,
       logger_options:        { headers: true, bodies: true }
