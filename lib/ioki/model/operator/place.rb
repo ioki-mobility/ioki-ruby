@@ -73,9 +73,9 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
-        atribute :waiting_position,
-                 on:   [:read, :create, :update],
-                 type: :boolean
+        attribute :waiting_position,
+                  on:   [:read, :create, :update],
+                  type: :boolean
 
         attribute :version,
                   on:   :read,
