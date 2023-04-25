@@ -32,6 +32,10 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
+        attribute :depot,
+                  on:   [:read, :create, :update],
+                  type: :boolean
+
         attribute :description,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
@@ -68,6 +72,10 @@ module Ioki
         attribute :street_number,
                   on:   [:create, :read, :update],
                   type: :string
+
+        atribute :waiting_position,
+                 on:   [:read, :create, :update],
+                 type: :boolean
 
         attribute :version,
                   on:   :read,
