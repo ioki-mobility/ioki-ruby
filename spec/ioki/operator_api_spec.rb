@@ -1070,4 +1070,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Operator)
     end
   end
+
+  describe '#area(product_id, area_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/areas/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.area('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Area)
+    end
+  end
 end
