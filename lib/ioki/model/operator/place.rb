@@ -33,8 +33,9 @@ module Ioki
                   type: :string
 
         attribute :depot,
-                  on:   [:read, :create, :update],
-                  type: :boolean
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
 
         attribute :description,
                   on:             [:create, :read, :update],
@@ -74,8 +75,9 @@ module Ioki
                   type: :string
 
         attribute :waiting_position,
-                  on:   [:read, :create, :update],
-                  type: :boolean
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
 
         attribute :version,
                   on:   :read,
