@@ -191,6 +191,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id, 'lines', :id],
         except:      [:create, :delete],
         model_class: Ioki::Model::Operator::LineStop
+      ),
+      Endpoints.crud_endpoints(
+        :user,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Operator::User,
+        except:      [:create, :update, :delete]
       )
     ].freeze
   end
