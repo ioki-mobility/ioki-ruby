@@ -32,7 +32,7 @@ module Ioki
         attribute :area,
                   type:       :object,
                   on:         :read,
-                  class_name: 'Area'
+                  class_name: 'Geojson'
 
         attribute :ad_hoc_bookable,
                   on:   :read,
