@@ -1082,4 +1082,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Area)
     end
   end
+
+  describe '#create_line(product_id, line)' do
+    let(:line) { Ioki::Model::Operator::Line.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_line('0815', line, options))
+        .to eq(Ioki::Model::Operator::Line.new)
+    end
+  end
+
+  describe '#update_line(product_id, line)' do
+    let(:line) { Ioki::Model::Operator::Line.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/4711')
+        expect(params[:method]).to eq :patch
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_line('0815', line, options))
+        .to eq(Ioki::Model::Operator::Line.new)
+    end
+  end
+
+  describe '#delete_line(product_id, line_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/4711')
+        result_with_data
+      end
+
+      expect(operator_client.delete_line('0815', '4711', options))
+        .to eq(Ioki::Model::Operator::Line.new)
+    end
+  end
+
+  describe '#create_line_stop(product_id, line_id, line_stop)' do
+    let(:line_stop) { Ioki::Model::Operator::LineStop.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/0815/line_stops')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_line_stop('0815', '0815', line_stop, options))
+        .to eq(Ioki::Model::Operator::LineStop.new)
+    end
+  end
+
+  describe '#delete_line_stop(product_id, line_id, line_stop_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/0815/line_stops/4711')
+        result_with_data
+      end
+
+      expect(operator_client.delete_line_stop('0815', '0815', '4711', options))
+        .to eq(Ioki::Model::Operator::LineStop.new)
+    end
+  end
 end
