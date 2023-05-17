@@ -180,6 +180,17 @@ module Ioki
         :area,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Area
+      ),
+      Endpoints.crud_endpoints(
+        :line,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Line
+      ),
+      Endpoints.crud_endpoints(
+        :line_stop,
+        base_path:   [API_BASE_PATH, 'products', :id, 'lines', :id],
+        except:      [:create, :delete],
+        model_class: Ioki::Model::Operator::LineStop
       )
     ].freeze
   end
