@@ -117,6 +117,11 @@ module Ioki
                   on:             [:create, :read, :reassign],
                   omit_if_nil_on: [:create, :reassign],
                   type:           :string
+
+        attribute :line_id,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
       end
     end
   end
