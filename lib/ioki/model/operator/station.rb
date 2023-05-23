@@ -109,8 +109,9 @@ module Ioki
                   type:           :array
 
         attribute :version,
-                  on:   [:read, :update],
-                  type: :integer
+                  on:             [:read, :update],
+                  omit_if_nil_on: [:update],
+                  type:           :integer
 
         attribute :walker_boarding_time,
                   on:   [:read, :create, :update],

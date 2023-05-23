@@ -71,8 +71,9 @@ module Ioki
                   type: :date_time
 
         attribute :version,
-                  on:   [:read, :update],
-                  type: :integer
+                  on:             [:read, :update],
+                  omit_if_nil_on: [:update],
+                  type:           :integer
       end
     end
   end

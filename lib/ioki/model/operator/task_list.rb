@@ -124,8 +124,9 @@ module Ioki
                   type:           :string
 
         attribute :version,
-                  on:   [:read, :update],
-                  type: :integer
+                  on:             [:read, :update],
+                  omit_if_nil_on: [:update],
+                  type:           :integer
       end
     end
   end
