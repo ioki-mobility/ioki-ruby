@@ -170,8 +170,9 @@ module Ioki
                   type: :integer
 
         attribute :version,
-                  on:   [:update, :read],
-                  type: :integer
+                  on:             [:update, :read],
+                  omit_if_nil_on: [:update],
+                  type:           :integer
       end
     end
   end
