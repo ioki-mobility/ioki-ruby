@@ -108,6 +108,10 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :array
 
+        attribute :version,
+                  on:   [:read, :update],
+                  type: :integer
+
         attribute :walker_boarding_time,
                   on:   [:read, :create, :update],
                   type: :integer

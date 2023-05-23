@@ -168,6 +168,10 @@ module Ioki
         attribute :time_window_collapse_threshold,
                   on:   [:create, :read, :update],
                   type: :integer
+
+        attribute :version,
+                  on:   [:update, :read],
+                  type: :integer
       end
     end
   end
