@@ -1093,7 +1093,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_line('0815', line, options))
-        .to eq(Ioki::Model::Operator::Line.new)
+        .to be_a(Ioki::Model::Operator::Line)
     end
   end
 
@@ -1108,7 +1108,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_line('0815', line, options))
-        .to eq(Ioki::Model::Operator::Line.new)
+        .to be_a(Ioki::Model::Operator::Line)
     end
   end
 
@@ -1120,7 +1120,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_line('0815', '4711', options))
-        .to eq(Ioki::Model::Operator::Line.new)
+        .to be_a(Ioki::Model::Operator::Line)
     end
   end
 
@@ -1134,7 +1134,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_line_stop('0815', '0815', line_stop, options))
-        .to eq(Ioki::Model::Operator::LineStop.new)
+        .to be_a(Ioki::Model::Operator::LineStop)
     end
   end
 
@@ -1146,7 +1146,31 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_line_stop('0815', '0815', '4711', options))
-        .to eq(Ioki::Model::Operator::LineStop.new)
+        .to be_a(Ioki::Model::Operator::LineStop)
+    end
+  end
+
+  describe '#users(provider_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users')
+        result_with_index_data
+      end
+
+      expect(operator_client.users('0815', options))
+        .to all(be_a(Ioki::Model::Operator::User))
+    end
+  end
+
+  describe '#user(provider_id, user_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.user('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::User)
     end
   end
 end
