@@ -1173,4 +1173,18 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::User)
     end
   end
+
+  describe '#create_ride_inqury(product_id)' do
+    let(:ride_inquiry) { Ioki::Model::Operator::RideInquiry.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/ride_inquiry')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_ride_inquiry('0815', ride_inquiry, options))
+        .to be_a(Ioki::Model::Operator::RideInquiry)
+    end
+  end
 end

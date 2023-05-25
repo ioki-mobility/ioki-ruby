@@ -197,6 +197,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::User,
         except:      [:create, :update, :delete]
+      ),
+      Endpoints::Create.new(
+        :ride_inquiry,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        path:        'ride_inquiry',
+        model_class: Ioki::Model::Operator::RideInquiry
       )
     ].freeze
   end
