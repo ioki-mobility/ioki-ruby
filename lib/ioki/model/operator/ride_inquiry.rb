@@ -22,17 +22,19 @@ module Ioki
 
         # The model does not return it but it's used when sending data to the server.
         attribute :origin,
-                  on:          :create,
-                  type:        :object,
-                  class_name:  'RequestedPoint',
-                  unvalidated: true
+                  on:             :create,
+                  omit_if_nil_on: [:create],
+                  type:           :object,
+                  class_name:     'RequestedPoint',
+                  unvalidated:    true
 
         # The model does not return it but it's used when sending data to the server.
         attribute :destination,
-                  on:          :create,
-                  type:        :object,
-                  class_name:  'RequestedPoint',
-                  unvalidated: true
+                  on:             :create,
+                  omit_if_nil_on: [:create],
+                  type:           :object,
+                  class_name:     'RequestedPoint',
+                  unvalidated:    true
 
         # attribute :assistances,
         #           on:         :read,
