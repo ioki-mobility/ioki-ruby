@@ -36,29 +36,10 @@ module Ioki
                   class_name:     'RequestedPoint',
                   unvalidated:    true
 
-        # attribute :assistances,
-        #           on:         :read,
-        #           type:       :array,
-        #           class_name: 'Assistance'
-
-        # attribute :availability,
-        #           on:         :read,
-        #           type:       :object,
-        #           class_name: 'Availability'
-
         attribute :constraints,
                   on:         :read,
                   type:       :object,
                   class_name: 'Constraints'
-
-        # attribute :errors,
-        #           on:   :read,
-        #           type: :array
-
-        # attribute :estimations,
-        #           on:         :read,
-        #           type:       :array,
-        #           class_name: 'Estimation'
       end
     end
   end
