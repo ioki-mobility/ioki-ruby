@@ -58,8 +58,9 @@ module Ioki
                   type: :date_time
 
         attribute :notification_settings,
-                  on:   :read,
-                  type: :array
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'NotificationSetting'
 
         attribute :phone_number,
                   on:               [:read, :create, :update],
