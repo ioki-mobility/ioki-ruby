@@ -24,6 +24,15 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :area,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Geojson'
+
+        attribute :area_geojson,
+                  on:   [:create, :update],
+                  type: :string
+
         attribute :boarding_time,
                   on:   [:read, :create, :update],
                   type: :integer
