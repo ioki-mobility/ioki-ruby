@@ -54,6 +54,11 @@ module Ioki
                   type:       :object,
                   class_name: 'VehiclePosition'
 
+        attribute :last_position,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'VehiclePosition'
+
         attribute :license_plate,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
