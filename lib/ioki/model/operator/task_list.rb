@@ -113,6 +113,12 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
+        attribute :vehicle,
+                  on:             :read,
+                  omit_if_nil_on: [:read],
+                  type:           :object,
+                  class_name:     'Vehicle'
+
         attribute :vehicle_id,
                   on:             [:create, :read, :reassign],
                   omit_if_nil_on: [:create, :reassign],
