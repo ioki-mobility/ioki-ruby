@@ -28,6 +28,11 @@ module Ioki
                   on:         :read,
                   type:       :array,
                   class_name: 'AffectedItem'
+
+        attribute :peripheral_items,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'PeripheralItem'
       end
     end
   end
