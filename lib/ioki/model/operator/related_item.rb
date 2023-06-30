@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class PeripheralItem < Base
+      class RelatedItem < Base
         attribute :id,
                   on:   :read,
                   type: :string

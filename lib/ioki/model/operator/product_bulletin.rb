@@ -29,10 +29,10 @@ module Ioki
                   type:       :array,
                   class_name: 'AffectedItem'
 
-        attribute :peripheral_items,
+        attribute :related_items,
                   on:         :read,
                   type:       :array,
-                  class_name: 'PeripheralItem'
+                  class_name: 'RelatedItem'
       end
     end
   end
