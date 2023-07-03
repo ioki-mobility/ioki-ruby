@@ -55,18 +55,18 @@ RSpec.describe Ioki::Error do
     let(:response_body) do
       {
         'api_errors' => [
-          { 'message' => message_1, 'code' => code },
-          { 'message' => message_2, 'code' => code }
+          { 'message' => message_client_identifier, 'code' => code },
+          { 'message' => message_api_version, 'code' => code }
         ]
       }
     end
-    let(:message_1) { 'X-Client-Identifier must be set' }
-    let(:message_2) { 'X-Api-Version must be set' }
+    let(:message_client_identifier) { 'X-Client-Identifier must be set' }
+    let(:message_api_version) { 'X-Api-Version must be set' }
     let(:code) { 'headers_missing_error' }
 
     it { is_expected.to include url }
     it { is_expected.to include code }
-    it { is_expected.to include message_1 }
-    it { is_expected.to include message_2 }
+    it { is_expected.to include message_client_identifier }
+    it { is_expected.to include message_api_version }
   end
 end
