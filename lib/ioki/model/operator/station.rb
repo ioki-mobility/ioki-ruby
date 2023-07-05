@@ -122,6 +122,10 @@ module Ioki
                   omit_if_nil_on: [:update],
                   type:           :integer
 
+        attribute :visible_on_map_in_passenger_client,
+                  on:   :read
+                  type: :boolean
+
         attribute :walker_boarding_time,
                   on:   [:read, :create, :update],
                   type: :integer
