@@ -123,7 +123,7 @@ module Ioki
                   type:           :integer
 
         attribute :visible_on_map_in_passenger_client,
-                  on:   :read
+                  on:   :read,
                   type: :boolean
 
         attribute :walker_boarding_time,
