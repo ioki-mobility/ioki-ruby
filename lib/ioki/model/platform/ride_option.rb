@@ -3,8 +3,9 @@
 module Ioki
   module Model
     module Platform
-      class PassengerType < Base
-        unvalidated true # Specification not available.
+      class RideOption < Base
+        attribute :name, on: [:read, :create], type: :string
+        attribute :value, on: :create, type: :string # could also be a boolean or an integer
 
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
@@ -12,8 +13,7 @@ module Ioki
         attribute :updated_at, on: :read, type: :date_time
 
         attribute :bookable, on: :read, type: :boolean
-        attribute :name, on: :read, type: :string
-        attribute :slug, on: :read, type: :string
+        attribute :data_type, on: :read, type: :string
         attribute :option_type, on: :read, type: :string
         attribute :name_translations, on: :read, type: :object, class_name: 'MultilanguageString'
         attribute :description_translations, on: :read, type: :object, class_name: 'MultilanguageString'

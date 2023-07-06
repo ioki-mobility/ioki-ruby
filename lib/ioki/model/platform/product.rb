@@ -19,6 +19,9 @@ module Ioki
         attribute :prebookable, on: :read, type: :boolean
         attribute :provider, type: :object, on: :read, class_name: 'Provider'
         attribute :ride_options, on: :read, type: :object, class_name: 'RideOptions'
+        attribute :passenger_options, on: :read, type: :array, class_name: 'PassengerOption'
+        attribute :passenger_types, on: :read, type: :array, class_name: 'PassengerType'
+        attribute :product_ride_options, on: :read, type: :array, class_name: 'RideOption'
         attribute :ride_rating_criteria, on: :read, type: :array
         attribute :service_time_info, on: :read, type: :string
         attribute :timezone, on: :read, type: :object, class_name: 'Timezone'

@@ -10,6 +10,7 @@ module Ioki
         attribute :public_transport_ticket, type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]
         attribute :walker,                  type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]
         attribute :wheelchair,              type: :boolean, on: [:create, :update], omit_if_blank_on: [:create, :update]
+        attribute :options, on: [:read, :create], type: :array, class_name: 'PassengerOption'
       end
     end
   end
