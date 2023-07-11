@@ -30,8 +30,9 @@ module Ioki
                   class_name: 'Geojson'
 
         attribute :area_geojson,
-                  on:   [:create, :update],
-                  type: :string
+                  on:             [:create, :update],
+                  type:           :string,
+                  omit_if_nil_on: [:create, :update]
 
         attribute :boarding_time,
                   on:   [:read, :create, :update],
