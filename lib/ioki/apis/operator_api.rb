@@ -21,6 +21,12 @@ module Ioki
       ),
       Endpoints.custom_endpoints(
         'products',
+        actions:     { 'product_defaults' => :get },
+        path:        [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Product
+      ),
+      Endpoints.custom_endpoints(
+        'products',
         actions:     { 'product_validations' => :get },
         path:        [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::ProductValidation
