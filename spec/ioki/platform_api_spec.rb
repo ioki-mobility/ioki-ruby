@@ -640,6 +640,20 @@ RSpec.describe Ioki::PlatformApi do
     end
   end
 
+  describe '#update_line_stop(product_id, line_id, line_stop)' do
+    let(:line_stop) { Ioki::Model::Platform::LineStop.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/lines/0815/line_stops/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.update_line_stop('0815', '0815', line_stop, options))
+        .to eq(Ioki::Model::Platform::LineStop.new)
+    end
+  end
+
   describe '#delete_line_stop(product_id, line_id, line_stop_id)' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
