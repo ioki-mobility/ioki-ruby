@@ -194,7 +194,7 @@ module Ioki
       Endpoints.crud_endpoints(
         :line_stop,
         base_path:   [API_BASE_PATH, 'products', :id, 'lines', :id],
-        except:      [:create, :delete],
+        except:      [:index, :show],
         model_class: Ioki::Model::Operator::LineStop
       ),
       Endpoints.crud_endpoints(

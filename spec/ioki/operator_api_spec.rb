@@ -1150,6 +1150,20 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#update_line_stop(product_id, line_id, line_stop)' do
+    let(:line_stop) { Ioki::Model::Operator::LineStop.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/0815/line_stops/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_line_stop('0815', '0815', line_stop, options))
+        .to be_a(Ioki::Model::Operator::LineStop)
+    end
+  end
+
   describe '#delete_line_stop(product_id, line_id, line_stop_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
