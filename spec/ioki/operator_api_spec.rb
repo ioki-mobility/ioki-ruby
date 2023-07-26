@@ -1199,4 +1199,18 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RideInquiry)
     end
   end
+
+  describe '#create_repositioning_task(product_id, task_list_id)' do
+    let(:repositioning_task) { Ioki::Model::Operator::RepositioningTask.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/01/repositioning_tasks')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_repositioning_task('0815', '01', repositioning_task, options))
+        .to be_a(Ioki::Model::Operator::Task)
+    end
+  end
 end

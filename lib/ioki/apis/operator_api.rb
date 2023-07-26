@@ -208,6 +208,13 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         path:        'ride_inquiry',
         model_class: Ioki::Model::Operator::RideInquiry
+      ),
+      Endpoints::Create.new(
+        :repositioning_task,
+        base_path:            [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        path:                 'repositioning_tasks',
+        model_class:          Ioki::Model::Operator::Task,
+        outgoing_model_class: Ioki::Model::Operator::RepositioningTask
       )
     ].freeze
   end
