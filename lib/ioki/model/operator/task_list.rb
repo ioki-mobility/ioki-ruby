@@ -65,6 +65,10 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
+        attribute :matching_rank,
+                  on:   :read,
+                  type: :integer
+
         attribute :paused,
                   on:   :read,
                   type: :boolean

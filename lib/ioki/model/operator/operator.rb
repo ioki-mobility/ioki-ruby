@@ -28,6 +28,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :matching_rank,
+                  on:   :read,
+                  type: :integer
+
         attribute :name,
                   on:   [:create, :read, :update],
                   type: :string
