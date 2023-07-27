@@ -38,6 +38,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :boarding_time,
+                  on:   :read,
+                  type: :integer
+
         attribute :bounding_box,
                   on:         :read,
                   type:       :object,
@@ -51,6 +55,14 @@ module Ioki
                   on:         :read,
                   type:       :object,
                   class_name: 'MatchingConfiguration'
+
+        attribute :default_service_duration,
+                  on:   :read,
+                  type: :integer
+
+        attribute :default_service_start,
+                  on:   :read,
+                  type: :integer
 
         attribute :default_start_place_id,
                   on:   :read,
@@ -69,6 +81,10 @@ module Ioki
                   on:         :read,
                   type:       :array,
                   class_name: 'MatchingConfiguration'
+
+        attribute :parking_time,
+                  on:   :read,
+                  type: :integer
 
         attribute :prebookable,
                   on:   :read,
@@ -93,6 +109,14 @@ module Ioki
                   class_name: 'Timezone'
 
         attribute :version,
+                  on:   :read,
+                  type: :integer
+
+        attribute :walker_boarding_time,
+                  on:   :read,
+                  type: :integer
+
+        attribute :wheelchair_boarding_time,
                   on:   :read,
                   type: :integer
       end
