@@ -72,6 +72,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :features,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Features'
+
         attribute :fixed_stations,
                   on:         :read,
                   type:       :array,
