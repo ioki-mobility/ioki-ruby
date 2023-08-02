@@ -108,6 +108,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :state,
+                  on:   :read,
+                  type: :string
+
         attribute :timezone,
                   on:         :read,
                   type:       :object,
