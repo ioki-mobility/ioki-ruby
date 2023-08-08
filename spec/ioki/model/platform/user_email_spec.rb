@@ -15,9 +15,7 @@ RSpec.describe Ioki::Model::Platform::UserEmail do
       expect(serialized).to eq(
         {
           confirmed_email_address:   'confirmed@example.com',
-          unconfirmed_email_address: 'unconfirmed@example.com',
-          newsletter:                nil,
-          receipt:                   nil
+          unconfirmed_email_address: 'unconfirmed@example.com'
         }
       )
     end
@@ -33,9 +31,7 @@ RSpec.describe Ioki::Model::Platform::UserEmail do
         {
           confirmed_email_address:   'confirmed@example.com',
           unconfirmed_email_address: 'unconfirmed@example.com',
-          email_address:             nil,
-          newsletter:                nil,
-          receipt:                   nil
+          email_address:             nil
         }
       )
     end

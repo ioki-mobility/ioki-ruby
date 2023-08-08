@@ -21,12 +21,14 @@ module Ioki
                   omit_if_not_provided_on: [:create, :update]
 
         attribute :newsletter,
-                  on:   [:create, :read, :update],
-                  type: :boolean
+                  on:                      [:create, :read, :update],
+                  omit_if_not_provided_on: [:create, :update],
+                  type:                    :boolean
 
         attribute :receipt,
-                  on:   [:create, :read, :update],
-                  type: :boolean
+                  on:                      [:create, :read, :update],
+                  omit_if_not_provided_on: [:create, :update],
+                  type:                    :boolean
 
         attribute :unconfirmed_email_address,
                   on:                      [:create, :update],
