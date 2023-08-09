@@ -1239,4 +1239,17 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Task)
     end
   end
+
+  describe '#admin_sign_out' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/admin/sign_out')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.admin_sign_out)
+        .to be_a(Ioki::Model::Operator::Admin)
+    end
+  end
 end
