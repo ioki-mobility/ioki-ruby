@@ -432,6 +432,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#overview(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/overview')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.overview('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Station))
+    end
+  end
+
   describe '#matching_configurations(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
