@@ -4,11 +4,13 @@ module Ioki
   class Configuration
     DEFAULT_VALUES =
       {
-        api_base_url:      'https://app.io.ki/api/',
-        api_version:       '20210101',
-        api_bleeding_edge: false,
-        language:          'de',
-        logger_options:    { headers: true, bodies: false, log_level: :info }
+        api_base_url:        'https://app.io.ki/api/',
+        api_version:         '20210101',
+        api_bleeding_edge:   false,
+        language:            'de',
+        logger_options:      { headers: true, bodies: false, log_level: :info },
+        retry_count:         3,
+        retry_sleep_seconds: 1
       }.freeze
 
     CONFIG_KEYS = [
@@ -28,7 +30,9 @@ module Ioki
       :oauth_app_url,
       :oauth_access_token,
       :oauth_refresh_token,
-      :oauth_token_callback
+      :oauth_token_callback,
+      :retry_count,
+      :retry_sleep_seconds
     ].freeze
 
     attr_accessor(*CONFIG_KEYS)
@@ -52,6 +56,8 @@ module Ioki
       @oauth_access_token = params[:oauth_access_token]
       @oauth_refresh_token = params[:oauth_refresh_token]
       @oauth_token_callback = params[:oauth_token_callback]
+      @retry_count = params[:retry_count]
+      @retry_sleep_seconds = params[:retry_sleep_seconds]
       # you can pass in a custom Faraday::Connection instance:
       @http_adapter = params[:http_adapter] || Ioki::HttpAdapter.get(self)
       @custom_http_adapter = !!params[:http_adapter]
@@ -81,7 +87,9 @@ module Ioki
         api_bleeding_edge:     ENV.fetch("#{prefix}_API_BLEEDING_EDGE", nil)&.downcase == 'true',
         oauth_app_id:          ENV.fetch("#{prefix}_OAUTH_APP_ID", nil),
         oauth_app_secret:      ENV.fetch("#{prefix}_OAUTH_APP_SECRET", nil),
-        oauth_app_url:         ENV.fetch("#{prefix}_OAUTH_APP_URL", nil)
+        oauth_app_url:         ENV.fetch("#{prefix}_OAUTH_APP_URL", nil),
+        retry_count:           ENV.fetch("#{prefix}_RETRY_COUNT", nil),
+        retry_sleep_seconds:   ENV.fetch("#{prefix}_RETRY_SLEEP_SECONDS", nil)
       }.reject { |_key, value| value.nil? || value.to_s == '' }
     end
 

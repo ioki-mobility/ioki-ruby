@@ -33,7 +33,9 @@ RSpec.describe Ioki::Configuration do
       :oauth_app_url,
       :oauth_access_token,
       :oauth_refresh_token,
-      :oauth_token_callback
+      :oauth_token_callback,
+      :retry_count,
+      :retry_sleep_seconds
     )
   end
 
@@ -60,7 +62,9 @@ RSpec.describe Ioki::Configuration do
           api_token:             nil,
           api_bleeding_edge:     false,
           language:              'de',
-          logger_options:        described_class::DEFAULT_VALUES[:logger_options]
+          logger_options:        described_class::DEFAULT_VALUES[:logger_options],
+          retry_count:           3,
+          retry_sleep_seconds:   1
         }.freeze
       )
     end

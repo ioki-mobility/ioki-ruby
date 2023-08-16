@@ -14,7 +14,9 @@ RSpec.describe Ioki::DriverApi do
         api_client_secret:     'SECRET',
         api_client_version:    'VERSION',
         api_token:             'TOKEN',
-        language:              'de'
+        language:              'de',
+        retry_count:           1,
+        retry_sleep_seconds:   1
       ),
       described_class
     )
