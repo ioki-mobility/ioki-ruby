@@ -27,7 +27,13 @@ RSpec.describe Ioki::Configuration do
       :api_client_version,
       :api_token,
       :api_bleeding_edge,
-      :language
+      :language,
+      :oauth_app_id,
+      :oauth_app_secret,
+      :oauth_app_url,
+      :oauth_access_token,
+      :oauth_refresh_token,
+      :oauth_token_callback
     )
   end
 
@@ -105,6 +111,36 @@ RSpec.describe Ioki::Configuration do
       expect(config_from_env.api_client_version).to eq 'CLIENT_VERSION'
       expect(config_from_env.api_token).to eq 'API_TOKEN'
       expect(config_from_env.api_bleeding_edge).to be true
+    end
+  end
+
+  describe '#token' do
+    context 'with OAuth configuration' do
+      before do
+        config.oauth_app_id = 'dummy'
+        config.oauth_app_secret = 'dummy'
+        config.oauth_app_url = 'dummy'
+        config.oauth_access_token = 'my-oauth-token'
+        config.api_token = nil
+      end
+
+      it 'returns the OAuth access token' do
+        expect(config.token).to eq 'my-oauth-token'
+      end
+    end
+
+    context 'without OAuth configuration' do
+      before do
+        config.oauth_app_id = nil
+        config.oauth_app_secret = nil
+        config.oauth_app_url = nil
+        config.oauth_access_token = 'my-oauth-token'
+        config.api_token = 'my-token'
+      end
+
+      it 'returns the API token' do
+        expect(config.token).to eq 'my-token'
+      end
     end
   end
 end

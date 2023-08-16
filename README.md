@@ -111,6 +111,9 @@ and api_client_secret. You can setup these ENV variables:
   ENV['IOKI_API_CLIENT_VERSION']
   ENV['IOKI_API_TOKEN']
   ENV['IOKI_API_BLEEDING_EDGE']
+  ENV['IOKI_OAUTH_APP_ID']
+  ENV['IOKI_OAUTH_APP_SECRET']
+  ENV['IOKI_OAUTH_APP_URL']
 ```
 
 or define them for one of the three supported apis with a prefix:
