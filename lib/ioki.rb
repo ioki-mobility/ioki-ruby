@@ -17,6 +17,9 @@ require 'ioki/apis/platform_api'
 require 'ioki/version'
 require 'ioki/webhooks/signature_validator'
 require 'ioki/webhooks/event'
+require 'ioki/retry'
+require 'ioki/oauth/with_token_refresh'
+require 'ioki/oauth/token_refresh'
 
 module Ioki
   class << self

@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'ioki/apis/endpoints/endpoints'
-require 'ioki/retry'
 require 'webmock'
 
 class DummyApi
