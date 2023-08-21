@@ -11,6 +11,16 @@ module Ioki
         yield
       rescue Ioki::Error::OauthRefreshToken => e
         raise e
+      rescue Ioki::Error::Base => e
+        retries -= 1
+
+        raise MaximumReached, "Gave up after #{max_retries} retries: #{e.message}" if retries <= 0
+
+        http_status = e.http_response&.status&.to_s
+        raise e if http_status && http_status.chars.first != '5'
+
+        sleep(sleep_seconds)
+        retry
       rescue StandardError => e
         retries -= 1
 

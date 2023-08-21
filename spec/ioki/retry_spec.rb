@@ -44,6 +44,23 @@ RSpec.describe Ioki::Retry do
     expect(called_count).to eq 2
   end
 
+  it 'does not retry on 404 errors' do
+    called_count = 0
+
+    expect do
+      described_class.n_times(3) do
+        called_count += 1
+        raise Ioki::Error::NotFound, Faraday::Response.new(
+          Faraday::Env.new(
+            'GET', '', '', nil, [], false, nil, nil, nil, nil, '404'
+          )
+        )
+      end
+    end.to raise_error Ioki::Error::NotFound
+
+    expect(called_count).to eq 1
+  end
+
   it 'retries only to the maximum' do
     called_count = 0
 
