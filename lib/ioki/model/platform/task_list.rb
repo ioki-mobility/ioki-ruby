@@ -17,8 +17,7 @@ module Ioki
         attribute :ends_at, on: [:create, :update], type: :date_time, unvalidated: true
         attribute :end_place, on: :read, type: :object, class_name: 'Place'
         attribute :end_place_id, on: [:create, :update], type: :object, class_name: 'Place', unvalidated: true
-        attribute :matching_configuration_id, on: :read, type: :string
-        attribute :matching_configuration_id, on: [:create, :update], type: :string, unvalidated: true
+        attribute :matching_configuration_id, on: [:read, :create, :update], type: :string
         attribute :paused, on: :read, type: :boolean
         attribute :pauses, on: [:read, :create], omit_if_blank_on: [:create], type: :array, class_name: 'Pause'
         attribute :planned_ends_at, on: :read, type: :date_time
