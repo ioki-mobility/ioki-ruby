@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Pull repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Bundle install and cache result
         uses: ruby/setup-ruby@v1
         with:
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Pull repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Bundle install and cache result
         uses: ruby/setup-ruby@v1
         with:
