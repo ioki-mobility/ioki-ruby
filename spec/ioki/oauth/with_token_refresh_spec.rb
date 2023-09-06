@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'ioki/apis/endpoints/endpoints'
-require 'webmock'
 
 class PingApi
   ENDPOINTS =
@@ -16,19 +15,7 @@ class PingApi
 end
 
 RSpec.describe Ioki::Oauth::WithTokenRefresh do
-  include WebMock::API
-
   let(:client) { Ioki::Client.new(config, PingApi) }
-
-  before do
-    WebMock.enable!
-    VCR.turn_off!
-  end
-
-  after do
-    WebMock.disable!
-    VCR.turn_on!
-  end
 
   context 'with oauth configuration' do
     let(:config) do

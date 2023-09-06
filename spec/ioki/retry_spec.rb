@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'ioki/apis/endpoints/endpoints'
-require 'webmock'
 
 class DummyApi
   ENDPOINTS =
@@ -16,8 +15,6 @@ class DummyApi
 end
 
 RSpec.describe Ioki::Retry do
-  include WebMock::API
-
   it 'executes the given block' do
     called = false
 
@@ -77,16 +74,6 @@ RSpec.describe Ioki::Retry do
 
   context 'with a Ioki client' do
     let(:client) { Ioki::Client.new(Ioki::Configuration.new, DummyApi) }
-
-    before do
-      WebMock.enable!
-      VCR.turn_off!
-    end
-
-    after do
-      WebMock.disable!
-      VCR.turn_on!
-    end
 
     it 'retries failed requests' do
       ping_request = stub_request(:get, 'https://app.io.ki/api/driver/ping')
