@@ -5,7 +5,7 @@ module Ioki
     module Platform
       class RideOption < Base
         attribute :name, on: [:read, :create], type: :string
-        attribute :value, on: :create, type: :string # could also be a boolean or an integer
+        attribute :value, on: :create, type: [:string, :boolean, :integer]
 
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
