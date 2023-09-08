@@ -98,6 +98,10 @@ module Ioki
 
         attribute :station_category_id,
                   on:   [:create, :update, :read],
+                  type: :string.
+
+        attribute :station_category_slug,
+                  on:   :read,
                   type: :string
 
         attribute :station_type,
