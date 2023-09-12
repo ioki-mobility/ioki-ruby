@@ -10,7 +10,7 @@ module Ioki
 
         attribute :id,
                   on:   :read,
-                  type: :
+                  type: :string
                   
         attribute :created_at,
                   on:   :read,
@@ -19,7 +19,7 @@ module Ioki
         attribute :updated_at,
                   on:   :read,
                   type: :date_time
-                  
+
         attribute :name,
                   type:           :string,
                   on:             [:create, :read, :update],
