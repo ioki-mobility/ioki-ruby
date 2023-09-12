@@ -11,7 +11,7 @@ module Ioki
         attribute :id,
                   on:   :read,
                   type: :string
-                  
+
         attribute :created_at,
                   on:   :read,
                   type: :date_time
