@@ -210,7 +210,7 @@ module Ioki
       ),
       Endpoints.crud_endpoints(
         :user,
-        base_path:   [API_BASE_PATH, 'products', :id],
+        base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::User,
         except:      [:create, :update, :delete]
       ),

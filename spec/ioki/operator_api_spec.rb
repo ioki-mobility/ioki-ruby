@@ -1202,10 +1202,10 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#users(product_id)' do
+  describe '#users(provider_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/users')
+        expect(params[:url].to_s).to eq('operator/providers/0815/users')
         result_with_index_data
       end
 
@@ -1214,10 +1214,10 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#user(product_id, user_id)' do
+  describe '#user(provider_id, user_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/users/4711')
+        expect(params[:url].to_s).to eq('operator/providers/0815/users/4711')
         [result_with_data, full_response]
       end
 
