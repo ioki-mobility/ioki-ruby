@@ -214,6 +214,12 @@ module Ioki
         model_class: Ioki::Model::Operator::User,
         except:      [:create, :update, :delete]
       ),
+      Endpoitns.custom_endpoints(
+        'users',
+        actions:     { 'autocomplete' => :get },
+        path:        [API_BASE_PATH, 'providers', :id, 'users'],
+        model_class: Ioki::Model::Operator::UserAutocomplete
+      ),
       Endpoints::Create.new(
         :ride_inquiry,
         base_path:   [API_BASE_PATH, 'products', :id],
