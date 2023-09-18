@@ -214,7 +214,7 @@ module Ioki
         model_class: Ioki::Model::Operator::User,
         except:      [:create, :update, :delete]
       ),
-      Endpoitns.custom_endpoints(
+      Endpoints.custom_endpoints(
         'users',
         actions:     { 'autocomplete' => :get },
         path:        [API_BASE_PATH, 'providers', :id, 'users'],
