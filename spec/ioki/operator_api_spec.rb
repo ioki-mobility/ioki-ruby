@@ -1253,4 +1253,17 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Task)
     end
   end
+
+  describe '#users_autocomplete(provider_id, ...)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users/autocomplete')
+        expect(params[:method]).to eq(:get)
+        result_with_data
+      end
+
+      expect(operator_client.users_autocomplete('0815', options))
+        .to be_a(Ioki::Model::Operator::UserAutocomplete)
+    end
+  end
 end
