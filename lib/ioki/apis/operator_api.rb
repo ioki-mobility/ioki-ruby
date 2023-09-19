@@ -218,7 +218,7 @@ module Ioki
         'users',
         actions:     { 'autocomplete' => :get },
         path:        [API_BASE_PATH, 'providers', :id, 'users'],
-        model_class: Ioki::Model::Operator::UserAutocomplete
+        model_class: Ioki::Model::Operator::UserAutocompletes
       ),
       Endpoints::Create.new(
         :ride_inquiry,

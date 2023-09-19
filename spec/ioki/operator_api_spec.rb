@@ -1263,7 +1263,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.users_autocomplete('0815', options))
-        .to be_a(Ioki::Model::Operator::UserAutocomplete)
+        .to be_a(Ioki::Model::Operator::UserAutocompletes)
     end
   end
 end
