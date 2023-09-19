@@ -233,12 +233,6 @@ module Ioki
         model_class:          Ioki::Model::Operator::Task,
         outgoing_model_class: Ioki::Model::Operator::RepositioningTask
       ),
-      #Endpoints.custom_endpoints(
-      #  'users',
-      #  actions:     { 'autocomplete' => :get },
-      #  path:        [API_BASE_PATH, 'providers', :id, 'users'],
-      #  model_class: Ioki::Model::Operator::UserAutocomplete
-      #),
       Endpoints::Index.new(
         :users_autocomplete,
         base_path:   [API_BASE_PATH, 'providers', :id, 'users'],
