@@ -448,4 +448,16 @@ RSpec.describe Ioki::PassengerApi do
         .to be_a Ioki::Model::Passenger::PaymentMethod
     end
   end
+
+  describe '#stripe_setup_intent' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/payment_methods/setup_intent')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.stripe_setup_intent)
+        .to be_a Ioki::Model::Passenger::StripeSetupIntent
+    end
+  end
 end
