@@ -132,37 +132,17 @@ module Ioki
         return value unless type
         return value if value.nil?
 
-        case type
-        when :string
-          value.to_s
-        when :integer
-          value.to_i
-        when :float
-          value.to_f
-        when :boolean
-          [true, 'true', 't', 1, '1'].include?(value)
-        when :date_time
-          begin
-            value.is_a?(String) ? DateTime.parse(value) : value
-          rescue ArgumentError
-            nil
-          end
-        when :object
-          if value.is_a?(Hash) && model_class
-            model_class.new(value)
-          else
-            value
-          end
-        when :array
-          if value.respond_to?(:map) && model_class
-            value.map do |el|
-              el.is_a?(Hash) ? model_class.new(el) : el
-            end
-          else
-            Array(value)
+        if type.is_a?(Array)
+          case value
+          when TrueClass, FalseClass
+            value if type.include?(:boolean)
+          when String
+            value if type.include?(:string)
+          when Integer
+            value if type.include?(:integer)
           end
         else
-          raise "Unknown type #{type}"
+          parse_as_type(type, value, model_class)
         end
       end
 
@@ -241,6 +221,41 @@ module Ioki
         return value.attributes[:type] if value.respond_to?(:attributes)
 
         value['type']
+      end
+
+      def parse_as_type(type, value, model_class)
+        case type
+        when :string
+          value.to_s
+        when :integer
+          value.to_i
+        when :float
+          value.to_f
+        when :boolean
+          [true, 'true', 't', 1, '1'].include?(value)
+        when :date_time
+          begin
+            value.is_a?(String) ? DateTime.parse(value) : value
+          rescue ArgumentError
+            nil
+          end
+        when :object
+          if value.is_a?(Hash) && model_class
+            model_class.new(value)
+          else
+            value
+          end
+        when :array
+          if value.respond_to?(:map) && model_class
+            value.map do |el|
+              el.is_a?(Hash) ? model_class.new(el) : el
+            end
+          else
+            Array(value)
+          end
+        else
+          raise "Unknown type #{type}"
+        end
       end
     end
   end
