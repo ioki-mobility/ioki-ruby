@@ -10,8 +10,8 @@ module Ioki
         attribute :updated_at, on: :read, type: :date_time
         attribute :tier, on: [:read, :create, :update], type: :integer
         attribute :relative_time, on: [:read, :create, :update], type: :integer
-        attribute :dropoff_mode, on: [:read, :create, :update], type: :string
-        attribute :pickup_mode, on: [:read, :create, :update], type: :string
+        attribute :dropoff_mode, on: [:read, :create, :update], type: :string, omit_if_nil_on: [:create, :update]
+        attribute :pickup_mode, on: [:read, :create, :update], type: :string, omit_if_nil_on: [:create, :update]
         attribute :supports_pickup, on: [:read, :create, :update], type: :boolean
         attribute :supports_dropoff, on: [:read, :create, :update], type: :boolean
         attribute :supports_pass_through, on: [:read, :create, :update], type: :boolean
