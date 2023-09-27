@@ -35,7 +35,7 @@ module Ioki
         base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::Permission
       ),
-      Endpoints::crud_endpoints(
+      Endpoints.crud_endpoints(
         :admin,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Operator::Admin,
