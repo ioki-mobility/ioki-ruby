@@ -4,10 +4,6 @@ module Ioki
   module Model
     module Platform
       class Tipping < Base
-        def self.schema_path
-          'platform_api--product--tipping'
-        end
-
         attribute :minimum, on: :read, type: :object, class_name: 'Money'
         attribute :maximum, on: :read, type: :object, class_name: 'Money'
         attribute :suggestions, on: :read, type: :array, class_name: 'Money'
