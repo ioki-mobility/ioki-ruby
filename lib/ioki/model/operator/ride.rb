@@ -154,6 +154,11 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :user,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'User'
+
         attribute :user_id,
                   on:   :read,
                   type: :string
