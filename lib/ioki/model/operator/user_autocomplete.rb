@@ -4,11 +4,19 @@ module Ioki
   module Model
     module Operator
       class UserAutocomplete < Base
-        attribute :value,
+        attribute :id,
                   on:   :read,
                   type: :string
 
-        attribute :label,
+        attribute :fullname,
+                  on:   :read,
+                  type: :string
+
+        attribute :phone_number,
+                  on:   :read,
+                  type: :string
+
+        attribute :unique_customer_id,
                   on:   :read,
                   type: :string
 
