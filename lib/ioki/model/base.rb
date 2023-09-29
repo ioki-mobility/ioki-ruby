@@ -14,6 +14,7 @@ module Ioki
 
         def attribute(attribute, definition = {})
           raise ArgumentError, "#{self}##{attribute}" unless valid_definition?(definition)
+          raise ArgumentError, "#{self}##{attribute} duplicate" if class_instance_attribute_definitions.key?(attribute)
 
           attribute = attribute.to_sym
 
