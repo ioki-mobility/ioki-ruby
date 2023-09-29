@@ -13,7 +13,6 @@ module Ioki
         attribute :county,               on: :read, type: :string
         attribute :display_times,        on: :read, type: :array
         attribute :fixed_location,       on: :read, type: :boolean
-        attribute :fixed_location,       on: :read, type: :boolean
         attribute :formatted_street,     on: :read, type: :string
         attribute :lat,                  on: :read, type: :float
         attribute :lng,                  on: :read, type: :float
