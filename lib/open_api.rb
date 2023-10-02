@@ -161,9 +161,10 @@ module OpenApi
 
     def self.all
       [
+        new('driver', 'driver_api'),
+        new('operator', 'operator_api--v20210101'),
         new('platform', 'platform_api--v20210101'),
         new('passenger', 'passenger_api'),
-        new('driver', 'driver_api'),
         new('webhooks', 'webhooks--v20201201')
       ]
     end
