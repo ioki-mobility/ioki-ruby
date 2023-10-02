@@ -14,6 +14,7 @@ module OpenApi
     end
 
     def repair
+      return if schema.nil?
       # puts model
       changed = false
       unspecified_model_attributes.each do |unspecified_model_attribute|
