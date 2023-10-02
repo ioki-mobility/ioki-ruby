@@ -67,6 +67,12 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'stations', :id],
         model_class: Ioki::Model::Operator::Station
       ),
+      Endpoints::Index.new(
+        :station_overview,
+        base_path:   [API_BASE_PATH, 'products', :id, 'stations'],
+        path:        'overview',
+        model_class: Ioki::Model::Operator::Station
+      ),
       Endpoints.crud_endpoints(
         :matching_configuration,
         base_path:   [API_BASE_PATH, 'products', :id],

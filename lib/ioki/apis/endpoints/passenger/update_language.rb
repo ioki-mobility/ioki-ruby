@@ -10,7 +10,7 @@ module Ioki
 
         def call(client, args = [], options = {})
           client.config.language = args.last
-          client.config.http_adapter = Ioki::HttpAdapter.get(client.config) unless client.config.custom_http_adapter
+          client.config.reinitialize_http_adapter
           client.request(
             url:    client.build_request_url('passenger', 'user', 'language'),
             method: :patch,

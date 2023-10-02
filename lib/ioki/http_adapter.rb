@@ -10,7 +10,7 @@ module Ioki
       ::Faraday.new(config.api_base_url, headers: headers(config)) do |f|
         f.adapter :net_http
 
-        f.request :authorization, 'Bearer', -> { config.api_token }
+        f.request :authorization, 'Bearer', -> { config.token }
 
         # The placement of the middleware here determines the execution order
         # It's important, that the logger is defined before the :json middleware

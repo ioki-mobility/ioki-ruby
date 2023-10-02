@@ -22,6 +22,7 @@ module Ioki
         attribute :estimated_direct_duration, on: :read, type: :integer
         attribute :fare, on: :read, type: :object, class_name: 'Fare'
         attribute :needs_cancellation_code, on: :read, type: :boolean
+        attribute :options, type: :array, on: [:create, :read], class_name: 'RideOption'
         attribute :origin, type: :object, on: [:create, :read], class_name: 'RequestedPoint'
         attribute :passenger_can_be_called, on: :read, type: :boolean
         attribute :passengers, type: :array, on: [:create, :read], class_name: 'RidePassenger'

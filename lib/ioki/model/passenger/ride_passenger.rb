@@ -15,6 +15,7 @@ module Ioki
         attribute :type, on: [:create, :update], type: :string
         attribute :walker, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
         attribute :wheelchair, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
+        attribute :options, on: [:read, :create], type: :array, class_name: 'PassengerOption', omit_if_blank_on: :create
       end
     end
   end

@@ -679,6 +679,42 @@ RSpec.describe Ioki::Model::Base do
         end
       end
     end
+
+    describe 'with multiple types' do
+      let(:example_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :attr, type: [:boolean, :string, :integer], on: :read
+        end
+      end
+
+      it 'handles nil correctly' do
+        expect(model.type_cast_attribute_value(:attr, nil)).to be_nil
+      end
+
+      it 'handles a boolean correctly' do
+        expect(
+          model.type_cast_attribute_value(:attr, true)
+        ).to be true
+      end
+
+      it 'handles a string correctly' do
+        expect(
+          model.type_cast_attribute_value(:attr, 'test')
+        ).to eq 'test'
+      end
+
+      it 'handles an integer correctly' do
+        expect(
+          model.type_cast_attribute_value(:attr, 13)
+        ).to eq 13
+      end
+
+      it 'returns nil on values not having a defined type' do
+        expect(
+          model.type_cast_attribute_value(:attr, 13.14)
+        ).to be_nil
+      end
+    end
   end
 
   describe '#constantize_in_module' do
