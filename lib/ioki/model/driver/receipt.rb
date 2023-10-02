@@ -4,8 +4,6 @@ module Ioki
   module Model
     module Driver
       class Receipt < Base
-        unvalidated true # This shouldn't be but there is no definition in the driver_api.json
-
         attribute :attachment_url, on: :read, type: :string
         attribute :purchasable_id, on: :read, type: :string
         attribute :purchasable_type, on: :read, type: :string
