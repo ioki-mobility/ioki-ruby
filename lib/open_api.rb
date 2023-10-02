@@ -68,7 +68,7 @@ module OpenApi
         type = 'object'
         refs = attribute_definition['oneOf'].reject { |r| r['type'] == 'null' }
         class_name = if refs.count == 1
-                      ref_to_class_name(refs.first['$ref'])
+                       ref_to_class_name(refs.first['$ref'])
                      elsif refs.count > 1
                        "[#{refs.map { |ref| ref_to_class_name(ref['$ref']) }.join(', ')}]"
                      else
@@ -81,7 +81,7 @@ module OpenApi
         line += ", class_name: #{class_name}"
       end
       line += "\n"
-      after = file_lines.index { |line| line.match(/\s*attribute\s\:/) }
+      after = file_lines.index { |l| l.match(/\s*attribute\s\:/) }
       # puts line
       file_lines.insert(after, line)
     end
