@@ -20,6 +20,10 @@ module OpenApi
         comment_attribute_definition(unspecified_model_attribute)
         changed = true
       end
+      deprecated_model_attributes.each do |deprecated_model_attribute|
+        comment_attribute_definition(deprecated_model_attribute)
+        changed = true
+      end
       undefined_schema_attributes.each do |undefined_schema_attribute|
         add_attribute_definition(undefined_schema_attribute)
         changed = true
@@ -92,7 +96,11 @@ module OpenApi
     end
 
     def unspecified_model_attributes
-      defined_model_attributes - specified_schema_attributes
+      defined_model_attributes - schema_attributes
+    end
+
+    def deprecated_model_attributes
+      defined_model_attributes & deprecated_schema_attributes
     end
 
     def undefined_schema_attributes
@@ -109,6 +117,10 @@ module OpenApi
       schema.fetch('properties').select do |_name, attributes|
         attributes['deprecated']
       end.keys.map(&:to_sym)
+    end
+
+    def schema_attributes
+      schema.fetch('properties').keys.map(&:to_sym)
     end
 
     # Attributes present in the Ioki::Model class

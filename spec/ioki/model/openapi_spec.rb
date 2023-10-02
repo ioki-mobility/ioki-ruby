@@ -18,14 +18,14 @@ RSpec.describe 'OpenApi schema definitions' do
                 "expected to have the following attributes: #{model.unspecified_model_attributes}"
             end
 
-            it 'has no deprecated OpenApi attributes' do
+            it 'has no attributes which are not in the OpenApi specification' do
               expect(model.undefined_schema_attributes).to be_empty,
                 "expected not to have the following attributes: #{model.undefined_schema_attributes}"
             end
 
-            it 'has no attributes which are not in the OpenApi specification' do
-              expect(model.deprecated_schema_attributes).to be_empty,
-                "expected not to have the following deprecated attributes: #{model.deprecated_schema_attributes}"
+            it 'has no deprecated OpenApi attributes' do
+              expect(model.deprecated_model_attributes).to be_empty,
+                "expected not to have the following deprecated attributes: #{model.deprecated_model_attributes}"
             end
           end
         end
