@@ -142,6 +142,10 @@ module Ioki
                   type: :boolean,
                   on:   :read
 
+        attribute :passenger_client_displays_stations_on_map,
+                  type: :boolean,
+                  on:   :read
+
         attribute :auto_accept_by_driver_client,
                   type: :boolean,
                   on:   :read
