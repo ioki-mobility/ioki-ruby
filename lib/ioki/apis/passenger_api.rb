@@ -192,6 +192,12 @@ module Ioki
         model_class:          Ioki::Model::Passenger::Tip,
         outgoing_model_class: Ioki::Model::Passenger::TipCreate
       ),
+      Endpoints.custom_endpoints(
+        :stripe,
+        actions:     { 'setup_intent' => :post },
+        path:        [API_BASE_PATH, 'payment_methods'],
+        model_class: Ioki::Model::Passenger::StripeSetupIntent
+      ),
       Endpoints::Passenger::UpdateLanguage.new
     ].freeze
   end
