@@ -8,7 +8,7 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :fullname,
+        attribute :full_name,
                   on:   :read,
                   type: :string
 
