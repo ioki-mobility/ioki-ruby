@@ -8,6 +8,7 @@ module Ioki
         attribute :username, on: :create, type: :string, unvalidated: true
         attribute :pin, on: :create, type: :string, unvalidated: true
         attribute :password, on: :create, type: :string, unvalidated: true
+        attribute :product_login_slug, on: :create, type: :string, unvalidated: true
         # This is what we care about:
         attribute :token, on: :read, type: :string
         attribute :driver_id, on: :read, type: :string
