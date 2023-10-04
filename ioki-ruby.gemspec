@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   DESCRIPTION
 
   spec.homepage = 'https://github.com/ioki-mobility/ioki-ruby'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.2')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
 
   spec.metadata = {
     'homepage_uri'          => spec.homepage,
