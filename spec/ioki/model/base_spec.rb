@@ -52,10 +52,10 @@ RSpec.describe Ioki::Model::Base do
 
       context 'duplicate attribute definition' do
         let(:example_class) do
-          Class.new(Ioki::Model::Base) {
+          Class.new(Ioki::Model::Base) do
             attribute :foo, type: :string, on: :read
             attribute :foo, type: :string, on: :create
-          }
+          end
         end
 
         it 'raises an ArgumentError' do
