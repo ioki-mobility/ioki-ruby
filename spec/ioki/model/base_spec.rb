@@ -50,6 +50,19 @@ RSpec.describe Ioki::Model::Base do
         end
       end
 
+      context 'duplicate attribute definition' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, type: :string, on: :read
+            attribute :foo, type: :string, on: :create
+          end
+        end
+
+        it 'raises an ArgumentError' do
+          expect { example_class }.to raise_error(ArgumentError)
+        end
+      end
+
       context 'with a use case in omit_if_blank_on: is not defined in on:' do
         let(:example_class) do
           Class.new(Ioki::Model::Base) { attribute :foo, type: :string, on: :read, omit_if_blank_on: :road }

@@ -27,7 +27,6 @@ module Ioki
         attribute :registered, on: :read, type: :boolean
         attribute :remaining_referrals, on: :read, type: :integer
         attribute :unique_customer_id, on: :read, type: :string
-        attribute :logpay_customer_set, on: :read, type: :boolean
         attribute :version, on: [:read, :update], type: :integer
       end
     end

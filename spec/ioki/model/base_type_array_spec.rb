@@ -43,6 +43,7 @@ RSpec.describe Ioki::Model::Base do
                 rateable:                       nil,
                 receipts:                       nil,
                 route:                          nil,
+                state:                          nil,
                 support_uri:                    nil,
                 tip:                            nil,
                 tippable:                       nil,
