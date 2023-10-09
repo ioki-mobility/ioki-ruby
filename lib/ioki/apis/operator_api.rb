@@ -36,6 +36,12 @@ module Ioki
         model_class: Ioki::Model::Operator::Permission
       ),
       Endpoints.crud_endpoints(
+        :admin,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::Admin,
+        except:      [:create, :update, :delete, :index]
+      ),
+      Endpoints.crud_endpoints(
         :driver,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Driver
