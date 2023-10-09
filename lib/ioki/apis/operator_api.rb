@@ -237,7 +237,7 @@ module Ioki
         :users_autocomplete,
         base_path:   [API_BASE_PATH, 'providers', :id, 'users'],
         path:        'autocomplete',
-        model_class: Ioki::Model::Operator::UserAutocomplete
+        model_class: Ioki::Model::Operator::User
       )
     ].freeze
   end
