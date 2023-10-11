@@ -36,6 +36,10 @@ module Ioki
                   omit_if_blank_on: [:create, :update],
                   type:             :string
 
+        attribute :full_name,
+                  on:   :read,
+                  type: :string
+
         attribute :last_name,
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
@@ -52,6 +56,10 @@ module Ioki
         attribute :lock_type,
                   on:   :read,
                   type: :string
+
+        attribute :locked,
+                  on:   :read,
+                  type: :boolean
 
         attribute :locked_at,
                   on:   :read,
@@ -70,6 +78,10 @@ module Ioki
         attribute :terms_accepted_at,
                   on:   :read,
                   type: :date_time
+
+        attribute :unique_customer_id,
+                  on:   :read,
+                  type: :string
 
         attribute :version,
                   on:             [:read, :update],

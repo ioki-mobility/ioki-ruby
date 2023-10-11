@@ -436,7 +436,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/stations/overview')
-        [result_with_data, full_response]
+        result_with_index_data
       end
 
       expect(operator_client.station_overview('0815', options))
@@ -1263,6 +1263,18 @@ RSpec.describe Ioki::OperatorApi do
 
       expect(operator_client.admin('0815', options))
         .to be_a(Ioki::Model::Operator::Admin)
+    end
+  end
+
+  describe '#users_autocomplete(provider_id, ...)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users/autocomplete')
+        result_with_index_data
+      end
+
+      expect(operator_client.users_autocomplete('0815', options))
+        .to all(be_a(Ioki::Model::Operator::User))
     end
   end
 end
