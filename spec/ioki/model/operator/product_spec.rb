@@ -13,7 +13,12 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:boarding_time).as(:integer) }
   it { is_expected.to define_attribute(:bounding_box).as(:object).with(class_name: 'BoundingBox') }
   it { is_expected.to define_attribute(:default_end_place_id).as(:string) }
-  it { is_expected.to define_attribute(:default_matching_configuration).as(:object).with(class_name: 'MatchingConfiguration') }
+
+  it {
+    is_expected.to define_attribute(:default_matching_configuration).as(:object)
+      .with(class_name: 'MatchingConfiguration')
+  }
+
   it { is_expected.to define_attribute(:default_service_duration).as(:integer) }
   it { is_expected.to define_attribute(:default_service_start).as(:integer) }
   it { is_expected.to define_attribute(:default_start_place_id).as(:string) }
