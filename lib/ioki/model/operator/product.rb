@@ -72,6 +72,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :displays_stations_on_map,
+                  type: :boolean,
+                  on:   :read
+
         attribute :features,
                   on:         :read,
                   type:       :object,
