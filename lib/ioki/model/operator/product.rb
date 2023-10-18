@@ -72,7 +72,7 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :displays_stations_on_map,
+        attribute :disable_station_markers,
                   type: :boolean,
                   on:   :read
 

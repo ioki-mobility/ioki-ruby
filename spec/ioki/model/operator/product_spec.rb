@@ -23,7 +23,7 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:default_service_start).as(:integer) }
   it { is_expected.to define_attribute(:default_start_place_id).as(:string) }
   it { is_expected.to define_attribute(:description).as(:string) }
-  it { is_expected.to define_attribute(:displays_stations_on_map).as(:boolean) }
+  it { is_expected.to define_attribute(:disable_station_markers).as(:boolean) }
   it { is_expected.to define_attribute(:features).as(:object).with(class_name: 'Features') }
   it { is_expected.to define_attribute(:fixed_stations).as(:array).with(class_name: 'Station') }
   it { is_expected.to define_attribute(:matching_configurations).as(:array).with(class_name: 'MatchingConfiguration') }
