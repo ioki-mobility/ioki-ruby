@@ -91,9 +91,17 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :stripe_account_id,
+                  on:   :read,
+                  type: :string
+
         attribute :stripe_payment_method_types,
                   on:   :read,
                   type: :array
+
+        attribute :stripe_publishable_key,
+                  on:   :read,
+                  type: :string
 
         attribute :tip_payment_method_types,
                   on:   :read,
