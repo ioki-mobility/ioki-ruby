@@ -21,6 +21,8 @@ require 'ioki/retry'
 require 'ioki/oauth/with_token_refresh'
 require 'ioki/oauth/token_refresh'
 
+require 'ioki/railtie' if defined?(Rails) && defined?(ActionMailer)
+
 module Ioki
   class << self
     def config

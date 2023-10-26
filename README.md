@@ -241,3 +241,34 @@ If you would like to make those request with fast predictable results in you tes
 
 If you're allowed to access the OpenAPI-specifications for the three APIs you can place them in `spec/fixtures/open_api_definitions`. `open_api_spec` will then compare theses specs with the matching models. You can define `specification_scope` on the model to set the prefix the specs are looking for in the OpenApi-schema file and `schema_path` if the name of the schema is not the snake_case version of the class name and define `unvalidated true` to mark that no specification exists for a model.
 Sometimes it's also helpful to disable the check for specific attributes. You can pass `unvalidated: true` as an option to the `attribute` definition.
+
+## Mailing
+
+If ioki-ruby is integrated into a Rails app, a mailer is provided which can be used to send emails.
+
+To activate it globally in your app, add the following to your environment configuration files (e.g. `config/environments/development.rb`):
+
+```ruby
+Rails.application.configure do
+  config.action_mailer.delivery_method = :ioki
+end
+```
+
+When sending an email, you need to pass a `provider` and a `platform_client`:
+
+```ruby
+class MyMailer < ApplicationMailer
+  def welcome_message
+    mail(
+      subject: 'Welcome to our app!'
+    ).tap do |message|
+      message.ioki_options = {
+        provider_id:      my_provider_api_id,       # required
+        platform_client:  my_ioki_platform_client,  # required
+        delivery_context: 'standard',               # optional
+        user_id:          my_user_id                # optional
+      }
+    end
+  end
+end
+```
