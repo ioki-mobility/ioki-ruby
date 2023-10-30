@@ -62,8 +62,8 @@ module Ioki
                   type: :string
 
         attribute :operator_id,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
+                  on:             [:create, :read],
+                  omit_if_nil_on: [:create],
                   type:           :string
 
         attribute :phone_number,
