@@ -6,7 +6,7 @@ module Ioki
       attr_reader :count, :page, :last_page, :total_pages
 
       def initialize(attributes)
-        @count = attributes['count']
+        @total_count = attributes['total_count']
         @page = attributes['page']
         @last_page = attributes['last_page']
         @total_pages = attributes['total_pages']
