@@ -3,7 +3,7 @@
 module Ioki
   module Model
     class Meta
-      attr_reader :count, :page, :last_page, :total_pages
+      attr_reader :total_count, :page, :last_page, :total_pages
 
       def initialize(attributes)
         @total_count = attributes['total_count']
