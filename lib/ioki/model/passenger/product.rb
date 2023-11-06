@@ -19,6 +19,8 @@ module Ioki
         attribute :cancellation_statements, on: :read, type: :array, class_name: 'CancellationStatement'
         attribute :description, on: :read, type: :string
         attribute :fixed_stations, on: :read, type: :array, class_name: 'Station'
+        attribute :payment_method_allowed_on_booking, on: :read, type: :boolean
+        attribute :payment_method_required_on_booking, on: :read, type: :boolean
         attribute :personal_discount_types, on: :read, type: :array, class_name: 'PersonalDiscountType'
         attribute :phone_number, on: :read, type: :string
         attribute :prebookable, on: :read, type: :boolean

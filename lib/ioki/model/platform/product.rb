@@ -21,6 +21,8 @@ module Ioki
         attribute :ride_options, on: :read, type: :object, class_name: 'RideOptions'
         attribute :passenger_options, on: :read, type: :array, class_name: 'PassengerOption'
         attribute :passenger_types, on: :read, type: :array, class_name: 'PassengerType'
+        attribute :payment_method_allowed_on_booking, on: :read, type: :boolean
+        attribute :payment_method_required_on_booking, on: :read, type: :boolean
         attribute :product_ride_options, on: :read, type: :array, class_name: 'RideOption'
         attribute :ride_rating_criteria, on: :read, type: :array
         attribute :service_time_info, on: :read, type: :string
