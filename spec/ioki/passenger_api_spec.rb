@@ -460,4 +460,31 @@ RSpec.describe Ioki::PassengerApi do
         .to be_a Ioki::Model::Passenger::StripeSetupIntent
     end
   end
+
+  describe '#redeemed_promo_codes' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/redeemed_promo_codes')
+        [result_with_array_data, full_response]
+      end
+      expect(passenger_client.redeemed_promo_codes).to all be_a Ioki::Model::Passenger::RedeemedPromoCode
+    end
+  end
+
+  describe '#create_redeemed_promo_code' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/redeemed_promo_codes')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_redeemed_promo_code(
+               Ioki::Model::Passenger::RedeemedPromoCode.new(
+                 code:            'SECRET',
+                 promo_code_type: 'promotion'
+               )
+             ))
+        .to be_a Ioki::Model::Passenger::RedeemedPromoCode
+    end
+  end
 end
