@@ -21,7 +21,7 @@ module Ioki
       plural = "#{resource}s"
       singular = resource.to_s
 
-      [Index, Show, Create, Update, Delete].map do |type|
+      [Index, Show, Create, Update, Delete].filter_map do |type|
         # In some cases endpoints are not consistently using singular and plural for the same type of endpoints. In that
         # case or similar ones an endpoints path can be forced. The logic here allows to express this for
         # `crud_endpoints`.
@@ -34,8 +34,9 @@ module Ioki
 
         type_key = type.to_s.split('::').last.downcase.to_sym
         name = [Index].include?(type) ? plural : singular
+        action_name = type.to_s.split('::').last.downcase.to_sym
 
-        unless except&.include?(type.class.to_s.downcase)
+        unless except&.include?(action_name)
           type.new(name, model_class: model_class, base_path: base_path, path: paths[type_key])
         end
       end
