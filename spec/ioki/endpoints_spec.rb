@@ -60,5 +60,24 @@ RSpec.describe Ioki::Endpoints do
         ]
       end
     end
+
+    context 'with `only`' do
+      let(:arguments) { { only: [:index, :create] } }
+
+      it 'filters actions not included in `only`' do
+        expect(subject).to match_array [
+          kind_of(Ioki::Endpoints::Index),
+          kind_of(Ioki::Endpoints::Create)
+        ]
+      end
+    end
+
+    context 'with invalid options' do
+      let(:arguments) { { only: [:index], except: [:show] } }
+
+      it 'raises an error' do
+        expect { subject }.to raise_error ArgumentError
+      end
+    end
   end
 end

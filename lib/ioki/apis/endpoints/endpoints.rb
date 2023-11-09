@@ -17,7 +17,11 @@ module Ioki
       end
     end
 
-    def self.crud_endpoints(resource, model_class:, base_path:, paths: {}, except: nil)
+    # rubocop:disable Metrics/ParameterLists
+    def self.crud_endpoints(resource, model_class:, base_path:, paths: {}, except: nil, only: nil)
+      # rubocop:enable Metrics/ParameterLists
+      raise ArgumentError, 'You cannot set both `only` and `except`. Please only use either one.' if except && only
+
       plural = "#{resource}s"
       singular = resource.to_s
 
@@ -36,9 +40,17 @@ module Ioki
         name = [Index].include?(type) ? plural : singular
         action_name = type.to_s.split('::').last.downcase.to_sym
 
-        unless except&.include?(action_name)
-          type.new(name, model_class: model_class, base_path: base_path, path: paths[type_key])
-        end
+        create_action = if only
+                          only.include?(action_name)
+                        elsif except
+                          !except.include?(action_name)
+                        else
+                          true
+                        end
+
+        next unless create_action
+
+        type.new(name, model_class: model_class, base_path: base_path, path: paths[type_key])
       end
     end
 
