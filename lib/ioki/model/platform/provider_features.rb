@@ -8,6 +8,7 @@ module Ioki
 
         attribute :failed_payment_handling, type: :boolean, on: :read
         attribute :payment, type: :boolean, on: :read
+        attribute :promo_codes, type: :boolean, on: :read
       end
     end
   end
