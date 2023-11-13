@@ -28,7 +28,7 @@ module Ioki
         attribute :service_time_info, on: :read, type: :string
         attribute :timezone, on: :read, type: :object, class_name: 'Timezone'
         attribute :tipping, on: :read, type: :object, class_name: 'Tipping'
-        attribute :features, on: :read, type: :object, class_name: 'Features'
+        attribute :features, on: :read, type: :object, class_name: 'ProductFeatures'
         attribute :version, on: :read, type: :integer
       end
     end

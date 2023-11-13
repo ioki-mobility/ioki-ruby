@@ -44,7 +44,7 @@ module Ioki
         attribute :features,
                   on:         :read,
                   type:       :object,
-                  class_name: 'Features'
+                  class_name: 'ProviderFeatures'
 
         attribute :logpay_payment_method_types,
                   on:   :read,
