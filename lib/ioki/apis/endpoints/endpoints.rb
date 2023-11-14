@@ -38,12 +38,11 @@ module Ioki
 
         type_key = type.to_s.split('::').last.downcase.to_sym
         name = [Index].include?(type) ? plural : singular
-        action_name = type.to_s.split('::').last.downcase.to_sym
 
         create_action = if only
-                          only.include?(action_name)
+                          only.include?(type_key)
                         elsif except
-                          !except.include?(action_name)
+                          !except.include?(type_key)
                         else
                           true
                         end
