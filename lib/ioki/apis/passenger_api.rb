@@ -198,7 +198,13 @@ module Ioki
         path:        [API_BASE_PATH, 'payment_methods'],
         model_class: Ioki::Model::Passenger::StripeSetupIntent
       ),
-      Endpoints::Passenger::UpdateLanguage.new
+      Endpoints::Passenger::UpdateLanguage.new,
+      Endpoints.crud_endpoints(
+        :redeemed_promo_code,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::RedeemedPromoCode,
+        only:        [:index, :create]
+      )
     ].freeze
   end
 end
