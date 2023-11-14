@@ -17,11 +17,15 @@ module Ioki
       end
     end
 
-    def self.crud_endpoints(resource, model_class:, base_path:, paths: {}, except: nil)
+    # rubocop:disable Metrics/ParameterLists
+    def self.crud_endpoints(resource, model_class:, base_path:, paths: {}, except: nil, only: nil)
+      # rubocop:enable Metrics/ParameterLists
+      raise ArgumentError, 'You cannot set both `only` and `except`. Please only use either one.' if except && only
+
       plural = "#{resource}s"
       singular = resource.to_s
 
-      [Index, Show, Create, Update, Delete].map do |type|
+      [Index, Show, Create, Update, Delete].filter_map do |type|
         # In some cases endpoints are not consistently using singular and plural for the same type of endpoints. In that
         # case or similar ones an endpoints path can be forced. The logic here allows to express this for
         # `crud_endpoints`.
@@ -35,9 +39,17 @@ module Ioki
         type_key = type.to_s.split('::').last.downcase.to_sym
         name = [Index].include?(type) ? plural : singular
 
-        unless except&.include?(type.class.to_s.downcase)
-          type.new(name, model_class: model_class, base_path: base_path, path: paths[type_key])
-        end
+        create_action = if only
+                          only.include?(type_key)
+                        elsif except
+                          !except.include?(type_key)
+                        else
+                          true
+                        end
+
+        next unless create_action
+
+        type.new(name, model_class: model_class, base_path: base_path, path: paths[type_key])
       end
     end
 

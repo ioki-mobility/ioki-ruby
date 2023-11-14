@@ -38,4 +38,46 @@ RSpec.describe Ioki::Endpoints do
       end
     end
   end
+
+  describe '.crud_endpoints' do
+    subject do
+      described_class.crud_endpoints(
+        :rides,
+        base_path:   ['/api'],
+        model_class: Ioki::Model::Platform::Ride,
+        **arguments
+      )
+    end
+
+    context 'with `except`' do
+      let(:arguments) { { except: [:index, :create] } }
+
+      it 'filters actions included in `except`' do
+        expect(subject).to match_array [
+          kind_of(Ioki::Endpoints::Show),
+          kind_of(Ioki::Endpoints::Update),
+          kind_of(Ioki::Endpoints::Delete)
+        ]
+      end
+    end
+
+    context 'with `only`' do
+      let(:arguments) { { only: [:index, :create] } }
+
+      it 'filters actions not included in `only`' do
+        expect(subject).to match_array [
+          kind_of(Ioki::Endpoints::Index),
+          kind_of(Ioki::Endpoints::Create)
+        ]
+      end
+    end
+
+    context 'with invalid options' do
+      let(:arguments) { { only: [:index], except: [:show] } }
+
+      it 'raises an error' do
+        expect { subject }.to raise_error ArgumentError
+      end
+    end
+  end
 end
