@@ -35,7 +35,8 @@ RSpec.describe Ioki::Configuration do
       :oauth_refresh_token,
       :oauth_token_callback,
       :retry_count,
-      :retry_sleep_seconds
+      :retry_sleep_seconds,
+      :filter_deprecated
     )
   end
 
@@ -64,7 +65,8 @@ RSpec.describe Ioki::Configuration do
           language:              'de',
           logger_options:        described_class::DEFAULT_VALUES[:logger_options],
           retry_count:           3,
-          retry_sleep_seconds:   1
+          retry_sleep_seconds:   1,
+          filter_deprecated:     false
         }.freeze
       )
     end

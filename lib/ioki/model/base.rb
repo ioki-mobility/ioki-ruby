@@ -12,6 +12,10 @@ module Ioki
           @class_instance_attribute_definitions ||= {}
         end
 
+        def deprecated_attribute(attribute, definition = {})
+          attribute(attribute, definition.merge(deprecated: true))
+        end
+
         def attribute(attribute, definition = {})
           raise ArgumentError, "#{self}##{attribute}" unless valid_definition?(definition)
           raise ArgumentError, "#{self}##{attribute} duplicate" if class_instance_attribute_definitions.key?(attribute)
@@ -86,7 +90,7 @@ module Ioki
       end
 
       def inspect
-        "#{self.class.name}:#{object_id} @attributes=#{@_attributes.inspect}"
+        "#{self.class.name}:#{object_id} @attributes=#{attributes_without_deprecated.inspect}"
       end
 
       def is_attribute?(attribute)
@@ -99,7 +103,16 @@ module Ioki
 
       def attributes(**attributes)
         attributes.each { |a, v| set_attribute(a, v) }
-        @_attributes
+
+        attributes_without_deprecated
+      end
+
+      def attributes_without_deprecated
+        if Ioki.config.filter_deprecated
+          @_attributes.reject { |attribute, _value| self.class.attribute_definitions[attribute][:deprecated] }
+        else
+          @_attributes
+        end
       end
 
       def data
@@ -160,6 +173,8 @@ module Ioki
           value = public_send(attribute)
 
           next unless Array(definition[:on]).include?(usecase)
+
+          next if Ioki.config.filter_deprecated && definition[:deprecated]
 
           next if definition.key?(:omit_if_nil_on) &&
                   Array(definition[:omit_if_nil_on]).include?(usecase) &&

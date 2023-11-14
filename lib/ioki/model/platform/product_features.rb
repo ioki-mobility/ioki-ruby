@@ -6,7 +6,7 @@ module Ioki
       class ProductFeatures < Base
         unvalidated true # Specification not available
 
-        attribute :supports_multiple_booking_solutions, type: :boolean, on: :read
+        deprecated_attribute :supports_multiple_booking_solutions, type: :boolean, on: :read
         attribute :multiple_booking_solutions, type: :boolean, on: :read
         attribute :station_search, type: :boolean, on: :read
       end
