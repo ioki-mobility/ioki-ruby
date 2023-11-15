@@ -119,10 +119,11 @@ module Ioki
         path:        'rating',
         model_class: Ioki::Model::Passenger::Rating
       ),
-      Endpoints::Show.new(
+      Endpoints.crud_endpoints(
         :station,
         base_path:   [API_BASE_PATH],
-        model_class: Ioki::Model::Passenger::Station
+        model_class: Ioki::Model::Passenger::Station,
+        only:        [:index, :show]
       ),
       Endpoints::Create.new(
         :logpay_customer,

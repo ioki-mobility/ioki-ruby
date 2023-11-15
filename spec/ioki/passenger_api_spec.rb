@@ -56,6 +56,20 @@ RSpec.describe Ioki::PassengerApi do
     end
   end
 
+  describe '#stations' do
+    let(:options) { { params: { product_id: 'prd_1', query: 'mystation' } } }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/stations')
+        expect(params[:params]).to eq(options[:params])
+        result_with_index_data
+      end
+
+      expect(passenger_client.stations([], options)).to all(be_a(Ioki::Model::Passenger::Station))
+    end
+  end
+
   describe '#bootstrap' do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
