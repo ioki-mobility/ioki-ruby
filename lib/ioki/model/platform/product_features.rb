@@ -7,6 +7,7 @@ module Ioki
         unvalidated true # Specification not available
 
         attribute :supports_multiple_booking_solutions, type: :boolean, on: :read
+        attribute :station_search, type: :boolean, on: :read
       end
     end
   end
