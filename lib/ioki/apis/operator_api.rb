@@ -238,6 +238,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id, 'users'],
         path:        'autocomplete',
         model_class: Ioki::Model::Operator::User
+      ),
+      Endpoints::Index.new(
+        :ride_matching_log,
+        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
+        path:        'matching_logs',
+        model_class: Ioki::Model::Operator::MatchingLog
       )
     ].freeze
   end
