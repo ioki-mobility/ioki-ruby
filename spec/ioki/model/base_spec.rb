@@ -872,6 +872,7 @@ RSpec.describe Ioki::Model::Base do
     let(:example_class) do
       Class.new(Ioki::Model::Base) do
         deprecated_attribute :name, type: :string, on: [:read, :create]
+        deprecated_attribute :identifier, type: :string, on: [:read, :create], replaced_by: :slug
         attribute :slug, type: :string, on: [:read, :create]
       end
     end
@@ -882,6 +883,8 @@ RSpec.describe Ioki::Model::Base do
 
         expect { model.name }.to output("The attribute `#name` is deprecated.\n").to_stderr
         expect { model.name = 'new name' }.to output("The attribute `#name` is deprecated.\n").to_stderr
+        expect { model.identifier }
+          .to output("The attribute `#identifier` is deprecated. Please use `#slug` instead.\n").to_stderr
       end
 
       it 'does not warn when the attribute is not deprecated' do

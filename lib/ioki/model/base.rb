@@ -287,7 +287,12 @@ module Ioki
       end
 
       def deprecated_attribute_message(attribute)
-        "The attribute `#{self.class.name}##{attribute}` is deprecated."
+        attribute_message = "The attribute `#{self.class.name}##{attribute}` is deprecated."
+
+        replaced_by = self.class.class_instance_attribute_definitions.dig(attribute, :replaced_by)
+        replaced_by_message = " Please use `#{self.class.name}##{replaced_by}` instead." if replaced_by
+
+        "#{attribute_message}#{replaced_by_message}"
       end
 
       def attribute_deprecated?(attribute)
