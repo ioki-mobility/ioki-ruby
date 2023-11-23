@@ -1277,16 +1277,4 @@ RSpec.describe Ioki::OperatorApi do
         .to all(be_a(Ioki::Model::Operator::User))
     end
   end
-
-  describe '#ride_matching_log(product_id, ride_id)' do
-    it 'calls request on the client with expected params' do
-      expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/rides/01/matching_logs')
-        result_with_index_data
-      end
-
-      expect(operator_client.ride_matching_log('0815', '01', options))
-        .to all(be_a(Ioki::Model::Operator::MatchingLog))
-    end
-  end
 end
