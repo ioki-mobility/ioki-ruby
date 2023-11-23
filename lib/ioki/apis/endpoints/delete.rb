@@ -33,7 +33,7 @@ module Ioki
 
         return if parsed_response.nil?
 
-        model_class.new(parsed_response['data'])
+        model_class.new(parsed_response['data'], nil, show_deprecation_warnings: false)
       end
     end
   end
