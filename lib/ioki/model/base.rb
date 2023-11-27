@@ -120,7 +120,7 @@ module Ioki
       end
 
       def attributes_without_deprecated
-        if Ioki.config.filter_deprecated
+        if Ioki.config.ignore_deprecated_attributes
           @_attributes.reject { |attribute, _value| self.class.attribute_definitions[attribute][:deprecated] }
         else
           @_attributes
@@ -186,7 +186,7 @@ module Ioki
 
           next unless Array(definition[:on]).include?(usecase)
 
-          next if Ioki.config.filter_deprecated && definition[:deprecated]
+          next if Ioki.config.ignore_deprecated_attributes && definition[:deprecated]
 
           next if definition.key?(:omit_if_nil_on) &&
                   Array(definition[:omit_if_nil_on]).include?(usecase) &&
