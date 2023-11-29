@@ -238,6 +238,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id, 'users'],
         path:        'autocomplete',
         model_class: Ioki::Model::Operator::User
+      ),
+      Endpoints::Index.new(
+        :rides_notifications,
+        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
+        path:        'notifications',
+        model_class: Ioki::Model::Operator::Notification
       )
     ].freeze
   end
