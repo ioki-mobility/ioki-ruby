@@ -41,7 +41,7 @@ module Ioki
 
         return if parsed_response.nil?
 
-        model_class.new(parsed_response['data'], response.headers[:etag])
+        model_class.new(parsed_response['data'], response.headers[:etag], show_deprecation_warnings: false)
       end
     end
   end

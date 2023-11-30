@@ -28,9 +28,8 @@ module Ioki
         attribute :payment_method, on: :create, type: :object, class_name: 'PaymentMethod'
         attribute :paypal_secure_element, on: :create, type: :string, omit_if_blank: true
 
-        # Deprecated
-        attribute :absolute_discount_object, on: :read, type: :object, class_name: 'Money'
-        attribute :price_object, on: :read, type: :object, class_name: 'Money'
+        deprecated_attribute :absolute_discount_object, on: :read, type: :object, class_name: 'Money'
+        deprecated_attribute :price_object, on: :read, type: :object, class_name: 'Money'
       end
     end
   end

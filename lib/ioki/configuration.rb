@@ -4,13 +4,14 @@ module Ioki
   class Configuration
     DEFAULT_VALUES =
       {
-        api_base_url:        'https://app.io.ki/api/',
-        api_version:         '20210101',
-        api_bleeding_edge:   false,
-        language:            'de',
-        logger_options:      { headers: true, bodies: false, log_level: :info },
-        retry_count:         3,
-        retry_sleep_seconds: 1
+        api_base_url:                 'https://app.io.ki/api/',
+        api_version:                  '20210101',
+        api_bleeding_edge:            false,
+        language:                     'de',
+        logger_options:               { headers: true, bodies: false, log_level: :info },
+        retry_count:                  3,
+        retry_sleep_seconds:          1,
+        ignore_deprecated_attributes: false
       }.freeze
 
     CONFIG_KEYS = [
@@ -32,7 +33,8 @@ module Ioki
       :oauth_refresh_token,
       :oauth_token_callback,
       :retry_count,
-      :retry_sleep_seconds
+      :retry_sleep_seconds,
+      :ignore_deprecated_attributes
     ].freeze
 
     attr_accessor(*CONFIG_KEYS)
@@ -58,6 +60,7 @@ module Ioki
       @oauth_token_callback = params[:oauth_token_callback]
       @retry_count = params[:retry_count]
       @retry_sleep_seconds = params[:retry_sleep_seconds]
+      @ignore_deprecated_attributes = params[:ignore_deprecated_attributes]
       # you can pass in a custom Faraday::Connection instance:
       @http_adapter = params[:http_adapter] || Ioki::HttpAdapter.get(self)
       @custom_http_adapter = !!params[:http_adapter]
@@ -78,18 +81,19 @@ module Ioki
       prefix = ['IOKI', env_prefix].reject(&:empty?).join('_')
 
       {
-        api_base_url:          ENV.fetch("#{prefix}_API_BASE_URL", nil),
-        api_version:           ENV.fetch("#{prefix}_API_VERSION", nil),
-        api_client_identifier: ENV.fetch("#{prefix}_API_CLIENT_IDENTIFIER", nil),
-        api_client_secret:     ENV.fetch("#{prefix}_API_CLIENT_SECRET", nil),
-        api_client_version:    ENV.fetch("#{prefix}_API_CLIENT_VERSION", nil),
-        api_token:             ENV.fetch("#{prefix}_API_TOKEN", nil),
-        api_bleeding_edge:     ENV.fetch("#{prefix}_API_BLEEDING_EDGE", nil)&.downcase == 'true',
-        oauth_app_id:          ENV.fetch("#{prefix}_OAUTH_APP_ID", nil),
-        oauth_app_secret:      ENV.fetch("#{prefix}_OAUTH_APP_SECRET", nil),
-        oauth_app_url:         ENV.fetch("#{prefix}_OAUTH_APP_URL", nil),
-        retry_count:           ENV.fetch("#{prefix}_RETRY_COUNT", nil),
-        retry_sleep_seconds:   ENV.fetch("#{prefix}_RETRY_SLEEP_SECONDS", nil)
+        api_base_url:                 ENV.fetch("#{prefix}_API_BASE_URL", nil),
+        api_version:                  ENV.fetch("#{prefix}_API_VERSION", nil),
+        api_client_identifier:        ENV.fetch("#{prefix}_API_CLIENT_IDENTIFIER", nil),
+        api_client_secret:            ENV.fetch("#{prefix}_API_CLIENT_SECRET", nil),
+        api_client_version:           ENV.fetch("#{prefix}_API_CLIENT_VERSION", nil),
+        api_token:                    ENV.fetch("#{prefix}_API_TOKEN", nil),
+        api_bleeding_edge:            ENV.fetch("#{prefix}_API_BLEEDING_EDGE", nil)&.downcase == 'true',
+        oauth_app_id:                 ENV.fetch("#{prefix}_OAUTH_APP_ID", nil),
+        oauth_app_secret:             ENV.fetch("#{prefix}_OAUTH_APP_SECRET", nil),
+        oauth_app_url:                ENV.fetch("#{prefix}_OAUTH_APP_URL", nil),
+        retry_count:                  ENV.fetch("#{prefix}_RETRY_COUNT", nil),
+        retry_sleep_seconds:          ENV.fetch("#{prefix}_RETRY_SLEEP_SECONDS", nil),
+        ignore_deprecated_attributes: ENV.fetch("#{prefix}_IGNORE_DEPRECATED_ATTRIBUTES", nil)
       }.reject { |_key, value| value.nil? || value.to_s == '' }
     end
 

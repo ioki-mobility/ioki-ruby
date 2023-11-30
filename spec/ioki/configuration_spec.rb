@@ -35,7 +35,8 @@ RSpec.describe Ioki::Configuration do
       :oauth_refresh_token,
       :oauth_token_callback,
       :retry_count,
-      :retry_sleep_seconds
+      :retry_sleep_seconds,
+      :ignore_deprecated_attributes
     )
   end
 
@@ -54,17 +55,18 @@ RSpec.describe Ioki::Configuration do
       stub_const(
         'EXPECTED_DEFAULTS',
         {
-          api_base_url:          described_class::DEFAULT_VALUES[:api_base_url],
-          api_version:           described_class::DEFAULT_VALUES[:api_version],
-          api_client_identifier: nil,
-          api_client_secret:     nil,
-          api_client_version:    nil,
-          api_token:             nil,
-          api_bleeding_edge:     false,
-          language:              'de',
-          logger_options:        described_class::DEFAULT_VALUES[:logger_options],
-          retry_count:           3,
-          retry_sleep_seconds:   1
+          api_base_url:                 described_class::DEFAULT_VALUES[:api_base_url],
+          api_version:                  described_class::DEFAULT_VALUES[:api_version],
+          api_client_identifier:        nil,
+          api_client_secret:            nil,
+          api_client_version:           nil,
+          api_token:                    nil,
+          api_bleeding_edge:            false,
+          language:                     'de',
+          logger_options:               described_class::DEFAULT_VALUES[:logger_options],
+          retry_count:                  3,
+          retry_sleep_seconds:          1,
+          ignore_deprecated_attributes: false
         }.freeze
       )
     end

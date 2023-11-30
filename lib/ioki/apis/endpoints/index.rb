@@ -74,7 +74,11 @@ module Ioki
           params: options[:params]
         )
 
-        [parsed_response['data'].map { |attr| model_class.new(attr) }, parsed_response, response]
+        [
+          parsed_response['data'].map { |attr| model_class.new(attr, nil, show_deprecation_warnings: false) },
+          parsed_response,
+          response
+        ]
       end
     end
   end

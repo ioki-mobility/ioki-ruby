@@ -866,4 +866,44 @@ RSpec.describe Ioki::Model::Base do
       expect(model.serialize).to eq 'test'
     end
   end
+
+  describe 'deprecated attributes' do
+    let(:attributes) { { name: 'FastCar', slug: 'FastCar' } }
+    let(:example_class) do
+      Class.new(Ioki::Model::Base) do
+        deprecated_attribute :name, type: :string, on: [:read, :create]
+        deprecated_attribute :identifier, type: :string, on: [:read, :create], replaced_by: :slug
+        attribute :slug, type: :string, on: [:read, :create]
+      end
+    end
+
+    describe 'when accessing attributes' do
+      it 'warns when the attribute is deprecated' do
+        model = example_class.new(attributes)
+
+        expect { model.name }.to output("The attribute `#name` is deprecated.\n").to_stderr
+        expect { model.name = 'new name' }.to output("The attribute `#name` is deprecated.\n").to_stderr
+        expect { model.identifier }
+          .to output("The attribute `#identifier` is deprecated. Please use `#slug` instead.\n").to_stderr
+      end
+
+      it 'does not warn when the attribute is not deprecated' do
+        model = example_class.new(attributes)
+
+        expect { model.slug }.not_to output.to_stderr
+        expect { model.slug = 'new slug' }.not_to output.to_stderr
+      end
+    end
+
+    describe 'when initializing a model' do
+      it 'warns when initializing with deprecated attributes' do
+        expect { example_class.new(name: 'I am deprecated!') }
+          .to output("The attribute `#name` is deprecated.\n").to_stderr
+      end
+
+      it 'does not warn when initializing without deprecated attributes' do
+        expect { example_class.new(slug: 'A slug') }.not_to output.to_stderr
+      end
+    end
+  end
 end

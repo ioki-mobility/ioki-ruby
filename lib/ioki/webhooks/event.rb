@@ -7,7 +7,7 @@ module Ioki
     class Event < OpenStruct
 
       def model
-        model_class.new data
+        model_class.new(data, nil, show_deprecation_warnings: false)
       end
 
       def model_class

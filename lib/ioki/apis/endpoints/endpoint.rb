@@ -27,7 +27,7 @@ module Ioki
         )
 
         if model_class
-          model_class.new(parsed_response['data'])
+          model_class.new(parsed_response['data'], nil, show_deprecation_warnings: false)
         else
           parsed_response
         end
