@@ -1277,4 +1277,16 @@ RSpec.describe Ioki::OperatorApi do
         .to all(be_a(Ioki::Model::Operator::User))
     end
   end
+
+  describe '#rides_notifications(product_id, ride_id, ...)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/rides/01/notifications')
+        result_with_index_data
+      end
+
+      expect(operator_client.rides_notifications('0815', '01', options))
+        .to all(be_a(Ioki::Model::Operator::Notification))
+    end
+  end
 end
