@@ -272,6 +272,13 @@ module Ioki
         except:      [:create, :update, :delete],
         paths:       { index: 'personal_discounts', show: 'personal_discounts' },
         model_class: Ioki::Model::Platform::PersonalDiscount
+      ),
+      Endpoints.crud_endpoints(
+        :email_delivery,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        except:      [:index, :show, :update, :delete],
+        paths:       { create: 'email_deliveries' },
+        model_class: Ioki::Model::Platform::EmailDelivery
       )
     ].freeze
   end

@@ -9,6 +9,7 @@ gem 'rake', '~> 13.1'
 gem 'rspec', '~> 3.12'
 gem 'awesome_print'
 gem 'debug'
+gem 'mail'
 
 group :development, :test do
   gem 'rubocop', require: false

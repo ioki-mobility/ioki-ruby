@@ -886,4 +886,17 @@ RSpec.describe Ioki::PlatformApi do
         .to be_a(Ioki::Model::Platform::PersonalDiscount)
     end
   end
+
+  describe '#create_email_delivery(provider_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/email_deliveries')
+        [result_with_data, full_response]
+      end
+
+      email_delivery = Ioki::Model::Platform::EmailDelivery.new(delivery_context: 'standard', mime_message: 'content')
+      expect(platform_client.create_email_delivery('0815', email_delivery, options))
+        .to be_a(Ioki::Model::Platform::EmailDelivery)
+    end
+  end
 end
