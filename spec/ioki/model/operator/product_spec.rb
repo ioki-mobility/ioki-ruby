@@ -34,6 +34,12 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:service_time_info).as(:string) }
   it { is_expected.to define_attribute(:state).as(:string) }
   it { is_expected.to define_attribute(:timezone).as(:object).with(class_name: 'Timezone') }
+
+  it {
+    is_expected.to define_attribute(:translated_ride_cancellation_reasons).as(:array)
+      .with(class_name: 'CancellationReasonWithTranslations')
+  }
+
   it { is_expected.to define_attribute(:walker_boarding_time).as(:integer) }
   it { is_expected.to define_attribute(:wheelchair_boarding_time).as(:integer) }
 end

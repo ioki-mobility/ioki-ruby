@@ -121,6 +121,11 @@ module Ioki
                   type:       :object,
                   class_name: 'Timezone'
 
+        attribute :translated_ride_cancellation_reasons,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'CancellationReasonWithTranslations'
+
         attribute :version,
                   on:   :read,
                   type: :integer
