@@ -244,6 +244,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
         path:        'notifications',
         model_class: Ioki::Model::Operator::Notification
+      ),
+      Endpoints::Index.new(
+        :rides_phone_calls,
+        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
+        path:        'phone_calls',
+        model_class: Ioki::Model::Operator::PhoneCall
       )
     ].freeze
   end
