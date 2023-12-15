@@ -302,7 +302,7 @@ module Ioki
       def output_deprecation_warnings(raw_attributes)
         return unless raw_attributes.is_a?(Hash)
 
-        raw_attributes.each do |attribute, _value|
+        raw_attributes.each_key do |attribute|
           deprecation_warning deprecated_attribute_message(attribute) if attribute_deprecated?(attribute)
         end
       end

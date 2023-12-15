@@ -7,7 +7,7 @@ module Ioki
 
       def initialize(http_response)
         @http_response = http_response
-        super http_response_message
+        super(http_response_message)
       end
 
       def http_response_message
