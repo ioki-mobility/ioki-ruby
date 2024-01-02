@@ -53,6 +53,11 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :operator_id,
+                  on:             [:create, :read],
+                  omit_if_nil_on: [:create],
+                  type:           :string
+
         attribute :password,
                   on:   :read,
                   type: :string
