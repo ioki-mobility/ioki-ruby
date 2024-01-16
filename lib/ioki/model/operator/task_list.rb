@@ -66,7 +66,7 @@ module Ioki
                   type:           :string
 
         attribute :matching_rank,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :integer
 
         attribute :paused,
