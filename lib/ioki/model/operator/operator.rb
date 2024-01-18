@@ -29,8 +29,9 @@ module Ioki
                   type: :boolean
 
         attribute :matching_rank,
-                  on:   :read,
-                  type: :integer
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
 
         attribute :name,
                   on:   [:create, :read, :update],
