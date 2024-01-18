@@ -21,9 +21,8 @@ module Ioki
                   type: :date_time
 
         attribute :name,
-                  on:             [:read, :create, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :string
+                  on:   [:read, :create, :update],
+                  type: :string
 
         attribute :mode,
                   on:             [:read, :create, :update],

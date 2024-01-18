@@ -22,12 +22,12 @@ module Ioki
 
         attribute :tier,
                   on:             [:read, :create, :update],
-                  omit_if_nil_on: [:create, :update],
+                  omit_if_nil_on: [:update],
                   type:           :integer
 
         attribute :relative_time,
                   on:             [:read, :create, :update],
-                  omit_if_nil_on: [:create, :update],
+                  omit_if_nil_on: [:update],
                   type:           :integer
 
         attribute :dropoff_mode,
@@ -56,9 +56,8 @@ module Ioki
                   type:           :boolean
 
         attribute :station_id,
-                  on:             [:read, :create],
-                  omit_if_nil_on: [:create],
-                  type:           :string
+                  on:   [:read, :create],
+                  type: :string
 
         attribute :version,
                   on:   :read,
