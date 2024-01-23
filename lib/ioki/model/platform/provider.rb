@@ -20,6 +20,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :version,
+                  on:   :read,
+                  type: :integer
+
         attribute :city,
                   on:   :read,
                   type: :string
@@ -36,15 +40,17 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :default_operator,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Operator'
+        attribute :help_url,
+                  on:   :read,
+                  type: :string
 
-        attribute :features,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'ProviderFeatures'
+        attribute :imprint_url,
+                  on:   :read,
+                  type: :string
+
+        attribute :imprint,
+                  on:   :read,
+                  type: :string
 
         attribute :logpay_payment_method_types,
                   on:   :read,
@@ -58,11 +64,19 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :other_url,
+                  on:   :read,
+                  type: :string
+
         attribute :personal_discount_payment_method_types,
                   on:   :read,
                   type: :array
 
         attribute :postal_code,
+                  on:   :read,
+                  type: :string
+
+        attribute :privacy_policy_url,
                   on:   :read,
                   type: :string
 
@@ -73,11 +87,6 @@ module Ioki
         attribute :ride_payment_method_types,
                   on:   :read,
                   type: :array
-
-        attribute :service_credit_options,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'ServiceCreditOptions'
 
         attribute :service_credit_payment_method_types,
                   on:   :read,
@@ -103,13 +112,49 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :support_email,
+                  on:   :read,
+                  type: :string
+
+        attribute :support_phone_number,
+                  on:   :read,
+                  type: :string
+
+        attribute :support_website_url,
+                  on:   :read,
+                  type: :string
+
+        attribute :terms_of_service_url,
+                  on:   :read,
+                  type: :string
+
         attribute :tip_payment_method_types,
                   on:   :read,
                   type: :array
 
-        attribute :version,
+        attribute :ticketing_payment_method_types,
                   on:   :read,
-                  type: :integer
+                  type: :array
+
+        attribute :default_operator,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Operator'
+
+        attribute :features,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ProviderFeatures'
+
+        attribute :operators,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Operator'
+
+        attribute :service_credit_options,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ServiceCreditOptions'
       end
     end
   end
