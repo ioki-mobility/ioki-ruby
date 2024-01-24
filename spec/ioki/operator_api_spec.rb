@@ -1109,6 +1109,62 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#create_operator(provider_id)' do
+    let(:operator) { Ioki::Model::Operator::Operator.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/operators')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.operator('0815', operator, options))
+        .to be_a(Ioki::Model::Operator::Operator)
+    end
+  end
+
+  describe '#update_operator(product_id, operator)' do
+    let(:operator) { Ioki::Model::Operator::Operator.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711')
+        expect(params[:method]).to eq :patch
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_operator('0815', operator, options))
+        .to be_a(Ioki::Model::Operator::Operator)
+    end
+  end
+
+  describe '#delete_operator(product_id, operator_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711')
+        result_with_data
+      end
+
+      expect(operator_client.delete_operator('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Operator)
+    end
+  end
+
+  describe '#set_default_operator(product_id, operator)' do
+    let(:operator) { Ioki::Model::Operator::Operator.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711/set_default')
+        expect(params[:method]).to eq :patch
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.operator_set_default('0815', operator, options))
+        .to be_a(Ioki::Model::Operator::Operator)
+    end
+  end
+
   describe '#area(product_id, area_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|

@@ -40,6 +40,11 @@ module Ioki
         attribute :slug,
                   on:   [:create, :read, :update],
                   type: :string
+
+        attribute :locale,
+                  on:             [:create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
       end
     end
   end

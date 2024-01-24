@@ -195,8 +195,13 @@ module Ioki
       Endpoints.crud_endpoints(
         :operator,
         base_path:   [API_BASE_PATH, 'providers', :id],
-        model_class: Ioki::Model::Operator::Operator,
-        except:      [:create, :update, :delete]
+        model_class: Ioki::Model::Operator::Operator
+      ),
+      Endpoints.custom_endpoints(
+        :operator,
+        actions:     { 'set_default' => :patch },
+        path:        [API_BASE_PATH, 'providers', :id, 'operators', :id],
+        model_class: Ioki::Model::Operator::Operator
       ),
       Endpoints.crud_endpoints(
         :area,
