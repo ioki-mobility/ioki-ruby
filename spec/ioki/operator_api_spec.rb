@@ -1423,6 +1423,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  # rubocop:disable Layout/LineLength
   describe '#resource_configuration_set_default_request(product_id, vehicle_id, resource_configuration)' do
     let(:resource_configuration) { Ioki::Model::Operator::ResourceConfiguration.new({ id: '5150' }) }
 
@@ -1433,8 +1434,11 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.resource_configuration_set_default_request('0815', '4711', '5150', resource_configuration, options))
-        .to be_a(Ioki::Model::Operator::ResourceConfiguration)
+      expect(
+        operator_client
+          .resource_configuration_set_default_request('0815', '4711', '5150', resource_configuration, options)
+      ).to be_a(Ioki::Model::Operator::ResourceConfiguration)
     end
   end
 end
+# rubocop:enable Layout/LineLength

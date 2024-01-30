@@ -8,7 +8,12 @@ RSpec.describe Ioki::Model::Operator::Vehicle do
   it { is_expected.to define_attribute(:version).as(:integer) }
   it { is_expected.to define_attribute(:autonomous).as(:boolean) }
   it { is_expected.to define_attribute(:connected_driver_id).as(:string) }
-  it { is_expected.to define_attribute(:default_resource_configuration).as(:object).with(class_name: 'ResourceConfiguration') }
+
+  it {
+    is_expected.to define_attribute(:default_resource_configuration).as(:object)
+      .with(class_name: 'ResourceConfiguration')
+  }
+
   it { is_expected.to define_attribute(:description).as(:string) }
   it { is_expected.to define_attribute(:external_id).as(:string) }
   it { is_expected.to define_attribute(:fuel_type).as(:string) }
