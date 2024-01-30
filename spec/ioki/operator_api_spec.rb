@@ -1357,4 +1357,84 @@ RSpec.describe Ioki::OperatorApi do
         .to all(be_a(Ioki::Model::Operator::PhoneCall))
     end
   end
+
+  describe '#resource_configurations(product_id, vehicle_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations')
+        result_with_index_data
+      end
+
+      expect(operator_client.resource_configurations('0815', '4711', options))
+        .to all(be_a(Ioki::Model::Operator::ResourceConfiguration))
+    end
+  end
+
+  describe '#resource_configuration(product_id, vehicle_id, resource_configuration_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations/5150')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.resource_configuration('0815', '4711', '5150', options))
+        .to be_a(Ioki::Model::Operator::ResourceConfiguration)
+    end
+  end
+
+  describe '#create_resource_configuration(product_id, vehicle_id)' do
+    let(:resource_configuration) { Ioki::Model::Operator::ResourceConfiguration.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.resource_configuration('0815', '4711', resource_configuration, options))
+        .to be_a(Ioki::Model::Operator::ResourceConfiguration)
+    end
+  end
+
+  describe '#update_resource_configuration(product_id, vehicle_id, resource_configuration)' do
+    let(:resource_configuration) { Ioki::Model::Operator::ResourceConfiguration.new({ id: '5150' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations/5150')
+        expect(params[:method]).to eq :patch
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_resource_configuration('0815', '4711', '5150', resource_configuration, options))
+        .to be_a(Ioki::Model::Operator::ResourceConfiguration)
+    end
+  end
+
+  describe '#delete_resource_configuration(product_id, vehicle_id, resource_configuration_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations/5150')
+        result_with_data
+      end
+
+      expect(operator_client.delete_resource_configuration('0815', '4711', '5150', options))
+        .to be_a(Ioki::Model::Operator::ResourceConfiguration)
+    end
+  end
+
+  describe '#resource_configuration_set_default_request(product_id, vehicle_id, resource_configuration)' do
+    let(:resource_configuration) { Ioki::Model::Operator::ResourceConfiguration.new({ id: '5150' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations/5150/set_default_request')
+        expect(params[:method]).to eq :patch
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.resource_configuration_set_default_request('0815', '4711', '5150', resource_configuration, options))
+        .to be_a(Ioki::Model::Operator::ResourceConfiguration)
+    end
+  end
 end
