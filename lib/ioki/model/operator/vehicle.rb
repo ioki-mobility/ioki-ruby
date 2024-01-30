@@ -29,6 +29,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :default_resource_configuration,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ResourceConfiguration'
+
         attribute :description,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
