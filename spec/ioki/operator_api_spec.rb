@@ -8,15 +8,16 @@ RSpec.describe Ioki::OperatorApi do
       instance_double(
         Ioki::Configuration,
         :config,
-        api_base_url:          'https://app.io.ki/api',
-        api_version:           '1',
-        api_client_identifier: 'ID',
-        api_client_secret:     'SECRET',
-        api_client_version:    'VERSION',
-        api_token:             'TOKEN',
-        language:              'de',
-        retry_count:           1,
-        retry_sleep_seconds:   1
+        api_base_url:                 'https://app.io.ki/api',
+        api_version:                  '1',
+        api_client_identifier:        'ID',
+        api_client_secret:            'SECRET',
+        api_client_version:           'VERSION',
+        api_token:                    'TOKEN',
+        language:                     'de',
+        retry_count:                  1,
+        retry_sleep_seconds:          1,
+        ignore_deprecated_attributes: true
       ),
       described_class
     )
