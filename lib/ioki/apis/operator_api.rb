@@ -263,7 +263,7 @@ module Ioki
       ),
       Endpoints.custom_endpoints(
         :resource_configuration,
-        actions:     { 'set_default_request' => :patch },
+        actions:     { 'set_default_request' => :post },
         path:        [API_BASE_PATH, 'products', :id, 'vehicles', :id, 'resource_configurations', :id],
         model_class: Ioki::Model::Operator::ResourceConfiguration
       )

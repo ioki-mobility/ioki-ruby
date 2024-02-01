@@ -1431,7 +1431,7 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/resource_configurations/5150/set_default_request')
-        expect(params[:method]).to eq :patch
+        expect(params[:method]).to eq :post
         [result_with_data, full_response]
       end
 
