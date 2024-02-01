@@ -79,6 +79,13 @@ module Ioki
         outgoing_model_class: Ioki::Model::Passenger::UserPhoneNumber
       ),
       Endpoints::Create.new(
+        :user_flags,
+        base_path:            [API_BASE_PATH, 'user'],
+        path:                 'flags',
+        model_class:          Ioki::Model::Passenger::User,
+        outgoing_model_class: Ioki::Model::Passenger::UserFlags
+      ),
+      Endpoints::Create.new(
         :phone_verification_request,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::PhoneVerificationRequest

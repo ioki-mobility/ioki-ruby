@@ -208,6 +208,20 @@ RSpec.describe Ioki::PassengerApi do
     end
   end
 
+  describe '#create_user_flags' do
+    let(:user_flags) { Ioki::Model::Passenger::UserFlags.new(minimum_age_confirmed: true) }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/user/flags')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_user_flags(user_flags, options.merge(model: user_flags)))
+        .to be_a Ioki::Model::Passenger::User
+    end
+  end
+
   describe '#show_user' do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
