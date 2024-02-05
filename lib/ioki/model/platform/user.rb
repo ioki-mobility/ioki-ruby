@@ -8,6 +8,7 @@ module Ioki
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
+        attribute :analytics_tracking, on: [:read, :create], type: :boolean
         attribute :email,
                   type:             :object,
                   on:               [:read, :create, :update],
@@ -20,6 +21,7 @@ module Ioki
         attribute :lock_reason, type: :string, on: :read
         attribute :lock_type, type: :string, on: :read
         attribute :locked_at, type: :date_time, on: :read
+        attribute :minimum_age_confirmed, on: [:read, :create], type: :boolean
         attribute :phone_number, type: :string, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
         attribute :provider_id, type: :string, on: :read
         attribute :terms_accepted, type: :boolean, on: [:create, :update], unvalidated: true
