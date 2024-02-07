@@ -128,8 +128,9 @@ module Ioki
                   type:           :integer
 
         attribute :visible_on_map_in_passenger_client,
-                  on:   :read,
-                  type: :boolean
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
 
         attribute :walker_boarding_time,
                   on:   [:read, :create, :update],
