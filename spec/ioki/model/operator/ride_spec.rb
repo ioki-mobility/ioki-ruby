@@ -30,6 +30,7 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:public_transport_uri).as(:string) }
   it { is_expected.to define_attribute(:rateable).as(:boolean) }
   it { is_expected.to define_attribute(:rating).as(:object).with(class_name: 'Rating') }
+  it { is_expected.to define_attribute(:rematchable).as(:boolean) }
   it { is_expected.to define_attribute(:ride_series_id).as(:string) }
   it { is_expected.to define_attribute(:route).as(:object).with(class_name: 'Route') }
   it { is_expected.to define_attribute(:state).as(:string) }

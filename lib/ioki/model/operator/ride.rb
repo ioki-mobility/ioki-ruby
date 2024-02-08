@@ -129,6 +129,10 @@ module Ioki
                   type:       :object,
                   class_name: 'Rating'
 
+        attribute :rematchable,
+                  on:   :read,
+                  type: :boolean
+
         attribute :ride_series_id,
                   on:   :read,
                   type: :string
