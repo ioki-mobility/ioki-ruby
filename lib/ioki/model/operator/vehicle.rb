@@ -29,6 +29,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :default_resource_configuration,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ResourceConfiguration'
+
         attribute :description,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
@@ -98,25 +103,25 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
-        attribute :seats,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :integer
+        deprecated_attribute :seats,
+                             on:             [:create, :read, :update],
+                             omit_if_nil_on: [:create, :update],
+                             type:           :integer
 
-        attribute :storage_spaces,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :integer
+        deprecated_attribute :storage_spaces,
+                             on:             [:create, :read, :update],
+                             omit_if_nil_on: [:create, :update],
+                             type:           :integer
 
-        attribute :walker_bays,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :integer
+        deprecated_attribute :walker_bays,
+                             on:             [:create, :read, :update],
+                             omit_if_nil_on: [:create, :update],
+                             type:           :integer
 
-        attribute :wheelchair_bays,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :integer
+        deprecated_attribute :wheelchair_bays,
+                             on:             [:create, :read, :update],
+                             omit_if_nil_on: [:create, :update],
+                             type:           :integer
 
         attribute :version,
                   on:             [:update, :read],

@@ -255,6 +255,17 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
         path:        'phone_calls',
         model_class: Ioki::Model::Operator::PhoneCall
+      ),
+      Endpoints.crud_endpoints(
+        :resource_configuration,
+        base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
+        model_class: Ioki::Model::Operator::ResourceConfiguration
+      ),
+      Endpoints.custom_endpoints(
+        :resource_configuration,
+        actions:     { 'set_default_request' => :post },
+        path:        [API_BASE_PATH, 'products', :id, 'vehicles', :id, 'resource_configurations', :id],
+        model_class: Ioki::Model::Operator::ResourceConfiguration
       )
     ].freeze
   end
