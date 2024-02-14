@@ -269,7 +269,7 @@ module Ioki
       ),
       Endpoints.crud_endpoints(
         :rematching_attempt,
-        base_path:   [API_BASE_PATH, 'products', :id],
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::RematchingAttempt,
         except:      [:update, :delete]
       ),
