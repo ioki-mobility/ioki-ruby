@@ -131,7 +131,7 @@ module Ioki
 
         attribute :line_id,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
+                  omit_if_nil_on: [:create],
                   type:           :string
 
         attribute :version,
