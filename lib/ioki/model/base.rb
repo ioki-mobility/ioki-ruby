@@ -216,6 +216,28 @@ module Ioki
         attributes == other.attributes
       end
 
+      def schema_specification(usecase = :read)
+        if !@_raw_attributes.is_a?(Hash)
+          return @_raw_attributes.map { |object| object.schema_specification(usecase) } if @_raw_attributes.is_a?(Array)
+
+          return @_raw_attributes
+        end
+
+        self.class.attribute_definitions.each_with_object({}) do |(attribute, definition), data|
+          value = public_send(attribute)
+
+          next unless Array(definition[:on]).include?(usecase)
+
+          data[attribute] = if definition[:type] == :object && value.is_a?(Ioki::Model::Base)
+                    value.schema_specification(usecase)
+                  elsif definition[:type] == :array && value.respond_to?(:map)
+                    value.map { |el| el.is_a?(Ioki::Model::Base) ? el.schema_specification(usecase) : el }
+                  else
+                    { example: value, type: definition[:type] }
+                  end
+        end
+      end
+
       private
 
       def reset_attributes!
