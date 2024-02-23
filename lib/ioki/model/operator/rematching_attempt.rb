@@ -66,7 +66,7 @@ module Ioki
                   omit_if_nil_on: [:create],
                   type:           :string
 
-        attribute :white_listed_task_list_ids,
+        attribute :whitelisted_task_list_ids,
                   on:             [:create, :read],
                   omit_if_nil_on: [:create],
                   type:           :array

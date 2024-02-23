@@ -15,5 +15,5 @@ RSpec.describe Ioki::Model::Operator::RematchingAttempt do
   it { is_expected.to define_attribute(:ride_ids).as(:array) }
   it { is_expected.to define_attribute(:started_at).as(:date_time) }
   it { is_expected.to define_attribute(:task_list_id).as(:string) }
-  it { is_expected.to define_attribute(:white_listed_task_list_ids).as(:array) }
+  it { is_expected.to define_attribute(:whitelisted_task_list_ids).as(:array) }
 end
