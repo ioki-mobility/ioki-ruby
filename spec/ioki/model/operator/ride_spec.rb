@@ -37,6 +37,7 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:state).as(:string) }
   it { is_expected.to define_attribute(:storage_spaces).as(:integer) }
   it { is_expected.to define_attribute(:support_uri).as(:string) }
+  it { is_expected.to define_attribute(:task_list_id).as(:string) }
   it { is_expected.to define_attribute(:tippable).as(:boolean) }
   it { is_expected.to define_attribute(:user).as(:object).with(class_name: 'User') }
   it { is_expected.to define_attribute(:user_id).as(:string) }

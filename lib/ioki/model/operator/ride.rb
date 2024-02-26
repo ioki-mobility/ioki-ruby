@@ -160,6 +160,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :task_list_id,
+                  on:   :read,
+                  type: :string
+
         attribute :tippable,
                   on:   :read,
                   type: :boolean
