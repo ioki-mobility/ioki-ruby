@@ -296,6 +296,7 @@ RSpec.describe Ioki::Model::Base do
     it 'will set the passed attributes in raw and typecasted form and return the typecasted attributes' do
       expect(model._raw_attributes).to eq({ foo: 1, bar: 2, baz: 3 })
       expect(model._attributes).to eq({ foo: '1', bar: 2, baz: 3 })
+      expect(model.attributes).to eq({ foo: '1', bar: 2, baz: 3 })
 
       result = model.attributes(foo: 42, bar: 43, unknown: 123)
 
@@ -303,6 +304,22 @@ RSpec.describe Ioki::Model::Base do
       expect(model._attributes).to eq({ foo: '42', bar: 43, baz: 3 })
 
       expect(result).to eq(model._attributes)
+    end
+  end
+
+  describe '#changed_attributes' do
+    let(:attributes) { { foo: 'abc' } }
+
+    let(:example_class) do
+      Class.new(Ioki::Model::Base) do
+        attribute :foo, type: :string, default: 1, on: :read
+        attribute :bar, type: :integer, on: :read
+        attribute :baz, default: 3, on: :read
+      end
+    end
+
+    it 'returns only provided and default attributes' do
+      expect(model.changed_attributes).to eq({ foo: 'abc', baz: 3 })
     end
   end
 
@@ -433,6 +450,47 @@ RSpec.describe Ioki::Model::Base do
       it 'omits attributes when context is matched and values are nil' do
         attributes['bar'] = nil
         expect(model.serialize(:create)).to eq({ foo: '1' })
+      end
+    end
+
+    describe 'only dirty' do
+      context 'when initializing with value' do
+        let(:attributes) { { 'foo' => '1' } }
+
+        it 'includes attributes' do
+          expect(model.serialize).to eq({ foo: '1' })
+        end
+      end
+
+      context 'when initializing with nil' do
+        let(:attributes) { { 'foo' => nil } }
+
+        it 'includes attributes' do
+          expect(model.serialize).to eq({ foo: nil })
+        end
+      end
+
+      context 'when omitting the value on initialization' do
+        let(:attributes) { {} }
+
+        it 'does not include the attribute' do
+          expect(model.serialize).to eq({})
+        end
+      end
+
+      context 'with multiple attributes' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, on: [:read, :create]
+            attribute :bar, on: [:read, :create]
+          end
+        end
+
+        let(:attributes) { { foo: '1' } }
+
+        it 'does not include the attribute' do
+          expect(model.serialize).to eq({ foo: '1' })
+        end
       end
     end
   end

@@ -6,6 +6,7 @@ module Ioki
   module Model
     class Base
       extend Ioki::Support::ModuleMixins
+      include ActiveModel::Dirty
 
       class << self
         def class_instance_attribute_definitions
@@ -23,6 +24,7 @@ module Ioki
           attribute = attribute.to_sym
 
           class_instance_attribute_definitions[attribute] ||= definition
+          define_attribute_methods attribute
 
           define_method :"#{attribute}" do
             deprecation_warning deprecated_attribute_message(attribute) if attribute_deprecated?(attribute)
@@ -30,13 +32,18 @@ module Ioki
             @_attributes[attribute]
           end
 
-          define_method :"#{attribute}=" do |value, show_deprecation_warnings: true|
+          define_method :"#{attribute}=" do |value, show_deprecation_warnings: true, force_change: false|
             if show_deprecation_warnings && attribute_deprecated?(attribute)
               deprecation_warning deprecated_attribute_message(attribute)
             end
 
+            new_value = type_cast_attribute_value(attribute, value)
             @_raw_attributes[attribute] = value
-            @_attributes[attribute] = type_cast_attribute_value(attribute, value)
+
+            if force_change || @_attributes[attribute] != new_value
+              send("#{attribute}_will_change!")
+              @_attributes[attribute] = new_value
+            end
           end
         end
 
@@ -83,8 +90,6 @@ module Ioki
       attr_accessor :_raw_attributes, :_attributes, :_etag
 
       def initialize(raw_attributes = base_class.new, etag = nil, options = {})
-        set_base_class if respond_to?(:set_base_class)
-
         @_initial_attributes = raw_attributes
         @_raw_attributes = if raw_attributes.is_a?(Hash)
                              (raw_attributes || {}).transform_keys(&:to_sym)
@@ -95,8 +100,9 @@ module Ioki
         @_options = options.dup
         @_options[:show_deprecation_warnings] = true if @_options[:show_deprecation_warnings].nil?
 
-        output_deprecation_warnings(@_raw_attributes)
         reset_attributes!
+
+        set_base_class if respond_to?(:set_base_class)
       end
 
       def inspect
@@ -113,10 +119,16 @@ module Ioki
         end
       end
 
+      def changed_attributes
+        attributes_without_deprecated
+      end
+
       def attributes(**attributes)
         attributes.each { |a, v| set_attribute(a, v, show_deprecation_warnings: false) }
 
-        attributes_without_deprecated
+        self.class.attribute_definitions
+          .reject { |_attribute, definition| Ioki.config.ignore_deprecated_attributes && definition[:deprecated] }
+          .to_h { |(attribute, _definition)| [attribute, public_send(attribute)] }
       end
 
       def attributes_without_deprecated
@@ -188,6 +200,8 @@ module Ioki
 
           next if Ioki.config.ignore_deprecated_attributes && definition[:deprecated]
 
+          next unless attribute_changed?(attribute)
+
           next if definition.key?(:omit_if_nil_on) &&
                   Array(definition[:omit_if_nil_on]).include?(usecase) &&
                   value.nil?
@@ -223,8 +237,10 @@ module Ioki
         return if !@_raw_attributes.is_a?(Hash)
 
         self.class.attribute_definitions.each do |attribute, definition|
-          value = @_raw_attributes.key?(attribute) ? @_raw_attributes[attribute] : definition[:default]
-          public_send("#{attribute}=", value, show_deprecation_warnings: false)
+          provided_attribute = @_raw_attributes.key?(attribute)
+          value = provided_attribute ? @_raw_attributes[attribute] : definition[:default]
+
+          public_send("#{attribute}=", value, show_deprecation_warnings: false, force_change: provided_attribute)
         end
       end
 
@@ -297,14 +313,6 @@ module Ioki
 
       def attribute_deprecated?(attribute)
         self.class.class_instance_attribute_definitions.dig(attribute, :deprecated)
-      end
-
-      def output_deprecation_warnings(raw_attributes)
-        return unless raw_attributes.is_a?(Hash)
-
-        raw_attributes.each_key do |attribute|
-          deprecation_warning deprecated_attribute_message(attribute) if attribute_deprecated?(attribute)
-        end
       end
 
       def deprecation_warning(message)
