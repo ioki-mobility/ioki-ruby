@@ -73,6 +73,11 @@ module Ioki
                   type:       :object,
                   class_name: 'CalculatedPoint'
 
+        attribute :dropoff_task,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Task'
+
         attribute :estimated_direct_distance,
                   on:   :read,
                   type: :integer
@@ -107,6 +112,11 @@ module Ioki
                   on:         :read,
                   type:       :object,
                   class_name: 'CalculatedPoint'
+
+        attribute :pickup_task,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Task'
 
         attribute :prebooked,
                   on:   :read,

@@ -17,6 +17,7 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:driver_id).as(:string) }
   it { is_expected.to define_attribute(:driver_can_be_called).as(:boolean) }
   it { is_expected.to define_attribute(:dropoff).as(:object).with(class_name: 'CalculatedPoint') }
+  it { is_expected.to define_attribute(:dropoff_task).as(:object).with(class_name: 'Task') }
   it { is_expected.to define_attribute(:estimated_direct_distance).as(:integer) }
   it { is_expected.to define_attribute(:estimated_direct_duration).as(:integer) }
   it { is_expected.to define_attribute(:needs_cancellation_code).as(:boolean) }
@@ -25,6 +26,7 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:passengers).as(:array).with(class_name: 'RidePassenger') }
   it { is_expected.to define_attribute(:payment_state).as(:string) }
   it { is_expected.to define_attribute(:pickup).as(:object).with(class_name: 'CalculatedPoint') }
+  it { is_expected.to define_attribute(:pickup_task).as(:object).with(class_name: 'Task') }
   it { is_expected.to define_attribute(:prebooked).as(:boolean) }
   it { is_expected.to define_attribute(:product_id).as(:string) }
   it { is_expected.to define_attribute(:public_transport_uri).as(:string) }
