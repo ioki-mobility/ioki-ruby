@@ -266,6 +266,17 @@ module Ioki
         actions:     { 'set_default_request' => :post },
         path:        [API_BASE_PATH, 'products', :id, 'vehicles', :id, 'resource_configurations', :id],
         model_class: Ioki::Model::Operator::ResourceConfiguration
+      ),
+      Endpoints.crud_endpoints(
+        :rematching_attempt,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::RematchingAttempt,
+        except:      [:update, :delete]
+      ),
+      Endpoints::Index.new(
+        :rematching_suggestions,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Operator::RematchingSuggestion
       )
     ].freeze
   end
