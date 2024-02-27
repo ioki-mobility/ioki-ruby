@@ -1443,40 +1443,40 @@ RSpec.describe Ioki::OperatorApi do
   end
   # rubocop:enable Layout/LineLength
 
-  describe '#rematching_attempts(product_id, task_list_id)' do
+  describe '#rematching_attempts(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/rematching_attempts')
+        expect(params[:url].to_s).to eq('operator/products/0815/rematching_attempts')
         result_with_index_data
       end
 
-      expect(operator_client.rematching_attempts('0815', '4711', options))
+      expect(operator_client.rematching_attempts('0815', options))
         .to all(be_a(Ioki::Model::Operator::RematchingAttempt))
     end
   end
 
-  describe '#rematching_attempt(product_id, task_list_id, rematching_attempt_id)' do
+  describe '#rematching_attempt(product_id, rematching_attempt_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/rematching_attempts/5150')
+        expect(params[:url].to_s).to eq('operator/products/0815/rematching_attempts/4711')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.rematching_attempt('0815', '4711', '5150', options))
+      expect(operator_client.rematching_attempt('0815', '4711', options))
         .to be_a(Ioki::Model::Operator::RematchingAttempt)
     end
   end
 
-  describe '#create_rematching_attempt(product_id, task_list_id)' do
+  describe '#create_rematching_attempt(product_id)' do
     let(:rematching_attempt) { Ioki::Model::Operator::RematchingAttempt.new }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/rematching_attempts')
+        expect(params[:url].to_s).to eq('operator/products/0815/rematching_attempts')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.create_rematching_attempt('0815', '4711', rematching_attempt, options))
+      expect(operator_client.create_rematching_attempt('0815', rematching_attempt, options))
         .to be_a(Ioki::Model::Operator::RematchingAttempt)
     end
   end
