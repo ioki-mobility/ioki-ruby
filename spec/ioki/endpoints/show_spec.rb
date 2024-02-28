@@ -29,6 +29,7 @@ RSpec.describe Ioki::Endpoints::Show do
 
     expect(result).to be_a(model_class)
     expect(result.id).to eq('0815')
+    expect(result.changes).to all be_empty
   end
 
   it "sets the response's etag to the model" do
@@ -49,7 +50,8 @@ RSpec.describe Ioki::Endpoints::Show do
         params:  params
       ).and_return([parsed_data, response])
 
-      endpoint.call(client, ['0815'], { model: model, params: params })
+      result = endpoint.call(client, ['0815'], { model: model, params: params })
+      expect(result.changes).to all be_empty
     end
   end
 
@@ -80,6 +82,7 @@ RSpec.describe Ioki::Endpoints::Show do
       notification_settings = endpoint.call(client, ['0815'])
 
       expect(notification_settings).to be_a Ioki::Model::Passenger::NotificationSettings
+      expect(notification_settings.changes).to all be_empty
       expect(notification_settings._etag).to eq 'ETAG'
       expect(notification_settings._raw_attributes).to eq parsed_data['data']
       expect(notification_settings.data).to eq [
@@ -125,6 +128,7 @@ RSpec.describe Ioki::Endpoints::Show do
       response = endpoint.call(client, ['0815'])
 
       expect(response).to be_a model_class
+      expect(response.changes).to all be_empty
       expect(response._etag).to eq 'ETAG'
       expect(response._raw_attributes).to eq parsed_data['data']
       expect(response.data).to eq 'test string'
