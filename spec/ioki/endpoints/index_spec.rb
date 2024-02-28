@@ -63,8 +63,7 @@ RSpec.describe Ioki::Endpoints::Index do
   it 'returns an Array of the correct model_class' do
     result = endpoint.call client, [], model_class: model_class, params: params
 
-    expect(result.first).to be_a(model_class)
-    expect(result.last).to be_a(model_class)
+    expect(result).to all be_a(model_class)
   end
 
   it 'returns an Array with the correct attributes' do
