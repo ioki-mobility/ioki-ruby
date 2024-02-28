@@ -742,6 +742,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#rides_cancellation(product_id, ride_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/rides/4711/cancellation')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.rides_cancellation('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Ride)
+    end
+  end
+
   describe '#task_list_deactivations(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
