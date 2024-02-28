@@ -102,7 +102,7 @@ module Ioki
 
         reset_attributes!
 
-        set_base_class if respond_to?(:set_base_class)
+        set_base_class if Kernel.instance_method(:respond_to?).bind(self).call(:set_base_class)
       end
 
       def inspect
