@@ -539,6 +539,21 @@ RSpec.describe Ioki::Model::Base do
           expect(model.serialize).to eq({ foo: '1' })
         end
       end
+
+      context 'with a nested model' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, on: [:read, :create]
+            attribute :bar, on: [:read, :create], type: :object, class_name: 'Ioki::Model::Platform::Product'
+          end
+        end
+
+        let(:attributes) { { foo: '1', bar: { type: 'product', name: 'My product' } } }
+
+        it 'includes the nested attributes' do
+          expect(model.serialize).to eq({ foo: '1', bar: { name: 'My product', type: 'product' } })
+        end
+      end
     end
   end
 
