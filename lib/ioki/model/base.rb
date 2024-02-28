@@ -186,7 +186,7 @@ module Ioki
 
       # may get overridden in hard ways by subclasses. This default
       # implementation should bring us a long way.
-      def serialize(usecase = :read)
+      def serialize(usecase = :read, only_changed: true)
         if !@_raw_attributes.is_a?(Hash)
           return @_raw_attributes.map { |object| object.serialize(usecase) } if @_raw_attributes.is_a?(Array)
 
@@ -200,7 +200,7 @@ module Ioki
 
           next if Ioki.config.ignore_deprecated_attributes && definition[:deprecated]
 
-          next unless attribute_changed?(attribute)
+          next if only_changed && !attribute_changed?(attribute)
 
           next if definition.key?(:omit_if_nil_on) &&
                   Array(definition[:omit_if_nil_on]).include?(usecase) &&

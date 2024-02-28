@@ -366,6 +366,53 @@ RSpec.describe Ioki::Model::Base do
           }
         )
       end
+
+      context 'without all attributes' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, on: :read
+            attribute :bar, type: :string, on: :read
+            attribute :baz, type: :integer, on: :read
+            deprecated_attribute :bak, type: :object, on: :read
+          end
+        end
+
+        let(:attributes) do
+          {
+            foo: '1',
+            bar: '2'
+          }
+        end
+
+        it 'only serializes changed attributes by default' do
+          expect(model.serialize).to eq(
+            {
+              foo: '1',
+              bar: '2'
+            }
+          )
+
+          expect(model.serialize(:read, only_changed: false)).to eq(
+            {
+              foo: '1',
+              bar: '2',
+              baz: nil,
+              bak: nil
+            }
+          )
+
+          Ioki.config.ignore_deprecated_attributes = true
+          expect(model.serialize(:read, only_changed: false)).to eq(
+            {
+              foo: '1',
+              bar: '2',
+              baz: nil
+            }
+          )
+        ensure
+          Ioki.config.ignore_deprecated_attributes = false
+        end
+      end
     end
 
     describe ':on parameter' do
