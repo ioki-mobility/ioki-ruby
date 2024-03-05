@@ -267,11 +267,11 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'vehicles', :id, 'resource_configurations', :id],
         model_class: Ioki::Model::Operator::ResourceConfiguration
       ),
-      Endpoints.custom_endpoints(
-        :vehicle,
-        actions:     { 'sync_resource_configurations_request' => :post },
-        path:        [API_BASE_PATH, 'products', :id, 'vehicles', :id],
-        model_class: Ioki::Model::Operator::Vehicle
+      Endpoints::Create.new(
+        :sync_resource_configurations_request,
+        base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
+        path:        'sync_resource_configurations_request',
+        model_class: Ioki::Model::Operator::ResourceConfigurationSync
       ),
       Endpoints.crud_endpoints(
         :rematching_attempt,

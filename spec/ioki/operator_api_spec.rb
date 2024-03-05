@@ -1441,19 +1441,21 @@ RSpec.describe Ioki::OperatorApi do
       ).to be_a(Ioki::Model::Operator::ResourceConfiguration)
     end
   end
-  # rubocop:enable Layout/LineLength
 
-  describe '#vehicle_sync_resource_configurations_request(product_id, vehicle_id)' do
+  describe '#create_sync_resource_configurations_request(product_id, vehicle_id, ResourceConfigurationSync)' do
+    let(:resource_configuration_sync) { Ioki::Model::Operator::ResourceConfigurationSync.new }
+
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/sync_resource_configurations_request')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.vehicle_sync_resource_configurations_request('0815', '4711', options))
-        .to be_a(Ioki::Model::Operator::Vehicle)
+      expect(operator_client.create_sync_resource_configurations_request('0815', '4711', resource_configuration_sync, options))
+        .to be_a(Ioki::Model::Operator::ResourceConfigurationSync)
     end
   end
+  # rubocop:enable Layout/LineLength
 
   describe '#rematching_attempts(product_id)' do
     it 'calls request on the client with expected params' do
