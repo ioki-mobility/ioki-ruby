@@ -5,7 +5,7 @@ require_relative 'oauth/with_token_refresh'
 
 module Ioki
   class Client
-    VALID_API_NAMESPACES = [:driver, :operator, :passenger, :platform].freeze
+    VALID_API_NAMESPACES = [:driver, :operator, :passenger, :platform, :reporting].freeze
 
     attr_accessor :config
 

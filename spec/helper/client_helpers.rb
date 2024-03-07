@@ -16,6 +16,10 @@ module ExtendedClientHelpers
   def setup_driver_client(client_name)
     let(client_name) { Ioki::DriverClient.new }
   end
+
+  def setup_reporting_client(client_name)
+    let(client_name) { Ioki::ReportingClient.new }
+  end
 end
 
 module IncludedClientHelpers
@@ -32,6 +36,16 @@ module IncludedClientHelpers
   def with_driver_client(&block)
     driver_client = Ioki::DriverClient.new
     block.call(driver_client)
+  end
+
+  def with_operator_client(&block)
+    operator_client = Ioki::OperatorClient.new
+    block.call(operator_client)
+  end
+
+  def with_reporting_client(&block)
+    reporting_client = Ioki::ReportingClient.new
+    block.call(reporting_client)
   end
 end
 
