@@ -32,7 +32,7 @@ module Ioki
             @_attributes[attribute]
           end
 
-          define_method :"#{attribute}=" do |value, show_deprecation_warnings: true, force_change: false|
+          define_method :"#{attribute}=" do |value, show_deprecation_warnings: true|
             if show_deprecation_warnings && attribute_deprecated?(attribute)
               deprecation_warning deprecated_attribute_message(attribute)
             end
@@ -40,7 +40,7 @@ module Ioki
             new_value = type_cast_attribute_value(attribute, value)
             @_raw_attributes[attribute] = value
 
-            if force_change || @_attributes[attribute] != new_value
+            if @_attributes[attribute] != new_value || !changed_attributes.include?(attribute)
               send("#{attribute}_will_change!")
               @_attributes[attribute] = new_value
             end
@@ -240,7 +240,7 @@ module Ioki
           provided_attribute = @_raw_attributes.key?(attribute)
           value = provided_attribute ? @_raw_attributes[attribute] : definition[:default]
 
-          public_send("#{attribute}=", value, show_deprecation_warnings: false, force_change: provided_attribute)
+          public_send("#{attribute}=", value, show_deprecation_warnings: false) if provided_attribute || !value.nil?
         end
       end
 

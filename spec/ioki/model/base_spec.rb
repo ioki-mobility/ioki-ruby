@@ -321,6 +321,20 @@ RSpec.describe Ioki::Model::Base do
     it 'returns only provided and default attributes' do
       expect(model.changed_attributes).to eq({ foo: 'abc', baz: 3 })
     end
+
+    it 'allows to explicitly set a value to `nil`' do
+      model.bar = nil
+      expect(model.changed_attributes).to eq({ foo: 'abc', bar: nil, baz: 3 })
+    end
+
+    context 'with `nil` for an initialized attribute' do
+      let(:attributes) { { foo: 'abc', bar: nil } }
+
+      it 'includes `nil` in the changed attributes' do
+        expect(model.changed_attributes).to eq({ foo: 'abc', bar: nil, baz: 3 })
+        expect(model.serialize).to eq({ foo: 'abc', bar: nil, baz: 3 })
+      end
+    end
   end
 
   describe 'serialization' do
