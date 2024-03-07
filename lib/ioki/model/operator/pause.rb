@@ -39,9 +39,8 @@ module Ioki
                   class_name: 'Place'
 
         attribute :place_id,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: :create,
-                  type:           :string
+                  on:   [:create, :read, :update],
+                  type: :string
 
         attribute :planned_ends_at,
                   on:   :read,
