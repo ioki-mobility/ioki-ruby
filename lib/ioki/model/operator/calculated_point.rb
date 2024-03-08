@@ -24,6 +24,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :communicated_time,
+                  on:   :read,
+                  type: :date_time
+
         attribute :country,
                   on:   :read,
                   type: :string
