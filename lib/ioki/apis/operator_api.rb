@@ -122,6 +122,14 @@ module Ioki
         model_class: Ioki::Model::Operator::Ride,
         except:      [:create, :update, :delete]
       ),
+      Endpoints.custom_endpoints(
+        'rides',
+        actions:     {
+          'cancellation' => :post
+        },
+        path:        [API_BASE_PATH, 'products', :id, 'rides', :id],
+        model_class: Ioki::Model::Operator::Ride
+      ),
       Endpoints.crud_endpoints(
         :task_list_deactivation,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
