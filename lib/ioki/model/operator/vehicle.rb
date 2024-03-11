@@ -75,9 +75,8 @@ module Ioki
                   type:           :string
 
         attribute :matching_rank,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :integer
+                  on:   [:create, :read, :update],
+                  type: :integer
 
         attribute :model,
                   on:             [:create, :read, :update],
