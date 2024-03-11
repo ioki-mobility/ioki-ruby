@@ -143,15 +143,8 @@ RSpec.describe Ioki::Model::Base do
 
       before do
         # Make sure that the mock class is in the correct module.
-        # Equivalent to defining it in that module.
-        Ioki::Model.const_set('ExampleReferencedClass', example_referenced_class)
-        Ioki::Model.const_set('ExampleObjectClassName', example_class)
-      end
-
-      after do
-        # To suppress "warning: already initialized constant"
-        Ioki::Model.send(:remove_const, 'ExampleReferencedClass')
-        Ioki::Model.send(:remove_const, 'ExampleObjectClassName')
+        stub_const('Ioki::Model::ExampleReferencedClass', example_referenced_class)
+        stub_const('Ioki::Model::ExampleObjectClassName', example_class)
       end
 
       it 'gives access to correctly casted values and internally preserves the class' do
@@ -178,15 +171,8 @@ RSpec.describe Ioki::Model::Base do
 
       before do
         # Make sure that the mock class is in the correct module.
-        # Equivalent to defining it in that module.
-        Ioki::Model.const_set('ExampleReferencedClass', example_referenced_class)
-        Ioki::Model.const_set('ExampleArrayClassName', example_class)
-      end
-
-      after do
-        # To suppress "warning: already initialized constant"
-        Ioki::Model.send(:remove_const, 'ExampleReferencedClass')
-        Ioki::Model.send(:remove_const, 'ExampleArrayClassName')
+        stub_const('Ioki::Model::ExampleReferencedClass', example_referenced_class)
+        stub_const('Ioki::Model::ExampleArrayClassName', example_class)
       end
 
       it 'gives access to correctly casted values and internally preserves the client' do
@@ -565,13 +551,7 @@ RSpec.describe Ioki::Model::Base do
 
         before do
           # Make sure that the mock class is in the correct module.
-          # Equivalent to defining it in that module.
-          Ioki::Model::Platform.const_set('ExampleObjectUserClassName', example_class)
-        end
-
-        after do
-          # To suppress "warning: already initialized constant"
-          Ioki::Model::Platform.send(:remove_const, 'ExampleObjectUserClassName')
+          stub_const('Ioki::Model::Platform::ExampleObjectUserClassName', example_class)
         end
 
         it 'handles nil correctly' do
@@ -593,12 +573,7 @@ RSpec.describe Ioki::Model::Base do
         end
 
         before do
-          Ioki::Model::Operator.const_set('ExampleObjectClassName', example_class)
-        end
-
-        after do
-          # To suppress "warning: already initialized constant"
-          Ioki::Model::Operator.send(:remove_const, 'ExampleObjectClassName')
+          stub_const('Ioki::Model::Operator::ExampleObjectClassName', example_class)
         end
 
         it 'handles nil correctly' do
@@ -650,13 +625,7 @@ RSpec.describe Ioki::Model::Base do
 
         before do
           # Make sure that the mock class is in the correct module.
-          # Equivalent to defining it in that module.
-          Ioki::Model::Platform.const_set('ExampleUserArrayClassName', example_class)
-        end
-
-        after do
-          # To suppress "warning: already initialized constant"
-          Ioki::Model::Platform.send(:remove_const, 'ExampleUserArrayClassName')
+          stub_const('Ioki::Model::Platform::ExampleUserArrayClassName', example_class)
         end
 
         it 'handles nil correctly' do
