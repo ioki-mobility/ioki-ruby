@@ -95,7 +95,7 @@ RSpec.describe Ioki::Client do
       let(:passed_path) { URI.parse('endpoint?existing=param') }
       let(:passed_params) { { bar: 43, baz: 'hello world' } }
 
-      it 'will encode these onto the url as query params and then call the http adapter with this url' do
+      it 'encodes these onto the url as query params and then call the http adapter with this url' do
         # the expected query URL should contain every query parameter that was already
         # existing on the url plus the ones that get merged from options[params]
         expected_url = passed_path.dup
@@ -119,7 +119,7 @@ RSpec.describe Ioki::Client do
     context 'when the underlying http adapter response indicates an error' do
       let(:response) { [500, {}, ''] }
 
-      it 'will map this to the proper error and raise it' do
+      it 'maps this to the proper error and raises it' do
         expect { client_response }.to raise_error(Ioki::Error::InternalServerError)
       end
     end
@@ -139,11 +139,11 @@ RSpec.describe Ioki::Client do
         }
       end
 
-      it 'will map this to a proper error and raise it' do
+      it 'maps this to a proper error and raises it' do
         expect { client_response }.to raise_error(Ioki::Error::UnprocessableEntity)
       end
 
-      it 'will expose through this error the api_error as a hash with information' do
+      it 'exposes through this error the api_error as a hash with information' do
         client_response
       rescue StandardError => e
         expect(e).to be_a(Ioki::Error::UnprocessableEntity)
@@ -151,19 +151,19 @@ RSpec.describe Ioki::Client do
         expect(e.api_error).to eq(sent_response_body)
       end
 
-      it 'will expose the HTTP status in the error message' do
+      it 'exposes the HTTP status in the error message' do
         client_response
       rescue StandardError => e
         expect(e.message).to include '422'
       end
 
-      it 'will expose the requested URL in the error message' do
+      it 'exposes the requested URL in the error message' do
         client_response
       rescue StandardError => e
         expect(e.message).to include passed_path.to_s
       end
 
-      it 'will expose the HTTP response body in the error message' do
+      it 'exposes the HTTP response body in the error message' do
         client_response
       rescue StandardError => e
         expect(e.message).to include sent_response_body.to_s
@@ -175,7 +175,7 @@ RSpec.describe Ioki::Client do
         [201, {}, { 'foo' => 42 }]
       end
 
-      it 'will return primarily the parsed response and as a second argument the actual response' do
+      it 'returns primarily the parsed response and as a second argument the actual response' do
         expect(client_response[0]).to eq({ 'foo' => 42 })
         expect(client_response[1]).to be_a Faraday::Response
       end
@@ -185,7 +185,7 @@ RSpec.describe Ioki::Client do
           [200, {}, nil]
         end
 
-        it 'will return nil' do
+        it 'returns nil' do
           expect(client_response[0]).to be_nil
         end
       end
@@ -195,7 +195,7 @@ RSpec.describe Ioki::Client do
           [200, {}, '']
         end
 
-        it 'will return nil' do
+        it 'returns nil' do
           expect(client_response[0]).to be_nil
         end
       end
@@ -244,7 +244,7 @@ RSpec.describe Ioki::Client do
     end
 
     context 'when called with unknown api_namespaces' do
-      it 'will raise an argument error' do
+      it 'raises an argument error' do
         expect { client.build_request_url(:foobar, '/foo/', 42, '/bar/') }.to raise_error(
           ArgumentError, "Unknown api namespace 'foobar'"
         )

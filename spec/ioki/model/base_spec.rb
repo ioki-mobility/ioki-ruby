@@ -268,14 +268,14 @@ RSpec.describe Ioki::Model::Base do
       end
     end
 
-    it 'will set known attributes' do
+    it 'sets known attributes' do
       model.set_attribute(:foo, 12)
       expect(model.foo).to eq('12')
       expect(model._raw_attributes).to eq({ foo: 12 })
       expect(model._attributes).to eq({ foo: '12' })
     end
 
-    it 'will silently discard unknown values' do
+    it 'silently discards unknown values' do
       model.set_attribute(:bar, 12)
       expect(model._raw_attributes).to eq({ foo: 1 })
       expect(model._attributes).to eq({ foo: '1' })
@@ -293,7 +293,7 @@ RSpec.describe Ioki::Model::Base do
       end
     end
 
-    it 'will set the passed attributes in raw and typecasted form and return the typecasted attributes' do
+    it 'sets the passed attributes in raw and typecasted form and returns the typecasted attributes' do
       expect(model._raw_attributes).to eq({ foo: 1, bar: 2, baz: 3 })
       expect(model._attributes).to eq({ foo: '1', bar: 2, baz: 3 })
 
