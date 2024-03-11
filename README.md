@@ -131,6 +131,53 @@ the values in `Ioki.config`. Ioki.config will respect the values set up by
 `Ioki.configure`. If not set, it will take the ENV value and finally fall back
 for most configurable attributes to a baked in default.
 
+## Serialization
+
+ioki-ruby's main task is to serialize models to JSON and send the serialized representation to the API. All attributes changes are tracked and only changed attributes are serialized and sent to the API.
+
+Make sure that all required attributes are properly set on the model, as ioki-ruby currently does not validate the serialized data before sending it to the API.
+
+Please note that in certain cases sending an attribute with the value `nil` results in a different behavior than not sending the attribute at all. You therefore have to ensure to only set the attributes which are meant to be sent to the API.
+
+Example:
+
+```ruby
+irb(main):002> line = Ioki::Model::Operator::Line.new(slug: 'my-line')
+=> Ioki::Model::Operator::Line:3400 @attributes={:slug=>"my-line"}
+irb(main):003> line.serialize
+=> {:slug=>"my-line"}
+
+irb(main):004> line.changed_attributes
+=> {:slug=>"my-line"}
+irb(main):005> line.attributes
+=>
+{:type=>nil,
+ :id=>nil,
+ :created_at=>nil,
+ :updated_at=>nil,
+ :name=>nil,
+ :mode=>nil,
+ :route_number=>nil,
+ :skip_time_window_check=>nil,
+ :slug=>"my-line",
+ :variant=>nil,
+ :line_stops=>nil}
+
+# Set attributes to `nil` if you want to explicitly send `nil` to the API.
+irb(main):007> line.slug = nil
+=> nil
+irb(main):008> line.serialize
+=> {:slug=>nil}
+
+# If you do not want to send an attribute to the API, but already have set it
+# before, use `clear_myattribute_change`. Replace `myattribute` with the name
+# of the attribute.
+irb(main):009> line.clear_slug_change
+=> nil
+irb(main):010> line.serialize
+=> {}
+```
+
 ## Webhooks
 
 Webhooks are a way to receive updates about changes when they happen on the

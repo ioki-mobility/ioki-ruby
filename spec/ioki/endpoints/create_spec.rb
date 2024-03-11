@@ -63,6 +63,28 @@ RSpec.describe Ioki::Endpoints::Create do
         expect(result).to be_nil
       end
     end
+
+    context 'with passed attributes' do
+      let(:model) { Ioki::Model::Platform::Product.new(name: 'My product') }
+
+      it 'provides change information correctly' do
+        expect(model.changes).to eq({ 'name' => [nil, 'My product'] })
+
+        expect(client).to receive(:request).with(
+          url:    url,
+          method: :post,
+          body:   { data: serialized_model },
+          params: params
+        ).and_return(response)
+
+        result = endpoint.call(client, model, [], params: params)
+
+        expect(result).not_to eq model
+        expect(model.name).to eq 'My product'
+        expect(model.changes).to eq({ 'name' => [nil, 'My product'] })
+        expect(result.changes).to be_empty
+      end
+    end
   end
 
   it 'supports an array as a path' do

@@ -126,7 +126,9 @@ RSpec.describe Ioki::PassengerApi do
     let(:cancellation) do
       Ioki::Model::Passenger::Cancellation.new(
         ride_id:                   'RIDE_ID',
-        cancellation_statement_id: 'CANCELLATION_STATEMENT_ID'
+        cancellation_statement_id: 'CANCELLATION_STATEMENT_ID',
+        ride_version:              nil,
+        code:                      nil
       )
     end
 

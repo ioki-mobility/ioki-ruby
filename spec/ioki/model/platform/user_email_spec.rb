@@ -36,17 +36,33 @@ RSpec.describe Ioki::Model::Platform::UserEmail do
       )
     end
 
-    it 'serializes omitted attributes when the action does not match' do
-      serialized = described_class.new.serialize(:read)
+    context 'when the action does not match' do
+      context 'when attributes are explicitly specified' do
+        let(:attributes) do
+          {
+            confirmed:     nil,
+            email_address: nil,
+            newsletter:    nil,
+            receipt:       nil
+          }
+        end
 
-      expect(serialized).to eq(
-        {
-          confirmed:     nil,
-          email_address: nil,
-          newsletter:    nil,
-          receipt:       nil
-        }
-      )
+        it 'serializes omitted attributes' do
+          serialized = described_class.new(attributes).serialize(:read)
+
+          expect(serialized).to eq(
+            attributes
+          )
+        end
+      end
+
+      context 'when attributes are not explicitly specified' do
+        it 'does not serialize anything' do
+          serialized = described_class.new.serialize(:read)
+
+          expect(serialized).to eq({})
+        end
+      end
     end
   end
 end

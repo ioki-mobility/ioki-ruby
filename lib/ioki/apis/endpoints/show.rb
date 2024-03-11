@@ -29,7 +29,9 @@ module Ioki
         model = options[:model] if options[:model].is_a?(model_class)
         attributes, etag = model_params(client, args, options, model)
 
-        model_class.new(attributes, etag, show_deprecation_warnings: false)
+        model_class
+          .new(attributes, etag, show_deprecation_warnings: false)
+          .tap(&:clear_changes_information)
       end
 
       private

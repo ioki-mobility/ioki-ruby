@@ -296,6 +296,7 @@ RSpec.describe Ioki::Model::Base do
     it 'will set the passed attributes in raw and typecasted form and return the typecasted attributes' do
       expect(model._raw_attributes).to eq({ foo: 1, bar: 2, baz: 3 })
       expect(model._attributes).to eq({ foo: '1', bar: 2, baz: 3 })
+      expect(model.attributes).to eq({ foo: '1', bar: 2, baz: 3 })
 
       result = model.attributes(foo: 42, bar: 43, unknown: 123)
 
@@ -303,6 +304,36 @@ RSpec.describe Ioki::Model::Base do
       expect(model._attributes).to eq({ foo: '42', bar: 43, baz: 3 })
 
       expect(result).to eq(model._attributes)
+    end
+  end
+
+  describe '#changed_attributes' do
+    let(:attributes) { { foo: 'abc' } }
+
+    let(:example_class) do
+      Class.new(Ioki::Model::Base) do
+        attribute :foo, type: :string, default: 1, on: :read
+        attribute :bar, type: :integer, on: :read
+        attribute :baz, default: 3, on: :read
+      end
+    end
+
+    it 'returns only provided and default attributes' do
+      expect(model.changed_attributes).to eq({ foo: 'abc', baz: 3 })
+    end
+
+    it 'allows to explicitly set a value to `nil`' do
+      model.bar = nil
+      expect(model.changed_attributes).to eq({ foo: 'abc', bar: nil, baz: 3 })
+    end
+
+    context 'with `nil` for an initialized attribute' do
+      let(:attributes) { { foo: 'abc', bar: nil } }
+
+      it 'includes `nil` in the changed attributes' do
+        expect(model.changed_attributes).to eq({ foo: 'abc', bar: nil, baz: 3 })
+        expect(model.serialize).to eq({ foo: 'abc', bar: nil, baz: 3 })
+      end
     end
   end
 
@@ -348,6 +379,53 @@ RSpec.describe Ioki::Model::Base do
             }
           }
         )
+      end
+
+      context 'without all attributes' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, on: :read
+            attribute :bar, type: :string, on: :read
+            attribute :baz, type: :integer, on: :read
+            deprecated_attribute :bak, type: :object, on: :read
+          end
+        end
+
+        let(:attributes) do
+          {
+            foo: '1',
+            bar: '2'
+          }
+        end
+
+        it 'only serializes changed attributes by default' do
+          expect(model.serialize).to eq(
+            {
+              foo: '1',
+              bar: '2'
+            }
+          )
+
+          expect(model.serialize(:read, only_changed: false)).to eq(
+            {
+              foo: '1',
+              bar: '2',
+              baz: nil,
+              bak: nil
+            }
+          )
+
+          Ioki.config.ignore_deprecated_attributes = true
+          expect(model.serialize(:read, only_changed: false)).to eq(
+            {
+              foo: '1',
+              bar: '2',
+              baz: nil
+            }
+          )
+        ensure
+          Ioki.config.ignore_deprecated_attributes = false
+        end
       end
     end
 
@@ -433,6 +511,62 @@ RSpec.describe Ioki::Model::Base do
       it 'omits attributes when context is matched and values are nil' do
         attributes['bar'] = nil
         expect(model.serialize(:create)).to eq({ foo: '1' })
+      end
+    end
+
+    describe 'only dirty' do
+      context 'when initializing with value' do
+        let(:attributes) { { 'foo' => '1' } }
+
+        it 'includes attributes' do
+          expect(model.serialize).to eq({ foo: '1' })
+        end
+      end
+
+      context 'when initializing with nil' do
+        let(:attributes) { { 'foo' => nil } }
+
+        it 'includes attributes' do
+          expect(model.serialize).to eq({ foo: nil })
+        end
+      end
+
+      context 'when omitting the value on initialization' do
+        let(:attributes) { {} }
+
+        it 'does not include the attribute' do
+          expect(model.serialize).to eq({})
+        end
+      end
+
+      context 'with multiple attributes' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, on: [:read, :create]
+            attribute :bar, on: [:read, :create]
+          end
+        end
+
+        let(:attributes) { { foo: '1' } }
+
+        it 'does not include the attribute' do
+          expect(model.serialize).to eq({ foo: '1' })
+        end
+      end
+
+      context 'with a nested model' do
+        let(:example_class) do
+          Class.new(Ioki::Model::Base) do
+            attribute :foo, on: [:read, :create]
+            attribute :bar, on: [:read, :create], type: :object, class_name: 'Ioki::Model::Platform::Product'
+          end
+        end
+
+        let(:attributes) { { foo: '1', bar: { type: 'product', name: 'My product' } } }
+
+        it 'includes the nested attributes' do
+          expect(model.serialize).to eq({ foo: '1', bar: { name: 'My product', type: 'product' } })
+        end
       end
     end
   end

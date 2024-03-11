@@ -57,13 +57,13 @@ RSpec.describe Ioki::Endpoints::Index do
 
     expect(result).to be_a(Array)
     expect(result.size).to eq(2)
+    expect(result.map(&:changes)).to all be_empty
   end
 
   it 'returns an Array of the correct model_class' do
     result = endpoint.call client, [], model_class: model_class, params: params
 
-    expect(result.first).to be_a(model_class)
-    expect(result.last).to be_a(model_class)
+    expect(result).to all be_a(model_class)
   end
 
   it 'returns an Array with the correct attributes' do
@@ -94,6 +94,7 @@ RSpec.describe Ioki::Endpoints::Index do
     expect(result).to be_a(Array)
     expect(result.size).to eq(5)
     expect(result.map(&:id)).to eq(%w[001 002 003 004 005])
+    expect(result.map(&:changes)).to all be_empty
   end
 
   it 'paginates and returns the first page' do
@@ -104,6 +105,7 @@ RSpec.describe Ioki::Endpoints::Index do
     expect(result.data).to be_a(Array)
     expect(result.data.size).to eq(2)
     expect(result.data.map(&:id)).to eq(%w[001 002])
+    expect(result.data.map(&:changes)).to all be_empty
 
     expect(result.meta).to be_a(Ioki::Model::Meta)
     expect(result.meta.page).to eq 1
@@ -118,6 +120,7 @@ RSpec.describe Ioki::Endpoints::Index do
     expect(result.data).to be_a(Array)
     expect(result.data.size).to eq(1)
     expect(result.data.map(&:id)).to eq(%w[005])
+    expect(result.data.map(&:changes)).to all be_empty
 
     expect(result.meta).to be_a(Ioki::Model::Meta)
     expect(result.meta.page).to eq 3

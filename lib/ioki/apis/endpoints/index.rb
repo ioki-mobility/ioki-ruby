@@ -75,7 +75,11 @@ module Ioki
         )
 
         [
-          parsed_response['data'].map { |attr| model_class.new(attr, nil, show_deprecation_warnings: false) },
+          parsed_response['data'].map do |attr|
+            model_class
+              .new(attr, nil, show_deprecation_warnings: false)
+              .tap(&:clear_changes_information)
+          end,
           parsed_response,
           response
         ]
