@@ -57,7 +57,7 @@ module Ioki
         model_class: Ioki::Model::Operator::Driver
       ),
       Endpoints::Update.new(
-        :driver,
+        :driver_password,
         base_path:   [API_BASE_PATH, 'products', :id, 'drivers', :id],
         path:        'set_password',
         model_class: Ioki::Model::Operator::Driver
