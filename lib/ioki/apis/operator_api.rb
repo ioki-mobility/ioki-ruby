@@ -57,6 +57,12 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'drivers', :id],
         model_class: Ioki::Model::Operator::Driver
       ),
+      Endpoints::Update.new(
+        :driver,
+        base_path:   [API_BASE_PATH, 'products', :id, 'drivers', :id],
+        path:        'set_password',
+        model_class: Ioki::Model::Operator::Driver
+      ),
       Endpoints.crud_endpoints(
         :place,
         base_path:   [API_BASE_PATH, 'products', :id],
