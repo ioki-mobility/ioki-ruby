@@ -11,7 +11,12 @@ module Ioki
                              on:          :read,
                              replaced_by: :multiple_booking_solutions
         attribute :multiple_booking_solutions, type: :boolean, on: :read
+        attribute :serial_booking, type: :boolean, on: :read
+        attribute :passenger_cancellation_statement, type: :boolean, on: :read
+        attribute :prebooking_ui_assistance, type: :boolean, on: :read
         attribute :station_search, type: :boolean, on: :read
+        attribute :update_passengers_after_booking, type: :boolean, on: :read
+        attribute :venues, type: :boolean, on: :read
       end
     end
   end
