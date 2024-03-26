@@ -157,6 +157,10 @@ module Ioki
         attribute :driver_client_reconfirms_early_pickup_and_dropoff_completion?,
                   type: :boolean,
                   on:   :read
+
+        attribute :admins_can_set_arbitrary_driver_password,
+                  type: :boolean,
+                  on:   :read
       end
     end
   end
