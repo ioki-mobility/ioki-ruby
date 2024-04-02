@@ -126,6 +126,12 @@ module Ioki
         path:        'rating',
         model_class: Ioki::Model::Passenger::Rating
       ),
+      Endpoints::Create.new(
+        :ride_series,
+        base_path:   [API_BASE_PATH, 'rides', :id],
+        path:        'ride_series',
+        model_class: Ioki::Model::Passenger::RideSeries
+      ),
       Endpoints.crud_endpoints(
         :station,
         base_path:   [API_BASE_PATH],
