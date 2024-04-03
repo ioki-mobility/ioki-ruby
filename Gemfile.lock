@@ -3,6 +3,7 @@ PATH
   specs:
     ioki-ruby (0.14.0)
       activemodel (>= 6.0.0)
+      activesupport (>= 6.0.0)
       faraday (>= 1.8, < 3.0)
       faraday_middleware (~> 1.2)
       oauth2 (>= 2.0.2, < 3)

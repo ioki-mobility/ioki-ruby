@@ -19,7 +19,7 @@ module Ioki
       end
 
       def resource_path_name
-        path || "#{resource}s"
+        path || resource.pluralize
       end
 
       def full_path
