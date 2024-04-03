@@ -133,6 +133,12 @@ module Ioki
         model_class: Ioki::Model::Passenger::RideSeries
       ),
       Endpoints.crud_endpoints(
+        :ride_series,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::RideSeries,
+        only:        [:index]
+      ),
+      Endpoints.crud_endpoints(
         :station,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::Station,

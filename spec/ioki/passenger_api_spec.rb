@@ -531,4 +531,15 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client.create_ride_series(ride, ride_series, options)).to be_a Ioki::Model::Passenger::RideSeries
     end
   end
+
+  describe '#ride_series' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ride_series')
+        result_with_index_data
+      end
+
+      expect(passenger_client.ride_series(options)).to all(be_a(Ioki::Model::Passenger::RideSeries))
+    end
+  end
 end
