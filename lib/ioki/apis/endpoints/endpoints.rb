@@ -22,8 +22,8 @@ module Ioki
       # rubocop:enable Metrics/ParameterLists
       raise ArgumentError, 'You cannot set both `only` and `except`. Please only use either one.' if except && only
 
-      plural = "#{resource}s"
       singular = resource.to_s
+      plural = singular.pluralize
 
       [Index, Show, Create, Update, Delete].filter_map do |type|
         # In some cases endpoints are not consistently using singular and plural for the same type of endpoints. In that
