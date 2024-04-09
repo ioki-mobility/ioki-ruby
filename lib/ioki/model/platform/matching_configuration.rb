@@ -8,7 +8,7 @@ module Ioki
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
-        attribute :area, on: :read, type: :object, class_name: 'Area'
+        attribute :area, on: :read, type: :object, class_name: 'GeoJson'
         attribute :name, on: :read, type: :string
         attribute :slug, on: :read, type: :string
       end
