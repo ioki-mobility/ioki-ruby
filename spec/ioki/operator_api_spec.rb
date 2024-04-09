@@ -260,7 +260,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#update_set_password(product_id, driver_id, ...)' do
+  describe '#update_driver_password(product_id, driver_id, ...)' do
     let(:driver) { Ioki::Model::Operator::Driver.new }
 
     it 'calls request on the client with expected params' do
