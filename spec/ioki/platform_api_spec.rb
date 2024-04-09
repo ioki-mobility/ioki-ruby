@@ -899,4 +899,28 @@ RSpec.describe Ioki::PlatformApi do
         .to be_a(Ioki::Model::Platform::EmailDelivery)
     end
   end
+
+  describe '#drt_area(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/drt_area')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.drt_area('0815', options))
+        .to be_a(Ioki::Model::Platform::Area)
+    end
+  end
+
+  describe '#intermodal_area(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/intermodal_area')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.intermodal_area('0815', options))
+        .to be_a(Ioki::Model::Platform::Area)
+    end
+  end
 end
