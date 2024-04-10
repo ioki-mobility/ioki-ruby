@@ -279,6 +279,16 @@ module Ioki
         except:      [:index, :show, :update, :delete],
         paths:       { create: 'email_deliveries' },
         model_class: Ioki::Model::Platform::EmailDelivery
+      ),
+      Endpoints::ShowSingular.new(
+        :drt_area,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Area
+      ),
+      Endpoints::ShowSingular.new(
+        :intermodal_area,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Platform::Area
       )
     ].freeze
   end

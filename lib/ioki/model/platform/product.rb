@@ -34,7 +34,7 @@ module Ioki
         attribute :vehicles_planning_url, on: :read, type: :string
         attribute :announcement, on: :read, type: :object, class_name: 'Announcement'
         attribute :announcements, on: :read, type: :array, class_name: 'Announcement'
-        attribute :area, type: :object, on: :read, class_name: 'Area'
+        deprecated_attribute :area, type: :object, on: :read, class_name: 'GeoJson'
         attribute :bounding_box, on: :read, type: :object, class_name: 'BoundingBox'
         attribute :features, on: :read, type: :object, class_name: 'ProductFeatures'
         attribute :driver_cancellation_statements, on: :read, type: :array, class_name: 'CancellationStatement'

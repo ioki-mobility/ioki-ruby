@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Ioki::Model::Platform::Area, :vcr do
+RSpec.describe Ioki::Model::Platform::GeoJson, :vcr do
   setup_platform_client(:platform_client)
   let(:product) { platform_client.products.first }
 
