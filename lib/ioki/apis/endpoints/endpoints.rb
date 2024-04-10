@@ -11,6 +11,8 @@ require_relative 'delete'
 
 module Ioki
   module Endpoints
+    # NOTE: Custom endpoints do not support sending request bodies directly.
+    # To do so, please utilize the appropriate create or update endpoints instead.
     def self.custom_endpoints(resource, actions:, path:, model_class:)
       actions.map do |action, request_method|
         Endpoint.new(resource, action: action, request_method: request_method, path: path, model_class: model_class)
