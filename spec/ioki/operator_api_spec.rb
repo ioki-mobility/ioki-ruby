@@ -1508,15 +1508,15 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#rematching_suggestions(product_id, task_list_id)' do
+  describe '#task_list_rematching_suggestions(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/4711/rematching_suggestions')
         result_with_index_data
       end
 
-      expect(operator_client.rematching_suggestions('0815', '4711', options))
-        .to all(be_a(Ioki::Model::Operator::RematchingSuggestion))
+      expect(operator_client.task_list_rematching_suggestions('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RematchingSuggestion)
     end
   end
 end

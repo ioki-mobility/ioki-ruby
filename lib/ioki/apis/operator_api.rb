@@ -292,9 +292,10 @@ module Ioki
         model_class: Ioki::Model::Operator::RematchingAttempt,
         except:      [:update, :delete]
       ),
-      Endpoints::Index.new(
-        :rematching_suggestions,
-        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+      Endpoints.custom_endpoints(
+        :task_list,
+        actions:     { 'rematching_suggestions' => :get },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::RematchingSuggestion
       )
     ].freeze
