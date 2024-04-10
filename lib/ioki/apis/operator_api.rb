@@ -51,10 +51,15 @@ module Ioki
         actions:     {
           'lock'                => :patch,
           'unlock'              => :patch,
-          'regenerate_password' => :patch,
-          'set_password'        => :patch
+          'regenerate_password' => :patch
         },
         path:        [API_BASE_PATH, 'products', :id, 'drivers', :id],
+        model_class: Ioki::Model::Operator::Driver
+      ),
+      Endpoints::Update.new(
+        :driver_password,
+        base_path:   [API_BASE_PATH, 'products', :id, 'drivers', :id],
+        path:        'set_password',
         model_class: Ioki::Model::Operator::Driver
       ),
       Endpoints.crud_endpoints(

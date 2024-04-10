@@ -260,15 +260,16 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#drivers_set_password(product_id, driver_id, password)' do
+  describe '#update_driver_password(product_id, driver_id, ...)' do
+    let(:driver) { Ioki::Model::Operator::Driver.new }
+
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/drivers/4711/set_password')
-        expect(params[:method]).to eq(:patch)
-        result_with_data
+        [result_with_data, full_response]
       end
 
-      expect(operator_client.drivers_set_password('0815', '4711', '123456'))
+      expect(operator_client.update_driver_password('0815', '4711', driver, options))
         .to be_a(Ioki::Model::Operator::Driver)
     end
   end

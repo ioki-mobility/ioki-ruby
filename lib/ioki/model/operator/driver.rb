@@ -59,7 +59,7 @@ module Ioki
                   type:           :string
 
         attribute :password,
-                  on:   :read,
+                  on:   [:read, :update],
                   type: :string
 
         attribute :phone_number,
