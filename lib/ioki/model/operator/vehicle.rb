@@ -20,6 +20,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :active,
+                  on:   :read,
+                  type: :boolean
+
         attribute :autonomous,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
@@ -100,6 +104,10 @@ module Ioki
 
         attribute :phone_number,
                   on:   [:create, :read, :update],
+                  type: :string
+
+        attribute :product_id,
+                  on:   :read,
                   type: :string
 
         deprecated_attribute :seats,
