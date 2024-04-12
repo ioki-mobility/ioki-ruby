@@ -1519,4 +1519,15 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RematchingSuggestion)
     end
   end
+
+  describe '#fleet_state' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/fleet_state')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.fleet_state(options)).to be_a Ioki::Model::Operator::Vehicle
+    end
+  end
 end

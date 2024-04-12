@@ -297,6 +297,11 @@ module Ioki
         actions:     { 'rematching_suggestions' => :get },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::RematchingSuggestion
+      ),
+      Endpoints::ShowSingular.new(
+        :fleet_state,
+        base_path:        [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::Vehicle
       )
     ].freeze
   end
