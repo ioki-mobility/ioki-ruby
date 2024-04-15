@@ -1527,7 +1527,7 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.fleet_state(options)).to be_a Ioki::Model::Operator::Vehicle
+      expect(operator_client.fleet_state(options)).to be_a Ioki::Model::Operator::FleetState
     end
   end
 end

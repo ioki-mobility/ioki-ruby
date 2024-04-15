@@ -4,7 +4,14 @@ module Ioki
   module Model
     module Operator
       class FleetState < Base
-        base 'Array', item_class_name: 'Vehicle'
+        attribute :type,
+                  on:   :read,
+                  type: :string
+
+        attribute :vehicles,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'TaskList'
       end
     end
   end
