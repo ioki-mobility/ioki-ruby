@@ -652,6 +652,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#task_list_overview(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/overview')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.task_list_overview('0815', options))
+        .to all(be_a(Ioki::Model::Operator::TaskList))
+    end
+  end
+
   describe '#pauses(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
