@@ -11,7 +11,7 @@ module Ioki
         attribute :vehicles,
                   on:         :read,
                   type:       :array,
-                  class_name: 'TaskList'
+                  class_name: 'Vehicle'
       end
     end
   end
