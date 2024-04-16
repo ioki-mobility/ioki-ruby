@@ -36,6 +36,7 @@ module Ioki
         attribute :announcements, on: :read, type: :array, class_name: 'Announcement'
         deprecated_attribute :area, type: :object, on: :read, class_name: 'GeoJson'
         attribute :bounding_box, on: :read, type: :object, class_name: 'BoundingBox'
+        attribute :default_map_bounding_box, on: :read, type: :object, class_name: 'BoundingBox'
         attribute :features, on: :read, type: :object, class_name: 'ProductFeatures'
         attribute :driver_cancellation_statements, on: :read, type: :array, class_name: 'CancellationStatement'
         attribute :passenger_cancellation_statements, on: :read, type: :array, class_name: 'CancellationStatement'
