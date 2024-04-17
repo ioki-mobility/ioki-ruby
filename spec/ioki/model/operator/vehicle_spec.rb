@@ -29,7 +29,6 @@ RSpec.describe Ioki::Model::Operator::Vehicle do
   it { is_expected.to define_attribute(:num_wheelchair_bays_as_storages).as(:integer) }
   it { is_expected.to define_attribute(:operator_id).as(:string) }
   it { is_expected.to define_attribute(:phone_number).as(:string) }
-  it { is_expected.to define_attribute(:product_id).as(:string) }
   it { is_expected.to define_attribute(:seats).as(:integer) }
   it { is_expected.to define_attribute(:storage_spaces).as(:integer) }
   it { is_expected.to define_attribute(:walker_bays).as(:integer) }

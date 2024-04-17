@@ -106,10 +106,6 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
-        attribute :product_id,
-                  on:   :read,
-                  type: :string
-
         deprecated_attribute :seats,
                              on:             [:create, :read, :update],
                              omit_if_nil_on: [:create, :update],
