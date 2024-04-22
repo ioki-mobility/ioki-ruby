@@ -6,6 +6,7 @@ RSpec.describe Ioki::Model::Operator::Vehicle do
   it { is_expected.to define_attribute(:created_at).as(:date_time) }
   it { is_expected.to define_attribute(:updated_at).as(:date_time) }
   it { is_expected.to define_attribute(:version).as(:integer) }
+  it { is_expected.to define_attribute(:active).as(:boolean) }
   it { is_expected.to define_attribute(:autonomous).as(:boolean) }
   it { is_expected.to define_attribute(:connected_driver_id).as(:string) }
 

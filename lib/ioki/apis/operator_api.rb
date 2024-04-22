@@ -110,6 +110,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists'],
         model_class: Ioki::Model::Operator::TaskList
       ),
+      Endpoints::Index.new(
+        :task_list_overview,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists'],
+        path:        'overview',
+        model_class: Ioki::Model::Operator::TaskList
+      ),
       Endpoints.custom_endpoints(
         'task_lists',
         actions:     { 'current_journey' => :get },
@@ -297,6 +303,11 @@ module Ioki
         actions:     { 'rematching_suggestions' => :get },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::RematchingSuggestion
+      ),
+      Endpoints::ShowSingular.new(
+        :fleet_state,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::FleetState
       )
     ].freeze
   end

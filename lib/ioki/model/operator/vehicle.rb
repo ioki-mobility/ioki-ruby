@@ -20,6 +20,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :active,
+                  on:   :read,
+                  type: :boolean
+
         attribute :autonomous,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
