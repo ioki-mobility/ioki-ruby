@@ -116,6 +116,7 @@ and api_client_secret. You can setup these ENV variables:
   ENV['IOKI_OAUTH_APP_URL']
   ENV['IOKI_RETRY_COUNT']
   ENV['IOKI_RETRY_SLEEP_SECONDS']
+  ENV['IOKI_IGNORE_DEPRECATED_ATTRIBUTES']
 ```
 
 or define them for one of the three supported apis with a prefix:
