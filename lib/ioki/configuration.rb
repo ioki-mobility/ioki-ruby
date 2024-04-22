@@ -11,7 +11,9 @@ module Ioki
         logger_options:               { headers: true, bodies: false, log_level: :info },
         retry_count:                  3,
         retry_sleep_seconds:          1,
-        ignore_deprecated_attributes: false
+        ignore_deprecated_attributes: false,
+        proxy_url:                    nil,
+        verify_ssl:                   true
       }.freeze
 
     CONFIG_KEYS = [
@@ -34,7 +36,9 @@ module Ioki
       :oauth_token_callback,
       :retry_count,
       :retry_sleep_seconds,
-      :ignore_deprecated_attributes
+      :ignore_deprecated_attributes,
+      :proxy_url,
+      :verify_ssl
     ].freeze
 
     attr_accessor(*CONFIG_KEYS)
@@ -61,6 +65,8 @@ module Ioki
       @retry_count = params[:retry_count]
       @retry_sleep_seconds = params[:retry_sleep_seconds]
       @ignore_deprecated_attributes = params[:ignore_deprecated_attributes]
+      @proxy_url = params[:proxy_url]
+      @verify_ssl = params[:verify_ssl]
       # you can pass in a custom Faraday::Connection instance:
       @http_adapter = params[:http_adapter] || Ioki::HttpAdapter.get(self)
       @custom_http_adapter = !!params[:http_adapter]
@@ -93,7 +99,9 @@ module Ioki
         oauth_app_url:                ENV.fetch("#{prefix}_OAUTH_APP_URL", nil),
         retry_count:                  ENV.fetch("#{prefix}_RETRY_COUNT", nil),
         retry_sleep_seconds:          ENV.fetch("#{prefix}_RETRY_SLEEP_SECONDS", nil),
-        ignore_deprecated_attributes: ENV.fetch("#{prefix}_IGNORE_DEPRECATED_ATTRIBUTES", nil)
+        ignore_deprecated_attributes: ENV.fetch("#{prefix}_IGNORE_DEPRECATED_ATTRIBUTES", nil),
+        proxy_url:                    ENV.fetch("#{prefix}_PROXY_URL", nil),
+        verify_ssl:                   ENV.fetch("#{prefix}_VERIFY_SSL", 'true')&.downcase == 'true'
       }.reject { |_key, value| value.nil? || value.to_s == '' }
     end
 

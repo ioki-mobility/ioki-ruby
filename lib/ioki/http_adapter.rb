@@ -7,7 +7,13 @@ module Ioki
   class HttpAdapter
 
     def self.get(config)
-      ::Faraday.new(config.api_base_url, headers: headers(config)) do |f|
+      options = {
+        proxy:   config.proxy_url,
+        ssl:     { verify: config.verify_ssl },
+        headers: headers(config)
+      }
+
+      ::Faraday.new(config.api_base_url, options) do |f|
         f.adapter :net_http
 
         f.request :authorization, 'Bearer', -> { config.token }
