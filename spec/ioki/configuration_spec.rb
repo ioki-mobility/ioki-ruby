@@ -36,7 +36,9 @@ RSpec.describe Ioki::Configuration do
       :oauth_token_callback,
       :retry_count,
       :retry_sleep_seconds,
-      :ignore_deprecated_attributes
+      :ignore_deprecated_attributes,
+      :proxy_url,
+      :verify_ssl
     )
   end
 
@@ -52,6 +54,7 @@ RSpec.describe Ioki::Configuration do
   describe 'default values and resetting' do
     before do
       allow(ENV).to receive(:fetch).and_return(nil)
+      allow(ENV).to receive(:fetch).with('IOKI_VERIFY_SSL', anything).and_return('true')
       stub_const(
         'EXPECTED_DEFAULTS',
         {
@@ -66,7 +69,9 @@ RSpec.describe Ioki::Configuration do
           logger_options:               described_class::DEFAULT_VALUES[:logger_options],
           retry_count:                  3,
           retry_sleep_seconds:          1,
-          ignore_deprecated_attributes: false
+          ignore_deprecated_attributes: false,
+          proxy_url:                    nil,
+          verify_ssl:                   true
         }.freeze
       )
     end
@@ -89,7 +94,8 @@ RSpec.describe Ioki::Configuration do
 
           expect { config.reset! }.to change {
             config.send(attribute)
-          }.from(:dummy_value).to(EXPECTED_DEFAULTS[attribute])
+          }.from(:dummy_value).to(EXPECTED_DEFAULTS[attribute]),
+                                      "#{attribute} was expected to change to #{EXPECTED_DEFAULTS[attribute]}"
         end
       end
     end
