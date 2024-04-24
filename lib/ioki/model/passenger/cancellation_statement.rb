@@ -10,6 +10,8 @@ module Ioki
         attribute :updated_at, on: :read, type: :date_time
         attribute :identifier, on: :read, type: :string
         attribute :title, on: :read, type: :string
+        attribute :suitable_for_ride_series, on: :read, type: :boolean
+        attribute :suitable_for_single_rides, on: :read, type: :boolean
       end
     end
   end
