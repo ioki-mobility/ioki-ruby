@@ -47,6 +47,7 @@ module Ioki
         attribute :ticket, on: :read, type: :object, class_name: 'Ticket'
         attribute :offered_solutions, on: :read, type: :array, class_name: 'OfferedSolution'
         attribute :options, on: :create, type: :array, class_name: 'RideOption'
+        attribute :ride_series_id, on: :read, type: :string
       end
     end
   end
