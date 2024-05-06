@@ -11,6 +11,8 @@ module Ioki
         attribute :minimum_age_confirmation, type: :object, on: :read, class_name: 'MinimumAgeConfirmation'
         attribute :payment, type: :boolean, on: :read
         attribute :promo_codes, type: :boolean, on: :read
+        attribute :newsletter, type: :boolean, on: :read
+        attribute :receipts, type: :boolean, on: :read
       end
     end
   end
