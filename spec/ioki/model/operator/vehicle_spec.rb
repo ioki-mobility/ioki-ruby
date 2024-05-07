@@ -33,4 +33,5 @@ RSpec.describe Ioki::Model::Operator::Vehicle do
   it { is_expected.to define_attribute(:storage_spaces).as(:integer) }
   it { is_expected.to define_attribute(:walker_bays).as(:integer) }
   it { is_expected.to define_attribute(:wheelchair_bays).as(:integer) }
+  it { is_expected.to define_attribute(:telemetry).as(:object).with(class_name: 'Telemetry') }
 end

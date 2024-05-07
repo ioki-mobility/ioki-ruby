@@ -126,6 +126,11 @@ module Ioki
                              omit_if_nil_on: [:create, :update],
                              type:           :integer
 
+        attribute :telemetry,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Telemetry'
+
         attribute :version,
                   on:             [:update, :read],
                   omit_if_nil_on: [:update],
