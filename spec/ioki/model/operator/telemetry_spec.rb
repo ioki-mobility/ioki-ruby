@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Ioki::Model::Operator::VehicleTelemetry do
+RSpec.describe Ioki::Model::Operator::Telemetry do
   it { is_expected.to define_attribute(:id).as(:string) }
   it { is_expected.to define_attribute(:battery_level).as(:float) }
   it { is_expected.to define_attribute(:remaining_distance).as(:float) }

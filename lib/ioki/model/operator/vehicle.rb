@@ -126,10 +126,10 @@ module Ioki
                              omit_if_nil_on: [:create, :update],
                              type:           :integer
 
-        attribute :vehicle_telemetry,
+        attribute :telemetry,
                   on:         :read,
                   type:       :object,
-                  class_name: 'VehicleTelemetry'
+                  class_name: 'Telemetry'
 
         attribute :version,
                   on:             [:update, :read],

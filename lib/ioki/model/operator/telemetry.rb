@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class VehicleTelemetry < Base
+      class Telemetry < Base
         attribute :id,
                   on:   :read,
                   type: :string
