@@ -8,6 +8,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :limit_reached,
+                  on:   :read,
+                  type: :boolean
+
         attribute :vehicles,
                   on:         :read,
                   type:       :array,
