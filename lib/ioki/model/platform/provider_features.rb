@@ -13,6 +13,7 @@ module Ioki
         attribute :promo_codes, type: :boolean, on: :read
         attribute :newsletter, type: :boolean, on: :read
         attribute :receipts, type: :boolean, on: :read
+        attribute :tickets, type: :boolean, on: :read
       end
     end
   end
