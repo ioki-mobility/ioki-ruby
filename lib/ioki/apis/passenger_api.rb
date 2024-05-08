@@ -250,7 +250,7 @@ module Ioki
         base_path:            [API_BASE_PATH, 'ticketing', 'vouchers', :id],
         path:                 'subscription_cancellation',
         model_class:          Ioki::Model::Passenger::Ticketing::Voucher,
-        outgoing_model_class: nil
+        outgoing_model_class: :empty
       ),
       Endpoints.crud_endpoints(
         :ticketing_product,

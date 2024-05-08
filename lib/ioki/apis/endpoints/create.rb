@@ -29,7 +29,7 @@ module Ioki
       def call(client, model, args = [], options = {})
         outgoing_model_class = @outgoing_model_class || options[:outgoing_model_class] || model_class
 
-        unless model.blank? || model.is_a?(outgoing_model_class)
+        unless @outgoing_model_class == :empty || model.is_a?(outgoing_model_class)
           raise(ArgumentError, "#{model} is not an instance of #{outgoing_model_class}")
         end
 
