@@ -29,14 +29,14 @@ module Ioki
       def call(client, model, args = [], options = {})
         outgoing_model_class = @outgoing_model_class || options[:outgoing_model_class] || model_class
 
-        unless model.is_a?(outgoing_model_class)
+        unless model.blank? || model.is_a?(outgoing_model_class)
           raise(ArgumentError, "#{model} is not an instance of #{outgoing_model_class}")
         end
 
         parsed_response, response = client.request(
           url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
           method: :post,
-          body:   { data: model.serialize(:create) },
+          body:   { data: model&.serialize(:create) },
           params: options[:params]
         )
 
