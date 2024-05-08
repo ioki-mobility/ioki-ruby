@@ -10,8 +10,9 @@ require 'ioki/model/webhooks/base'
 Dir[File.join(__dir__, 'model', 'platform', '*')].reject do |filename|
   filename == File.join(__dir__, 'model', 'platform', 'base.rb')
 end.sort.each { |file| require file }
-Dir[File.join(__dir__, 'model', 'passenger', '*')].reject do |filename|
-  filename == File.join(__dir__, 'model', 'passenger', 'base.rb')
+Dir[File.join(__dir__, 'model', 'passenger', '**', '*')].reject do |filename|
+  filename == File.join(__dir__, 'model', 'passenger', 'base.rb') ||
+    !File.file?(filename)
 end.sort.each { |file| require file }
 Dir[File.join(__dir__, 'model', 'driver', '*')].reject do |filename|
   filename == File.join(__dir__, 'model', 'driver', 'base.rb')

@@ -553,4 +553,88 @@ RSpec.describe Ioki::PassengerApi do
       expect(passenger_client.single_ride_series('0815', options)).to be_a Ioki::Model::Passenger::RideSeries
     end
   end
+
+  describe '#ticketing_vouchers' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/vouchers')
+        result_with_index_data
+      end
+
+      expect(passenger_client.ticketing_vouchers(options)).to all(be_a(Ioki::Model::Passenger::Ticketing::Voucher))
+    end
+  end
+
+  describe '#ticketing_voucher' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/vouchers/0815')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.ticketing_voucher('0815', options)).to be_a(Ioki::Model::Passenger::Ticketing::Voucher)
+    end
+  end
+
+  describe '#create_ticketing_voucher_renewal' do
+    let(:voucher_renewal) { Ioki::Model::Passenger::Ticketing::VoucherRenewal.new }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/vouchers/0815/renewal')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_ticketing_voucher_renewal('0815', voucher_renewal, options))
+        .to be_a Ioki::Model::Passenger::Ticketing::Voucher
+    end
+  end
+
+  describe '#create_ticketing_voucher_subscription_cancellation' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/vouchers/0815/subscription_cancellation')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_ticketing_voucher_subscription_cancellation('0815', nil, options))
+        .to be_a Ioki::Model::Passenger::Ticketing::Voucher
+    end
+  end
+
+  describe '#ticketing_products' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/products')
+        result_with_index_data
+      end
+
+      expect(passenger_client.ticketing_products(options)).to all(be_a(Ioki::Model::Passenger::Ticketing::Product))
+    end
+  end
+
+  describe '#ticketing_product' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/products/0815')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.ticketing_product('0815', options)).to be_a(Ioki::Model::Passenger::Ticketing::Product)
+    end
+  end
+
+  describe '#create_ticketing_product_purchase' do
+    let(:purchase) { Ioki::Model::Passenger::Ticketing::ProductPurchase.new }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/ticketing/products/0815/purchase')
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_ticketing_product_purchase('0815', purchase, options))
+        .to be_a Ioki::Model::Passenger::Ticketing::Voucher
+    end
+  end
 end
