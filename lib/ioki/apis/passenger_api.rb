@@ -230,6 +230,41 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::RedeemedPromoCode,
         only:        [:index, :create]
+      ),
+      Endpoints.crud_endpoints(
+        :ticketing_voucher,
+        base_path:   [API_BASE_PATH, 'ticketing'],
+        paths:       { index: 'vouchers', show: 'vouchers' },
+        model_class: Ioki::Model::Passenger::Ticketing::Voucher,
+        only:        [:index, :show]
+      ),
+      Endpoints::Create.new(
+        :ticketing_voucher_renewal,
+        base_path:            [API_BASE_PATH, 'ticketing', 'vouchers', :id],
+        path:                 'renewal',
+        model_class:          Ioki::Model::Passenger::Ticketing::Voucher,
+        outgoing_model_class: Ioki::Model::Passenger::Ticketing::VoucherRenewal
+      ),
+      Endpoints::Create.new(
+        :ticketing_voucher_subscription_cancellation,
+        base_path:            [API_BASE_PATH, 'ticketing', 'vouchers', :id],
+        path:                 'subscription_cancellation',
+        model_class:          Ioki::Model::Passenger::Ticketing::Voucher,
+        outgoing_model_class: nil
+      ),
+      Endpoints.crud_endpoints(
+        :ticketing_product,
+        base_path:   [API_BASE_PATH, 'ticketing'],
+        paths:       { index: 'products', show: 'products' },
+        model_class: Ioki::Model::Passenger::Ticketing::Product,
+        only:        [:index, :show]
+      ),
+      Endpoints::Create.new(
+        :ticketing_product_purchase,
+        base_path:            [API_BASE_PATH, 'ticketing', 'products', :id],
+        path:                 'purchase',
+        model_class:          Ioki::Model::Passenger::Ticketing::Voucher,
+        outgoing_model_class: Ioki::Model::Passenger::Ticketing::ProductPurchase
       )
     ].freeze
   end
