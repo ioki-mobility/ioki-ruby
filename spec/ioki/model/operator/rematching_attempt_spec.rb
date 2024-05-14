@@ -11,7 +11,7 @@ RSpec.describe Ioki::Model::Operator::RematchingAttempt do
   it { is_expected.to define_attribute(:preserve_negotiated_times).as(:boolean) }
   it { is_expected.to define_attribute(:reassigner_id).as(:string) }
   it { is_expected.to define_attribute(:reassigner_type).as(:string) }
-  it { is_expected.to define_attribute(:result).as(:object).with(class_name: 'RematchingAttemptResult') }
+  it { is_expected.to define_attribute(:results).as(:array).with(class_name: 'RematchingAttemptResult') }
   it { is_expected.to define_attribute(:ride_ids).as(:array) }
   it { is_expected.to define_attribute(:started_at).as(:date_time) }
   it { is_expected.to define_attribute(:task_list_id).as(:string) }

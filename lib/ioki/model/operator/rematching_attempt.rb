@@ -47,9 +47,9 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :result,
+        attribute :results,
                   on:         :read,
-                  type:       :object,
+                  type:       :array,
                   class_name: 'RematchingAttemptResult'
 
         attribute :ride_ids,
