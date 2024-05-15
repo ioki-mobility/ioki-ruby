@@ -24,6 +24,8 @@ module Ioki
         attribute :planned_starts_at, on: :read, type: :date_time
         attribute :prebookable, on: [:read, :create], type: :boolean
         attribute :product_id, on: :read, type: :string
+        attribute :service_ends_at, on: [:create, :read, :update], type: :date_time
+        attribute :service_starts_at, on: [:create, :read, :update], type: :date_time
         attribute :starts_at, on: [:create, :update], type: :date_time, unvalidated: true
         attribute :start_place, on: :read, type: :object, class_name: 'Place'
         attribute :start_place_id, on: [:create, :update], type: :object, class_name: 'Place', unvalidated: true
