@@ -73,6 +73,8 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     it { is_expected.to define_attribute(:planned_ends_at).as(:date_time) }
     it { is_expected.to define_attribute(:planned_starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:prebookable).as(:boolean) }
+    it { is_expected.to define_attribute(:service_ends_at).as(:date_time) }
+    it { is_expected.to define_attribute(:service_starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:start_location).as(:object).with(class_name: %w[Place Station]) }
     it { is_expected.to define_attribute(:start_location_id).as(:string) }
     it { is_expected.to define_attribute(:start_location_type).as(:string) }
