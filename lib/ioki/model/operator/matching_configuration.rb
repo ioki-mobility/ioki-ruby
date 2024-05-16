@@ -97,6 +97,16 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :integer
 
+        attribute :max_walking_duration_dropoff,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
+
+        attribute :max_walking_duration_pickup,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
+
         attribute :maximum_detour_duration,
                   on:   [:create, :read, :update],
                   type: :integer
