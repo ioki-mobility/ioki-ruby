@@ -92,6 +92,14 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
 
+        attribute :service_ends_at,
+                  on:   [:create, :read, :update],
+                  type: :date_time
+
+        attribute :service_starts_at,
+                  on:   [:create, :read, :update],
+                  type: :date_time
+
         attribute :start_location,
                   on:         :read,
                   type:       :object,
