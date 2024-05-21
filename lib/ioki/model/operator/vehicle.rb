@@ -34,7 +34,7 @@ module Ioki
                   type: :string
 
         attribute :default_resource_configuration,
-                  on:         :read,
+                  on:         [:create, :read, :update],
                   type:       :object,
                   class_name: 'ResourceConfiguration'
 
