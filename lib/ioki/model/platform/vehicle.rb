@@ -28,6 +28,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :default_resource_configuration,
+                  on:         [:create, :read, :update],
+                  type:       :object,
+                  class_name: 'ResourceConfiguration'
+
         attribute :description,
                   on:   [:read, :create, :update],
                   type: :string
@@ -70,28 +75,12 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
-        attribute :seats,
-                  on:   [:read, :create, :update],
-                  type: :integer
-
-        attribute :storage_spaces,
-                  on:   [:read, :create, :update],
-                  type: :integer
-
         attribute :vehicle_type,
                   on:   [:read, :create, :update],
                   type: :string
 
         attribute :version,
                   on:   [:read, :update],
-                  type: :integer
-
-        attribute :walker_bays,
-                  on:   [:read, :create, :update],
-                  type: :integer
-
-        attribute :wheelchair_bays,
-                  on:   [:read, :create, :update],
                   type: :integer
       end
     end
