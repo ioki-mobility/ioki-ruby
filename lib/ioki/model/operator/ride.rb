@@ -28,6 +28,11 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :booking_solution,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'OfferedSolution'
+
         attribute :booking,
                   on:         :read,
                   type:       :object,
@@ -89,6 +94,11 @@ module Ioki
         attribute :needs_cancellation_code,
                   on:   :read,
                   type: :boolean
+
+        attribute :offered_solutions,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'OfferedSolution'
 
         attribute :origin,
                   on:         :read,
