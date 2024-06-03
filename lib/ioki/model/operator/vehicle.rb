@@ -34,7 +34,7 @@ module Ioki
                   type: :string
 
         attribute :default_resource_configuration,
-                  on:         :read,
+                  on:         [:create, :read, :update],
                   type:       :object,
                   class_name: 'ResourceConfiguration'
 
@@ -106,6 +106,16 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :string
 
+        attribute :telemetry,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Telemetry'
+
+        attribute :version,
+                  on:             [:update, :read],
+                  omit_if_nil_on: [:update],
+                  type:           :integer
+
         deprecated_attribute :seats,
                              on:             [:create, :read, :update],
                              omit_if_nil_on: [:create, :update],
@@ -125,16 +135,6 @@ module Ioki
                              on:             [:create, :read, :update],
                              omit_if_nil_on: [:create, :update],
                              type:           :integer
-
-        attribute :telemetry,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Telemetry'
-
-        attribute :version,
-                  on:             [:update, :read],
-                  omit_if_nil_on: [:update],
-                  type:           :integer
       end
     end
   end
