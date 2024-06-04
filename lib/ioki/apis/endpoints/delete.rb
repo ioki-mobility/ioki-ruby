@@ -31,7 +31,7 @@ module Ioki
           params: options[:params]
         )
 
-        return if parsed_response.nil?
+        return if parsed_response.empty?
 
         model_class
           .new(parsed_response['data'], nil, show_deprecation_warnings: false)

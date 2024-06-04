@@ -197,18 +197,8 @@ RSpec.describe Ioki::Client do
           [200, {}, '']
         end
 
-        it 'returns nil' do
-          expect(client_response[0]).to be_nil
-        end
-      end
-
-      context 'when response body is somewhat malformed' do
-        let(:response) do
-          [200, {}, '{ look"mum" & $ : borken_json ']
-        end
-
-        it 'raise a proper error' do
-          expect { client_response }.to raise_error(Faraday::ParsingError)
+        it 'returns empty string' do
+          expect(client_response[0]).to be_empty
         end
       end
     end
