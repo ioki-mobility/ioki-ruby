@@ -28,7 +28,7 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
-        attribute :booking_solution,
+        attribute :booked_solution,
                   on:         :read,
                   type:       :object,
                   class_name: 'OfferedSolution'
