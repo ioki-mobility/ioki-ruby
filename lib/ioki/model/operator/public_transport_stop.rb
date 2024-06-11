@@ -53,11 +53,11 @@ module Ioki
                   on:   :read
 
         attribute :location_name,
-                  type: :array,
+                  type: :string,
                   on:   :read
 
         attribute :postal_code,
-                  type: :array,
+                  type: :string,
                   on:   :read
 
         attribute :scheduled_arrival,
