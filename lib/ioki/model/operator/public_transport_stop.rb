@@ -21,11 +21,11 @@ module Ioki
                   on:   :read
 
         attribute :current_arrival,
-                  type: :string,
+                  type: :date_time,
                   on:   :read
 
         attribute :current_departure,
-                  type: :string,
+                  type: :date_time,
                   on:   :read
 
         attribute :current_platform,
@@ -61,11 +61,11 @@ module Ioki
                   on:   :read
 
         attribute :scheduled_arrival,
-                  type: :string,
+                  type: :date_time,
                   on:   :read
 
         attribute :scheduled_departure,
-                  type: :string,
+                  type: :date_time,
                   on:   :read
 
         attribute :scheduled_platform,
