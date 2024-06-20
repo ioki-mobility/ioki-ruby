@@ -20,6 +20,14 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :autonomous_feeling_of_security_rating,
+                  on:   :read,
+                  type: :integer
+
+        attribute :autonomous_happiness_rating,
+                  on:   :read,
+                  type: :integer
+
         attribute :comment,
                   on:   :read,
                   type: :string
