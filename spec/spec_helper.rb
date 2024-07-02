@@ -43,6 +43,7 @@ ENV['IOKI_PLATFORM_API_BASE_URL']  ||= 'https://demo.io.ki/api/'
 ENV['IOKI_PASSENGER_API_BASE_URL'] ||= 'https://demo.io.ki/api/'
 ENV['IOKI_DRIVER_API_BASE_URL']    ||= 'https://demo.io.ki/api/'
 ENV['IOKI_OPERATOR_API_BASE_URL']  ||= 'https://demo.io.ki/api/'
+ENV['IOKI_REPORTING_API_BASE_URL'] ||= 'https://demo.io.ki/api/'
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
