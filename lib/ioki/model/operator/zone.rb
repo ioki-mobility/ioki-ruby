@@ -20,17 +20,8 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :area,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Geojson'
-
         attribute :area_geojson,
-                  on:   [:create, :update],
-                  type: :string
-
-        attribute :inverted_area,
-                  on:         :read,
+                  on:         [:create, :read, :update],
                   type:       :object,
                   class_name: 'Geojson'
 
