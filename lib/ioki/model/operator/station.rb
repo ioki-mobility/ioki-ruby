@@ -64,6 +64,11 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
+        attribute :drt_to_pt_feeder,
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
+
         attribute :external_id,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
@@ -95,6 +100,11 @@ module Ioki
         attribute :postal_code,
                   on:   [:read, :create, :update],
                   type: :string
+
+        attribute :pt_to_drt_feeder,
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
 
         attribute :station_category_id,
                   on:   [:create, :update, :read],
