@@ -116,6 +116,11 @@ module Ioki
                   omit_if_nil_on: [:update],
                   type:           :integer
 
+        attribute :prebookable_default_for_task_list,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
+
         deprecated_attribute :seats,
                              on:             [:create, :read, :update],
                              omit_if_nil_on: [:create, :update],
