@@ -313,7 +313,7 @@ module Ioki
         :zone,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Zone
-      ),
+      )
     ].freeze
   end
 end
