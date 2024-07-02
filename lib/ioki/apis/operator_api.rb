@@ -308,7 +308,12 @@ module Ioki
         :fleet_state,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Operator::FleetState
-      )
+      ),
+      Endpoints.crud_endpoints(
+        :zone,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Zone
+      ),
     ].freeze
   end
 end
