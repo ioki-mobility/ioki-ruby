@@ -14,7 +14,7 @@ module Ioki
           when :read
             super
           when :create
-            { coordinates: }.to_json
+            { coordinates:, type: }.to_json
           end
         end
       end
