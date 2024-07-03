@@ -6,8 +6,8 @@ module Ioki
       class Geojson < Base
         unvalidated true
 
-        attribute :coordinates, type: :array, on: :read
-        attribute :type, type: :string, on: :read
+        attribute :coordinates, type: :array, on: [:create, :read]
+        attribute :type, type: :string, on: [:create, :read]
       end
     end
   end
