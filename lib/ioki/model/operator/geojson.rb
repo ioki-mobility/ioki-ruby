@@ -6,8 +6,15 @@ module Ioki
       class Geojson < Base
         unvalidated true
 
-        attribute :coordinates, type: :array, on: :read
-        attribute :type, type: :string, on: :read
+        attribute :coordinates, type: :array, on: [:create, :read, :update]
+        attribute :type, type: :string, on: [:create, :read, :update]
+
+        def serialize(usecase = :read, only_changed: true)
+          case usecase
+          when :read then super
+          else @_raw_attributes.to_json
+          end
+        end
       end
     end
   end

@@ -1542,4 +1542,71 @@ RSpec.describe Ioki::OperatorApi do
       expect(operator_client.fleet_state(options)).to be_a Ioki::Model::Operator::FleetState
     end
   end
+
+  describe '#zones(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/zones')
+        result_with_index_data
+      end
+
+      expect(operator_client.zones('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Zone))
+    end
+  end
+
+  describe '#zone(product_id, zone_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/zones/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.zone('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Zone)
+    end
+  end
+
+  describe '#create_zone(product_id, zone)' do
+    let(:zone) { Ioki::Model::Operator::Zone.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/zones')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_zone('0815', zone, options))
+        .to be_a(Ioki::Model::Operator::Zone)
+    end
+  end
+
+  describe '#update_zone(product_id, zone)' do
+    let(:zone) { Ioki::Model::Operator::Zone.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/zones/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_zone('0815', zone, options))
+        .to be_a(Ioki::Model::Operator::Zone)
+    end
+  end
+
+  describe '#delete_zone(product_id, zone_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/zones/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_zone('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Zone)
+    end
+  end
 end
