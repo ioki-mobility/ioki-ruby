@@ -13,7 +13,6 @@ module Ioki
           case usecase
           when :read then super
           else @_raw_attributes.to_json
-          # else { coordinates:, type: }.to_json
           end
         end
       end
