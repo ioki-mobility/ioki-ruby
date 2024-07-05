@@ -227,6 +227,15 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Area
       ),
+      Endpoints.custom_endpoints(
+        'areas',
+        actions:     {
+          'drt_area'        => :get,
+          'intermodal_area' => :get
+        },
+        path:        [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Area
+      ),
       Endpoints.crud_endpoints(
         :line,
         base_path:   [API_BASE_PATH, 'products', :id],
