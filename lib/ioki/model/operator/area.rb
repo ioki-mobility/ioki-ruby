@@ -21,47 +21,96 @@ module Ioki
                   type: :date_time
 
         attribute :name,
-                  type:           :string,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update]
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :slug,
-                  type:           :string,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update]
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :area_type,
-                  type:           :string,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update]
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :description,
-                  type: :string,
-                  on:   [:create, :read, :update]
-
-        attribute :color,
-                  type:           :string,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update]
-
-        attribute :area,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Geojson'
-
-        attribute :inverted_area,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Geojson'
-
-        attribute :area_geojson,
-                  on:   [:create, :update],
+                  on:   [:create, :read, :update],
                   type: :string
 
-        attribute :product_id,
-                  type:           :string,
+        attribute :color,
                   on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update]
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
+
+        attribute :opacity,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :float
+
+        attribute :stroke_weight,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
+
+        attribute :fill_color,
+                  on:             [:create, :read, :upate],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
+
+        attribute :fill_opacity,
+                  on:             [:create, :read, :upate],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :float
+
+        attribute :invert,
+                  on:             [:create, :read, :upate],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
+
+        attribute :z_index,
+                  on:             [:create, :read, :upate],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
+
+        attribute :legend_index,
+                  on:             [:create, :read, :upate],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :integer
+
+        attribute :legend_title,
+                  on:   :read,
+                  type: :string
+
+        attribute :legend_description,
+                  on:   :read,
+                  type: :string
+
+        attribute :legend_title_translations,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'MultilanguageString'
+
+        attribute :legend_description_translations,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'MultilanguageString'
+
+        attribute :bounding_box,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'BoundingBox'
+
+        attribute :area_geojson,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :object,
+                  class_name:     'Geojson'
+
+        attribute :product_id,
+                  on:   :read,
+                  type: :string
       end
     end
   end
