@@ -107,10 +107,6 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :object,
                   class_name:     'Geojson'
-
-        attribute :product_id,
-                  on:   :read,
-                  type: :string
       end
     end
   end
