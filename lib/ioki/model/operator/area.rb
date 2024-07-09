@@ -55,27 +55,27 @@ module Ioki
                   type:           :integer
 
         attribute :fill_color,
-                  on:             [:create, :read, :upate],
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
         attribute :fill_opacity,
-                  on:             [:create, :read, :upate],
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :float
 
         attribute :invert,
-                  on:             [:create, :read, :upate],
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
 
         attribute :z_index,
-                  on:             [:create, :read, :upate],
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :integer
 
         attribute :legend_index,
-                  on:             [:create, :read, :upate],
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :integer
 
