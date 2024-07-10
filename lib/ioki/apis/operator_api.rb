@@ -227,6 +227,16 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Area
       ),
+      Endpoints::ShowSingular.new(
+        :drt_area,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Area
+      ),
+      Endpoints::ShowSingular.new(
+        :intermodal_area,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Area
+      ),
       Endpoints.crud_endpoints(
         :line,
         base_path:   [API_BASE_PATH, 'products', :id],

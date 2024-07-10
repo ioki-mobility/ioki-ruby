@@ -1609,4 +1609,28 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Zone)
     end
   end
+
+  describe '#drt_area(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drt_area')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.drt_area('0815', options))
+        .to be_a(Ioki::Model::Operator::Area)
+    end
+  end
+
+  describe '#intermodal_area(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/intermodal_area')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.intermodal_area('0815', options))
+        .to be_a(Ioki::Model::Operator::Area)
+    end
+  end
 end
