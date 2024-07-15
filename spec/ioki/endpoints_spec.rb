@@ -18,7 +18,7 @@ RSpec.describe Ioki::Endpoints do
 
     it 'raises an error if the argument does not respond_to the interpolation method' do
       expect { described_class.url_elements([:id], 1) }
-        .to raise_error(NoMethodError, /undefined method `id' for 1:Integer/)
+        .to raise_error(NoMethodError, /undefined method `id' for an instance of Integer/)
     end
 
     it 'raises an error if the path consists of something else than Strings and Symbols' do
