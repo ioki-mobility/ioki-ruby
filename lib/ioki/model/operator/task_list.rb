@@ -69,6 +69,10 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :integer
 
+        attribute :num_prebooked_rides,
+                  on:   :read,
+                  type: :integer
+
         attribute :paused,
                   on:   :read,
                   type: :boolean
