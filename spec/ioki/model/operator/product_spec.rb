@@ -10,6 +10,7 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:provider).as(:object).with(class_name: 'Provider') }
   it { is_expected.to define_attribute(:area).as(:object).with(class_name: 'Geojson') }
   it { is_expected.to define_attribute(:ad_hoc_bookable).as(:boolean) }
+  it { is_expected.to define_attribute(:available_area_types).as(:array) }
   it { is_expected.to define_attribute(:boarding_time).as(:integer) }
   it { is_expected.to define_attribute(:bounding_box).as(:object).with(class_name: 'BoundingBox') }
   it { is_expected.to define_attribute(:default_end_place_id).as(:string) }

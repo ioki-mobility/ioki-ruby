@@ -38,6 +38,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :available_area_types,
+                  on:   :read,
+                  type: :array
+
         attribute :boarding_time,
                   on:   :read,
                   type: :integer
