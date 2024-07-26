@@ -55,6 +55,14 @@ module Ioki
                   type:       :object,
                   class_name: 'CancellationStatement'
 
+        attribute :creator_id,
+                  on:   :read,
+                  type: :string
+
+        attribute :creator_type,
+                  on:   :read,
+                  type: :string
+
         attribute :destination,
                   on:         :read,
                   type:       :object,

@@ -12,6 +12,8 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:cancellation_reason).as(:string) }
   it { is_expected.to define_attribute(:cancellation_reason_translated).as(:string) }
   it { is_expected.to define_attribute(:cancellation_statement).as(:object).with(class_name: 'CancellationStatement') }
+  it { is_expected.to define_attribute(:creator_id).as(:string) }
+  it { is_expected.to define_attribute(:creator_type).as(:string) }
   it { is_expected.to define_attribute(:destination).as(:object).with(class_name: 'RequestedPoint') }
   it { is_expected.to define_attribute(:driver).as(:object).with(class_name: 'Driver') }
   it { is_expected.to define_attribute(:driver_id).as(:string) }
