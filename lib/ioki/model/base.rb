@@ -161,11 +161,6 @@ module Ioki
 
       def type_cast_attribute_value(attribute, value)
         type = self.class.attribute_definitions.dig(attribute, :type)
-        class_name = self.class.attribute_definitions.dig(attribute, :class_name)
-
-        class_name = class_name_from_value_type(class_name, value)
-
-        model_class = constantize_in_module(class_name)
 
         return value unless type
         return value if value.nil?
@@ -180,7 +175,7 @@ module Ioki
             value if type.include?(:integer)
           end
         else
-          parse_as_type(type, value, model_class)
+          parse_as_type(type, attribute, value)
         end
       end
 
@@ -254,7 +249,9 @@ module Ioki
         return class_name unless class_name.is_a?(Array)
         return nil if value.nil?
 
-        class_name_from_value_type = Support.camelize(value_type(value))
+        type_string = value_type(value)
+        type_string = type_string.split('/').last
+        class_name_from_value_type = Support.camelize(type_string)
 
         return class_name_from_value_type if class_name.include?(class_name_from_value_type)
 
@@ -267,7 +264,7 @@ module Ioki
         value['type']
       end
 
-      def parse_as_type(type, value, model_class)
+      def parse_as_type(type, attribute, value)
         case type
         when :string
           value.to_s
@@ -284,18 +281,32 @@ module Ioki
             nil
           end
         when :object
+          class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+          class_name = class_name_from_value_type(class_name, value)
+          model_class = constantize_in_module(class_name)
+
           if value.is_a?(Hash) && model_class
             model_class.new(value, nil, show_deprecation_warnings: false)
           else
             value
           end
         when :array
-          if value.respond_to?(:map) && model_class
-            value.map do |el|
-              el.is_a?(Hash) ? model_class.new(el, nil, show_deprecation_warnings: false) : el
+          return Array(value) unless value.respond_to?(:map)
+
+          value.map do |el|
+            if el.is_a?(Hash)
+              class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+              class_name = class_name_from_value_type(class_name, el)
+              model_class = constantize_in_module(class_name)
+
+              if model_class
+                model_class.new(el, nil, show_deprecation_warnings: false)
+              else
+                el
+              end
+            else
+              el
             end
-          else
-            Array(value)
           end
         else
           raise "Unknown type #{type}"
