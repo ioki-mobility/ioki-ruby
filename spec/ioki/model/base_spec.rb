@@ -1009,4 +1009,41 @@ RSpec.describe Ioki::Model::Base do
       end
     end
   end
+
+  context 'with different object types in array' do
+    let(:example_class) { Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup }
+    let(:attributes) do
+      {
+        items: [
+          {
+            'name'  => 'one',
+            'label' => 'One',
+            'type'  => 'reporting/report_structure/item'
+          },
+          {
+            'name'  => 'two',
+            'label' => 'Two',
+            'type'  => 'reporting/report_structure/item_group'
+          }
+        ]
+      }
+    end
+
+    it 'parses different objects in array' do
+      expect(model.data[:items]).to eq(
+        [
+          Ioki::Model::Operator::Reporting::ReportStructure::Item.new(
+            name:  'one',
+            label: 'One',
+            type:  'reporting/report_structure/item'
+          ),
+          Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup.new(
+            name:  'two',
+            label: 'Two',
+            type:  'reporting/report_structure/item_group'
+          )
+        ]
+      )
+    end
+  end
 end
