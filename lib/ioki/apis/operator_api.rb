@@ -323,6 +323,12 @@ module Ioki
         :zone,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Zone
+      ),
+      Endpoints::Index.new(
+        :reporting_scopes,
+        base_path:   [API_BASE_PATH, 'reporting', 'report'],
+        path:        'scopes',
+        model_class: Ioki::Model::Operator::Reporting::ReportScope
       )
     ].freeze
   end

@@ -17,8 +17,8 @@ end.sort.each { |file| require file }
 Dir[File.join(__dir__, 'model', 'driver', '*')].reject do |filename|
   filename == File.join(__dir__, 'model', 'driver', 'base.rb')
 end.sort.each { |file| require file }
-Dir[File.join(__dir__, 'model', 'operator', '*')].reject do |filename|
-  filename == File.join(__dir__, 'model', 'operator', 'base.rb')
+Dir[File.join(__dir__, 'model', 'operator', '**', '*')].reject do |filename|
+  filename == File.join(__dir__, 'model', 'operator', 'base.rb') || File.directory?(filename)
 end.sort.each { |file| require file }
 Dir[File.join(__dir__, 'model', 'webhooks', '*')].reject do |filename|
   filename == File.join(__dir__, 'model', 'webhooks', 'base.rb')

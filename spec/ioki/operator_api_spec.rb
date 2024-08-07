@@ -1633,4 +1633,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Area)
     end
   end
+
+  describe '#reporting_scopes' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/reporting/report/scopes')
+        result_with_index_data
+      end
+
+      expect(operator_client.reporting_scopes(options))
+        .to all(be_a(Ioki::Model::Operator::Reporting::ReportScope))
+    end
+  end
 end
