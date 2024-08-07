@@ -1669,4 +1669,17 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Reporting::ReportTypeSummary)
     end
   end
+
+  describe '#reporting_rows' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s)
+          .to eq('operator/reporting/report/scopes/myscope/reports/myyear/myname/myperiod/myversion/rows')
+        result_with_index_data
+      end
+
+      expect(operator_client.reporting_rows('myscope', 'myyear', 'myname', 'myperiod', 'myversion', options))
+        .to all(be_a(Ioki::Model::Operator::Reporting::ReportRow))
+    end
+  end
 end

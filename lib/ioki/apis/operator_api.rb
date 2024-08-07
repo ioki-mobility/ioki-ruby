@@ -341,6 +341,15 @@ module Ioki
         base_path:   nil,
         path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'report_types', :name, 'summary'],
         model_class: Ioki::Model::Operator::Reporting::ReportTypeSummary
+      ),
+      Endpoints::Index.new(
+        :reporting_rows,
+        base_path:   [
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope,
+          'reports', :local_year, :name, :period_identifier, :version
+        ],
+        path:        'rows',
+        model_class: Ioki::Model::Operator::Reporting::ReportRow
       )
     ].freeze
   end
