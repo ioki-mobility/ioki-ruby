@@ -291,24 +291,22 @@ module Ioki
             value
           end
         when :array
-          if value.respond_to?(:map)
-            value.map do |el|
-              if el.is_a?(Hash)
-                class_name = self.class.attribute_definitions.dig(attribute, :class_name)
-                class_name = class_name_from_value_type(class_name, el)
-                model_class = constantize_in_module(class_name)
+          return Array(value) unless value.respond_to?(:map)
 
-                if model_class
-                  model_class.new(el, nil, show_deprecation_warnings: false)
-                else
-                  el
-                end
+          value.map do |el|
+            if el.is_a?(Hash)
+              class_name = self.class.attribute_definitions.dig(attribute, :class_name)
+              class_name = class_name_from_value_type(class_name, el)
+              model_class = constantize_in_module(class_name)
+
+              if model_class
+                model_class.new(el, nil, show_deprecation_warnings: false)
               else
                 el
               end
+            else
+              el
             end
-          else
-            Array(value)
           end
         else
           raise "Unknown type #{type}"
