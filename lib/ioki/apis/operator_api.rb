@@ -329,6 +329,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'reports'],
         path:        'scopes',
         model_class: Ioki::Model::Operator::Reporting::ReportScope
+      ),
+      Endpoints::ShowSingular.new(
+        :reporting_scope_structure,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'reports', 'scopes', :id, 'structure'],
+        model_class: Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup
       )
     ].freeze
   end
