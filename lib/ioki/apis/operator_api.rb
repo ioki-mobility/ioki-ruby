@@ -347,6 +347,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'reports', 'data', :scope, :local_year, :name, :period_identifier, :version],
         path:        'rows',
         model_class: Ioki::Model::Operator::Reporting::ReportRow
+      ),
+      Endpoints::ShowSingular.new(
+        :reporting_report,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'reports', 'data', :scope, :local_year, :name, :period_identifier, :version],
+        model_class: Ioki::Model::Operator::Reporting::Report
       )
     ].freeze
   end
