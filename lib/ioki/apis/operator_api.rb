@@ -323,6 +323,42 @@ module Ioki
         :zone,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Zone
+      ),
+      Endpoints::Index.new(
+        :reporting_scopes,
+        base_path:   [API_BASE_PATH, 'reporting', 'report'],
+        path:        'scopes',
+        model_class: Ioki::Model::Operator::Reporting::ReportScope
+      ),
+      Endpoints::ShowSingular.new(
+        :reporting_scope_structure,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'structure'],
+        model_class: Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup
+      ),
+      Endpoints::ShowSingular.new(
+        :reporting_report_type_summary,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'report_types', :name, 'summary'],
+        model_class: Ioki::Model::Operator::Reporting::ReportTypeSummary
+      ),
+      Endpoints::Index.new(
+        :reporting_rows,
+        base_path:   [
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope,
+          'reports', :local_year, :name, :period_identifier, :version
+        ],
+        path:        'rows',
+        model_class: Ioki::Model::Operator::Reporting::ReportRow
+      ),
+      Endpoints::ShowSingular.new(
+        :reporting_report,
+        base_path:   nil,
+        path:        [
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope,
+          'reports', :local_year, :name, :period_identifier, :version
+        ],
+        model_class: Ioki::Model::Operator::Reporting::Report
       )
     ].freeze
   end
