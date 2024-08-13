@@ -103,6 +103,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :product_login_slug,
+                  on:   :read,
+                  type: :string
+
         attribute :ride_options,
                   on:         :read,
                   type:       :object,

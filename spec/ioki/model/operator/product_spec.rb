@@ -30,6 +30,7 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:matching_configurations).as(:array).with(class_name: 'MatchingConfiguration') }
   it { is_expected.to define_attribute(:parking_time).as(:integer) }
   it { is_expected.to define_attribute(:prebookable).as(:boolean) }
+  it { is_expected.to define_attribute(:product_login_slug).as(:string) }
   it { is_expected.to define_attribute(:ride_options).as(:object).with(class_name: 'RideOptions') }
   it { is_expected.to define_attribute(:ride_rating_criteria).as(:array) }
   it { is_expected.to define_attribute(:service_time_info).as(:string) }
