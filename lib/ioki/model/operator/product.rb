@@ -29,6 +29,10 @@ module Ioki
                   on:         :read,
                   class_name: 'Provider'
 
+        attribute :provider_id,
+                  type: :string,
+                  on:   :read
+
         attribute :area,
                   type:       :object,
                   on:         :read,
