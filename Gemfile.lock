@@ -182,6 +182,8 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.32.0)
       parser (>= 3.3.1.0)
+    rubocop-factory_bot (2.26.1)
+      rubocop (~> 1.61)
     rubocop-rspec (3.0.4)
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
@@ -223,6 +225,7 @@ DEPENDENCIES
   rake (~> 13.2)
   rspec (~> 3.13)
   rubocop
+  rubocop-factory_bot
   rubocop-rspec
   simplecov
   vcr
