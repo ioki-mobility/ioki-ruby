@@ -14,6 +14,7 @@ gem 'mail'
 group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-factory_bot', require: false
 end
 
 group :test do
