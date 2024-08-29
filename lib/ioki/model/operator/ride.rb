@@ -216,6 +216,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :vehicle_positions,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'VehiclePosition'
+
         attribute :vehicle_reached_dropoff,
                   on:   :read,
                   type: :boolean
