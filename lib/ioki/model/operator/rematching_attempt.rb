@@ -20,7 +20,7 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :auto_cancel_empty_task_list,
+        attribute :auto_finish_empty_task_list,
                   on:             [:create, :read],
                   omit_if_nil_on: [:create],
                   type:           :boolean

@@ -5,7 +5,7 @@ RSpec.describe Ioki::Model::Operator::RematchingAttempt do
   it { is_expected.to define_attribute(:type).as(:string) }
   it { is_expected.to define_attribute(:created_at).as(:date_time) }
   it { is_expected.to define_attribute(:updated_at).as(:date_time) }
-  it { is_expected.to define_attribute(:auto_cancel_empty_task_list).as(:boolean) }
+  it { is_expected.to define_attribute(:auto_finish_empty_task_list).as(:boolean) }
   it { is_expected.to define_attribute(:auto_cancel_failed_rematchings).as(:boolean) }
   it { is_expected.to define_attribute(:finished_at).as(:date_time) }
   it { is_expected.to define_attribute(:preserve_negotiated_times).as(:boolean) }
