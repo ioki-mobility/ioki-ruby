@@ -183,7 +183,7 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-factory_bot (2.26.1)
       rubocop (~> 1.61)
-    rubocop-rspec (3.0.4)
+    rubocop-rspec (3.0.5)
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
