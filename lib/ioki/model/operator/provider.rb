@@ -61,6 +61,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :products,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Product'
+
         attribute :psp,
                   on:   :read,
                   type: :string
@@ -93,10 +98,6 @@ module Ioki
         attribute :tip_payment_method_types,
                   on:   :read,
                   type: :array
-
-        attribute :version,
-                  on:   :read,
-                  type: :integer
       end
     end
   end
