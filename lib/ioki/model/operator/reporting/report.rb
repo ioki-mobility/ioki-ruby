@@ -25,6 +25,14 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_name,
+                    on:   :read,
+                    type: :string
+
+          attribute :localized_description,
+                    on:   :read,
+                    type: :string
+
           attribute :period_type,
                     on:   :read,
                     type: :string
