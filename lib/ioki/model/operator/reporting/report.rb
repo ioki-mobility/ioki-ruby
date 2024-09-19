@@ -73,6 +73,11 @@ module Ioki
                     on:   :read,
                     type: :object
 
+          attribute :column_definitions,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportColumnDefinition'
+
           attribute :processing_state,
                     on:   :read,
                     type: :string
