@@ -9,14 +9,6 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :report_name,
-                    on:   :read,
-                    type: :string
-
-          attribute :report_version,
-                    on:   :read,
-                    type: :integer
-
           attribute :column_name,
                     on:   :read,
                     type: :string
