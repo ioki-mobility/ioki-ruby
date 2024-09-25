@@ -107,6 +107,12 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :object,
                   class_name:     'Geojson'
+
+        attribute :recurrence_rules,
+                  on:             [:read, :update],
+                  omit_if_nil_on: [:update],
+                  type:           :array,
+                  class_name:     'RecurrenceRule'
       end
     end
   end
