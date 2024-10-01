@@ -93,11 +93,6 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
-        attribute :municipality,
-                  on:             [:read, :create, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :string
-
         attribute :parking_time,
                   on:   [:read, :create, :update],
                   type: :integer
