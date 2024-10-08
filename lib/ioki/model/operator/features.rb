@@ -161,6 +161,10 @@ module Ioki
         attribute :admins_can_set_arbitrary_driver_password,
                   type: :boolean,
                   on:   :read
+
+        attribute :passenger_note_to_driver,
+                  type: :boolean,
+                  on:   :read
       end
     end
   end
