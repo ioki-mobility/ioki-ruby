@@ -126,7 +126,6 @@ module Ioki
                   on:   :read,
                   type: :string
 
-
         attribute :payment_state,
                   on:   :read,
                   type: :string
