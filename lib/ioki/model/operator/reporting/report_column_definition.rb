@@ -29,6 +29,10 @@ module Ioki
                     on:   :read,
                     type: :boolean
 
+          attribute :visible_filter,
+                    on:   :read,
+                    type: :boolean
+
           attribute :visible_export,
                     on:   :read,
                     type: :boolean
