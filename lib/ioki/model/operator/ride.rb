@@ -122,6 +122,10 @@ module Ioki
                   type:       :array,
                   class_name: 'RidePassenger'
 
+        attribute :passenger_note_to_driver,
+                  on:   :read,
+                  type: :string
+
         attribute :payment_state,
                   on:   :read,
                   type: :string

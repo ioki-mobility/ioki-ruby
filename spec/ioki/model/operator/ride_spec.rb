@@ -26,6 +26,7 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:origin).as(:object).with(class_name: 'RequestedPoint') }
   it { is_expected.to define_attribute(:passenger_can_be_called).as(:boolean) }
   it { is_expected.to define_attribute(:passengers).as(:array).with(class_name: 'RidePassenger') }
+  it { is_expected.to define_attribute(:passenger_note_to_driver).as(:string) }
   it { is_expected.to define_attribute(:payment_state).as(:string) }
   it { is_expected.to define_attribute(:pickup).as(:object).with(class_name: 'CalculatedPoint') }
   it { is_expected.to define_attribute(:pickup_task).as(:object).with(class_name: 'Task') }
