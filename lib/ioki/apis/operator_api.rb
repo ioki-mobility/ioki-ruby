@@ -359,7 +359,12 @@ module Ioki
           'reports', :local_year, :name, :period_identifier, :version
         ],
         model_class: Ioki::Model::Operator::Reporting::Report
-      )
+      ),
+      Endpoints.crud_endpoints(
+        :cancellation_statement,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::CancellationStatement
+      ),
     ].freeze
   end
 end
