@@ -9,11 +9,11 @@ module Ioki
                   type: :string
 
         attribute :title_de,
-        on:   [:create, :update],
+                  on:   [:create, :update],
                   type: :string
 
         attribute :title_fr,
-        on:   [:create, :update],
+                  on:   [:create, :update],
                   type: :string
 
         attribute :title_de_ch,

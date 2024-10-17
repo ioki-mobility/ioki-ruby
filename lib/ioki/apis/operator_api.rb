@@ -364,7 +364,7 @@ module Ioki
         :cancellation_statement,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::CancellationStatement
-      ),
+      )
     ].freeze
   end
 end
