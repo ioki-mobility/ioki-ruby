@@ -1695,4 +1695,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Reporting::Report)
     end
   end
+
+  describe '#cancellation_statements(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/cancellation_statements')
+        result_with_index_data
+      end
+
+      expect(operator_client.cancellation_statements('0815', options))
+        .to all(be_a(Ioki::Model::Operator::CancellationStatement))
+    end
+  end
+
+  describe '#cancellation_statement(product_id, cancellation_statement_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/cancellation_statements/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.cancellation_statement('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::CancellationStatement)
+    end
+  end
+
+  describe '#create_cancellation_statement(product_id, cancellation_statement)' do
+    let(:cancellation_statement) { Ioki::Model::Operator::CancellationStatement.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/cancellation_statements')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_cancellation_statement('0815', cancellation_statement, options))
+        .to be_a(Ioki::Model::Operator::CancellationStatement)
+    end
+  end
+
+  describe '#update_cancellation_statement(product_id, cancellation_statement)' do
+    let(:cancellation_statement) { Ioki::Model::Operator::CancellationStatement.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/cancellation_statements/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_cancellation_statement('0815', cancellation_statement, options))
+        .to be_a(Ioki::Model::Operator::CancellationStatement)
+    end
+  end
+
+  describe '#delete_cancellation_statement(product_id, cancellation_statement_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/cancellation_statements/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_cancellation_statement('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::CancellationStatement)
+    end
+  end
 end
