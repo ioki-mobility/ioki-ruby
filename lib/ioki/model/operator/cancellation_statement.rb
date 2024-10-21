@@ -36,19 +36,15 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :boolean
 
-        attribute :title_translations,
+        attribute :passenger_notification,
                   on:         [:create, :update],
-                  type:       :array,
-                  class_name: 'TitleTranslations'
-
-        attribute :passenger_notification_translations,
-                  on:         [:create, :update],
-                  type:       :array,
-                  class_name: 'PassengerNotificationTranslations'
+                  type:       :object,
+                  class_name: 'MultilanguageString'
 
         attribute :title,
-                  on:   :read,
-                  type: :string
+                  on:         [:create, :read, :update],
+                  type:       :object,
+                  class_name: 'MultilanguageString'
       end
     end
   end
