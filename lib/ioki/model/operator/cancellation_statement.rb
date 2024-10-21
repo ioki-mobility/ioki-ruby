@@ -44,7 +44,7 @@ module Ioki
         attribute :title,
                   on:         [:create, :read, :update],
                   type:       :object,
-                  class_name: 'MultilanguageString'
+                  class_name: 'TitleTranslations'
       end
     end
   end
