@@ -9,11 +9,11 @@ module Ioki
                   type: :string
 
         attribute :name,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
 
         attribute :translations,
-                  on:         [:create, :read, :update],
+                  on:         :read,
                   type:       :array,
                   class_name: 'Translation'
       end

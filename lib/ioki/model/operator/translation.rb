@@ -9,11 +9,11 @@ module Ioki
                   type: :string
 
         attribute :language,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
 
         attribute :text,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
       end
     end
