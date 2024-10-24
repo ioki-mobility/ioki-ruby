@@ -21,16 +21,36 @@ module Ioki
                   type: :date_time
 
         attribute :group,
-                  on:   :read,
+                  on:   [:create, :read, :update],
                   type: :string
 
         attribute :identifier,
                   on:   :read,
                   type: :string
 
+        attribute :suitable_for_ride_series,
+                  on:   [:create, :read, :update],
+                  type: :boolean
+
+        attribute :suitable_for_single_rides,
+                  on:   [:create, :read, :update],
+                  type: :boolean
+
+        attribute :passenger_notification,
+                  on:   :read,
+                  type: :string
+
         attribute :title,
                   on:   :read,
                   type: :string
+
+        attribute :passenger_notification_translations,
+                  on:   [:create, :update],
+                  type: :object
+
+        attribute :title_translations,
+                  on:   [:create, :update],
+                  type: :object
       end
     end
   end
