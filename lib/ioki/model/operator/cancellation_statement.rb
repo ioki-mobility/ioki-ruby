@@ -44,16 +44,12 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :titles,
-                  on:   :read,
-                  type: :object
-
         attribute :passenger_notification_translations,
-                  on:   [:create, :update],
+                  on:   [:create, :read, :update],
                   type: :object
 
         attribute :title_translations,
-                  on:   [:create, :update],
+                  on:   [:create, :read, :update],
                   type: :object
       end
     end
