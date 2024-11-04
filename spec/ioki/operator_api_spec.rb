@@ -1658,15 +1658,15 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#reporting_report_type_summary(scope, local_year, name, period_identifier, version)' do
+  describe '#reporting_report_partition_summary(scope, name)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/report_types/a-name/summary')
+        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/reports/a-name/partition_summary')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.reporting_report_type_summary('0815', 'a-name', options))
-        .to be_a(Ioki::Model::Operator::Reporting::ReportTypeSummary)
+      expect(operator_client.reporting_report_partition_summary('0815', 'a-name', options))
+        .to be_a(Ioki::Model::Operator::Reporting::ReportPartitionSummary)
     end
   end
 

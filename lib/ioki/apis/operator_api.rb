@@ -337,10 +337,10 @@ module Ioki
         model_class: Ioki::Model::Operator::Reporting::ReportNavigation::ItemGroup
       ),
       Endpoints::ShowSingular.new(
-        :reporting_report_type_summary,
+        :reporting_report_partition_summary,
         base_path:   nil,
-        path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'report_types', :name, 'summary'],
-        model_class: Ioki::Model::Operator::Reporting::ReportTypeSummary
+        path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'reports', :name, 'partition_summary'],
+        model_class: Ioki::Model::Operator::Reporting::ReportPartitionSummary
       ),
       Endpoints::Index.new(
         :reporting_rows,
