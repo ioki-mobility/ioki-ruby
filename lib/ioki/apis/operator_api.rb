@@ -331,10 +331,10 @@ module Ioki
         model_class: Ioki::Model::Operator::Reporting::ReportScope
       ),
       Endpoints::ShowSingular.new(
-        :reporting_scope_structure,
+        :reporting_scope_navigation,
         base_path:   nil,
-        path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'structure'],
-        model_class: Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup
+        path:        [API_BASE_PATH, 'reporting', 'report', 'scopes', :id, 'navigation'],
+        model_class: Ioki::Model::Operator::Reporting::ReportNavigation::ItemGroup
       ),
       Endpoints::ShowSingular.new(
         :reporting_report_type_summary,

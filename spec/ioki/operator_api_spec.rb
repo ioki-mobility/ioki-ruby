@@ -1646,15 +1646,15 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#reporting_scope_structure(scope_id)' do
+  describe '#reporting_scope_navigation(scope_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/structure')
+        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/navigation')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.reporting_scope_structure('0815', options))
-        .to be_a(Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup)
+      expect(operator_client.reporting_scope_navigation('0815', options))
+        .to be_a(Ioki::Model::Operator::Reporting::ReportNavigation::ItemGroup)
     end
   end
 
