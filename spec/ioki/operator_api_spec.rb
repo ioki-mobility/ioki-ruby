@@ -1646,27 +1646,27 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#reporting_scope_structure(scope_id)' do
+  describe '#reporting_scope_navigation(scope_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/structure')
+        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/navigation')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.reporting_scope_structure('0815', options))
-        .to be_a(Ioki::Model::Operator::Reporting::ReportStructure::ItemGroup)
+      expect(operator_client.reporting_scope_navigation('0815', options))
+        .to be_a(Ioki::Model::Operator::Reporting::ReportNavigation::ItemGroup)
     end
   end
 
-  describe '#reporting_report_type_summary(scope, local_year, name, period_identifier, version)' do
+  describe '#reporting_report_partition_summary(scope, name)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/report_types/a-name/summary')
+        expect(params[:url].to_s).to eq('operator/reporting/report/scopes/0815/reports/a-name/partition_summary')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.reporting_report_type_summary('0815', 'a-name', options))
-        .to be_a(Ioki::Model::Operator::Reporting::ReportTypeSummary)
+      expect(operator_client.reporting_report_partition_summary('0815', 'a-name', options))
+        .to be_a(Ioki::Model::Operator::Reporting::ReportPartitionSummary)
     end
   end
 
@@ -1674,24 +1674,24 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s)
-          .to eq('operator/reporting/report/scopes/myscope/reports/myyear/myname/myperiod/myversion/rows')
+          .to eq('operator/reporting/report/scopes/myscope/reports/myname/partitions/myperiod/rows')
         result_with_index_data
       end
 
-      expect(operator_client.reporting_rows('myscope', 'myyear', 'myname', 'myperiod', 'myversion', options))
+      expect(operator_client.reporting_rows('myscope', 'myname', 'myperiod', options))
         .to all(be_a(Ioki::Model::Operator::Reporting::ReportRow))
     end
   end
 
-  describe '#reporting_report(scope, local_year, name, period_identifier, version)' do
+  describe '#reporting_report(scope, name, period_identifier)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s)
-          .to eq('operator/reporting/report/scopes/myscope/reports/myyear/myname/myperiod/myversion')
+          .to eq('operator/reporting/report/scopes/myscope/reports/myname/partitions/myperiod')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.reporting_report('myscope', 'myyear', 'myname', 'myperiod', 'myversion', options))
+      expect(operator_client.reporting_report('myscope', 'myname', 'myperiod', options))
         .to be_a(Ioki::Model::Operator::Reporting::Report)
     end
   end

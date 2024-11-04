@@ -4,22 +4,23 @@ module Ioki
   module Model
     module Operator
       module Reporting
-        class ReportType < Base
+        class ReportPartitionSummary < Base
           attribute :type,
                     on:   :read,
                     type: :string
 
-          attribute :local_year,
+          attribute :scope,
                     on:   :read,
                     type: :string
 
-          attribute :period_identifier,
+          attribute :name,
                     on:   :read,
                     type: :string
 
-          attribute :versions,
-                    on:   :read,
-                    type: :array
+          attribute :report_partitions,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportPartition'
         end
       end
     end

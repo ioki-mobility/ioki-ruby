@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Operator
       module Reporting
-        module ReportStructure
+        module ReportNavigation
           class Item < Base
             attribute :type,
                       on:   :read,
