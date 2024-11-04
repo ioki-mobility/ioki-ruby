@@ -345,8 +345,7 @@ module Ioki
       Endpoints::Index.new(
         :reporting_rows,
         base_path:   [
-          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope,
-          'reports', :local_year, :name, :period_identifier, :version
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'partitions', :period_identifier
         ],
         path:        'rows',
         model_class: Ioki::Model::Operator::Reporting::ReportRow
@@ -355,8 +354,7 @@ module Ioki
         :reporting_report,
         base_path:   nil,
         path:        [
-          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope,
-          'reports', :local_year, :name, :period_identifier, :version
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'partitions', :period_identifier
         ],
         model_class: Ioki::Model::Operator::Reporting::Report
       )
