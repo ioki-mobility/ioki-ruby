@@ -1111,82 +1111,82 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#operators(provider_id)' do
+  describe '#operators' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/0815/operators')
+        expect(params[:url].to_s).to eq('operator/operators')
         result_with_index_data
       end
 
-      expect(operator_client.operators('0815', options))
+      expect(operator_client.operators(options))
         .to all(be_a(Ioki::Model::Operator::Operator))
     end
   end
 
-  describe '#operator(provider_id, operator_id)' do
+  describe '#operator(operator_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711')
+        expect(params[:url].to_s).to eq('operator/operators/4711')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.operator('0815', '4711', options))
+      expect(operator_client.operator('4711', options))
         .to be_a(Ioki::Model::Operator::Operator)
     end
   end
 
-  describe '#create_operator(provider_id)' do
+  describe '#create_operator' do
     let(:operator) { Ioki::Model::Operator::Operator.new }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/0815/operators')
+        expect(params[:url].to_s).to eq('operator/operators')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.create_operator('0815', operator, options))
+      expect(operator_client.create_operator(operator, options))
         .to be_a(Ioki::Model::Operator::Operator)
     end
   end
 
-  describe '#update_operator(product_id, operator)' do
+  describe '#update_operator(operator)' do
     let(:operator) { Ioki::Model::Operator::Operator.new({ id: '4711' }) }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711')
+        expect(params[:url].to_s).to eq('operator/operators/4711')
         expect(params[:method]).to eq :patch
         [result_with_data, full_response]
       end
 
-      expect(operator_client.update_operator('0815', operator, options))
+      expect(operator_client.update_operator('4711', operator, options))
         .to be_a(Ioki::Model::Operator::Operator)
     end
   end
 
-  describe '#delete_operator(product_id, operator_id)' do
+  describe '#delete_operator(operator_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711')
+        expect(params[:url].to_s).to eq('operator/operators/4711')
         result_with_data
       end
 
-      expect(operator_client.delete_operator('0815', '4711', options))
+      expect(operator_client.delete_operator('4711', options))
         .to be_a(Ioki::Model::Operator::Operator)
     end
   end
 
-  describe '#set_default_operator(product_id, operator)' do
+  describe '#set_default_operator(operator)' do
     let(:operator) { Ioki::Model::Operator::Operator.new({ id: '4711' }) }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/0815/operators/4711/set_default')
+        expect(params[:url].to_s).to eq('operator/operators/4711/set_default')
         expect(params[:method]).to eq :patch
         [result_with_data, full_response]
       end
 
-      expect(operator_client.operator_set_default('0815', operator, options))
+      expect(operator_client.operator_set_default('4711', operator, options))
         .to be_a(Ioki::Model::Operator::Operator)
     end
   end
