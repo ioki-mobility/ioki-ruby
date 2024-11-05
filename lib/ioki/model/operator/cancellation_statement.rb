@@ -51,6 +51,10 @@ module Ioki
         attribute :title_translations,
                   on:   [:create, :read, :update],
                   type: :object
+
+        attribute :product_id,
+                  on:   :read,
+                  type: :string
       end
     end
   end
