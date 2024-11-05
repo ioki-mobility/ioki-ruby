@@ -33,6 +33,10 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :integer
 
+        attribute :provider_id,
+                  on:   :create,
+                  type: :string
+
         attribute :name,
                   on:   [:create, :read, :update],
                   type: :string
