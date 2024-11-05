@@ -78,6 +78,14 @@ module Ioki
                     type:       :array,
                     class_name: 'ReportColumnDefinition'
 
+          attribute :filterable_by_product,
+                    on:   :read,
+                    type: :boolean
+
+          attribute :filterable_by_operator,
+                    on:   :read,
+                    type: :boolean
+
           attribute :processing_state,
                     on:   :read,
                     type: :string
