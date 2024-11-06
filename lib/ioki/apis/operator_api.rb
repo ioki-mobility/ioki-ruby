@@ -354,9 +354,17 @@ module Ioki
         :reporting_report,
         base_path:   nil,
         path:        [
-          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'partitions', :period_identifier
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name
         ],
         model_class: Ioki::Model::Operator::Reporting::Report
+      ),
+      Endpoints::ShowSingular.new(
+        :reporting_report_partition,
+        base_path:   nil,
+        path:        [
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'partitions', :period_identifier
+        ],
+        model_class: Ioki::Model::Operator::Reporting::ReportPartition
       ),
       Endpoints.crud_endpoints(
         :cancellation_statement,
