@@ -1683,7 +1683,20 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#reporting_report(scope, name, period_identifier)' do
+  describe '#reporting_report(scope, name)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s)
+          .to eq('operator/reporting/report/scopes/myscope/reports/myname')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.reporting_report('myscope', 'myname', options))
+        .to be_a(Ioki::Model::Operator::Reporting::Report)
+    end
+  end
+
+  describe '#reporting_report_partition(scope, name, period_identifier)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s)
@@ -1691,8 +1704,8 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.reporting_report('myscope', 'myname', 'myperiod', options))
-        .to be_a(Ioki::Model::Operator::Reporting::Report)
+      expect(operator_client.reporting_report_partition('myscope', 'myname', 'myperiod', options))
+        .to be_a(Ioki::Model::Operator::Reporting::ReportPartition)
     end
   end
 
