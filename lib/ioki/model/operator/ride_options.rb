@@ -4,14 +4,89 @@ module Ioki
   module Model
     module Operator
       class RideOptions < Base
-        unvalidated true # Specification not available.
+        attribute :type,
+                  on:   :read,
+                  type: :string
 
-        attribute :book_for_others, on: :read, type: :boolean
-        attribute :destination_time_based_matching, on: :read, type: :boolean
-        attribute :max_wheelchairs, on: :read, type: :integer
-        attribute :max_walkers, on: :read, type: :integer
-        attribute :prebooking_threshold, on: :read, type: :object, class_name: 'PrebookingThreshold'
-        attribute :passengers, on: :read, type: :object, class_name: 'PassengerOptions'
+        attribute :id,
+                  on:   :read,
+                  type: :string
+
+        attribute :created_at,
+                  on:   :read,
+                  type: :date_time
+
+        attribute :updated_at,
+                  on:   :read,
+                  type: :date_time
+
+        attribute :slug,
+                  on:   [:read, :create],
+                  type: :string
+
+        attribute :default_value,
+                  on:   [:read, :create, :update],
+                  type: [:string, :boolean, :integer]
+
+        attribute :bookable,
+                  on:   [:read, :create, :update],
+                  type: :boolean
+
+        attribute :data_type,
+                  on:   [:read, :create],
+                  type: :string
+
+        attribute :option_type,
+                  on:   [:read, :create, :update],
+                  type: :string
+
+        attribute :localized_accessibility_information,
+                  on:   :read,
+                  type: :string
+
+        attribute :localized_name,
+                  on:   :read,
+                  type: :string
+
+        attribute :localized_description,
+                  on:   :read,
+                  type: :string
+
+        attribute :localized_info,
+                  on:   :read,
+                  type: :string
+
+        attribute :localized_link,
+                  on:   :read,
+                  type: :string
+
+        attribute :localized_link_text,
+                  on:   :read,
+                  type: :string
+
+        attribute :accessibility_information_translations,
+                  on:   [:read, :create, :update],
+                  type: :object
+
+        attribute :name_translations,
+                  on:   [:read, :create, :update],
+                  type: :object
+
+        attribute :description_translations,
+                  on:   [:read, :create, :update],
+                  type: :object
+
+        attribute :info_translations,
+                  on:   [:read, :create, :update],
+                  type: :object
+
+        attribute :link_translations,
+                  on:   [:read, :create, :update],
+                  type: :object
+
+        attribute :link_text_translations,
+                  on:   [:read, :create, :update],
+                  type: :object
       end
     end
   end
