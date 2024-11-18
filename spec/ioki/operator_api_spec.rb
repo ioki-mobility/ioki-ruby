@@ -1784,7 +1784,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.ride_options('0815', options))
-        .to all(be_a(Ioki::Model::Operator::RideOptions))
+        .to all(be_a(Ioki::Model::Operator::RideOption))
     end
   end
 
@@ -1796,12 +1796,12 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.ride_option('0815', '4711', options))
-        .to be_a(Ioki::Model::Operator::RideOptions)
+        .to be_a(Ioki::Model::Operator::RideOption)
     end
   end
 
   describe '#create_ride_option(product_id, ride_option)' do
-    let(:ride_option) { Ioki::Model::Operator::RideOptions.new({ id: '4711' }) }
+    let(:ride_option) { Ioki::Model::Operator::RideOption.new({ id: '4711' }) }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
@@ -1811,12 +1811,12 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.create_ride_option('0815', ride_option, options))
-        .to be_a(Ioki::Model::Operator::RideOptions)
+        .to be_a(Ioki::Model::Operator::RideOption)
     end
   end
 
   describe '#update_ride_option(product_id, ride_option_id, ride_option)' do
-    let(:ride_option) { Ioki::Model::Operator::RideOptions.new({ id: '4711' }) }
+    let(:ride_option) { Ioki::Model::Operator::RideOption.new({ id: '4711' }) }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
@@ -1826,7 +1826,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.update_ride_option('0815', '4711', ride_option, options))
-        .to be_a(Ioki::Model::Operator::RideOptions)
+        .to be_a(Ioki::Model::Operator::RideOption)
     end
   end
 
@@ -1839,7 +1839,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.delete_ride_option('0815', '4711', options))
-        .to be_a(Ioki::Model::Operator::RideOptions)
+        .to be_a(Ioki::Model::Operator::RideOption)
     end
   end
 end
