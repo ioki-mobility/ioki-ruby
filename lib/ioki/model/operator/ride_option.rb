@@ -87,6 +87,11 @@ module Ioki
         attribute :link_text_translations,
                   on:   [:read, :create, :update],
                   type: :object
+
+        attribute :resource_consumption,
+                  on:         [:read, :create, :update],
+                  type:       :object,
+                  class_name: 'ResourceConfiguration'
       end
     end
   end
