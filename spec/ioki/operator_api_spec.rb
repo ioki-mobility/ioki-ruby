@@ -1830,7 +1830,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#delete_station(product_id, ride_option_id)' do
+  describe '#delete_ride_option(product_id, ride_option_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/ride_options/4711')
