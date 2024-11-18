@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class RideOptions < Base
+      class RideOption < Base
         attribute :type,
                   on:   :read,
                   type: :string
