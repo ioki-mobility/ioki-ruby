@@ -114,7 +114,7 @@ module Ioki
         attribute :ride_options,
                   on:         :read,
                   type:       :object,
-                  class_name: 'RideOptions'
+                  class_name: 'LegacyRideOptions'
 
         attribute :ride_rating_criteria,
                   on:   :read,
