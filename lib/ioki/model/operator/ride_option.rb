@@ -40,6 +40,10 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
+        attribute :sort_key,
+                  on:   [:read, :create, :update],
+                  type: :integer
+
         attribute :localized_accessibility_information,
                   on:   :read,
                   type: :string
