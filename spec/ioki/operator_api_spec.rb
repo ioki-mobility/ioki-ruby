@@ -1842,4 +1842,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RideOption)
     end
   end
+
+  describe '#passenger_options(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/passenger_options')
+        result_with_index_data
+      end
+
+      expect(operator_client.passenger_options('0815', options))
+        .to all(be_a(Ioki::Model::Operator::PassengerOption))
+    end
+  end
+
+  describe '#passenger_option(product_id, passenger_option_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/passenger_options/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.passenger_option('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::PassengerOption)
+    end
+  end
+
+  describe '#create_passenger_option(product_id, passenger_option)' do
+    let(:passenger_option) { Ioki::Model::Operator::PassengerOption.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/passenger_options')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_passenger_option('0815', passenger_option, options))
+        .to be_a(Ioki::Model::Operator::PassengerOption)
+    end
+  end
+
+  describe '#update_passenger_option(product_id, passenger_option_id, passenger_option)' do
+    let(:passenger_option) { Ioki::Model::Operator::PassengerOption.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/passenger_options/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_passenger_option('0815', '4711', passenger_option, options))
+        .to be_a(Ioki::Model::Operator::PassengerOption)
+    end
+  end
+
+  describe '#delete_passenger_option(product_id, passenger_option_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/passenger_options/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_passenger_option('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::PassengerOption)
+    end
+  end
 end
