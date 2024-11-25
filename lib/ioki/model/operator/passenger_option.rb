@@ -26,7 +26,7 @@ module Ioki
 
         attribute :default_value,
                   on:   [:read, :create, :update],
-                  type: [:string, :boolean, :integer]
+                  type: [:boolean, :integer, :string]
 
         attribute :bookable,
                   on:   [:read, :create, :update],
