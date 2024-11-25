@@ -1775,4 +1775,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::CancellationStatement)
     end
   end
+
+  describe '#ride_options(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/ride_options')
+        result_with_index_data
+      end
+
+      expect(operator_client.ride_options('0815', options))
+        .to all(be_a(Ioki::Model::Operator::RideOption))
+    end
+  end
+
+  describe '#ride_option(product_id, ride_option_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/ride_options/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.ride_option('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RideOption)
+    end
+  end
+
+  describe '#create_ride_option(product_id, ride_option)' do
+    let(:ride_option) { Ioki::Model::Operator::RideOption.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/ride_options')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_ride_option('0815', ride_option, options))
+        .to be_a(Ioki::Model::Operator::RideOption)
+    end
+  end
+
+  describe '#update_ride_option(product_id, ride_option_id, ride_option)' do
+    let(:ride_option) { Ioki::Model::Operator::RideOption.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/ride_options/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_ride_option('0815', '4711', ride_option, options))
+        .to be_a(Ioki::Model::Operator::RideOption)
+    end
+  end
+
+  describe '#delete_ride_option(product_id, ride_option_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/ride_options/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_ride_option('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RideOption)
+    end
+  end
 end

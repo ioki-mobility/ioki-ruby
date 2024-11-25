@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class RideOptions < Base
+      class LegacyRideOptions < Base
         unvalidated true # Specification not available.
 
         attribute :book_for_others, on: :read, type: :boolean

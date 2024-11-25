@@ -370,6 +370,11 @@ module Ioki
         :cancellation_statement,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::CancellationStatement
+      ),
+      Endpoints.crud_endpoints(
+        :ride_option,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::RideOption
       )
     ].freeze
   end
