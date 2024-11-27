@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module Ioki
-  module Operator
-    class PassengerType < Base
-              attribute :type,
+  module Model
+    module Operator
+      class PassengerType < Base
+        attribute :type,
                   on:   :read,
                   type: :string
 
@@ -91,6 +92,7 @@ module Ioki
                   on:         [:read, :create, :update],
                   type:       :object,
                   class_name: 'ResourceConfiguration'
+      end
     end
   end
 end
