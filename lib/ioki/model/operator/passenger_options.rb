@@ -6,7 +6,7 @@ module Ioki
       class PassengerOptions < Base
         unvalidated true # Specification not available.
 
-        attribute :types, on: :read, type: :array, class_name: 'PassengerType'
+        attribute :types, on: :read, type: :array, class_name: 'PassengerTypes'
         attribute :wheelchair, on: :read, type: :boolean
         attribute :walker, on: :read, type: :boolean
         attribute :public_transport_ticket, on: :read, type: :boolean

@@ -380,6 +380,11 @@ module Ioki
         :passenger_option,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::PassengerOption
+      ),
+      Endpoints.crud_endpoints(
+        :passenger_type,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::PassengerType
       )
     ].freeze
   end
