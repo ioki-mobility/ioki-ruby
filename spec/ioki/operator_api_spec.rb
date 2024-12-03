@@ -1976,4 +1976,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::PassengerType)
     end
   end
+
+  describe '#announcements(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/announcements')
+        result_with_index_data
+      end
+
+      expect(operator_client.announcements('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Announcement))
+    end
+  end
+
+  describe '#announcement(product_id, announcement_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/announcements/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.announcement('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Announcement)
+    end
+  end
+
+  describe '#create_announcement(product_id, announcement)' do
+    let(:announcement) { Ioki::Model::Operator::Announcement.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/announcements')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_announcement('0815', announcement, options))
+        .to be_a(Ioki::Model::Operator::Announcement)
+    end
+  end
+
+  describe '#update_announcement(product_id, announcement_id, announcement)' do
+    let(:announcement) { Ioki::Model::Operator::Announcement.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/announcements/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_announcement('0815', '4711', announcement, options))
+        .to be_a(Ioki::Model::Operator::Announcement)
+    end
+  end
+
+  describe '#delete_announcement(product_id, announcement_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/announcements/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_announcement('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Announcement)
+    end
+  end
 end
