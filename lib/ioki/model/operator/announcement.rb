@@ -52,12 +52,8 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :array
 
-        attribute :zone_id,
-                  on:   [:create, :read],
-                  type: :string
-
         attribute :resource_id,
-                  on:   [:create, :update],
+                  on:   [:create, :read, :update],
                   type: :string
       end
     end
