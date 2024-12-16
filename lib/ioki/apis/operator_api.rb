@@ -385,6 +385,11 @@ module Ioki
         :passenger_type,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::PassengerType
+      ),
+      Endpoints.crud_endpoints(
+        :announcement,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Announcement
       )
     ].freeze
   end
