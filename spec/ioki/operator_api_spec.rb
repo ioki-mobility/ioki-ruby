@@ -2043,4 +2043,73 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Announcement)
     end
   end
+
+  describe '#blacklisted_travel_combinations(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/blacklisted_travel_combinations')
+        result_with_index_data
+      end
+
+      expect(operator_client.blacklisted_travel_combinations('0815', options))
+        .to all(be_a(Ioki::Model::Operator::BlacklistedTravelCombination))
+    end
+  end
+
+  describe '#blacklisted_travel_combination(product_id, blacklisted_travel_combination_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/blacklisted_travel_combinations/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.blacklisted_travel_combination('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
+    end
+  end
+
+  describe '#create_blacklisted_travel_combination(product_id, blacklisted_travel_combination)' do
+    let(:blacklisted_travel_combination) { Ioki::Model::Operator::BlacklistedTravelCombination.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/blacklisted_travel_combinations')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_blacklisted_travel_combination('0815', blacklisted_travel_combination, options))
+        .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
+    end
+  end
+
+  # rubocop:disable Layout/LineLength
+  describe '#update_blacklisted_travel_combination(product_id, blacklisted_travel_combination_id, blacklisted_travel_combination)' do
+    let(:blacklisted_travel_combination) { Ioki::Model::Operator::BlacklistedTravelCombination.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/blacklisted_travel_combinations/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_blacklisted_travel_combination('0815', '4711', blacklisted_travel_combination, options))
+        .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
+    end
+  end
+  # rubocop:enable Layout/LineLength
+
+  describe '#delete_blacklisted_travel_combination(product_id, blacklisted_travel_combination_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/blacklisted_travel_combinations/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_blacklisted_travel_combination('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
+    end
+  end
 end
