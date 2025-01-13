@@ -21,13 +21,6 @@ module Ioki
 
         sleep(sleep_seconds)
         retry
-      rescue StandardError => e
-        retries -= 1
-
-        raise MaximumReached, "Gave up after #{max_retries} retries: #{e.message}" if retries <= 0
-
-        sleep(sleep_seconds)
-        retry
       end
     end
   end
