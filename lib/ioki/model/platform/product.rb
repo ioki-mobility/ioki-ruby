@@ -24,6 +24,7 @@ module Ioki
         attribute :ride_options, on: :read, type: :object, class_name: 'RideOptions'
         attribute :ride_rating_criteria, on: :read, type: :array
         attribute :service_time_info, on: :read, type: :string
+        attribute :slug, on: [:read, :update], type: :string
         attribute :support_email, on: :read, type: :string
         attribute :support_phone_number, on: :read, type: :string
         attribute :support_website_url, on: :read, type: :string
