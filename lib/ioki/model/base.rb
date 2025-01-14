@@ -261,7 +261,7 @@ module Ioki
       def value_type(value)
         return value.attributes[:type] if value.respond_to?(:attributes)
 
-        value['type']
+        value['type'] || value[:type]
       end
 
       def parse_as_type(type, attribute, value)

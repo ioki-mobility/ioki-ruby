@@ -732,6 +732,12 @@ RSpec.describe Ioki::Model::Base do
           expect(result).to be_a(Ioki::Model::Operator::Place)
           expect(result.type).to eq('place')
         end
+
+        it 'accepts symbolized keys' do
+          result = model.type_cast_attribute_value(:attr, { type: 'place' })
+          expect(result).to be_a(Ioki::Model::Operator::Place)
+          expect(result.type).to eq('place')
+        end
       end
     end
 
