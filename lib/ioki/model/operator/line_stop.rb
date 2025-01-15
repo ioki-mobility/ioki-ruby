@@ -59,6 +59,11 @@ module Ioki
                   on:   [:read, :create],
                   type: :string
 
+        attribute :station,
+                  on:         [:read],
+                  type:       :object,
+                  class_name: 'Station'
+
         attribute :version,
                   on:   :read,
                   type: :integer
