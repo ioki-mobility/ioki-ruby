@@ -29,6 +29,10 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
+        attribute :destination_id,
+                  on:   :read,
+                  type: :string
+
         attribute :has_recurrence_rules,
                   on:   :read,
                   type: :boolean
@@ -46,6 +50,10 @@ module Ioki
                   on:             [:create, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
+
+        attribute :origin_id,
+                  on:   :read,
+                  type: :string
 
         attribute :recurrence_rules,
                   on:             [:create, :read, :update],
