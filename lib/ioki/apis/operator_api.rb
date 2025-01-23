@@ -395,6 +395,11 @@ module Ioki
         :blacklisted_travel_combination,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::BlacklistedTravelCombination
+      ),
+      Endpoints.crud_endpoints(
+        :restricted_area,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::RestrictedArea
       )
     ].freeze
   end
