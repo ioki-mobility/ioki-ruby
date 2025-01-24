@@ -21,15 +21,15 @@ module Ioki
                   type: :date_time
 
         attribute :day_of_week,
-                  on:   [:read, :update],
+                  on:   [:create, :read, :update],
                   type: :integer
 
         attribute :valid_from_offset,
-                  on:   [:read, :update],
+                  on:   [:create, :read, :update],
                   type: :integer
 
         attribute :valid_until_offset,
-                  on:   [:read, :update],
+                  on:   [:create, :read, :update],
                   type: :integer
       end
     end
