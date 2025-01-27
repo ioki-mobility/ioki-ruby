@@ -51,6 +51,7 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:valid_for_driver_until).as(:date_time) }
   it { is_expected.to define_attribute(:valid_for_passenger_until).as(:date_time) }
   it { is_expected.to define_attribute(:vehicle).as(:object).with(class_name: 'Vehicle') }
+  it { is_expected.to define_attribute(:vehicle_approached_dropoff_at).as(:date_time) }
   it { is_expected.to define_attribute(:vehicle_approached_pickup_at).as(:date_time) }
   it { is_expected.to define_attribute(:vehicle_id).as(:string) }
   it { is_expected.to define_attribute(:vehicle_positions).as(:array).with(class_name: 'VehiclePosition') }

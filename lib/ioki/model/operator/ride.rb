@@ -228,6 +228,10 @@ module Ioki
                   type:       :object,
                   class_name: 'Vehicle'
 
+        attribute :vehicle_approached_dropoff_at,
+                  on:   :read,
+                  type: :date_time
+
         attribute :vehicle_approached_pickup_at,
                   on:   :read,
                   type: :date_time
