@@ -399,7 +399,8 @@ module Ioki
       Endpoints.crud_endpoints(
         :restricted_area,
         base_path:   [API_BASE_PATH, 'products', :id],
-        model_class: Ioki::Model::Operator::RestrictedArea
+        model_class: Ioki::Model::Operator::RestrictedArea,
+        except:      [:update]
       )
     ].freeze
   end
