@@ -2112,4 +2112,56 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
     end
   end
+
+  describe '#restricted_areas(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/restricted_areas')
+        result_with_index_data
+      end
+
+      expect(operator_client.restricted_areas('0815', options))
+        .to all(be_a(Ioki::Model::Operator::RestrictedArea))
+    end
+  end
+
+  describe '#restricted_area(product_id, restricted_area_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/restricted_areas/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.restricted_area('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RestrictedArea)
+    end
+  end
+
+  describe '#create_restricted_area(product_id, restricted_area)' do
+    let(:restricted_area) { Ioki::Model::Operator::RestrictedArea.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/restricted_areas')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_restricted_area('0815', restricted_area, options))
+        .to be_a(Ioki::Model::Operator::RestrictedArea)
+    end
+  end
+
+  describe '#delete_restricted_area(product_id, restricted_area_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/restricted_areas/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_restricted_area('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RestrictedArea)
+    end
+  end
 end
