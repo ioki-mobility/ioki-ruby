@@ -3,13 +3,17 @@
 require 'spec_helper'
 require 'ioki/apis/endpoints/endpoints'
 
+class DummyModel < Ioki::Model::Base
+  attribute :value, on: :read, type: :integer
+end
+
 class DummyApi
   ENDPOINTS =
     [
       Ioki::Endpoints::Index.new(
         :ping,
         base_path:   ['driver'],
-        model_class: Ioki::Model::Base
+        model_class: DummyModel
       )
     ].freeze
 end
@@ -96,6 +100,46 @@ RSpec.describe Ioki::Retry do
       end.to raise_error Ioki::Retry::MaximumReached
 
       expect(ping_request).to have_been_requested.times(3)
+    end
+  end
+
+  context 'with auto_paginate' do
+    let(:client) { Ioki::Client.new(Ioki::Configuration.new, DummyApi) }
+
+    it 'retries failed requests' do
+      per_page = 2
+      body = lambda do |page, total_pages|
+        {
+          data: (((page - 1) * per_page)...page * per_page).map { |value| { value: value } },
+          meta: {
+            total_count: per_page * total_pages,
+            page:        page,
+            last_page:   page == total_pages,
+            total_pages: total_pages
+          }
+        }
+      end
+
+      ping_request_page_1 = stub_request(:get, 'https://app.io.ki/api/driver/ping?page=1')
+        .to_return_json({ status: 200, body: body.call(1, 3) })
+      ping_request_page_2 = stub_request(:get, 'https://app.io.ki/api/driver/ping?page=2')
+        .to_return_json(
+          { status: 500, body: {} },
+          { status: 200, body: body.call(2, 3) }
+        )
+      ping_request_page_3 = stub_request(:get, 'https://app.io.ki/api/driver/ping?page=3')
+        .to_return_json({ status: 200, body: body.call(3, 3) })
+
+      received = []
+
+      client.ping(auto_paginate: true) do |item|
+        received << item.value
+      end
+
+      expect(received).to eq [0, 1, 2, 3, 4, 5]
+      expect(ping_request_page_1).to have_been_requested.once
+      expect(ping_request_page_2).to have_been_requested.twice
+      expect(ping_request_page_3).to have_been_requested.once
     end
   end
 end
