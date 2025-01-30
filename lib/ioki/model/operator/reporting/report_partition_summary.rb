@@ -17,6 +17,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :release_stage,
+                    on:   :read,
+                    type: :string
+
           attribute :report_partition_infos,
                     on:         :read,
                     type:       :array,
