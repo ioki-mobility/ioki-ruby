@@ -26,16 +26,12 @@ module Ioki
           options = args.last.is_a?(::Hash) ? args.pop : {}
           model = args.last
 
-          Ioki::Retry.n_times(config.retry_count, config.retry_sleep_seconds) do
-            Ioki::Oauth::WithTokenRefresh.call(config) do
-              if [Endpoints::Create, Endpoints::Update, Endpoints::UpdateSingular].include?(endpoint.class)
-                endpoint.call(self, model, args, options)
-              elsif endpoint.is_a? Endpoints::Index
-                endpoint.call(self, args, options, &block)
-              else
-                endpoint.call(self, args, options)
-              end
-            end
+          if [Endpoints::Create, Endpoints::Update, Endpoints::UpdateSingular].include?(endpoint.class)
+            endpoint.call(self, model, args, options)
+          elsif endpoint.is_a? Endpoints::Index
+            endpoint.call(self, args, options, &block)
+          else
+            endpoint.call(self, args, options)
           end
         end
       end
@@ -57,13 +53,17 @@ module Ioki
         url.query = URI.encode_www_form(query_params)
       end
 
-      response = config.http_adapter.run_request(method, url, body, headers)
+      Ioki::Retry.n_times(config.retry_count, config.retry_sleep_seconds) do
+        Ioki::Oauth::WithTokenRefresh.call(config) do
+          response = config.http_adapter.run_request(method, url, body, headers)
 
-      error_class = Ioki::Error.http_status_code_to_error_class(response.status)
+          error_class = Ioki::Error.http_status_code_to_error_class(response.status)
 
-      raise error_class, response if error_class
+          raise error_class, response if error_class
 
-      return response.body, response
+          return response.body, response
+        end
+      end
     end
 
     def build_request_url(api_namespace, *url_fragments)
