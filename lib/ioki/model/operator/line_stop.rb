@@ -56,7 +56,7 @@ module Ioki
                   type:           :boolean
 
         attribute :station_id,
-                  on:   [:read, :create],
+                  on:   [:read, :create, :update],
                   type: :string
 
         attribute :version,
