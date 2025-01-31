@@ -55,6 +55,10 @@ module Ioki
                   type:       :object,
                   class_name: 'CancellationStatement'
 
+        attribute :cancelled_at,
+                  on:   :read,
+                  type: :date_time
+
         attribute :creator_id,
                   on:   :read,
                   type: :string
@@ -85,6 +89,10 @@ module Ioki
                   on:         :read,
                   type:       :object,
                   class_name: 'CalculatedPoint'
+
+        attribute :dropped_off_at,
+                  on:   :read,
+                  type: :date_time
 
         attribute :dropoff_task,
                   on:         :read,
@@ -129,6 +137,10 @@ module Ioki
         attribute :payment_state,
                   on:   :read,
                   type: :string
+
+        attribute :picked_up_at,
+                  on:   :read,
+                  type: :date_time
 
         attribute :pickup,
                   on:         :read,
@@ -216,6 +228,14 @@ module Ioki
                   type:       :object,
                   class_name: 'Vehicle'
 
+        attribute :vehicle_approached_dropoff_at,
+                  on:   :read,
+                  type: :date_time
+
+        attribute :vehicle_approached_pickup_at,
+                  on:   :read,
+                  type: :date_time
+
         attribute :vehicle_id,
                   on:   :read,
                   type: :string
@@ -229,9 +249,17 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :vehicle_reached_dropoff_at,
+                  on:   :read,
+                  type: :date_time
+
         attribute :vehicle_reached_pickup,
                   on:   :read,
                   type: :boolean
+
+        attribute :vehicle_reached_pickup_at,
+                  on:   :read,
+                  type: :date_time
       end
     end
   end
