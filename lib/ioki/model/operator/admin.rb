@@ -35,10 +35,6 @@ module Ioki
         attribute :locale,
                   on:   :read,
                   type: :string
-
-        attribute :super,
-                  on:   :read,
-                  type: :boolean
       end
     end
   end
