@@ -98,6 +98,10 @@ module Ioki
                     on:   :read,
                     type: :boolean
 
+          attribute :release_stage,
+                    on:   :read,
+                    type: :string
+
           attribute :created_at,
                     on:   :read,
                     type: :date_time
