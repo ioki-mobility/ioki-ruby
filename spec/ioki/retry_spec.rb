@@ -101,6 +101,36 @@ RSpec.describe Ioki::Retry do
 
       expect(ping_request).to have_been_requested.times(3)
     end
+
+    context 'with network exceptions' do
+      let!(:ping_request) do
+        stub_request(:get, 'https://app.io.ki/api/driver/ping')
+          .to_return(
+            status:  200,
+            body:    '{"data": []}',
+            headers: { content_type: 'application/json' }
+          )
+      end
+
+      before do
+        return_values = [
+          proc { raise Faraday::ConnectionFailed, StandardError.new },
+          proc { raise EOFError }
+        ]
+
+        allow(client.config.http_adapter).to receive(:run_request).and_wrap_original do |original, *args|
+          return_values.empty? ? original.call(*args) : return_values.shift.call
+        end
+      end
+
+      it 'retries a connection failure' do
+        client.ping
+
+        # The webmock request is only invoked once. The other two exceptions
+        # happen without invoking the mock.
+        expect(ping_request).to have_been_requested.once
+      end
+    end
   end
 
   context 'with auto_paginate' do
