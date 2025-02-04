@@ -2,17 +2,6 @@
 
 require 'spec_helper'
 
-class NullApi
-  ENDPOINTS =
-    [
-      Ioki::Endpoints::Index.new(
-        :ping,
-        base_path:   ['driver'],
-        model_class: Ioki::Model::Base
-      )
-    ].freeze
-end
-
 RSpec.describe Ioki::Client do
   let(:config) { Ioki::Configuration.new http_adapter: http_adapter }
   let(:client) { described_class.new(config, NullApi) }
@@ -24,6 +13,25 @@ RSpec.describe Ioki::Client do
     end
   end
   let(:stubs) { Faraday::Adapter::Test::Stubs.new }
+
+  before do
+    stub_const('DummyModel', Class.new(Ioki::Model::Base) do
+      attribute :id, type: :string, on: :read
+    end)
+    stub_const('NullApi', Class.new)
+    stub_const('NullApi::ENDPOINTS', [
+      Ioki::Endpoints::Index.new(
+        :ping,
+        base_path:   ['driver'],
+        model_class: DummyModel
+      ),
+      Ioki::Endpoints::Show.new(
+        :pong,
+        base_path:   ['driver'],
+        model_class: DummyModel
+      )
+    ].freeze)
+  end
 
   describe 'constants' do
     it { expect(described_class::VALID_API_NAMESPACES).to eq([:driver, :operator, :passenger, :platform]) }
@@ -268,6 +276,20 @@ RSpec.describe Ioki::Client do
         expect do
           client.ping
         end.to raise_error(Faraday::ParsingError)
+      end
+    end
+
+    context 'with empty response' do
+      let!(:pong_request) do
+        stub_request(:get, 'https://app.io.ki/api/driver/pongs')
+          .to_return_json(
+            status: 200,
+            body:   {}
+          )
+      end
+
+      it 'returns an empty response' do
+        expect(client.pong(DummyModel.new(1))).to be_an_instance_of(DummyModel)
       end
     end
   end
