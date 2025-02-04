@@ -3,7 +3,14 @@
 require 'spec_helper'
 
 class NullApi
-  ENDPOINTS = [].freeze
+  ENDPOINTS =
+    [
+      Ioki::Endpoints::Index.new(
+        :ping,
+        base_path:   ['driver'],
+        model_class: Ioki::Model::Base
+      )
+    ].freeze
 end
 
 RSpec.describe Ioki::Client do
@@ -240,6 +247,27 @@ RSpec.describe Ioki::Client do
         expect { client.build_request_url(:foobar, '/foo/', 42, '/bar/') }.to raise_error(
           ArgumentError, "Unknown api namespace 'foobar'"
         )
+      end
+    end
+  end
+
+  context 'with endpoints' do
+    let(:client) { described_class.new(Ioki::Configuration.new, NullApi) }
+
+    context 'with invalid JSON response' do
+      let!(:ping_request) do
+        stub_request(:get, 'https://app.io.ki/api/driver/ping')
+          .to_return(
+            status:  200,
+            body:    '{ look"mum" & $ : borken_json ',
+            headers: { content_type: 'application/json' }
+          )
+      end
+
+      it 'raises a parsing error' do
+        expect do
+          client.ping
+        end.to raise_error(Faraday::ParsingError)
       end
     end
   end
