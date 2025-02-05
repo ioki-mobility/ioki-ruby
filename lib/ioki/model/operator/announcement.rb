@@ -53,8 +53,9 @@ module Ioki
                   type: :array
 
         attribute :resource_id,
-                  on:   [:create, :read, :update],
-                  type: :string
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
       end
     end
   end
