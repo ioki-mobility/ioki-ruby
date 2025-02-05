@@ -17,6 +17,18 @@ module Ioki
         f.adapter :net_http
 
         f.request :authorization, 'Bearer', -> { config.token }
+        f.request :retry, {
+          max:            config.retry_count - 1,
+          interval:       config.retry_sleep_seconds,
+          methods:        Faraday::Connection::METHODS,
+          exceptions:     Faraday::Retry::Middleware::DEFAULT_EXCEPTIONS + [
+            Faraday::ConnectionFailed,
+            Faraday::TimeoutError,
+            Faraday::SSLError,
+            EOFError
+          ],
+          retry_statuses: [500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511]
+        }
 
         # The placement of the middleware here determines the execution order
         # It's important, that the logger is defined before the :json middleware

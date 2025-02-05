@@ -53,16 +53,14 @@ module Ioki
         url.query = URI.encode_www_form(query_params)
       end
 
-      Ioki::Retry.n_times(config.retry_count, config.retry_sleep_seconds) do
-        Ioki::Oauth::WithTokenRefresh.call(config) do
-          response = config.http_adapter.run_request(method, url, body, headers)
+      Ioki::Oauth::WithTokenRefresh.call(config) do
+        response = config.http_adapter.run_request(method, url, body, headers)
 
-          error_class = Ioki::Error.http_status_code_to_error_class(response.status)
+        error_class = Ioki::Error.http_status_code_to_error_class(response.status)
 
-          raise error_class, response if error_class
+        raise error_class, response if error_class
 
-          return response.body, response
-        end
+        return response.body, response
       end
     end
 

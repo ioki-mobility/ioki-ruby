@@ -121,8 +121,7 @@ RSpec.describe Ioki::Client do
 
       it 'maps this to the proper error and raises it' do
         expect { client_response }.to raise_error(
-          an_instance_of(Ioki::Retry::MaximumReached)
-            .and(having_attributes(cause: an_instance_of(Ioki::Error::InternalServerError)))
+          an_instance_of(Ioki::Error::InternalServerError)
         )
       end
     end
