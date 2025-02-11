@@ -2,10 +2,6 @@
 
 require 'spec_helper'
 
-class NullApi
-  ENDPOINTS = [].freeze
-end
-
 RSpec.describe Ioki::Client do
   let(:config) { Ioki::Configuration.new http_adapter: http_adapter }
   let(:client) { described_class.new(config, NullApi) }
@@ -17,6 +13,20 @@ RSpec.describe Ioki::Client do
     end
   end
   let(:stubs) { Faraday::Adapter::Test::Stubs.new }
+
+  before do
+    stub_const('DummyModel', Class.new(Ioki::Model::Base) do
+      attribute :id, type: :string, on: :read
+    end)
+    stub_const('NullApi', Class.new)
+    stub_const('NullApi::ENDPOINTS', [
+      Ioki::Endpoints.crud_endpoints(
+        :vehicle,
+        base_path:   ['driver'],
+        model_class: DummyModel
+      )
+    ].freeze)
+  end
 
   describe 'constants' do
     it { expect(described_class::VALID_API_NAMESPACES).to eq([:driver, :operator, :passenger, :platform]) }
@@ -197,18 +207,8 @@ RSpec.describe Ioki::Client do
           [200, {}, '']
         end
 
-        it 'returns nil' do
-          expect(client_response[0]).to be_nil
-        end
-      end
-
-      context 'when response body is somewhat malformed' do
-        let(:response) do
-          [200, {}, '{ look"mum" & $ : borken_json ']
-        end
-
-        it 'raise a proper error' do
-          expect { client_response }.to raise_error(Faraday::ParsingError)
+        it 'returns empty string' do
+          expect(client_response[0]).to be_empty
         end
       end
     end
@@ -250,6 +250,120 @@ RSpec.describe Ioki::Client do
         expect { client.build_request_url(:foobar, '/foo/', 42, '/bar/') }.to raise_error(
           ArgumentError, "Unknown api namespace 'foobar'"
         )
+      end
+    end
+  end
+
+  context 'with endpoints' do
+    let(:client) { described_class.new(Ioki::Configuration.new, NullApi) }
+
+    context 'with invalid JSON response' do
+      let!(:vehicles_request) do
+        stub_request(:get, 'https://app.io.ki/api/driver/vehicles')
+          .to_return(
+            status:  200,
+            body:    '{ look"mum" & $ : borken_json ',
+            headers: { content_type: 'application/json' }
+          )
+      end
+
+      it 'raises a parsing error' do
+        expect do
+          client.vehicles
+        end.to raise_error(Faraday::ParsingError)
+      end
+    end
+
+    context 'with empty response' do
+      let!(:get_vehicles_request) do
+        stub_request(:get, 'https://app.io.ki/api/driver/vehicles')
+          .to_return_json(
+            status: 200,
+            body:   {}
+          )
+      end
+      let!(:get_vehicle_request) do
+        stub_request(:get, 'https://app.io.ki/api/driver/vehicles/1')
+          .to_return_json(
+            status: 200,
+            body:   {}
+          )
+      end
+      let!(:create_vehicle_request) do
+        stub_request(:post, 'https://app.io.ki/api/driver/vehicles')
+          .to_return_json(
+            status: 200,
+            body:   {}
+          )
+      end
+      let!(:update_vehicle_request) do
+        stub_request(:patch, 'https://app.io.ki/api/driver/vehicles/1')
+          .to_return_json(
+            status: 200,
+            body:   {}
+          )
+      end
+      let!(:delete_vehicle_request) do
+        stub_request(:delete, 'https://app.io.ki/api/driver/vehicles/1')
+          .to_return_json(
+            status: 200,
+            body:   {}
+          )
+      end
+
+      it 'returns empty models for index requests' do
+        expect(client.vehicles).to eq []
+        expect(get_vehicles_request).to have_been_requested.once
+      end
+
+      it 'returns empty models for get requests' do
+        expect(client.vehicle(DummyModel.new(id: 1))).to be_an_instance_of(DummyModel)
+        expect(get_vehicle_request).to have_been_requested.once
+      end
+
+      it 'returns empty models for create requests' do
+        expect(client.create_vehicle(DummyModel.new(id: 1))).to be_an_instance_of(DummyModel)
+        expect(create_vehicle_request).to have_been_requested.once
+      end
+
+      it 'returns empty models for update requests' do
+        expect(client.update_vehicle(DummyModel.new(id: 1))).to be_an_instance_of(DummyModel)
+        expect(update_vehicle_request).to have_been_requested.once
+      end
+
+      it 'returns empty models for delete requests' do
+        expect(client.delete_vehicle(DummyModel.new(id: 1))).to be_an_instance_of(DummyModel)
+        expect(delete_vehicle_request).to have_been_requested.once
+      end
+    end
+
+    context 'with an empty string response' do
+      let!(:update_vehicle_request) do
+        stub_request(:patch, 'https://app.io.ki/api/driver/vehicles/1')
+          .to_return_json(
+            status: 200,
+            body:   ''
+          )
+      end
+
+      it 'returns nil for update requests' do
+        expect(client.update_vehicle(DummyModel.new(id: 1))).to be_nil
+        expect(update_vehicle_request).to have_been_requested.once
+      end
+    end
+
+    context 'with a nil response' do
+      let!(:update_vehicle_request) do
+        stub_request(:patch, 'https://app.io.ki/api/driver/vehicles/1')
+          .to_return_json(
+            status: 200,
+            body:   nil
+          )
+      end
+
+      it 'returns nil for update requests' do
+        expect(client.update_vehicle(DummyModel.new(id: 1))).to be_nil
+        expect(update_vehicle_request).to have_been_requested.once
       end
     end
   end
