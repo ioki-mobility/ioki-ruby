@@ -24,14 +24,15 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :destination_gid,
-                  on:             [:create, :update],
+        attribute :destination_id,
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
-        attribute :destination_id,
-                  on:   :read,
-                  type: :string
+        attribute :destination_type,
+                  on:             [:create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :has_recurrence_rules,
                   on:   :read,
@@ -46,14 +47,15 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :origin_gid,
-                  on:             [:create, :update],
+        attribute :origin_id,
+                  on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
-        attribute :origin_id,
-                  on:   :read,
-                  type: :string
+        attribute :origin_type,
+                  on:             [:create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
 
         attribute :recurrence_rules,
                   on:             [:create, :read, :update],
