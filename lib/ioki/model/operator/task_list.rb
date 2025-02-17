@@ -42,6 +42,11 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :deactivations,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Deactivation'
+
         attribute :end_location,
                   on:         :read,
                   type:       :object,
@@ -64,6 +69,10 @@ module Ioki
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :string
+
+        attribute :matching_configuration_name,
+                  on:   :read,
+                  type: :string
 
         attribute :matching_rank,
                   on:   [:create, :read, :update],
@@ -144,6 +153,10 @@ module Ioki
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create],
                   type:           :string
+
+        attribute :line_name,
+                  on:   :read,
+                  type: :string
 
         attribute :version,
                   on:             [:read, :update],

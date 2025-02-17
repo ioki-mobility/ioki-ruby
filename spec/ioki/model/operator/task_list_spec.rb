@@ -62,11 +62,15 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     it { is_expected.to define_attribute(:actual_starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:ad_hoc_bookable).as(:boolean) }
     it { is_expected.to define_attribute(:deactivated).as(:boolean) }
+    it { is_expected.to define_attribute(:deactivations).as(:array).with(class_name: 'Deactivation') }
     it { is_expected.to define_attribute(:end_location).as(:object).with(class_name: %w[Place Station]) }
     it { is_expected.to define_attribute(:end_location_id).as(:string) }
     it { is_expected.to define_attribute(:end_location_type).as(:string) }
     it { is_expected.to define_attribute(:ends_at).as(:date_time) }
+    it { is_expected.to define_attribute(:line_id).as(:string) }
+    it { is_expected.to define_attribute(:line_name).as(:string) }
     it { is_expected.to define_attribute(:matching_configuration_id).as(:string) }
+    it { is_expected.to define_attribute(:matching_configuration_name).as(:string) }
     it { is_expected.to define_attribute(:matching_rank).as(:integer) }
     it { is_expected.to define_attribute(:num_prebooked_rides).as(:integer) }
     it { is_expected.to define_attribute(:paused).as(:boolean) }
