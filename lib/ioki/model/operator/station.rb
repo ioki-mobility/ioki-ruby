@@ -154,6 +154,26 @@ module Ioki
         attribute :wheelchair_boarding_time,
                   on:   [:read, :create, :update],
                   type: :integer
+
+        attribute :public_transport_changeover,
+                  on:   :read,
+                  type: :boolean
+
+        attribute :transport_station_name,
+                  on:   [:read, :update],
+                  type: :string
+
+        attribute :transport_station_vendor,
+                  on:   [:read, :update],
+                  type: :string
+
+        attribute :transport_station_vendor_id,
+                  on:   [:read, :update],
+                  type: :string
+
+        attribute :transport_station_types,
+                  on:   [:read, :update],
+                  type: :array
       end
     end
   end
