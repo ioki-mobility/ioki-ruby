@@ -2164,4 +2164,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RestrictedArea)
     end
   end
+
+  describe '#stations_search_public_transport(product_id, ...)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/stations/search_public_transport')
+        result_with_index_data
+      end
+
+      expect(operator_client.stations_search_public_transport('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Station))
+    end
+  end
 end
