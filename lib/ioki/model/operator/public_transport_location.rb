@@ -24,7 +24,7 @@ module Ioki
                   on:   :read,
                   type: :float
 
-        attribute :tranpsport_types,
+        attribute :transport_types,
                   on:   :read,
                   type: :array
 
