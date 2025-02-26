@@ -446,7 +446,7 @@ module Ioki
         :stations_search_public_transport,
         base_path:   [API_BASE_PATH, 'providers', :id, 'stations'],
         path:        'search_public_transport',
-        model_class: Ioki::Model::Operator::Station
+        model_class: Ioki::Model::Operator::PublicTransportLocation
       )
     ].freeze
   end

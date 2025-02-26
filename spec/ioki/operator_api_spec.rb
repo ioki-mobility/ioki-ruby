@@ -2368,7 +2368,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.stations_search_public_transport('0815', options))
-        .to all(be_a(Ioki::Model::Operator::Station))
+        .to all(be_a(Ioki::Model::Operator::PublicTransportLocation))
     end
   end
 end
