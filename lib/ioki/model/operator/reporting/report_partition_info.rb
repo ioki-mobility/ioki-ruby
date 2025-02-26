@@ -13,6 +13,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :estimated_row_count,
+                    on:   :read,
+                    type: :integer
+
           attribute :versions,
                     on:   :read,
                     type: :array
