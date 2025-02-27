@@ -401,6 +401,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::RestrictedArea,
         except:      [:update]
+      ),
+      Endpoints::Index.new(
+        :stations_public_transport_locations,
+        base_path:   [API_BASE_PATH, 'products', :id, 'stations'],
+        path:        'public_transport_locations',
+        model_class: Ioki::Model::Operator::PublicTransportLocation
       )
     ].freeze
   end
