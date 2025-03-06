@@ -86,6 +86,7 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     it { is_expected.to define_attribute(:starts_at).as(:date_time) }
     it { is_expected.to define_attribute(:state).as(:string) }
     it { is_expected.to define_attribute(:vehicle_id).as(:string) }
+    it { is_expected.to define_attribute(:driver_name).as(:string) }
   end
 
   context 'when the start_location_type is place and the end_location_type is station' do

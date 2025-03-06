@@ -158,6 +158,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :driver_name,
+                  on:   :read,
+                  type: :string
+
         attribute :version,
                   on:             [:read, :update],
                   omit_if_nil_on: [:update],
