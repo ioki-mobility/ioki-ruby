@@ -2164,4 +2164,31 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RestrictedArea)
     end
   end
+
+  describe '#broadcasts(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/broadcasts')
+        result_with_index_data
+      end
+
+      expect(operator_client.broadcasts('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Broadcast))
+    end
+  end
+
+  describe '#create_broadcast(product_id, broadcast)' do
+    let(:broadcast) { Ioki::Model::Operator::Broadcast.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/broadcasts')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_broadcast('0815', broadcast, options))
+        .to be_a(Ioki::Model::Operator::Broadcast)
+    end
+  end
 end
