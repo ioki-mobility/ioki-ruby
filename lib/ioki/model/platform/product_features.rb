@@ -17,6 +17,7 @@ module Ioki
         attribute :station_search, type: :boolean, on: :read
         attribute :update_passengers_after_booking, type: :boolean, on: :read
         attribute :venues, type: :boolean, on: :read
+        attribute :passenger_note_to_driver, type: :boolean, on: :read
       end
     end
   end
