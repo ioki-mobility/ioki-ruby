@@ -401,6 +401,18 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::RestrictedArea,
         except:      [:update]
+      ),
+      Endpoints.crud_endpoints(
+        :driver_report,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::DriverReport,
+        except:      [:create, :delete, :update]
+      ),
+      Endpoints.custom_endpoints(
+        'driver_reports',
+        actions:     { 'acknowledge' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'driver_reports', :id],
+        model_class: Ioki::Model::Operator::DriverReport
       )
     ].freeze
   end
