@@ -2216,4 +2216,41 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::DriverEmergency)
     end
   end
+
+  describe '#driver_reports(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_reports')
+        result_with_index_data
+      end
+
+      expect(operator_client.driver_reports('0815', options))
+        .to all(be_a(Ioki::Model::Operator::DriverReport))
+    end
+  end
+
+  describe '#driver_report(product_id, driver_report_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_reports/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.driver_report('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::DriverReport)
+    end
+  end
+
+  describe '#driver_reports_acknowledge(product_id, driver_report_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_reports/4711/acknowledge')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.driver_reports_acknowledge('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::DriverReport)
+    end
+  end
 end
