@@ -43,6 +43,10 @@ RSpec.describe Ioki::Webhooks::Event do
     expect(event.id).to eq params['id']
   end
 
+  it 'has the correct api_version' do
+    expect(event.api_version).to eq params['api_version']
+  end
+
   it 'has the correct provider_id' do
     expect(event.provider_id).to eq params['provider_id']
   end
