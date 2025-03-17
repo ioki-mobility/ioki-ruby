@@ -10,9 +10,6 @@ Metrics/ParameterLists:
     - 'lib/ioki/apis/endpoints/create.rb'
     - 'lib/ioki/apis/endpoints/endpoint.rb'
 
-Style/OpenStructUse:
-  Enabled: no
-
 RSpec/DescribeClass:
   Exclude:
     - spec/ioki/examples/*
