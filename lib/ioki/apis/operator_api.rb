@@ -407,6 +407,17 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Broadcast,
         except:      [:delete, :show, :update]
+      ),
+      Endpoints::Index.new(
+        :driver_emergencies,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::DriverEmergency
+      ),
+      Endpoints.custom_endpoints(
+        'driver_emergencies',
+        actions:     { 'acknowledge' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'driver_emergencies', :id],
+        model_class: Ioki::Model::Operator::DriverEmergency
       )
     ].freeze
   end
