@@ -401,6 +401,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::RestrictedArea,
         except:      [:update]
+      ),
+      Endpoints.crud_endpoints(
+        :driver_multicast,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::DriverMulticast,
+        except:      [:update, :delete]
       )
     ].freeze
   end
