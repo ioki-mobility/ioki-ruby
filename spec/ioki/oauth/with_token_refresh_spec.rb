@@ -52,7 +52,7 @@ RSpec.describe Ioki::Oauth::WithTokenRefresh do
 
       expect_any_instance_of(OAuth2::AccessToken)
         .to receive(:refresh!)
-        .and_return(OpenStruct.new(token: 'correct-token', refresh_token: 'new-refresh-token'))
+        .and_return(instance_double(OAuth2::AccessToken, token: 'correct-token', refresh_token: 'new-refresh-token'))
       valid_token_request = stub_request(:get, 'https://app.io.ki/api/driver/ping')
         .with(
           headers: { 'Authorization' => 'Bearer correct-token' }

@@ -4,7 +4,17 @@ require 'ostruct'
 
 module Ioki
   module Webhooks
-    class Event < OpenStruct
+    class Event
+      attr_reader :id, :event_type, :provider_id, :created_at, :api_version, :data
+
+      def initialize(params)
+        @id          = params['id']
+        @event_type  = params['event_type']
+        @provider_id = params['provider_id']
+        @created_at  = params['created_at']
+        @api_version = params['api_version']
+        @data        = params['data']
+      end
 
       def model
         model_class.new(data, nil, show_deprecation_warnings: false)
