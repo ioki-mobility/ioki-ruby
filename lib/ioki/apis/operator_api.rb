@@ -430,6 +430,11 @@ module Ioki
         actions:     { 'acknowledge' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'driver_reports', :id],
         model_class: Ioki::Model::Operator::DriverReport
+      ),
+      Endpoints.crud_endpoints(
+        :venue,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Venue
       )
     ].freeze
   end
