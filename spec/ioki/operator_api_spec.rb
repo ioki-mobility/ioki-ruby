@@ -2253,4 +2253,71 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::DriverReport)
     end
   end
+
+  describe '#venues(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/venues')
+        result_with_index_data
+      end
+
+      expect(operator_client.venues('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Venue))
+    end
+  end
+
+  describe '#venue(product_id, venue_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/venues/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.venue('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Venue)
+    end
+  end
+
+  describe '#create_venue(product_id, venue)' do
+    let(:venue) { Ioki::Model::Operator::Venue.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/venues')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_venue('0815', venue, options))
+        .to be_a(Ioki::Model::Operator::Venue)
+    end
+  end
+
+  describe '#update_venue(product_id, venue)' do
+    let(:venue) { Ioki::Model::Operator::Venue.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/venues/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_venue('0815', venue, options))
+        .to be_a(Ioki::Model::Operator::Venue)
+    end
+  end
+
+  describe '#delete_venue(product_id, venue_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/venues/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_venue('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Venue)
+    end
+  end
 end
