@@ -2320,4 +2320,43 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Venue)
     end
   end
+
+  describe '#driver_multicasts(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_multicasts')
+        result_with_index_data
+      end
+
+      expect(operator_client.driver_multicasts('0815', options))
+        .to all(be_a(Ioki::Model::Operator::DriverMulticast))
+    end
+  end
+
+  describe '#driver_multicast(product_id, driver_multicast_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_multicasts/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.driver_multicast('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::DriverMulticast)
+    end
+  end
+
+  describe '#create_driver_multicast(product_id, driver_multicast)' do
+    let(:driver_multicast) { Ioki::Model::Operator::DriverMulticast.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_multicasts')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_driver_multicast('0815', driver_multicast, options))
+        .to be_a(Ioki::Model::Operator::DriverMulticast)
+    end
+  end
 end
