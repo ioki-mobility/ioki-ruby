@@ -130,7 +130,6 @@ module Ioki
       Endpoints.crud_endpoints(
         :task_list,
         base_path:   [API_BASE_PATH, 'products', :id],
-        except:      [:create, :update, :delete],
         model_class: Ioki::Model::Platform::TaskList
       ),
       Endpoints.custom_endpoints(
