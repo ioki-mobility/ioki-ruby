@@ -443,9 +443,8 @@ module Ioki
         except:      [:update, :delete]
       ),
       Endpoints::Index.new(
-        :stations_public_transport_locations,
-        base_path:   [API_BASE_PATH, 'products', :id, 'stations'],
-        path:        'public_transport_locations',
+        :public_transport_locations,
+        base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::PublicTransportLocation
       )
     ].freeze
