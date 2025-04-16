@@ -2359,4 +2359,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::DriverMulticast)
     end
   end
+
+  describe '#public_transport_locations(product_id, ...)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/public_transport_locations')
+        result_with_index_data
+      end
+
+      expect(operator_client.public_transport_locations('0815', options))
+        .to all(be_a(Ioki::Model::Operator::PublicTransportLocation))
+    end
+  end
 end

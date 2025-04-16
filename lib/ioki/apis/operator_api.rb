@@ -441,6 +441,11 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::DriverMulticast,
         except:      [:update, :delete]
+      ),
+      Endpoints::Index.new(
+        :public_transport_locations,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::PublicTransportLocation
       )
     ].freeze
   end
