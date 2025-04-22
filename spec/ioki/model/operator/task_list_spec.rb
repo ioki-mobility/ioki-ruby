@@ -93,7 +93,7 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     let(:start_location_type) { 'place' }
     let(:end_location_type) { 'station' }
 
-    include_examples 'creates the task_list with the correct attributes'
+    it_behaves_like 'creates the task_list with the correct attributes'
 
     it do
       expect(task_list.start_location).to be_a(Ioki::Model::Operator::Place)
@@ -105,7 +105,7 @@ RSpec.describe Ioki::Model::Operator::TaskList do
     let(:start_location_type) { 'station' }
     let(:end_location_type) { 'place' }
 
-    include_examples 'creates the task_list with the correct attributes'
+    it_behaves_like 'creates the task_list with the correct attributes'
 
     it do
       expect(task_list.start_location).to be_a(Ioki::Model::Operator::Station)
