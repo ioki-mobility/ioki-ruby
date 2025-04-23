@@ -71,6 +71,11 @@ module Ioki
         attribute :waiting_time_rating,
                   on:   :read,
                   type: :integer
+
+        attribute :rating_line_items,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'RatingLineItem'
       end
     end
   end
