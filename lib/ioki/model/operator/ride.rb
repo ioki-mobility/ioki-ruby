@@ -59,6 +59,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :canceller,
+                  on:   :read,
+                  type: :string
+
         attribute :creator_id,
                   on:   :read,
                   type: :string
