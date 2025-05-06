@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class Telemetry < Base
+        def self.schema_path
+          'operator_api--v20210101--fleet_state--vehicle_telemetry'
+        end
+
         attribute :id,
                   on:   :read,
                   type: :string

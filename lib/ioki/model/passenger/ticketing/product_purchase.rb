@@ -5,6 +5,9 @@ module Ioki
     module Passenger
       module Ticketing
         class ProductPurchase < Base
+          def self.schema_path
+            'passenger_api--v1--ticketing--product_purchase_schema'
+          end
           attribute :purchase_options, on: :create, type: :array, class_name: 'PurchaseOption'
           attribute :redemption_options, on: :create, type: :array, class_name: 'RedemptionOption'
           attribute :ride_id, on: :create, type: :string

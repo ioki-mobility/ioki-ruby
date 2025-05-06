@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class LogpayCustomer < Base
         def self.schema_path
-          'passenger_api--logpay_customer_schema'
+          'passenger_api--v1--logpay_customer_schema'
         end
 
         attribute :payment_method_type, on: :create, type: :string
