@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class Translation < Base
+        def self.schema_path
+          'translation'
+        end
+
         attribute :type,
                   on:   :read,
                   type: :string

@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class RideSeriesResultItem < Base
+        def self.schema_path
+          'passenger_api--v1--ride_series--result_item'
+        end
+
         attribute :type, on: :read, type: :string
         attribute :ride_date, on: :read, type: :date_time
         attribute :processed, on: :read, type: :boolean

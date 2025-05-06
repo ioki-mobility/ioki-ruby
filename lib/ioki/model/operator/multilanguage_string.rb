@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class MultilanguageString < Base
+        def self.schema_path
+          'multilanguage_string'
+        end
+
         attribute :type,
                   on:   :read,
                   type: :string

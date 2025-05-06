@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class Assistance < Base
         def self.schema_path
-          'passenger_api--ride_inquiry--assistance'
+          'passenger_api--v1--ride_inquiry--assistance'
         end
 
         attribute :href, on: :read, type: :string

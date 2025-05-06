@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class Estimation < Base
         def self.schema_path
-          'passenger_api--ride_inquiry--estimation'
+          'passenger_api--v1--ride_inquiry--estimation'
         end
 
         attribute :type, on: :read, type: :string
