@@ -33,6 +33,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :custom_flags,
+                  on:         [:create, :read, :update],
+                  type:       :array,
+                  class_name: 'CustomFlag'
+
         attribute :default_resource_configuration,
                   on:         [:create, :read, :update],
                   type:       :object,
