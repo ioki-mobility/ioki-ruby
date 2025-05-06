@@ -15,6 +15,7 @@ module OpenApi
 
     def repair
       return if schema.nil?
+
       # puts model
       changed = false
       unspecified_model_attributes.each do |unspecified_model_attribute|
@@ -162,10 +163,10 @@ module OpenApi
 
     def self.all
       [
-        new('driver', 'driver_api'),
+        new('driver', 'driver_api--v2'),
         new('operator', 'operator_api--v20210101'),
         new('platform', 'platform_api--v20210101'),
-        new('passenger', 'passenger_api'),
+        new('passenger', 'passenger_api--v1'),
         new('webhooks', 'webhooks--v20201201')
       ]
     end
