@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class ServiceCreditCreate < Base
         def self.schema_path
-          'passenger_api--service_credit_schema'
+          'passenger_api--v1--service_credit_schema'
         end
 
         attribute :cost, type: :integer, on: :create

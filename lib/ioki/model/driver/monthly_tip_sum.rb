@@ -5,7 +5,7 @@ module Ioki
     module Driver
       class MonthlyTipSum < Base
         def self.schema_path
-          'driver_api--tip_sum'
+          'driver_api--v2--tip_sum'
         end
 
         attribute :type, on: :read, type: :string
