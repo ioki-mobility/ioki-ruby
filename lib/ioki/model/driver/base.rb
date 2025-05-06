@@ -5,7 +5,7 @@ module Ioki
     module Driver
       class Base < Ioki::Model::Base
         def self.specification_scope
-          'driver_api'
+          'driver_api--v2'
         end
       end
     end

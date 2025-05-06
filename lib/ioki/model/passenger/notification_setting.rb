@@ -4,10 +4,6 @@ module Ioki
   module Model
     module Passenger
       class NotificationSetting < Base
-        def self.schema_path
-          'passenger_api--notification_setting'
-        end
-
         attribute :id, on: :read, type: :string
         attribute :type, on: :read, type: :string
         attribute :name, on: [:read, :update], type: :string

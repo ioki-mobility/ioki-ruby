@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class Base < Ioki::Model::Base
         def self.specification_scope
-          'passenger_api'
+          'passenger_api--v1'
         end
       end
     end

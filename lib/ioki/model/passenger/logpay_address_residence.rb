@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class LogpayAddressResidence < Base
         def self.schema_path
-          'passenger_api--logpay_customer_schema--address_residence'
+          'passenger_api--v1--logpay_customer_schema--address_residence'
         end
 
         attribute :to1, on: :create, type: :string
