@@ -16,6 +16,7 @@ jobs:
           bundler-cache: true
       - name: Download OpenAPI JSON
         run: |
+          mkdir spec/fixtures/open_api_definitions
           cd spec/fixtures/open_api_definitions
           curl -o driver_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}driver-api%2Fv2%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
           curl -o operator_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}operator-api%2Fv20210101%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
