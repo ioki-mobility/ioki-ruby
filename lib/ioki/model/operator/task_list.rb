@@ -65,6 +65,10 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :date_time
 
+        attribute :last_connected_driver_id,
+                  on:   :read,
+                  type: :string
+
         attribute :matching_configuration_id,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
