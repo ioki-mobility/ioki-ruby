@@ -111,6 +111,10 @@ module Ioki
                   on:   :read,
                   type: :integer
 
+        attribute :last_serving_driver_id,
+                  on:   :read,
+                  type: :string
+
         attribute :needs_cancellation_code,
                   on:   :read,
                   type: :boolean
