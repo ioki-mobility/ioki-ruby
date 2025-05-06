@@ -138,7 +138,7 @@ module OpenApi
     end
 
     def schema_path
-      ioki_model.schema_path || "#{specification.scope}--#{model_name}"
+      ioki_model.schema_path || "#{specification.scope}--#{model_name('--')}"
     end
 
     def file_lines
@@ -150,11 +150,11 @@ module OpenApi
     end
 
     def file_path
-      "lib/ioki/model/#{specification.name}/#{model_name}.rb"
+      "lib/ioki/model/#{specification.name}/#{model_name('/')}.rb"
     end
 
-    def model_name
-      Ioki::Support.underscore ioki_model.to_s.split('::').last
+    def model_name(join_with)
+      ioki_model.to_s.split('::')[3..].map { |name| Ioki::Support.underscore name }.join(join_with)
     end
   end
 
