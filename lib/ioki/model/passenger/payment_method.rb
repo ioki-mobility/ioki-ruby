@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class PaymentMethod < Base
         def self.schema_path
-          'passenger_api--payment_method_schema'
+          'passenger_api--v1--payment_method_schema'
         end
 
         attribute :type, on: :read, type: :string
