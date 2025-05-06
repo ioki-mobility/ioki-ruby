@@ -1,0 +1,30 @@
+name: CI comparing ioki-ruby with OpenAPI json files from docs
+
+# Expects:
+on: workflow_dispatch
+
+jobs:
+  download-openapi-json:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v4
+      - name: Bundle install and cache result
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Download OpenAPI JSON
+        run: |
+          cd spec/fixtures/open_api_definitions
+          curl -o driver_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}driver-api%2Fv2%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o operator_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}operator-api%2Fv20210101%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o passenger_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}passenger-api%2Fv1%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o platform_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}platform-api%2Fv20210101%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o webhooks_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}webhooks%2Fv20201201%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+        env:
+          DOCUMENTATION_BASE_PATH: public%2Frefs%2Fdocs-keep-api-docs-openapi-json-files-2%2F
+      - name: Run rspec
+        run: |
+          source .github/ci_workflow.env
+          bundle exec rspec
