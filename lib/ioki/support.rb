@@ -15,12 +15,22 @@ module Ioki
       string
     end
 
+    def underscore(camel_cased_word)
+      camel_cased_word
+        .to_s
+        .gsub('::', '/')
+        .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+        .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+        .tr('-', '_')
+        .downcase
+    end
+
     # activesupport/lib/active_support/core_ext/object/blank.rb
     def blank?(value)
       value.respond_to?(:empty?) ? !!value.empty? : !value
     end
 
-    module_function :camelize, :blank?
+    module_function :camelize, :underscore, :blank?
 
     module ModuleMixins
       # activesupport/lib/active_support/core_ext/module/introspection.rb
