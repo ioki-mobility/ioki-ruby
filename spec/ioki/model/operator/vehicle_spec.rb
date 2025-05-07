@@ -30,4 +30,5 @@ RSpec.describe Ioki::Model::Operator::Vehicle do
   it { is_expected.to define_attribute(:operator_id).as(:string) }
   it { is_expected.to define_attribute(:phone_number).as(:string) }
   it { is_expected.to define_attribute(:telemetry).as(:object).with(class_name: 'Telemetry') }
+  it { is_expected.to define_attribute(:custom_flags).as(:array).with(class_name: 'CustomFlag') }
 end
