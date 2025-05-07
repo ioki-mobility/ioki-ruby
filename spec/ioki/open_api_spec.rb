@@ -33,6 +33,8 @@ RSpec.describe OpenApi do
         module Model
           module Platform
             class Example < Base
+              attribute :new_one_of_attribute, type: :object, on: [:create, :read, :update], class_name: 'Other'
+              attribute :new_any_of_attribute, type: [:string, :boolean], on: [:create, :read, :update]
               attribute :new_attribute, type: :string, on: [:create, :read, :update]
               attribute :regular_attribute, on: :read, type: :string
               # attribute :removed_attribute, on: :read, type: :string
@@ -66,6 +68,14 @@ RSpec.describe OpenApi do
                   "type": "string",
                   "description": "New attribute of the example"
                 },
+                "new_any_of_attribute": {
+                  "anyOf": [ { "type": "string" }, { "type": "boolean" } ],
+                  "description": "New attribute of the example"
+                },
+                "new_one_of_attribute": {
+                  "oneOf": [ { "type": "null" }, { "$ref": "#/components/schemas/platform_api--v20210101--other" } ],
+                  "description": "New attribute of the example"
+                },
                 "deprecated_attribute": {
                   "type": "string",
                   "description": "Deprecated attribute of the example",
@@ -92,10 +102,7 @@ RSpec.describe OpenApi do
     allow(File).to receive(:open).with(model_file_path).and_return(StringIO.new(model_definition))
     allow(File).to receive(:write)
     allow(JSON).to receive(:parse).and_return(specification_json)
-  end
-
-  before do
-    # unset Ioki::Model::Platform::Example constant
+    # unset Ioki::Model::Platform::Example constant:
     Ioki::Model::Platform.send(:remove_const, :Example) if Ioki::Model::Platform.const_defined?(:Example)
     eval(model_definition)
   end
@@ -114,7 +121,7 @@ RSpec.describe OpenApi do
 
   describe '#undefined_schema_attributes' do
     it 'returns the attributes that are not defined in the OpenAPI spec' do
-      expect(subject.undefined_schema_attributes).to eq([:new_attribute])
+      expect(subject.undefined_schema_attributes).to eq([:new_attribute, :new_any_of_attribute, :new_one_of_attribute])
     end
   end
 
@@ -130,6 +137,7 @@ RSpec.describe OpenApi do
         end
         aggregate_failures 'testing generated ruby code' do
           expect(ruby_code).to include('attribute :new_attribute, type: :string, on: [:create, :read, :update]')
+          expect(ruby_code).to include('attribute :new_any_of_attribute, type: [:string, :boolean], on: [:create, :read, :update]')
           expect(ruby_code).to include('# attribute :removed_attribute, on: :read, type: :string')
           expect(ruby_code).to include('deprecated_attribute :deprecated_attribute, on: :read, type: :string')
           expect(ruby_code).not_to include('# deprecated_attribute :deprecated_attribute')

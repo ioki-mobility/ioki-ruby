@@ -72,23 +72,42 @@ module OpenApi
                else
                  attribute_definition['type']
                end
+        type = ":#{type}" if type.is_a?(String)
         class_name = nil
       elsif attribute_definition.key? '$ref'
-        type = 'object'
-        class_name = ref_to_class_name attribute_definition['$ref']
+        type = ':object'
+        class_name = ref_to_class_name attribute_definition
       elsif attribute_definition.key? 'oneOf'
-        type = 'object'
+        type = ':object'
         refs = attribute_definition['oneOf'].reject { |r| r['type'] == 'null' }
         class_name = if refs.count == 1
-                       ref_to_class_name(refs.first['$ref'])
+                       ref_to_class_name(refs.first)
                      elsif refs.count > 1
-                       "[#{refs.map { |ref| ref_to_class_name(ref['$ref']) }.join(', ')}]"
+                       "[#{refs.map { |ref| ref_to_class_name(ref) }.join(', ')}]"
                      else
                        nil
                      end
+        if refs.all? { |r| r.key?('type') }
+          type = class_name
+          class_name = nil
+        end
+      elsif attribute_definition.key? 'anyOf'
+        type = ':object'
+        refs = attribute_definition['anyOf'].reject { |r| r['type'] == 'null' }
+        class_name = if refs.count == 1
+                       ref_to_class_name(refs.first)
+                     elsif refs.count > 1
+                       "[#{refs.map { |ref| ref_to_class_name(ref) }.join(', ')}]"
+                     else
+                       nil
+                     end
+        if refs.all? { |r| r.key?('type') }
+          type = class_name
+          class_name = nil
+        end
       end
 
-      line = "        attribute :#{attribute_name}, type: :#{type}, on: [:create, :read, :update]"
+      line = "        attribute :#{attribute_name}, type: #{type}, on: [:create, :read, :update]"
       if class_name.is_a?(String)
         line += ", class_name: #{class_name}"
       end
@@ -100,8 +119,12 @@ module OpenApi
     end
 
     def ref_to_class_name(ref)
-      class_name = Ioki::Support.camelize(ref.split('--').last.split('/').last)
-      "'#{class_name}'"
+      if ref.key?('type')
+        ":#{ref['type']}"
+      elsif ref.key?('$ref')
+        class_name = Ioki::Support.camelize(ref['$ref'].split('--').last.split('/').last)
+        "'#{class_name}'"
+      end
     end
 
     def save!
