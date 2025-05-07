@@ -14,7 +14,7 @@ module OpenApi
     end
 
     def repair
-      return if schema.nil?
+      return if schemata.empty?
 
       changed = false
       unspecified_model_attributes.each do |unspecified_model_attribute|
@@ -62,7 +62,7 @@ module OpenApi
 
     def add_attribute_definition(attribute_name)
       # puts "Adding #{ioki_model}##{attribute_name} which is present in the OpenAPI-specification but not in the model"
-      attribute_definition = schema.fetch('properties')[attribute_name.to_s]
+      attribute_definition = schemata_properties[attribute_name.to_s]
 
       if attribute_definition.key? 'type'
         type = if attribute_definition['type'].is_a?(Array)
@@ -121,19 +121,27 @@ module OpenApi
     end
 
     def specified_schema_attributes
-      schema.fetch('properties').reject do |_name, attributes|
+      schemata_properties.reject do |_name, attributes|
         attributes['deprecated']
       end.keys.map(&:to_sym)
     end
 
     def deprecated_schema_attributes
-      schema.fetch('properties').select do |_name, attributes|
+      schemata_properties.select do |_name, attributes|
         attributes['deprecated']
       end.keys.map(&:to_sym)
     end
 
     def schema_attributes
-      schema.fetch('properties').keys.map(&:to_sym)
+      schemata_properties.keys.map(&:to_sym)
+    end
+
+    def schemata_properties
+      schemata.map do |schema|
+        schema.fetch('properties')
+      end.reduce({}) do |acc, properties|
+        acc.merge(properties)
+      end
     end
 
     # Attributes present in the Ioki::Model class
@@ -163,8 +171,16 @@ module OpenApi
       ioki_model.attribute_definitions.keys
     end
 
-    def schema
-      specification.schemas[schema_path]
+    def schemata
+      schema_paths.map do |schema_path|
+        specification.schemas[schema_path]
+      end.compact
+    end
+
+    def schema_paths
+      [nil, '_schema', '_create_schema', '_update_schema'].map do |suffix|
+        [schema_path, suffix].compact.join
+      end
     end
 
     def schema_path
