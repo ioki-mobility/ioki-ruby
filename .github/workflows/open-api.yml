@@ -45,7 +45,7 @@ jobs:
       - name: Checkout Target Branch
         if: steps.rspec_tests.outcome == 'failure'
         env:
-          BASE_BRANCH: ${{ github.event.repository.default_branch || 'main' }}
+          BASE_BRANCH: main
         run: |
           BRANCH_NAME="${{ steps.pr_vars.outputs.branch_name }}"
           echo "RSpec tests failed. Preparing PR on branch: $BRANCH_NAME"
