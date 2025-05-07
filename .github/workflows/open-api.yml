@@ -82,6 +82,8 @@ jobs:
             * **Specific Caution for Parameters:** Be aware that the repair task might set parameter attributes to include `read`, `create`, and `update` by default. Please verify if these are appropriate for each affected parameter and adjust as necessary.
             
             Your attention is needed to validate these automated changes and ensure the API specification is accurate.
+            
+            Please create a new subbranch from this PR to avoid overwriting the changes in this PR.
           branch: ${{ steps.pr_vars.outputs.branch_name }}
           base: ${{ github.event.repository.default_branch || 'main' }}
           labels: "PR: ready for review,PR: do not merge"
