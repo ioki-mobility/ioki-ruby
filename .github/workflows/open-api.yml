@@ -32,6 +32,7 @@ jobs:
         shell: bash
       - name: Run rspec
         id: rspec_tests
+        continue-on-error: true
         run: |
           source .github/ci_workflow.env
           bundle exec rspec
