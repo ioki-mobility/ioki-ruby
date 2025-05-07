@@ -103,8 +103,8 @@ RSpec.describe OpenApi do
     allow(File).to receive(:write)
     allow(specification).to receive(:definition_json).and_return(specification_json)
     # unset Ioki::Model::Platform::Example constant:
-    Ioki::Model::Platform.send(:remove_const, :Example) if Ioki::Model::Platform.const_defined?(:Example)
-    eval(model_definition)
+    Ioki::Model::Platform.send(:remove_const, :Example) if Ioki::Model::Platform.const_defined?(:Example) # rubocop:disable RSpec/RemoveConst
+    eval(model_definition) # rubocop:disable Security/Eval
   end
 
   describe '#unspecified_model_attributes' do
@@ -137,7 +137,9 @@ RSpec.describe OpenApi do
         end
         aggregate_failures 'testing generated ruby code' do
           expect(ruby_code).to include('attribute :new_attribute, type: :string, on: [:create, :read, :update]')
-          expect(ruby_code).to include('attribute :new_any_of_attribute, type: [:string, :boolean], on: [:create, :read, :update]')
+          expect(ruby_code).to include(
+            'attribute :new_any_of_attribute, type: [:string, :boolean], on: [:create, :read, :update]'
+          )
           expect(ruby_code).to include('# attribute :removed_attribute, on: :read, type: :string')
           expect(ruby_code).to include('deprecated_attribute :deprecated_attribute, on: :read, type: :string')
           expect(ruby_code).not_to include('# deprecated_attribute :deprecated_attribute')
