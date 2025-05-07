@@ -16,14 +16,13 @@ module OpenApi
     def repair
       return if schema.nil?
 
-      # puts model
       changed = false
       unspecified_model_attributes.each do |unspecified_model_attribute|
         comment_attribute_definition(unspecified_model_attribute)
         changed = true
       end
       deprecated_model_attributes.each do |deprecated_model_attribute|
-        comment_attribute_definition(deprecated_model_attribute)
+        deprecate_attribute_definition(deprecated_model_attribute)
         changed = true
       end
       undefined_schema_attributes.each do |undefined_schema_attribute|
@@ -32,26 +31,37 @@ module OpenApi
       end
       if changed
         save!
-        # puts file_lines.join
       end
     end
 
     def comment_attribute_definition(attribute_name)
-      # puts "Removing #{model}##{attribute_name} which is present in the model but not in the OpenAPI-specification"
+      # puts "Removing #{ioki_model}##{attribute_name} which is present in the model but not in the OpenAPI-specification"
       matched_trailing_comma = false
       @file_lines = file_lines.map do |line|
         matched = line.match(Regexp.new(":#{attribute_name},"))
         if matched || matched_trailing_comma
           line.insert(8, '# ')
           matched_trailing_comma = line.match(/,\n/)
-          # puts line
         end
         line
       end
+      # puts "Done removing #{ioki_model}##{attribute_name}"
+    end
+
+    def deprecate_attribute_definition(attribute_name)
+      # puts "Deprecating #{ioki_model}##{attribute_name} which is present in the model but deprecated in the OpenAPI-specification"
+      @file_lines = file_lines.map do |line|
+        matched = line.match(Regexp.new(":#{attribute_name},"))
+        if matched
+          line.insert(line.index('attribute'), 'deprecated_')
+        end
+        line
+      end
+      # puts "Done deprecating #{ioki_model}##{attribute_name}"
     end
 
     def add_attribute_definition(attribute_name)
-      # puts "Adding #{model}##{attribute_name} which is present in the OpenAPI-specification but not in the model"
+      # puts "Adding #{ioki_model}##{attribute_name} which is present in the OpenAPI-specification but not in the model"
       attribute_definition = schema.fetch('properties')[attribute_name.to_s]
 
       if attribute_definition.key? 'type'
@@ -86,6 +96,7 @@ module OpenApi
       after = file_lines.index { |l| l.match(/\s*attribute\s\:/) }
       # puts line
       file_lines.insert(after, line)
+      # puts "Done adding #{ioki_model}##{attribute_name}"
     end
 
     def ref_to_class_name(ref)
@@ -98,15 +109,15 @@ module OpenApi
     end
 
     def unspecified_model_attributes
-      defined_model_attributes - schema_attributes
+      validated_model_attributes - schema_attributes
     end
 
     def deprecated_model_attributes
-      defined_model_attributes & deprecated_schema_attributes
+      undeprecated_model_attributes & deprecated_schema_attributes
     end
 
     def undefined_schema_attributes
-      specified_schema_attributes - defined_model_attributes
+      specified_schema_attributes - all_model_attributes
     end
 
     def specified_schema_attributes
@@ -126,11 +137,30 @@ module OpenApi
     end
 
     # Attributes present in the Ioki::Model class
-    def defined_model_attributes
+    def validated_model_attributes
       ioki_model
         .attribute_definitions
         .reject { |_key, definition| definition[:unvalidated] }
         .keys
+    end
+
+    # Attributes present in the Ioki::Model class
+    def unvalidated_model_attributes
+      ioki_model
+        .attribute_definitions
+        .select { |_key, definition| definition[:unvalidated] }
+        .keys
+    end
+
+    def undeprecated_model_attributes
+      ioki_model
+        .attribute_definitions
+        .reject { |_key, definition| definition[:deprecated] }
+        .keys
+    end
+
+    def all_model_attributes
+      ioki_model.attribute_definitions.keys
     end
 
     def schema

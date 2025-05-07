@@ -13,7 +13,13 @@ RSpec.describe OpenApi do
           module Platform
             class Example < Base
               attribute :regular_attribute, on: :read, type: :string
+              attribute :removed_attribute, on: :read, type: :string
               attribute :deprecated_attribute, on: :read, type: :string
+              attribute :unvalidated_attribute,
+                        on:             :create,
+                        omit_if_nil_on: [:create],
+                        type:           :string,
+                        unvalidated:    true
             end
           end
         end
@@ -29,7 +35,13 @@ RSpec.describe OpenApi do
             class Example < Base
               attribute :new_attribute, type: :string, on: [:create, :read, :update]
               attribute :regular_attribute, on: :read, type: :string
-              # attribute :deprecated_attribute, on: :read, type: :string
+              # attribute :removed_attribute, on: :read, type: :string
+              deprecated_attribute :deprecated_attribute, on: :read, type: :string
+              attribute :unvalidated_attribute,
+                        on:             :create,
+                        omit_if_nil_on: [:create],
+                        type:           :string,
+                        unvalidated:    true
             end
           end
         end
@@ -53,6 +65,11 @@ RSpec.describe OpenApi do
                 "new_attribute": {
                   "type": "string",
                   "description": "New attribute of the example"
+                },
+                "deprecated_attribute": {
+                  "type": "string",
+                  "description": "Deprecated attribute of the example",
+                  "deprecated": true
                 }
               },
               "title": "PlatformApi::V20210101::Example"
@@ -75,12 +92,51 @@ RSpec.describe OpenApi do
     allow(File).to receive(:open).with(model_file_path).and_return(StringIO.new(model_definition))
     allow(File).to receive(:write)
     allow(JSON).to receive(:parse).and_return(specification_json)
+  end
+
+  before do
+    # unset Ioki::Model::Platform::Example constant
+    Ioki::Model::Platform.send(:remove_const, :Example) if Ioki::Model::Platform.const_defined?(:Example)
     eval(model_definition)
+  end
+
+  describe '#unspecified_model_attributes' do
+    it 'returns the attributes that are not specified in the OpenAPI spec' do
+      expect(subject.unspecified_model_attributes).to eq([:removed_attribute])
+    end
+  end
+
+  describe '#deprecated_model_attributes' do
+    it 'returns the attributes that are not deprecated in the OpenAPI spec' do
+      expect(subject.deprecated_model_attributes).to eq([:deprecated_attribute])
+    end
+  end
+
+  describe '#undefined_schema_attributes' do
+    it 'returns the attributes that are not defined in the OpenAPI spec' do
+      expect(subject.undefined_schema_attributes).to eq([:new_attribute])
+    end
   end
 
   describe '#repair' do
     it 'adds missing attributes and comments out deprecated attributes' do
-      expect(File).to receive(:write).with(model_file_path, expected_repaired_model_definition)
+      allow(File).to receive(:write) do |path, ruby_code|
+        expect(path).to eq(model_file_path)
+        if ruby_code != expected_repaired_model_definition
+          puts "\nExpected code:\n\n"
+          puts expected_repaired_model_definition
+          puts "\nActual code:\n\n"
+          puts ruby_code
+        end
+        aggregate_failures 'testing generated ruby code' do
+          expect(ruby_code).to include('attribute :new_attribute, type: :string, on: [:create, :read, :update]')
+          expect(ruby_code).to include('# attribute :removed_attribute, on: :read, type: :string')
+          expect(ruby_code).to include('deprecated_attribute :deprecated_attribute, on: :read, type: :string')
+          expect(ruby_code).not_to include('# deprecated_attribute :deprecated_attribute')
+          expect(ruby_code).not_to include('# attribute :unvalidated_attribute')
+          expect(ruby_code).to eq(expected_repaired_model_definition)
+        end
+      end
       subject.repair
     end
   end
