@@ -4,10 +4,6 @@ module Ioki
   module Model
     module Operator
       class RepositioningTask < Base
-        def self.schema_path
-          'operator_api--v20210101--repositioning_task_create_schema'
-        end
-
         attribute :lat,
                   on:             :create,
                   omit_if_nil_on: [:create],
