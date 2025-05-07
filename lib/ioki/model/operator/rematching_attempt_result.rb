@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class RematchingAttemptResult < Base
+        def self.schema_path
+          'operator_api--v20210101--rematching_attempt--result_item'
+        end
+
         attribute :ride_id,
                   on:   :read,
                   type: :string

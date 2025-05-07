@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class RecurrenceRule < Base
+        def self.schema_path
+          'operator_api--v20210101--recurrence_rules'
+        end
+
         attribute :type,
                   on:   :read,
                   type: :string
