@@ -2,6 +2,7 @@
 /.yardoc
 /_yardoc/
 /coverage/
+/vendor/
 /doc/
 /pkg/
 /spec/reports/
