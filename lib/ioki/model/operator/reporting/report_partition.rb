@@ -5,7 +5,7 @@ module Ioki
     module Operator
       module Reporting
         class ReportPartition < Base
-        attribute :estimated_row_count, type: :integer, on: [:create, :read, :update]
+          attribute :estimated_row_count, type: :integer, on: [:create, :read, :update]
           attribute :type,
                     on:   :read,
                     type: :string

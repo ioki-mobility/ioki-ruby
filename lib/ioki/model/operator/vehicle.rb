@@ -96,9 +96,9 @@ module Ioki
                   type:           :string
 
         deprecated_attribute :num_wheelchair_bays_as_storages,
-                  on:             [:create, :read, :update],
-                  omit_if_nil_on: [:create, :update],
-                  type:           :integer
+                             on:             [:create, :read, :update],
+                             omit_if_nil_on: [:create, :update],
+                             type:           :integer
 
         attribute :operator_id,
                   on:             [:create, :read],

@@ -9,9 +9,9 @@ module Ioki
                     on:   :read,
                     type: :string
 
-        #   attribute :id,
-        #             on:   :read,
-        #             type: :string
+          #   attribute :id,
+          #             on:   :read,
+          #             type: :string
 
           attribute :scope,
                     on:   :read,

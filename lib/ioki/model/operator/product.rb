@@ -34,9 +34,9 @@ module Ioki
                   on:   :read
 
         deprecated_attribute :area,
-                  type:       :object,
-                  on:         :read,
-                  class_name: 'Geojson'
+                             type:       :object,
+                             on:         :read,
+                             class_name: 'Geojson'
 
         attribute :ad_hoc_bookable,
                   on:   :read,
@@ -51,9 +51,9 @@ module Ioki
                   type: :integer
 
         deprecated_attribute :bounding_box,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'BoundingBox'
+                             on:         :read,
+                             type:       :object,
+                             class_name: 'BoundingBox'
 
         attribute :default_end_place_id,
                   on:   :read,
@@ -112,13 +112,13 @@ module Ioki
                   type: :string
 
         deprecated_attribute :ride_options,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'LegacyRideOptions'
+                             on:         :read,
+                             type:       :object,
+                             class_name: 'LegacyRideOptions'
 
         deprecated_attribute :ride_rating_criteria,
-                  on:   :read,
-                  type: :array
+                             on:   :read,
+                             type: :array
 
         attribute :service_time_info,
                   on:   :read,

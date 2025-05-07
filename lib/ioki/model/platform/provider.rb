@@ -66,8 +66,8 @@ module Ioki
                   type: :string
 
         deprecated_attribute :other_url,
-                  on:   :read,
-                  type: :string
+                             on:   :read,
+                             type: :string
 
         attribute :personal_discount_payment_method_types,
                   on:   :read,

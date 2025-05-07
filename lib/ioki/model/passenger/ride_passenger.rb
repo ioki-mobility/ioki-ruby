@@ -9,9 +9,9 @@ module Ioki
         attribute :first_name, on: :read, type: :string
         attribute :last_name, on: :read, type: :string
         deprecated_attribute :public_transport_ticket,
-                  on:               [:read, :create, :update],
-                  omit_if_blank_on: [:create, :update],
-                  type:             :boolean
+                             on:               [:read, :create, :update],
+                             omit_if_blank_on: [:create, :update],
+                             type:             :boolean
         attribute :type, on: [:create, :update], type: :string
         deprecated_attribute :walker, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean
         deprecated_attribute :wheelchair, on: [:read, :create, :update], omit_if_blank_on: [:create, :update], type: :boolean

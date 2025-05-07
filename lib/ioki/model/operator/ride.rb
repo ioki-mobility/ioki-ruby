@@ -28,8 +28,8 @@ module Ioki
                   type: :integer
 
         deprecated_attribute :book_for_others,
-                  on:   :read,
-                  type: :boolean
+                             on:   :read,
+                             type: :boolean
 
         attribute :booked_solution,
                   on:         :read,
@@ -146,8 +146,8 @@ module Ioki
                   type: :string
 
         deprecated_attribute :payment_state,
-                  on:   :read,
-                  type: :string
+                             on:   :read,
+                             type: :string
 
         attribute :picked_up_at,
                   on:   :read,
@@ -202,8 +202,8 @@ module Ioki
                   type: :string
 
         deprecated_attribute :storage_spaces,
-                  on:   :read,
-                  type: :integer
+                             on:   :read,
+                             type: :integer
 
         attribute :support_uri,
                   on:   :read,

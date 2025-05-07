@@ -5,7 +5,7 @@ module Ioki
     module Operator
       module Reporting
         class ReportRow < Base
-        attribute :reference_timestamp, type: :string, on: [:create, :read, :update]
+          attribute :reference_timestamp, type: :string, on: [:create, :read, :update]
           attribute :type,
                     on:   :read,
                     type: :string
@@ -18,9 +18,9 @@ module Ioki
                     on:   :read,
                     type: :array
 
-        #   attribute :created_at,
-        #             on:   :read,
-        #             type: :date_time
+          #   attribute :created_at,
+          #             on:   :read,
+          #             type: :date_time
         end
       end
     end
