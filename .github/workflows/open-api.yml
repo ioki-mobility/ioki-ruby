@@ -3,8 +3,12 @@ name: CI comparing ioki-ruby with OpenAPI json files from docs
 # Expects:
 on: workflow_dispatch
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
-  download-openapi-json:
+  process-openapi-json:
     runs-on: ubuntu-22.04
 
     steps:
@@ -25,7 +29,53 @@ jobs:
           curl -o webhooks_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}webhooks%2Fv20201201%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
         env:
           DOCUMENTATION_BASE_PATH: public%2Frefs%2Fdocs-keep-api-docs-openapi-json-files-2%2F
+        shell: bash
       - name: Run rspec
+        id: rspec_tests
         run: |
           source .github/ci_workflow.env
           bundle exec rspec
+        shell: bash
+
+      - name: Define Target Branch Name
+        if: steps.rspec_tests.outcome == 'failure'
+        id: pr_vars
+        run: echo "branch_name=actions/automated-open-api-failure-pr" >> $GITHUB_OUTPUT
+        shell: bash
+      - name: Checkout Target Branch
+        if: steps.rspec_tests.outcome == 'failure'
+        env:
+          BASE_BRANCH: ${{ github.event.repository.default_branch || 'main' }}
+        run: |
+          BRANCH_NAME="${{ steps.pr_vars.outputs.branch_name }}"
+          echo "RSpec tests failed. Preparing PR on branch: $BRANCH_NAME"
+          echo "Base branch for reset: $BASE_BRANCH"
+          
+          git fetch origin $BASE_BRANCH
+          git checkout -B $BRANCH_NAME origin/$BASE_BRANCH
+        shell: bash
+
+      - name: Repair OpenAPI
+        if: steps.rspec_tests.outcome == 'failure'
+        run: |
+          echo "RSpec tests failed. Running 'rake ioki:openapi:repair' to attempt fixes..."
+          bundle exec rake ioki:openapi:repair
+        shell: bash
+
+      - name: Create or Update Pull Request
+        if: steps.rspec_tests.outcome == 'failure'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "fix: Automated PR due to RSpec test failures"
+          title: "Automated OpenAPI Fix: Inconsistency Detected"
+          body: |
+            OpenAPI Rspec tests failed during workflow run #${{ github.run_id }}.
+
+            This Pull Request has been automatically created/updated on the branch `${{ steps.pr_vars.outputs.branch_name }}`.
+            It contains automatic generated fixes to the files that may have caused the RSpec failures.
+
+            **Please review the changes and the RSpec logs from the workflow to address the issues.**
+          branch: ${{ steps.pr_vars.outputs.branch_name }}
+          base: ${{ github.event.repository.default_branch || 'main' }}
+          labels: "PR: ready for review, PR: do not merge"
