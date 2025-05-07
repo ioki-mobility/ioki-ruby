@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Passenger
       class Provider < Base
+        attribute :custom_urls, type: :array, on: [:create, :read, :update]
+        attribute :ticketing_payment_method_types, type: :array, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

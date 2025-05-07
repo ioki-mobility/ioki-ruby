@@ -30,10 +30,10 @@ module Ioki
                   type:       :object,
                   class_name: ['CalculatedPoint', 'RequestedPoint', 'PublicTransportStop']
 
-        attribute :vehicle,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Vehicle'
+        # attribute :vehicle,
+        #           on:         :read,
+        #           type:       :object,
+        #           class_name: 'Vehicle'
 
         attribute :details,
                   on:         :read,

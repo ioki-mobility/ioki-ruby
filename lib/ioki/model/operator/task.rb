@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Operator
       class Task < Base
+        attribute :reported_completed_at, type: :string, on: [:create, :read, :update]
+        attribute :reported_cancelled_at, type: :string, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string

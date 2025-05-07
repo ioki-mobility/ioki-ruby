@@ -24,16 +24,16 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :provider,
-                  type:       :object,
-                  on:         :read,
-                  class_name: 'Provider'
+        # attribute :provider,
+        #           type:       :object,
+        #           on:         :read,
+        #           class_name: 'Provider'
 
         attribute :provider_id,
                   type: :string,
                   on:   :read
 
-        attribute :area,
+        deprecated_attribute :area,
                   type:       :object,
                   on:         :read,
                   class_name: 'Geojson'
@@ -50,7 +50,7 @@ module Ioki
                   on:   :read,
                   type: :integer
 
-        attribute :bounding_box,
+        deprecated_attribute :bounding_box,
                   on:         :read,
                   type:       :object,
                   class_name: 'BoundingBox'
@@ -111,12 +111,12 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :ride_options,
+        deprecated_attribute :ride_options,
                   on:         :read,
                   type:       :object,
                   class_name: 'LegacyRideOptions'
 
-        attribute :ride_rating_criteria,
+        deprecated_attribute :ride_rating_criteria,
                   on:   :read,
                   type: :array
 
