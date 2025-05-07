@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Platform
       class Booking < Base
+        attribute :paypal_secure_element, type: :string, on: [:create, :read, :update]
+        attribute :solution_id, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

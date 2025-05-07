@@ -59,9 +59,9 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
-        attribute :version,
-                  on:   :read,
-                  type: :integer
+        # attribute :version,
+        #           on:   :read,
+        #           type: :integer
       end
     end
   end

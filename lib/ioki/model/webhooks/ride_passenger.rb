@@ -4,12 +4,13 @@ module Ioki
   module Model
     module Webhooks
       class RidePassenger < Base
-        attribute :bahncard, type: :boolean
-        attribute :blue_badge, type: :boolean
-        attribute :public_transport_ticket, type: :boolean
+        attribute :options, type: :array, on: [:create, :read, :update]
+        deprecated_attribute :bahncard, type: :boolean
+        deprecated_attribute :blue_badge, type: :boolean
+        deprecated_attribute :public_transport_ticket, type: :boolean
         attribute :type, type: :string
-        attribute :walker, type: :boolean
-        attribute :wheelchair, type: :boolean
+        deprecated_attribute :walker, type: :boolean
+        deprecated_attribute :wheelchair, type: :boolean
       end
     end
   end

@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Passenger
       class Announcement < Base
+        attribute :targets, type: :array, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

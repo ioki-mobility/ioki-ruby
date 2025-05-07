@@ -5,6 +5,7 @@ module Ioki
     module Passenger
       module Ticketing
         class Ticket < Base
+        attribute :vendor_ticket_details, type: :object, on: [:create, :read, :update], class_name: 'Eos'
           attribute :type, on: :read, type: :string
           attribute :id, on: :read, type: :string
           attribute :created_at, on: :read, type: :date_time

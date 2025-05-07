@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Driver
       class Station < Base
+        attribute :current_station_information, type: :object, on: [:create, :read, :update], class_name: 'StationInformation'
+        attribute :announcements, type: :array, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

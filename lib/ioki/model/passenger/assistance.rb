@@ -8,6 +8,7 @@ module Ioki
           'passenger_api--v1--ride_inquiry--assistance'
         end
 
+        attribute :error_code, type: :string, on: [:create, :read, :update]
         attribute :href, on: :read, type: :string
         attribute :text, on: :read, type: :string
         attribute :title, on: :read, type: :string

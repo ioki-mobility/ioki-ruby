@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Platform
       class PersonalDiscount < Base
+        attribute :fixed_price_per_ride, type: :object, on: [:create, :read, :update], class_name: 'Money'
+        attribute :fixed_price_per_passenger, type: :object, on: [:create, :read, :update], class_name: 'Money'
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -16,7 +18,7 @@ module Ioki
         attribute :maximum_usages, on: :read, type: :integer
         attribute :payment_method, on: :read, type: :object, class_name: 'PaymentMethod'
         attribute :product_id, on: :read, type: :string
-        attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
+        deprecated_attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
         attribute :relative_discount, on: :read, type: :integer
         attribute :title, on: :read, type: :string
         attribute :usages, on: :read, type: :integer
