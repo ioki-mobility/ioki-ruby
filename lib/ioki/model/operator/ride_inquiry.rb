@@ -4,9 +4,7 @@ module Ioki
   module Model
     module Operator
       class RideInquiry < Base
-        def self.schema_path
-          'operator_api--v20210101--ride_inquiry_schema'
-        end
+        attribute :passengers, type: :array, on: [:create, :read, :update]
 
         attribute :type,
                   on:   :read,

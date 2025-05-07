@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Passenger
       class Station < Base
+        attribute :visible_on_map, type: :boolean, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

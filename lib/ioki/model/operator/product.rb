@@ -24,19 +24,19 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :provider,
-                  type:       :object,
-                  on:         :read,
-                  class_name: 'Provider'
+        # attribute :provider,
+        #           type:       :object,
+        #           on:         :read,
+        #           class_name: 'Provider'
 
         attribute :provider_id,
                   type: :string,
                   on:   :read
 
-        attribute :area,
-                  type:       :object,
-                  on:         :read,
-                  class_name: 'Geojson'
+        deprecated_attribute :area,
+                             type:       :object,
+                             on:         :read,
+                             class_name: 'Geojson'
 
         attribute :ad_hoc_bookable,
                   on:   :read,
@@ -50,10 +50,10 @@ module Ioki
                   on:   :read,
                   type: :integer
 
-        attribute :bounding_box,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'BoundingBox'
+        deprecated_attribute :bounding_box,
+                             on:         :read,
+                             type:       :object,
+                             class_name: 'BoundingBox'
 
         attribute :default_end_place_id,
                   on:   :read,
@@ -111,14 +111,14 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :ride_options,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'LegacyRideOptions'
+        deprecated_attribute :ride_options,
+                             on:         :read,
+                             type:       :object,
+                             class_name: 'LegacyRideOptions'
 
-        attribute :ride_rating_criteria,
-                  on:   :read,
-                  type: :array
+        deprecated_attribute :ride_rating_criteria,
+                             on:   :read,
+                             type: :array
 
         attribute :service_time_info,
                   on:   :read,

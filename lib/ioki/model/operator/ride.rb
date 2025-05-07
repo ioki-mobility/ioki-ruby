@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Operator
       class Ride < Base
+        attribute :phone_calls, type: :array, on: [:create, :read, :update]
+        attribute :options, type: :array, on: [:create, :read, :update]
+        attribute :last_serving_driver_id, type: :string, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
@@ -24,9 +27,9 @@ module Ioki
                   on:   :read,
                   type: :integer
 
-        attribute :book_for_others,
-                  on:   :read,
-                  type: :boolean
+        deprecated_attribute :book_for_others,
+                             on:   :read,
+                             type: :boolean
 
         attribute :booked_solution,
                   on:         :read,
@@ -142,9 +145,9 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :payment_state,
-                  on:   :read,
-                  type: :string
+        deprecated_attribute :payment_state,
+                             on:   :read,
+                             type: :string
 
         attribute :picked_up_at,
                   on:   :read,
@@ -198,9 +201,9 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :storage_spaces,
-                  on:   :read,
-                  type: :integer
+        deprecated_attribute :storage_spaces,
+                             on:   :read,
+                             type: :integer
 
         attribute :support_uri,
                   on:   :read,
@@ -214,10 +217,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
-        attribute :user,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'User'
+        # attribute :user,
+        #           on:         :read,
+        #           type:       :object,
+        #           class_name: 'User'
 
         attribute :user_id,
                   on:   :read,
