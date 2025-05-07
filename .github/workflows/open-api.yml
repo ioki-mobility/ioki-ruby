@@ -22,13 +22,17 @@ jobs:
         run: |
           mkdir spec/fixtures/open_api_definitions
           cd spec/fixtures/open_api_definitions
-          curl -o driver_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}driver-api%2Fv2%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
-          curl -o operator_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}operator-api%2Fv20210101%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
-          curl -o passenger_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}passenger-api%2Fv1%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
-          curl -o platform_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}platform-api%2Fv20210101%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
-          curl -o webhooks_api.json --url "${{ secrets.GITLAB_BASE_URL }}${{ env.DOCUMENTATION_BASE_PATH }}webhooks%2Fv20201201%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o driver_api.json --url "${{ secrets.GITLAB_BASE_URL }}public%2Frefs%2Fmain%2Fdriver-api%2F${{ env.DRIVER_API_VERSION }}%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o operator_api.json --url "${{ secrets.GITLAB_BASE_URL }}public%2Frefs%2Fmain%2Foperator-api%2F${{ env.OPERATOR_API_VERSION }}%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o passenger_api.json --url "${{ secrets.GITLAB_BASE_URL }}public%2Frefs%2Fmain%2Fpassenger-api%2F${{ env.PASSENGER_API_VERSION }}%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o platform_api.json --url "${{ secrets.GITLAB_BASE_URL }}public%2Frefs%2Fmain%2Fplatform-api%2F${{ env.PLATFORM_API_VERSION }}%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
+          curl -o webhooks_api.json --url "${{ secrets.GITLAB_BASE_URL }}public%2Frefs%2Fmain%2Fwebhooks%2F${{ env.WEBHOOKS_API_VERSION }}%2Ejson/raw?ref=main" --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_API_DOCS_ACCESS_TOKEN }}"
         env:
-          DOCUMENTATION_BASE_PATH: public%2Frefs%2Fdocs-keep-api-docs-openapi-json-files-2%2F
+          DRIVER_API_VERSION: v2
+          OPERATOR_API_VERSION: v20210101
+          PASSENGER_API_VERSION: v1
+          PLATFORM_API_VERSION: v20210101
+          WEBHOOKS_API_VERSION: v20210101
         shell: bash
       - name: Run rspec
         id: rspec_tests
