@@ -5,7 +5,7 @@ module Ioki
     module Passenger
       class Package < Base
         def self.schema_path
-          'passenger_api--nested_service_credit_packages'
+          'passenger_api--v1--nested_service_credit_packages'
         end
 
         attribute :cost, on: :read, type: :object, class_name: 'Money'

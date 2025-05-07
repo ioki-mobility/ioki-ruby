@@ -4,7 +4,9 @@ module Ioki
   module Model
     module Operator
       class Geojson < Base
-        unvalidated true
+        def self.schema_path
+          'geojson'
+        end
 
         attribute :coordinates, type: :array, on: [:create, :read, :update]
         attribute :type, type: :string, on: [:create, :read, :update]

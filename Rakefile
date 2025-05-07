@@ -5,6 +5,8 @@ require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 
+Rake.add_rakelib 'lib/tasks'
+
 task default: :spec
 
 task :console do

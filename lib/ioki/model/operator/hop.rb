@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class Hop < Base
+        def self.schema_path
+          'operator_api--v20210101--hop--public_transport_hop'
+        end
+
         attribute :type,
                   on:   :read,
                   type: :string

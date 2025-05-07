@@ -4,10 +4,6 @@ module Ioki
   module Model
     module Passenger
       class PaymentMethod < Base
-        def self.schema_path
-          'passenger_api--v1--payment_method_schema'
-        end
-
         attribute :type, on: :read, type: :string
         attribute :id, on: [:read, :create], type: :string, omit_if_blank_on: :create
         attribute :created_at, on: :read, type: :date_time

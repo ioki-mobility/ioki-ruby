@@ -5,6 +5,7 @@ module Ioki
     module Operator
       class RideInquiry < Base
         attribute :passengers, type: :array, on: [:create, :read, :update]
+
         attribute :type,
                   on:   :read,
                   type: :string
