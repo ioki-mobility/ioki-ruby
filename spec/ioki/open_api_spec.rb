@@ -101,7 +101,7 @@ RSpec.describe OpenApi do
   before do
     allow(File).to receive(:open).with(model_file_path).and_return(StringIO.new(model_definition))
     allow(File).to receive(:write)
-    allow(JSON).to receive(:parse).and_return(specification_json)
+    allow(specification).to receive(:definition_json).and_return(specification_json)
     # unset Ioki::Model::Platform::Example constant:
     Ioki::Model::Platform.send(:remove_const, :Example) if Ioki::Model::Platform.const_defined?(:Example)
     eval(model_definition)
