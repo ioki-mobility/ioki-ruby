@@ -53,7 +53,7 @@ jobs:
 
       - name: Create or Update Pull Request
         if: steps.rspec_tests.outcome == 'failure'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "fix: Automated PR due to RSpec test failures"
