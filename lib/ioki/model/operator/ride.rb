@@ -111,6 +111,11 @@ module Ioki
                   on:   :read,
                   type: :integer
 
+        attribute :last_serving_driver,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Driver'
+
         attribute :last_serving_driver_id,
                   on:   :read,
                   type: :string
