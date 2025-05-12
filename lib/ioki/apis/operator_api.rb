@@ -446,6 +446,14 @@ module Ioki
         :public_transport_locations,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::PublicTransportLocation
+      ),
+      Endpoints::ShowSingular.new(
+        :ioki_suite_navigation,
+        base_path:   nil,
+        path:        [
+          API_BASE_PATH, 'services', 'ioki_suite_navigation'
+        ],
+        model_class: Ioki::Model::Operator::IokiSuiteNavigation::Menu
       )
     ].freeze
   end

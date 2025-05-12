@@ -2371,4 +2371,16 @@ RSpec.describe Ioki::OperatorApi do
         .to all(be_a(Ioki::Model::Operator::PublicTransportLocation))
     end
   end
+
+  describe '#ioki_suite_navigation' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/services/ioki_suite_navigation')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.ioki_suite_navigation)
+        .to be_a(Ioki::Model::Operator::IokiSuiteNavigation::Menu)
+    end
+  end
 end
