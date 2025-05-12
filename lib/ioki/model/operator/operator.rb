@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Operator
       class Operator < Base
+        attribute :vat_number, type: :string, on: [:create, :read, :update]
+        attribute :external_id, type: :string, on: [:create, :read, :update]
+        attribute :address, type: :string, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
@@ -20,9 +23,9 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :archived_at,
-                  on:   :read,
-                  type: :date_time
+        # attribute :archived_at,
+        #           on:   :read,
+        #           type: :date_time
 
         attribute :default_operator,
                   on:   :read,

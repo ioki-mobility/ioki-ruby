@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Operator
       class Driver < Base
+        attribute :password_disclosed, type: :boolean, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string

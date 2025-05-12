@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Operator
       class FleetState < Base
+        attribute :operator_id, type: :string, on: [:create, :read, :update]
+        attribute :product_id, type: :string, on: [:create, :read, :update]
+        attribute :vehicle_ids, type: :string, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
