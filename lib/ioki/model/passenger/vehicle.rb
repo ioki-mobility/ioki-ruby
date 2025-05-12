@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Passenger
       class Vehicle < Base
+        attribute :door_control_available, type: :boolean, on: [:create, :read, :update]
+        attribute :supports_open_door_requests, type: :boolean, on: [:create, :read, :update]
+        attribute :autonomous, type: :boolean, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

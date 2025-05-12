@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Passenger
       class PaymentMethodSummary < Base
+        attribute :type, type: :string, on: [:create, :read, :update]
         attribute :brand, on: :read, type: :string
         attribute :expiration, on: :read, type: :date_time
         attribute :kind, on: :read, type: :string

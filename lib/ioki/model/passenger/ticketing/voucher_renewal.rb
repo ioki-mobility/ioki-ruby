@@ -9,8 +9,12 @@ module Ioki
             'passenger_api--v1--ticketing--voucher_renewal_information'
           end
 
-          attribute :payment_method, on: :create, type: :object, class_name: 'Ioki::Model::Passenger::PaymentMethod'
-          attribute :paypal_secure_element, on: :create, type: :string
+        attribute :valid_until, type: :string, on: [:create, :read, :update]
+        attribute :valid_from, type: :string, on: [:create, :read, :update]
+        attribute :renewable, type: :boolean, on: [:create, :read, :update]
+        attribute :type, type: :string, on: [:create, :read, :update]
+        #   attribute :payment_method, on: :create, type: :object, class_name: 'Ioki::Model::Passenger::PaymentMethod'
+        #   attribute :paypal_secure_element, on: :create, type: :string
         end
       end
     end

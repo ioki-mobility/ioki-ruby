@@ -22,7 +22,7 @@ module Ioki
           class_name: ['CalculatedPoint', 'RequestedPoint', 'PublicTransportStop']
         attribute :to, on: :read, type: :object,
           class_name: ['CalculatedPoint', 'RequestedPoint', 'PublicTransportStop']
-        attribute :vehicle, on: :read, type: :object, class_name: 'Vehicle'
+        # attribute :vehicle, on: :read, type: :object, class_name: 'Vehicle'
         attribute :details, on: :read, type: :object, class_name: 'HopDetails'
       end
     end

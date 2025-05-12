@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Passenger
       class Bootstrap < Base
+        attribute :renewable_ticketing_vouchers, type: :array, on: [:create, :read, :update]
+        attribute :product_support_uris, type: :array, on: [:create, :read, :update]
+        attribute :failed_purchases, type: :array, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
