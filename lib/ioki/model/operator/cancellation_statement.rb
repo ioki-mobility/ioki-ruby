@@ -36,9 +36,9 @@ module Ioki
                   on:   [:create, :read, :update],
                   type: :boolean
 
-        attribute :passenger_notification,
-                  on:   :read,
-                  type: :string
+        # attribute :passenger_notification,
+        #           on:   :read,
+        #           type: :string
 
         attribute :title,
                   on:   :read,

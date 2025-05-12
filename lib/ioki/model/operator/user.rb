@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Operator
       class User < Base
+        attribute :provider_id, type: :string, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
@@ -36,9 +37,9 @@ module Ioki
                   omit_if_blank_on: [:create, :update],
                   type:             :string
 
-        attribute :full_name,
-                  on:   :read,
-                  type: :string
+        # attribute :full_name,
+        #           on:   :read,
+        #           type: :string
 
         attribute :last_name,
                   on:               [:read, :create, :update],
@@ -57,9 +58,9 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :locked,
-                  on:   :read,
-                  type: :boolean
+        # attribute :locked,
+        #           on:   :read,
+        #           type: :boolean
 
         attribute :locked_at,
                   on:   :read,
@@ -79,9 +80,9 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :unique_customer_id,
-                  on:   :read,
-                  type: :string
+        # attribute :unique_customer_id,
+        #           on:   :read,
+        #           type: :string
 
         attribute :version,
                   on:             [:read, :update],

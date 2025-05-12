@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Operator
       class TaskList < Base
+        attribute :tasks, type: :array, on: [:create, :read, :update]
+        attribute :occupancy, type: :object, on: [:create, :read, :update], class_name: 'TaskListOccupancy'
         attribute :type,
                   on:   :read,
                   type: :string
@@ -42,10 +44,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
-        attribute :deactivations,
-                  on:         :read,
-                  type:       :array,
-                  class_name: 'Deactivation'
+        # attribute :deactivations,
+        #           on:         :read,
+        #           type:       :array,
+        #           class_name: 'Deactivation'
 
         attribute :end_location,
                   on:         :read,
@@ -74,17 +76,17 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
-        attribute :matching_configuration_name,
-                  on:   :read,
-                  type: :string
+        # attribute :matching_configuration_name,
+        #           on:   :read,
+        #           type: :string
 
         attribute :matching_rank,
                   on:   [:create, :read, :update],
                   type: :integer
 
-        attribute :num_prebooked_rides,
-                  on:   :read,
-                  type: :integer
+        # attribute :num_prebooked_rides,
+        #           on:   :read,
+        #           type: :integer
 
         attribute :paused,
                   on:   :read,
@@ -142,11 +144,11 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
-        attribute :vehicle,
-                  on:             :read,
-                  omit_if_nil_on: [:read],
-                  type:           :object,
-                  class_name:     'Vehicle'
+        # attribute :vehicle,
+        #           on:             :read,
+        #           omit_if_nil_on: [:read],
+        #           type:           :object,
+        #           class_name:     'Vehicle'
 
         attribute :vehicle_id,
                   on:             [:create, :read, :reassign],
@@ -158,13 +160,13 @@ module Ioki
                   omit_if_nil_on: [:create],
                   type:           :string
 
-        attribute :line_name,
-                  on:   :read,
-                  type: :string
+        # attribute :line_name,
+        #           on:   :read,
+        #           type: :string
 
-        attribute :driver_name,
-                  on:   :read,
-                  type: :string
+        # attribute :driver_name,
+        #           on:   :read,
+        #           type: :string
 
         attribute :version,
                   on:             [:read, :update],
