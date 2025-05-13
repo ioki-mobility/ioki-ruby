@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Operator
       class Vehicle < Base
+        attribute :vehicle_type, type: :string, on: [:create, :read, :update]
+        attribute :door_control_available, type: :boolean, on: [:create, :read, :update]
+        attribute :supports_open_door_requests, type: :boolean, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
@@ -20,9 +23,9 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :active,
-                  on:   :read,
-                  type: :boolean
+        # attribute :active,
+        #           on:   :read,
+        #           type: :boolean
 
         attribute :autonomous,
                   on:             [:create, :read, :update],
@@ -92,7 +95,7 @@ module Ioki
                   omit_if_nil_on: [:create, :update],
                   type:           :string
 
-        attribute :num_wheelchair_bays_as_storages,
+        deprecated_attribute :num_wheelchair_bays_as_storages,
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :integer
