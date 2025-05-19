@@ -94,6 +94,10 @@ module Ioki
                   type:       :array,
                   class_name: 'Station'
 
+        attribute :has_custom_flags,
+                  on:   :read,
+                  type: :boolean
+
         attribute :matching_configurations,
                   on:         :read,
                   type:       :array,

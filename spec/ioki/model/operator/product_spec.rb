@@ -28,6 +28,7 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:disable_station_markers).as(:boolean) }
   it { is_expected.to define_attribute(:features).as(:object).with(class_name: 'Features') }
   it { is_expected.to define_attribute(:fixed_stations).as(:array).with(class_name: 'Station') }
+  it { is_expected.to define_attribute(:has_custom_flags).as(:boolean) }
   it { is_expected.to define_attribute(:matching_configurations).as(:array).with(class_name: 'MatchingConfiguration') }
   it { is_expected.to define_attribute(:parking_time).as(:integer) }
   it { is_expected.to define_attribute(:prebookable).as(:boolean) }
