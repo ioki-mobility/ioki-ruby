@@ -459,6 +459,12 @@ module Ioki
           API_BASE_PATH, 'services', 'ioki_suite_navigation'
         ],
         model_class: Ioki::Model::Operator::IokiSuiteNavigation::Menu
+      ),
+      Endpoints::UpdateSingular.new(
+        :settings,
+        base_path:            [API_BASE_PATH, 'account'],
+        model_class:          Ioki::Model::Operator::Admin,
+        outgoing_model_class: Ioki::Model::Operator::Account::Settings
       )
     ].freeze
   end

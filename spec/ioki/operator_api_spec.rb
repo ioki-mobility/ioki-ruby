@@ -2395,4 +2395,18 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Bootstrap)
     end
   end
+
+  describe '#update_settings' do
+    let(:account_settings) { Ioki::Model::Operator::Account::Settings.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/account/settings')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_settings(account_settings))
+        .to be_a(Ioki::Model::Operator::Admin)
+    end
+  end
 end
