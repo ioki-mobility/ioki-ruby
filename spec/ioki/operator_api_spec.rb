@@ -2383,4 +2383,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::IokiSuiteNavigation::Menu)
     end
   end
+
+  describe '#bootstrap' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/bootstrap')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.bootstrap)
+        .to be_a(Ioki::Model::Operator::Bootstrap)
+    end
+  end
 end
