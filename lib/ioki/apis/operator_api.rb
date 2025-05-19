@@ -7,6 +7,11 @@ module Ioki
   class OperatorApi
     API_BASE_PATH = 'operator'
     ENDPOINTS = [
+      Endpoints::ShowSingular.new(
+        :bootstrap,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Operator::Bootstrap
+      ),
       Endpoints.crud_endpoints(
         :provider,
         base_path:   [API_BASE_PATH],
