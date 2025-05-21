@@ -91,6 +91,11 @@ module Ioki
         attribute :last_activity_at,
                   on:   :read,
                   type: :date_time
+
+        attribute :user_segment,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'UserSegment'
       end
     end
   end
