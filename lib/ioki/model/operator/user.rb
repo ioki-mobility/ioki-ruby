@@ -87,6 +87,10 @@ module Ioki
                   on:             [:read, :update],
                   omit_if_nil_on: [:update],
                   type:           :integer
+
+        attribute :last_activity_at,
+                  on:   :read,
+                  type: :date_time
       end
     end
   end
