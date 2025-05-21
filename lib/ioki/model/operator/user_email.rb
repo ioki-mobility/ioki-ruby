@@ -8,6 +8,8 @@ module Ioki
 
         attribute :confirmed,     on: :read, type: :boolean
         attribute :email_address, on: :read, type: :string
+        attribute :newsletter,    on: :read, type: :boolean
+        attribute :receipt,       on: :read, type: :boolean
       end
     end
   end
