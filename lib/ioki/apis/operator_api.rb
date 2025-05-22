@@ -465,6 +465,32 @@ module Ioki
         base_path:            [API_BASE_PATH, 'account'],
         model_class:          Ioki::Model::Operator::Admin,
         outgoing_model_class: Ioki::Model::Operator::Account::Settings
+      ),
+      Endpoints::Create.new(
+        :station_upload_request,
+        base_path:   [API_BASE_PATH, 'products', :id, 'stations', :id],
+        path:        'upload_requests',
+        model_class: Ioki::Model::Operator::UploadRequest
+      ),
+      Endpoints::Create.new(
+        :vehicle_upload_request,
+        base_path:   [API_BASE_PATH, 'products', :id, 'vehicles', :id],
+        path:        'upload_requests',
+        model_class: Ioki::Model::Operator::UploadRequest
+      ),
+      Endpoints::Create.new(
+        :station_upload_submission,
+        base_path:            [API_BASE_PATH, 'products', :id, 'stations', :id, 'upload_requests', :id],
+        path:                 'submissions',
+        model_class:          Ioki::Model::Operator::Station,
+        outgoing_model_class: Ioki::Model::Operator::UploadSubmission
+      ),
+      Endpoints::Create.new(
+        :vehicle_upload_submission,
+        base_path:            [API_BASE_PATH, 'products', :id, 'vehicles', :id, 'upload_requests', :id],
+        path:                 'submissions',
+        model_class:          Ioki::Model::Operator::Vehicle,
+        outgoing_model_class: Ioki::Model::Operator::UploadSubmission
       )
     ].freeze
   end
