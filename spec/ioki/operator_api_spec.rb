@@ -2409,4 +2409,64 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Admin)
     end
   end
+
+  describe '#create_station_upload_request(product_id, station_id, ...)' do
+    let(:upload_request) { Ioki::Model::Operator::UploadRequest.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/upload_requests')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_station_upload_request('0815', '4711', upload_request, options))
+        .to be_a(Ioki::Model::Operator::UploadRequest)
+    end
+  end
+
+  describe '#create_vehicle_upload_request(product_id, vehicle_id, ...)' do
+    let(:upload_request) { Ioki::Model::Operator::UploadRequest.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/upload_requests')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_vehicle_upload_request('0815', '4711', upload_request, options))
+        .to be_a(Ioki::Model::Operator::UploadRequest)
+    end
+  end
+
+  describe '#create_vehicle_upload_submission(product_id, vehicle_id, upload_request_id, ...)' do
+    let(:upload_submission) { Ioki::Model::Operator::UploadSubmission.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/upload_requests/5150/submissions')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_vehicle_upload_submission('0815', '4711', '5150', upload_submission, options))
+        .to be_a(Ioki::Model::Operator::Vehicle)
+    end
+  end
+
+  describe '#create_station_upload_submission(product_id, station_id, upload_request_id, ...)' do
+    let(:upload_submission) { Ioki::Model::Operator::UploadSubmission.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/upload_requests/5150/submissions')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_station_upload_submission('0815', '4711', '5150', upload_submission, options))
+        .to be_a(Ioki::Model::Operator::Station)
+    end
+  end
 end
