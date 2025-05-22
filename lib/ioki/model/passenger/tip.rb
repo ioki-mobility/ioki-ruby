@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Passenger
       class Tip < Base
+        attribute :paypal_secure_element, type: :string, on: [:create, :read, :update]
+        attribute :payment_method, type: :object, on: [:create, :read, :update], class_name: 'PaymentMethodUseSchema'
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

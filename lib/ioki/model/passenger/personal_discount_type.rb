@@ -24,9 +24,9 @@ module Ioki
         attribute :fixed_price_per_ride, on: :read, type: :object, class_name: 'Money'
         attribute :price, on: :read, type: :object, class_name: 'Money'
 
-        attribute :personal_discount_type_id, on: :create, type: :integer
-        attribute :payment_method, on: :create, type: :object, class_name: 'PaymentMethod'
-        attribute :paypal_secure_element, on: :create, type: :string, omit_if_blank: true
+        # attribute :personal_discount_type_id, on: :create, type: :integer
+        # attribute :payment_method, on: :create, type: :object, class_name: 'PaymentMethod'
+        # attribute :paypal_secure_element, on: :create, type: :string, omit_if_blank: true
 
         deprecated_attribute :absolute_discount_object, on: :read, type: :object, class_name: 'Money'
         deprecated_attribute :price_object, on: :read, type: :object, class_name: 'Money'

@@ -4,15 +4,16 @@ module Ioki
   module Model
     module Operator
       class RidePassenger < Base
-        attribute :bahncard,
+        attribute :options, type: :array, on: [:create, :read, :update]
+        deprecated_attribute :bahncard,
                   on:   :read,
                   type: :boolean
 
-        attribute :blue_badge,
+        deprecated_attribute :blue_badge,
                   on:   :read,
                   type: :boolean
 
-        attribute :public_transport_ticket,
+        deprecated_attribute :public_transport_ticket,
                   on:   :read,
                   type: :boolean
 
@@ -20,11 +21,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :walker,
+        deprecated_attribute :walker,
                   on:   :read,
                   type: :boolean
 
-        attribute :wheelchair,
+        deprecated_attribute :wheelchair,
                   on:   :read,
                   type: :boolean
       end
