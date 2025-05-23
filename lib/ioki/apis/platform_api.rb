@@ -12,6 +12,11 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Platform::Client
       ),
+      Endpoints::ShowSingular.new(
+        :platform,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Platform::Platform
+      ),
       Endpoints.crud_endpoints(
         :station,
         base_path:   [API_BASE_PATH, 'products', :id],
