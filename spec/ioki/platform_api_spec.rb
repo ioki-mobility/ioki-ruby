@@ -26,6 +26,18 @@ RSpec.describe Ioki::PlatformApi do
   let(:full_response) { instance_double(Faraday::Response, 'full_response', headers: {}) }
   let(:options) { { options: :example } }
 
+  describe '#platform' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/platform')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.platform(options))
+        .to be_a(Ioki::Model::Platform::Platform)
+    end
+  end
+
   describe '#providers' do
     it 'calls request on the client with expected params' do
       expect(platform_client).to receive(:request) do |params|
