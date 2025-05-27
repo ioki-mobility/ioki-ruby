@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Operator
       class Provider < Base
+        attribute :operators, type: :array, on: [:create, :read, :update]
+        attribute :ticketing_payment_method_types, type: :array, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
