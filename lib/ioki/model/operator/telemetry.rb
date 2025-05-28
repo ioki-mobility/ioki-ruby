@@ -8,6 +8,10 @@ module Ioki
           'operator_api--v20210101--fleet_state--vehicle_telemetry'
         end
 
+        attribute :seatbelt_state_source, type: :string, on: [:create, :read, :update]
+        attribute :seatbelt_state_synced_at, type: :string, on: [:create, :read, :update]
+        attribute :seatbelt_state, type: :string, on: [:create, :read, :update]
+        attribute :type, type: :string, on: [:create, :read, :update]
         attribute :id,
                   on:   :read,
                   type: :string

@@ -5,6 +5,7 @@ module Ioki
     module Passenger
       module Ticketing
         class Product < Base
+        attribute :renewable, type: :boolean, on: [:create, :read, :update]
           attribute :type, on: :read, type: :string
           attribute :id, on: :read, type: :string
           attribute :created_at, on: :read, type: :date_time
