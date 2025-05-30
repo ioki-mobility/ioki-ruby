@@ -142,7 +142,7 @@ GEM
     racc (1.8.1)
     rack (3.1.15)
     rainbow (3.1.1)
-    rake (13.2.1)
+    rake (13.3.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -223,7 +223,7 @@ DEPENDENCIES
   guard-rspec
   ioki-ruby!
   mail
-  rake (~> 13.2)
+  rake (~> 13.3)
   rspec (~> 3.13)
   rubocop
   rubocop-factory_bot
