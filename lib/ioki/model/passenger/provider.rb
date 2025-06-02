@@ -30,6 +30,7 @@ module Ioki
         attribute :stripe_account_id, on: :read, type: :string
         attribute :stripe_payment_method_types, on: :read, type: :array
         attribute :tip_payment_method_types, on: :read, type: :array
+        attribute :ticketing_payment_method_types, on: :read, type: :array
         attribute :version, on: :read, type: :integer
       end
     end
