@@ -55,6 +55,10 @@ module Ioki
                   type:       :object,
                   class_name: 'BoundingBox'
 
+        attribute :custom_flag_names,
+                  on:   :read,
+                  type: :array
+
         attribute :default_end_place_id,
                   on:   :read,
                   type: :string
