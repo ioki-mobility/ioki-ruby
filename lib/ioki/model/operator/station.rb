@@ -24,6 +24,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :approach,
+                  on:   [:read, :create, :update],
+                  type: :string
+
         attribute :area,
                   on:         :read,
                   type:       :object,
