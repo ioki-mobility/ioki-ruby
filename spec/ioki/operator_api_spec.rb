@@ -2469,4 +2469,43 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Station)
     end
   end
+
+  describe '#no_shows(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/no_shows')
+        result_with_index_data
+      end
+
+      expect(operator_client.no_shows('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Products::NoShow))
+    end
+  end
+
+  describe '#user_no_shows(product_id, user_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/users/4711/no_shows')
+        result_with_index_data
+      end
+
+      expect(operator_client.user_no_shows('0815', '4711', options))
+        .to all(be_a(Ioki::Model::Operator::Users::NoShow))
+    end
+  end
+
+  describe '#create_acknowledgments(product_id, user_id, ...)' do
+    let(:user) { Ioki::Model::Operator::User.new(id: '4711') }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/users/4711/no_shows/acknowledgments')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_acknowledgments('0815', '4711', user, options))
+        .to be_a(Ioki::Model::Operator::User)
+    end
+  end
 end

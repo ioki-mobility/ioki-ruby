@@ -491,6 +491,24 @@ module Ioki
         path:                 'submissions',
         model_class:          Ioki::Model::Operator::Vehicle,
         outgoing_model_class: Ioki::Model::Operator::UploadSubmission
+      ),
+      Endpoints::Index.new(
+        :no_shows,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::Products::NoShow
+      ),
+      Endpoints.crud_endpoints(
+        :user_no_shows,
+        base_path:   [API_BASE_PATH, 'products', :id, 'users', :id],
+        paths:       { index: 'no_shows' },
+        except:      [:show, :create, :update, :delete],
+        model_class: Ioki::Model::Operator::Users::NoShow
+      ),
+      Endpoints.crud_endpoints(
+        :acknowledgments,
+        base_path:   [API_BASE_PATH, 'products', :id, 'users', :id, 'no_shows'],
+        except:      [:show, :index, :update, :delete],
+        model_class: Ioki::Model::Operator::User
       )
     ].freeze
   end
