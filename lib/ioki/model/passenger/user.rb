@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Passenger
       class User < Base
+        attribute :terms_accepted, type: :boolean, on: [:create, :read, :update]
+        attribute :additional_data, type: :object, on: [:create, :read, :update], class_name: 'AdditionalDataSchema'
+        attribute :available_notification_channels, type: :array, on: [:create, :read, :update]
+        attribute :logpay_support_details, type: :object, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
