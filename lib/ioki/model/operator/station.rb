@@ -55,9 +55,10 @@ module Ioki
                   type: :string
 
         attribute :custom_flags,
-                  on:         [:create, :read, :update],
-                  type:       :array,
-                  class_name: 'CustomFlag'
+                  on:               [:create, :read, :update],
+                  type:             :array,
+                  omit_if_blank_on: [:create, :update],
+                  class_name:       'CustomFlag'
 
         attribute :deactivations,
                   on:         :read,
