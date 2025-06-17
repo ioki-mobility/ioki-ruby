@@ -12,7 +12,7 @@ module Ioki
         attribute :question_prompt, on: :read, type: :string
         attribute :image_url, on: :read, type: :string
 
-        attribute :solution, on: :create, type: :string
+        # attribute :solution, on: :create, type: :string
       end
     end
   end

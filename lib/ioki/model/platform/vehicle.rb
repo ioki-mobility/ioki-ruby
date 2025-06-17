@@ -4,6 +4,15 @@ module Ioki
   module Model
     module Platform
       class Vehicle < Base
+        attribute :operation_area_id, type: :string, on: [:create, :read, :update]
+        attribute :wheelchair_bays, type: :integer, on: [:create, :read, :update]
+        attribute :walker_bays, type: :integer, on: [:create, :read, :update]
+        attribute :storage_spaces, type: :integer, on: [:create, :read, :update]
+        attribute :seats, type: :integer, on: [:create, :read, :update]
+        attribute :operation_area, type: :string, on: [:create, :read, :update]
+        attribute :matching_rank, type: :integer, on: [:create, :read, :update]
+        attribute :door_control_available, type: :boolean, on: [:create, :read, :update]
+        attribute :supports_open_door_requests, type: :boolean, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string

@@ -4,6 +4,11 @@ module Ioki
   module Model
     module Passenger
       class Ride < Base
+        attribute :user_id, type: :string, on: [:create, :read, :update]
+        attribute :booked_solution, type: :object, on: [:create, :read, :update], class_name: 'OfferedSolution'
+        attribute :vehicle_approached_pickup, type: :boolean, on: [:create, :read, :update]
+        attribute :solution_id, type: :string, on: [:create, :read, :update]
+        attribute :show_pt_ticket_reminder, type: :boolean, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -15,8 +20,8 @@ module Ioki
         attribute :booking, type: :object, on: :read, class_name: 'Booking'
         attribute :pickup, type: :object, on: :read, class_name: 'CalculatedPoint'
         attribute :dropoff, type: :object, on: :read, class_name: 'CalculatedPoint'
-        attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
-        attribute :book_for_others, type: :boolean, on: [:read, :create, :update]
+        deprecated_attribute :storage_spaces, type: :integer, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
+        deprecated_attribute :book_for_others, type: :boolean, on: [:read, :create, :update]
         attribute :cancellable, type: :boolean, on: [:read, :create, :update]
         attribute :cancellation_reason, type: :string, on: [:read, :create, :update]
         attribute :cancellation_reason_translated, type: :string, on: [:read, :create, :update]
@@ -25,13 +30,13 @@ module Ioki
         attribute :needs_cancellation_code, type: :boolean, on: [:read, :create, :update]
         attribute :passenger_can_be_called, type: :boolean, on: [:read, :create, :update]
         attribute :payment_method, type: :object, on: :read, class_name: 'PaymentMethod'
-        attribute :payment_state, type: :string, on: [:read, :create, :update]
+        deprecated_attribute :payment_state, type: :string, on: [:read, :create, :update]
         attribute :prebooked, type: :boolean, on: [:read, :create, :update]
         attribute :product_id, type: :string, on: [:read, :create, :update]
         attribute :public_transport_uri, type: :string, on: [:read, :create, :update]
         attribute :rateable, type: :boolean, on: [:read, :create, :update]
         attribute :rating, type: :object, on: :read, class_name: 'Rating'
-        attribute :receipts, type: :array, on: [:read, :create, :update]
+        deprecated_attribute :receipts, type: :array, on: [:read, :create, :update]
         attribute :route, type: :object, class_name: 'Route', on: [:read, :create, :update]
         attribute :state, type: :string, on: [:read, :create, :update]
         attribute :support_uri, type: :string, on: [:read, :create, :update]

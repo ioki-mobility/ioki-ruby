@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Operator
       class Station < Base
+        attribute :avatar, type: :object, on: [:create, :read, :update], class_name: 'ImageUpload'
         attribute :type,
                   on:   :read,
                   type: :string
