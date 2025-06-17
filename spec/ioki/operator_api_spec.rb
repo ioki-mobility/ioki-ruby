@@ -2469,4 +2469,28 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Station)
     end
   end
+
+  describe '#rating_criteria(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/rating_criteria')
+        result_with_index_data
+      end
+
+      expect(operator_client.rating_criteria('0815', options))
+        .to all(be_a(Ioki::Model::Operator::RatingCriterion))
+    end
+  end
+
+  describe '#rating_criterion(product_id, rating_criterion_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/rating_criteria/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.rating_criterion('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RatingCriterion)
+    end
+  end
 end
