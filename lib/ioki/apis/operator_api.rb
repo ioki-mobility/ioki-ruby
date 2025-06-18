@@ -503,12 +503,7 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         paths:       { show: 'rating_criteria' },
         model_class: Ioki::Model::Operator::RatingCriterion,
-        except:      [:index, :create, :update, :delete]
-      ),
-      Endpoints::Index.new(
-        :rating_criteria,
-        base_path:   [API_BASE_PATH, 'providers', :id],
-        model_class: Ioki::Model::Operator::RatingCriterion
+        only:        [:show, :index]
       )
     ].freeze
   end
