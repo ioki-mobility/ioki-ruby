@@ -81,7 +81,7 @@ RSpec.describe Faraday do
       per_page = 2
       body = lambda do |page, total_pages|
         {
-          data: (((page - 1) * per_page)...page * per_page).map { |value| { value: value } },
+          data: (((page - 1) * per_page)...(page * per_page)).map { |value| { value: value } },
           meta: {
             total_count: per_page * total_pages,
             page:        page,
