@@ -496,13 +496,6 @@ module Ioki
         :rating_criterion,
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::RatingCriterion,
-        except:      [:create, :update, :delete]
-      ),
-      Endpoints.crud_endpoints(
-        :rating_criterion,
-        base_path:   [API_BASE_PATH, 'providers', :id],
-        paths:       { show: 'rating_criteria' },
-        model_class: Ioki::Model::Operator::RatingCriterion,
         only:        [:show, :index]
       )
     ].freeze
