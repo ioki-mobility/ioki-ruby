@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_support/inflector'
+
 require_relative 'endpoint'
 require_relative 'create'
 require_relative 'show'
@@ -8,6 +10,10 @@ require_relative 'index'
 require_relative 'update'
 require_relative 'update_singular'
 require_relative 'delete'
+
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.irregular 'rating_criterion', 'rating_criteria'
+end
 
 module Ioki
   module Endpoints

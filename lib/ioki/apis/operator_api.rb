@@ -491,6 +491,12 @@ module Ioki
         path:                 'submissions',
         model_class:          Ioki::Model::Operator::Vehicle,
         outgoing_model_class: Ioki::Model::Operator::UploadSubmission
+      ),
+      Endpoints.crud_endpoints(
+        :rating_criterion,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Operator::RatingCriterion,
+        only:        [:show, :index]
       )
     ].freeze
   end

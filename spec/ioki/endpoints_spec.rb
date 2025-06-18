@@ -80,4 +80,14 @@ RSpec.describe Ioki::Endpoints do
       end
     end
   end
+
+  describe 'Custom inflections' do
+    it 'pluralizes "rating_criterion" correctly' do
+      expect('rating_criterion'.pluralize).to eq('rating_criteria')
+    end
+
+    it 'uses the singular correctly' do
+      expect('rating_criteria'.singularize).to eq('rating_criterion')
+    end
+  end
 end
