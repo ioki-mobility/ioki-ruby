@@ -28,6 +28,11 @@ module Ioki
                   on:   :create,
                   type: :array
 
+        attribute :driver_notifications,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Ioki::Model::Operator::DriverNotification'
+
         attribute :receivers_count,
                   on:   :read,
                   type: :integer
