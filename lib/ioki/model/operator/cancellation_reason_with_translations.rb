@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Operator
       class CancellationReasonWithTranslations < Base
+        attribute :type, type: :string, on: [:create, :read, :update]
         attribute :slug,
                   on:   :read,
                   type: :string

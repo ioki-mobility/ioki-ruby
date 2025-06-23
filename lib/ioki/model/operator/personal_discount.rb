@@ -16,7 +16,7 @@ module Ioki
         attribute :maximum_usages, on: :read, type: :integer
         attribute :payment_method, on: :read, type: :object, class_name: 'PaymentMethod'
         attribute :product_id, on: :read, type: :string
-        attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
+        deprecated_attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
         attribute :relative_discount, on: :read, type: :integer
         attribute :title, on: :read, type: :string
         attribute :usages, on: :read, type: :integer
