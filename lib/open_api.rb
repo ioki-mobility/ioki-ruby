@@ -80,7 +80,7 @@ module OpenApi
       elsif attribute_definition.key? 'oneOf'
         type = ':object'
         refs = attribute_definition['oneOf'].reject { |r| r['type'] == 'null' }
-        class_name = if refs.count == 1
+        class_name = if refs.one?
                        ref_to_class_name(refs.first)
                      elsif refs.count > 1
                        "[#{refs.map { |ref| ref_to_class_name(ref) }.join(', ')}]"
@@ -94,7 +94,7 @@ module OpenApi
       elsif attribute_definition.key? 'anyOf'
         type = ':object'
         refs = attribute_definition['anyOf'].reject { |r| r['type'] == 'null' }
-        class_name = if refs.count == 1
+        class_name = if refs.one?
                        ref_to_class_name(refs.first)
                      elsif refs.count > 1
                        "[#{refs.map { |ref| ref_to_class_name(ref) }.join(', ')}]"

@@ -12,15 +12,15 @@ namespace :ioki do
         specification.models.each do |model|
           error_hash = {}
           if model.schema
-            if model.unspecified_model_attributes.count > 0
+            if model.unspecified_model_attributes.any?
               error_hash['unspecified_model_attributes'] = model.unspecified_model_attributes.map(&:to_s)
               errors += model.unspecified_model_attributes.count
             end
-            if model.deprecated_model_attributes.count > 0
+            if model.deprecated_model_attributes.any?
               error_hash['deprecated_model_attributes'] = model.deprecated_model_attributes.map(&:to_s)
               errors += model.deprecated_model_attributes.count
             end
-            if model.undefined_schema_attributes.count > 0
+            if model.undefined_schema_attributes.any?
               error_hash['undefined_schema_attributes'] = model.undefined_schema_attributes.map(&:to_s)
               errors += model.undefined_schema_attributes.count
             end
