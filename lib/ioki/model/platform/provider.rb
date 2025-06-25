@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Platform
       class Provider < Base
+        attribute :custom_urls, type: :array, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
@@ -64,7 +65,7 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :other_url,
+        deprecated_attribute :other_url,
                   on:   :read,
                   type: :string
 

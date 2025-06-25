@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Platform
       class Area < Base
+        attribute :bounding_box, type: :object, on: [:create, :read, :update], class_name: 'BoundingBox'
+        attribute :legend_description_translations, type: :object, on: [:create, :read, :update], class_name: 'MultilanguageString'
+        attribute :legend_title_translations, type: :object, on: [:create, :read, :update], class_name: 'MultilanguageString'
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

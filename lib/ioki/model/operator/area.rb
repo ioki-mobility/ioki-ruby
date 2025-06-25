@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Operator
       class Area < Base
+        attribute :product_id, type: :string, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string

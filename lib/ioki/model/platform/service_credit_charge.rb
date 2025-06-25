@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Platform
       class ServiceCreditCharge < Base
+        attribute :service_credit_deactivation, type: :object, on: [:create, :read, :update], class_name: 'ServiceCreditDeactivation'
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

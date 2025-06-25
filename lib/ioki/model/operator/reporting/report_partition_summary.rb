@@ -5,6 +5,9 @@ module Ioki
     module Operator
       module Reporting
         class ReportPartitionSummary < Base
+        attribute :visible_while_draft, type: :boolean, on: [:create, :read, :update]
+        attribute :default_query_timeframe, type: :string, on: [:create, :read, :update]
+        attribute :period_type, type: :string, on: [:create, :read, :update]
           attribute :type,
                     on:   :read,
                     type: :string

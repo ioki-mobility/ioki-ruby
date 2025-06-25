@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Passenger
       class PhoneVerificationRequest < Base
+        attribute :client_challenge, type: :object, on: [:create, :read, :update], class_name: 'ClientChallenge'
+        attribute :captcha, type: :object, on: [:create, :read, :update], class_name: 'Captcha'
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
