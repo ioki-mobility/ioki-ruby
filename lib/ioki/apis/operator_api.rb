@@ -497,6 +497,14 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::RatingCriterion,
         only:        [:show, :index]
+      ),
+      Endpoints::ShowSingular.new(
+        :admin_notifications_unread_count,
+        base_path:   nil,
+        path:        [
+          API_BASE_PATH, 'admin', 'admin_notifications', 'unread_count'
+        ],
+        model_class: Ioki::Model::Operator::AdminNotification::UnreadCount
       )
     ].freeze
   end

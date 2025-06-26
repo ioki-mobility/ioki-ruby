@@ -2493,4 +2493,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RatingCriterion)
     end
   end
+
+  describe '#admin_notifications_unread_count' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/admin/admin_notifications/unread_count')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.admin_notifications_unread_count)
+        .to be_a(Ioki::Model::Operator::AdminNotification::UnreadCount)
+    end
+  end
 end
