@@ -20,6 +20,11 @@ module Ioki
           attribute :versions,
                     on:   :read,
                     type: :array
+
+          attribute :variants,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'Ioki::Model::Operator::Reporting::ReportPartitionInfoVariant'
         end
       end
     end
