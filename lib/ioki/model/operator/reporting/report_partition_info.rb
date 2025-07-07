@@ -18,8 +18,14 @@ module Ioki
                     type: :integer
 
           attribute :versions,
-                    on:   :read,
-                    type: :array
+                    on:         :read,
+                    type:       :array,
+                    deprecated: true
+
+          attribute :variants,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'Ioki::Model::Operator::Reporting::ReportPartitionInfoVariant'
         end
       end
     end
