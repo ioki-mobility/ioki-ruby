@@ -505,6 +505,11 @@ module Ioki
           API_BASE_PATH, 'admin', 'admin_notifications', 'unread_count'
         ],
         model_class: Ioki::Model::Operator::AdminNotification::UnreadCount
+      ),
+      Endpoints::Index.new(
+        :consentables,
+        base_path:   [API_BASE_PATH, 'admin'],
+        model_class: Ioki::Model::Operator::Consentable
       )
     ].freeze
   end

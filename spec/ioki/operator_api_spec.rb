@@ -2505,4 +2505,16 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::AdminNotification::UnreadCount)
     end
   end
+
+  describe '#consentables' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/admin/consentables')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.consentables)
+        .to all be_a(Ioki::Model::Operator::Consentable)
+    end
+  end
 end
