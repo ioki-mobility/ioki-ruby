@@ -18,9 +18,8 @@ module Ioki
                     type: :integer
 
           attribute :versions,
-                    on:         :read,
-                    type:       :array,
-                    deprecated: true
+                    on:   :read,
+                    type: :array
 
           attribute :variants,
                     on:         :read,
