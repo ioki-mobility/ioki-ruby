@@ -20,6 +20,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :approach,
+                  on:   [:read, :create, :update],
+                  type: :string
+
         attribute :city,
                   on:   [:create, :read, :update],
                   type: :string
