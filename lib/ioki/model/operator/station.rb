@@ -38,6 +38,11 @@ module Ioki
                   type:           :string,
                   omit_if_nil_on: [:create, :update]
 
+        attribute :avatar,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ImageUpload'
+
         attribute :boarding_time,
                   on:   [:read, :create, :update],
                   type: :integer
