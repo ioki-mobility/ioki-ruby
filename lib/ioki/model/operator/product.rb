@@ -119,6 +119,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :public_transport_alternatives_adapter,
+                  on:   :read,
+                  type: :string
+
         attribute :ride_options,
                   on:         :read,
                   type:       :object,
