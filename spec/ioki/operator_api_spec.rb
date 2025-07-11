@@ -2165,6 +2165,20 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#update_restricted_area(product_id, restricted_area_id, restricted_area)' do
+    let(:restricted_area) { Ioki::Model::Operator::RestrictedArea.new({ id: '4711' }) }
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/restricted_areas/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.update_restricted_area('0815', '4711', restricted_area, options))
+        .to be_a(Ioki::Model::Operator::RestrictedArea)
+    end
+  end
+
   describe '#broadcasts(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|

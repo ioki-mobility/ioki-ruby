@@ -21,9 +21,13 @@ module Ioki
                   type: :date_time
 
         attribute :area_geojson,
-                  on:         [:create, :read],
+                  on:         [:create, :update, :read],
                   type:       :object,
                   class_name: 'Geojson'
+
+        attribute :area_type,
+                  on:   [:create, :update, :read],
+                  type: :string
 
         attribute :bounding_box,
                   on:         :read,
@@ -31,18 +35,18 @@ module Ioki
                   class_name: 'BoundingBox'
 
         attribute :ends_at,
-                  on:             [:create, :read],
-                  omit_if_nil_on: [:create],
+                  on:             [:create, :update, :read],
+                  omit_if_nil_on: [:create, :update],
                   type:           :date_time
 
         attribute :name,
-                  on:             [:create, :read],
+                  on:             [:create, :update, :read],
                   omit_if_nil_on: [:create],
                   type:           :string
 
         attribute :starts_at,
-                  on:             [:create, :read],
-                  omit_if_nil_on: [:create],
+                  on:             [:create, :update, :read],
+                  omit_if_nil_on: [:create, :update],
                   type:           :date_time
 
         attribute :state,
