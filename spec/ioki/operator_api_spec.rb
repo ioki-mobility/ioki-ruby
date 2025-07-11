@@ -2165,21 +2165,6 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#update_blacklisted_travel_combination(product_id, blacklisted_travel_combination_id, blacklisted_travel_combination)' do
-    let(:blacklisted_travel_combination) { Ioki::Model::Operator::BlacklistedTravelCombination.new({ id: '4711' }) }
-
-    it 'calls request on the client with expected params' do
-      expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/blacklisted_travel_combinations/4711')
-        expect(params[:method]).to eq(:patch)
-        [result_with_data, full_response]
-      end
-
-      expect(operator_client.update_blacklisted_travel_combination('0815', '4711', blacklisted_travel_combination, options))
-        .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
-    end
-  end
-
   describe '#update_restricted_area(product_id, restricted_area_id, restricted_area)' do
     let(:restricted_area) { Ioki::Model::Operator::RestrictedArea.new({ id: '4711' }) }
     it 'calls request on the client with expected params' do
