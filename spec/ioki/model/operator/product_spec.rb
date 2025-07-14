@@ -39,6 +39,7 @@ RSpec.describe Ioki::Model::Operator::Product do
   it { is_expected.to define_attribute(:state).as(:string) }
   it { is_expected.to define_attribute(:timezone).as(:object).with(class_name: 'Timezone') }
   it { is_expected.to define_attribute(:custom_flag_names).as(:array) }
+  it { is_expected.to define_attribute(:public_transport_alternatives_adapter).as(:string) }
 
   it {
     is_expected.to define_attribute(:translated_ride_cancellation_reasons).as(:array)
