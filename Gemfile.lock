@@ -202,7 +202,7 @@ GEM
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
     stringio (3.1.7)
-    thor (1.2.1)
+    thor (1.4.0)
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
