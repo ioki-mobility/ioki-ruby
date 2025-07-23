@@ -24,11 +24,11 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :acknowledged_id,
+        attribute :acknowledger_id,
                   on:   :read,
                   type: :string
 
-        attribute :acknowledged_type,
+        attribute :acknowledger_type,
                   on:   :read,
                   type: :string
 
