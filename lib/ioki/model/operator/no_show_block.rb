@@ -43,6 +43,14 @@ module Ioki
         attribute :blocked_until,
                   on:   :read,
                   type: :date_time
+
+        attribute :user_id,
+                  on:   :read,
+                  type: :string
+
+        attribute :user_name,
+                  on:   :read,
+                  type: :string
       end
     end
   end
