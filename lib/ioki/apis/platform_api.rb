@@ -296,7 +296,7 @@ module Ioki
       ),
       Endpoints::ShowSingular.new(
         :fleet_state,
-        base_path:   [API_BASE_PATH],
+        base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Platform::FleetState
       )
     ].freeze
