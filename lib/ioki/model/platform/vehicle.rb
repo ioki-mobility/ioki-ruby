@@ -82,6 +82,11 @@ module Ioki
         attribute :version,
                   on:   [:read, :update],
                   type: :integer
+
+        attribute :telemetry,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Telemetry'
       end
     end
   end
