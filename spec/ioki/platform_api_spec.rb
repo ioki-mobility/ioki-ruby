@@ -935,4 +935,15 @@ RSpec.describe Ioki::PlatformApi do
         .to be_a(Ioki::Model::Platform::Area)
     end
   end
+
+  describe '#fleet_state' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/fleet_state')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.fleet_state(options)).to be_a Ioki::Model::Platform::FleetState
+    end
+  end
 end

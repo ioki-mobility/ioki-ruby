@@ -293,6 +293,11 @@ module Ioki
         :intermodal_area,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Platform::Area
+      ),
+      Endpoints::ShowSingular.new(
+        :fleet_state,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Platform::FleetState
       )
     ].freeze
   end
