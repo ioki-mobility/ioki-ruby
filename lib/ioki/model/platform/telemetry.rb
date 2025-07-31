@@ -152,6 +152,10 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :seatbelt_state,
+                  on:   :read,
+                  type: :string
+
         attribute :speed,
                   on:   :read,
                   type: :float
