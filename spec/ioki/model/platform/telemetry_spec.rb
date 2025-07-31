@@ -38,6 +38,9 @@ RSpec.describe Ioki::Model::Platform::Telemetry do
   it { is_expected.to define_attribute(:remaining_distance).as(:float) }
   it { is_expected.to define_attribute(:remaining_distance_source).as(:string) }
   it { is_expected.to define_attribute(:remaining_distance_synced_at).as(:date_time) }
+  it { is_expected.to define_attribute(:seatbelt_state).as(:string) }
+  it { is_expected.to define_attribute(:seatbelt_state_source).as(:string) }
+  it { is_expected.to define_attribute(:seatbelt_state_synced_at).as(:date_time) }
   it { is_expected.to define_attribute(:speed).as(:float) }
   it { is_expected.to define_attribute(:speed_source).as(:string) }
   it { is_expected.to define_attribute(:speed_synced_at).as(:date_time) }
