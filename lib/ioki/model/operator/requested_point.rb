@@ -21,15 +21,15 @@ module Ioki
                   type: :date_time
 
         attribute :city,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :country,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :county,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :display_times,
@@ -41,35 +41,35 @@ module Ioki
                   type: :string
 
         attribute :lat,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :float
 
         attribute :lng,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :float
 
         attribute :location_name,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :postal_code,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :station_id,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :street_name,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :street_number,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :time,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :date_time
 
         attribute :waypoint_type,

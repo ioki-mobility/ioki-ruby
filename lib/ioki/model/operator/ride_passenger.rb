@@ -17,7 +17,7 @@ module Ioki
                   type: :boolean
 
         attribute :type,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :walker,
