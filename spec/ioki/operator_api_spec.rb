@@ -755,6 +755,21 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#create_ride(product_id, ride)' do
+    let(:ride) { Ioki::Model::Operator::Ride.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/rides')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_ride('0815', ride, options))
+        .to be_a(Ioki::Model::Operator::Ride)
+    end
+  end
+
   describe '#rides_cancellation(product_id, ride_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|

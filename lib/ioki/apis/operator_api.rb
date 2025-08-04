@@ -136,7 +136,7 @@ module Ioki
         :ride,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Ride,
-        except:      [:create, :update, :delete]
+        except:      [:update, :delete]
       ),
       Endpoints.custom_endpoints(
         'rides',
