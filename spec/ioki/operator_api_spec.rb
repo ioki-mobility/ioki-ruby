@@ -2547,6 +2547,21 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#create_ride_booking(product_id, ride_id, ride_booking)' do
+    let(:ride_booking) { Ioki::Model::Operator::RideBooking.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/rides/123/booking')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_ride_booking('0815', '123', ride_booking, options))
+        .to be_a(Ioki::Model::Operator::RideBooking)
+    end
+  end
+
   describe '#create_geocoding_session()' do
     let(:geocoding_session) { Ioki::Model::Operator::GeocodingSession.new }
 
