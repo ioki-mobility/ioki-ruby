@@ -72,7 +72,7 @@ module Ioki
                   type: :string
 
         attribute :destination,
-                  on:         :read,
+                  on:         [:read, :create],
                   type:       :object,
                   class_name: 'RequestedPoint'
 
@@ -130,7 +130,7 @@ module Ioki
                   class_name: 'OfferedSolution'
 
         attribute :origin,
-                  on:         :read,
+                  on:         [:create, :read],
                   type:       :object,
                   class_name: 'RequestedPoint'
 
@@ -139,7 +139,7 @@ module Ioki
                   type: :boolean
 
         attribute :passengers,
-                  on:         :read,
+                  on:         [:create, :read],
                   type:       :array,
                   class_name: 'RidePassenger'
 
@@ -170,7 +170,7 @@ module Ioki
                   type: :boolean
 
         attribute :product_id,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :public_transport_uri,
@@ -225,7 +225,7 @@ module Ioki
                   class_name: 'User'
 
         attribute :user_id,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :valid_for_driver_until,

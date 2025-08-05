@@ -136,7 +136,7 @@ module Ioki
         :ride,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Ride,
-        except:      [:create, :update, :delete]
+        except:      [:update, :delete]
       ),
       Endpoints.custom_endpoints(
         'rides',
@@ -145,6 +145,15 @@ module Ioki
         },
         path:        [API_BASE_PATH, 'products', :id, 'rides', :id],
         model_class: Ioki::Model::Operator::Ride
+      ),
+      Endpoints.crud_endpoints(
+        :ride_booking,
+        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
+        paths:       {
+          create: 'booking'
+        },
+        model_class: Ioki::Model::Operator::RideBooking,
+        only:        [:create]
       ),
       Endpoints.crud_endpoints(
         :task_list_deactivation,
