@@ -40,6 +40,8 @@ module Ioki
                   class_name:     'RequestedPoint',
                   unvalidated:    true
 
+        attribute :availability, on: :read, type: :object, class_name: 'Availability'
+
         attribute :constraints,
                   on:         :read,
                   type:       :object,
