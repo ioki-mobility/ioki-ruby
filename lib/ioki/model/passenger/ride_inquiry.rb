@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Passenger
       class RideInquiry < Base
+        attribute :passengers, type: :array, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -17,7 +18,7 @@ module Ioki
         attribute :assistances, on: :read, type: :array, class_name: 'Assistance'
         attribute :availability, on: :read, type: :object, class_name: 'Availability'
         attribute :constraints, on: :read, type: :object, class_name: 'Constraints'
-        attribute :errors, on: :read, type: :array
+        deprecated_attribute :errors, on: :read, type: :array
         attribute :estimations, on: :read, type: :array, class_name: 'Estimation'
       end
     end
