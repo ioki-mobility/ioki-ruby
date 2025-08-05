@@ -46,6 +46,16 @@ module Ioki
                   on:         :read,
                   type:       :object,
                   class_name: 'Constraints'
+
+        attribute :estimations,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'RideInquiry/Estimation'
+
+        attribute :assistances,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'RideInquiry/Assistance'
       end
     end
   end
