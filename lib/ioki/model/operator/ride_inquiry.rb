@@ -50,12 +50,12 @@ module Ioki
         attribute :estimations,
                   on:         :read,
                   type:       :array,
-                  class_name: 'RideInquiry/Estimation'
+                  class_name: 'RideInquiries::Estimation'
 
         attribute :assistances,
                   on:         :read,
                   type:       :array,
-                  class_name: 'RideInquiry/Assistance'
+                  class_name: 'RideInquiries::Assistance'
       end
     end
   end
