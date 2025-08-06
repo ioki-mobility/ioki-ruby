@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      module RideInquiry
+      module RideInquiries
         class Estimation < Base
           attribute :type,
                     on:   :read,
