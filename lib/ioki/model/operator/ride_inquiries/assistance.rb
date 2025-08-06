@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      module RideInquiry
+      module RideInquiries
         class Assistance < Base
           attribute :type,
                     on:   :read,
