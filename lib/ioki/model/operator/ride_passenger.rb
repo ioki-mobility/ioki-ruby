@@ -27,6 +27,11 @@ module Ioki
         attribute :wheelchair,
                   on:   :read,
                   type: :boolean
+
+        attribute :options,
+                  on:         [:create, :read],
+                  type:       :array,
+                  class_name: 'PassengerOption'
       end
     end
   end
