@@ -537,6 +537,11 @@ module Ioki
         model_class: Ioki::Model::Operator::RideSeries
       ),
       Endpoints::Create.new(
+        :user,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Operator::User
+      ),
+      Endpoints::Create.new(
         :geocoding_session,
         base_path:   [API_BASE_PATH, 'geocoding'],
         path:        'session',
