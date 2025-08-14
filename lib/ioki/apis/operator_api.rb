@@ -535,6 +535,11 @@ module Ioki
         :ride_series,
         base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
         model_class: Ioki::Model::Operator::RideSeries
+      ),
+      Endpoints::Create.new(
+        :user,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Operator::User
       )
     ].freeze
   end

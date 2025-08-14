@@ -2600,4 +2600,19 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::RideSeries)
     end
   end
+
+  describe '#create_user(provider_id, user)' do
+    let(:user) { Ioki::Model::Operator::User.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_user('0815', user, options))
+        .to be_a(Ioki::Model::Operator::User)
+    end
+  end
 end
