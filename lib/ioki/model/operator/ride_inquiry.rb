@@ -56,6 +56,11 @@ module Ioki
                   on:         :read,
                   type:       :array,
                   class_name: 'RideInquiries::Assistance'
+
+        attribute :passengers,
+                  on:         :create,
+                  type:       :array,
+                  class_name: 'Passenger'
       end
     end
   end
