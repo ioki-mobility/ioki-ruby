@@ -519,6 +519,23 @@ module Ioki
         base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::Consentable
       ),
+      Endpoints.crud_endpoints(
+        :ride_series,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::RideSeries,
+        only:        [:index]
+      ),
+      Endpoints::Show.new(
+        :single_ride_series,
+        path:        'ride_series',
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::RideSeries
+      ),
+      Endpoints::Create.new(
+        :ride_series,
+        base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
+        model_class: Ioki::Model::Operator::RideSeries
+      ),
       Endpoints::Create.new(
         :geocoding_session,
         base_path:   [API_BASE_PATH, 'geocoding'],
