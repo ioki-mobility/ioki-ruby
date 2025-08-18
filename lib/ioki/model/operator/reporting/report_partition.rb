@@ -33,6 +33,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_reference_timestamp,
+                    on:   :read,
+                    type: :string
+
           attribute :period_type,
                     on:   :read,
                     type: :string
