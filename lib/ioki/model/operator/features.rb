@@ -162,7 +162,23 @@ module Ioki
                   type: :boolean,
                   on:   :read
 
+        attribute :show_autonomous_onboarding_in_passenger_clients,
+                  type: :boolean,
+                  on:   :read
+
         attribute :passenger_note_to_driver,
+                  type: :boolean,
+                  on:   :read
+
+        attribute :passenger_client_displays_stations_on_map,
+                  type: :boolean,
+                  on:   :read
+
+        attribute :driver_shift_summaries,
+                  type: :boolean,
+                  on:   :read
+
+        attribute :driver_automation,
                   type: :boolean,
                   on:   :read
       end
