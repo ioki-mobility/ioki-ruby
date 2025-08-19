@@ -86,7 +86,15 @@ module Ioki
                     on:   :read,
                     type: :boolean
 
+          attribute :null_value_in_product_filter,
+                    on:   :read,
+                    type: :boolean
+
           attribute :filterable_by_operator,
+                    on:   :read,
+                    type: :boolean
+
+          attribute :null_value_in_operator_filter,
                     on:   :read,
                     type: :boolean
 
