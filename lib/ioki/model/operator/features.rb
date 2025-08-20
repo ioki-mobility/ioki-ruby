@@ -22,6 +22,10 @@ module Ioki
                   type: :boolean,
                   on:   :read
 
+        attribute :supports_passenger_update_by_user,
+                  type: :boolean,
+                  on:   :read
+
         attribute :supports_passenger_cancellation_statement,
                   type: :boolean,
                   on:   :read
@@ -59,6 +63,10 @@ module Ioki
                   on:   :read
 
         attribute :supports_blacklisted_travel_combinations,
+                  type: :boolean,
+                  on:   :read
+
+        attribute :supports_gtfs_flex_feed,
                   type: :boolean,
                   on:   :read
 
