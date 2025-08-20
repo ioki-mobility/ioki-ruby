@@ -154,6 +154,19 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#vehicles_detach_image(product_id, vehicle_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/vehicles/4711/detach_image')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.vehicles_detach_image('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Vehicle)
+    end
+  end
+
   describe '#drivers(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
@@ -447,6 +460,19 @@ RSpec.describe Ioki::OperatorApi do
 
       expect(operator_client.delete_station_batch('0815', station_batch, options))
         .to be_nil
+    end
+  end
+
+  describe '#stations_detach_image(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/detach_image')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.stations_detach_image('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::Station)
     end
   end
 
