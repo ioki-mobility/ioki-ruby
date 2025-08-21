@@ -11,7 +11,7 @@ module Ioki
 
           attribute :confidence,
                     on:   :read,
-                    type: :decimal
+                    type: :float
 
           attribute :dropoff,
                     on:         :read,
