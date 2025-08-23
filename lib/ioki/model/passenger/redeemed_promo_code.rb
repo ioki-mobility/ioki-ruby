@@ -13,7 +13,7 @@ module Ioki
         attribute :code, type: :string, on: [:read, :create]
         attribute :description, type: :string, on: :read
         attribute :product_id, type: :string, on: :read
-        attribute :promo_code_type, type: :string, on: :create
+        deprecated_attribute :promo_code_type, type: :string, on: :create
         attribute :title, type: :string, on: :read
         attribute :url, type: :string, on: :read
       end

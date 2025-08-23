@@ -4,7 +4,9 @@ module Ioki
   module Model
     module Passenger
       class RideOption < Base
-        attribute :name, on: [:read, :create], type: :string
+        attribute :default_value, type: :boolean, on: [:create, :read, :update]
+        attribute :slug, type: :string, on: [:create, :read, :update]
+        deprecated_attribute :name, on: [:read, :create], type: :string
         attribute :value, on: :create, type: [:string, :boolean, :integer]
 
         attribute :type, on: :read, type: :string
