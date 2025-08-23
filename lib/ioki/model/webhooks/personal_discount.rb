@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Webhooks
       class PersonalDiscount < Base
+        attribute :fixed_price_per_ride, type: :object, on: [:create, :read, :update], class_name: 'Money'
+        attribute :fixed_price_per_passenger, type: :object, on: [:create, :read, :update], class_name: 'Money'
         attribute :type, type: :string
         attribute :id, type: :string
         attribute :created_at, type: :date_time
