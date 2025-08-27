@@ -15,7 +15,7 @@ module Ioki
         attribute :options,
                   on:         :create,
                   type:       :array,
-                  class_name: 'PassengerOption'
+                  class_name: 'Ioki::Model::Operator::PassengerOption'
 
         attribute :first_name,
                   on:   :create,
