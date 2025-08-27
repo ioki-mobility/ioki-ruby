@@ -266,7 +266,7 @@ module Ioki
         :user,
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::User,
-        except:      [:create, :update, :delete]
+        except:      [:update, :delete]
       ),
       Endpoints::Create.new(
         :ride_inquiry,
@@ -535,11 +535,6 @@ module Ioki
         :ride_series,
         base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
         model_class: Ioki::Model::Operator::RideSeries
-      ),
-      Endpoints::Create.new(
-        :user,
-        base_path:   [API_BASE_PATH, 'providers', :id],
-        model_class: Ioki::Model::Operator::User
       ),
       Endpoints::Create.new(
         :geocoding_session,
