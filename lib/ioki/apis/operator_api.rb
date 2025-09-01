@@ -509,6 +509,12 @@ module Ioki
         :consentables,
         base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::Consentable
+      ),
+      Endpoints::Create.new(
+        :geocoding_session,
+        base_path:   [API_BASE_PATH, 'geocoding'],
+        path:        'session',
+        model_class: Ioki::Model::Operator::GeocodingSession
       )
     ].freeze
   end

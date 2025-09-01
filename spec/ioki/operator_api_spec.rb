@@ -2531,4 +2531,19 @@ RSpec.describe Ioki::OperatorApi do
         .to all be_a(Ioki::Model::Operator::Consentable)
     end
   end
+
+  describe '#create_geocoding_session()' do
+    let(:geocoding_session) { Ioki::Model::Operator::GeocodingSession.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/session')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_geocoding_session(geocoding_session, options))
+        .to be_a(Ioki::Model::Operator::GeocodingSession)
+    end
+  end
 end
