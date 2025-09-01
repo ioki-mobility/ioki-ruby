@@ -116,7 +116,7 @@ module Ioki
         'task_lists',
         actions:     { 'batch_destroy' => :delete },
         path:        [API_BASE_PATH, 'products', :id, 'task_lists'],
-        model_class: Ioki::Model::Operator::TaskListBatch
+        model_class: nil
       ),
       Endpoints::Index.new(
         :monitoring,
