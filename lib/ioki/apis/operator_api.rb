@@ -112,6 +112,12 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::TaskList
       ),
+      Endpoints.custom_endpoints(
+        'task_lists',
+        actions:     { 'batch_destroy' => :delete },
+        path:        [API_BASE_PATH, 'products', :id, 'task_lists'],
+        model_class: Ioki::Model::Operator::TaskListBatch
+      ),
       Endpoints::Index.new(
         :monitoring,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists'],
