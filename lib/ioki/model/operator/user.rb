@@ -26,6 +26,14 @@ module Ioki
                   type:             :object,
                   class_name:       'UserEmail'
 
+        attribute :product_id,
+                  on:   :create,
+                  type: :string
+
+        attribute :user_segment_id,
+                  on:   :create,
+                  type: :string
+
         attribute :external_id,
                   on:               [:read, :create, :update],
                   omit_if_blank_on: [:create, :update],
@@ -46,7 +54,7 @@ module Ioki
                   type:             :string
 
         attribute :locale,
-                  on:   :read,
+                  on:   [:read, :create],
                   type: :string
 
         attribute :lock_reason,
@@ -75,9 +83,21 @@ module Ioki
                   omit_if_blank_on: [:create, :update],
                   type:             :string
 
+        attribute :terms_accepted,
+                  on:   :create,
+                  type: :boolean
+
         attribute :terms_accepted_at,
                   on:   :read,
                   type: :date_time
+
+        attribute :minimum_age_confirmed,
+                  on:   :create,
+                  type: :boolean
+
+        attribute :analytics_tracking,
+                  on:   :create,
+                  type: :boolean
 
         attribute :unique_customer_id,
                   on:   :read,
