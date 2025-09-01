@@ -9,9 +9,9 @@ module Ioki
                   type: :string
 
         attribute :results,
-                  on:    :read,
-                  type:  :array,
-                  class: 'Ioki::Model::Operator::GeocodingSearchResult'
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Ioki::Model::Operator::GeocodingSearchResult'
       end
     end
   end
