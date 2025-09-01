@@ -434,6 +434,19 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#stations_batch_destroy(product_id)' do
+    let(:result_with_data) { nil }
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/batch_destroy')
+        result_with_data
+      end
+
+      expect(operator_client.stations_batch_destroy('0815', options))
+        .to be_nil
+    end
+  end
+
   describe '#station_overview(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
