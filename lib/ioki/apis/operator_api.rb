@@ -515,6 +515,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'geocoding'],
         path:        'session',
         model_class: Ioki::Model::Operator::GeocodingSession
+      ),
+      Endpoints::Delete.new(
+        :geocoding_session,
+        base_path:   [API_BASE_PATH, 'geocoding'],
+        path:        'session',
+        model_class: nil
       )
     ].freeze
   end
