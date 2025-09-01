@@ -509,6 +509,31 @@ module Ioki
         :consentables,
         base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::Consentable
+      ),
+      Endpoints::Create.new(
+        :geocoding_session,
+        base_path:   [API_BASE_PATH, 'geocoding'],
+        path:        'session',
+        model_class: Ioki::Model::Operator::GeocodingSession
+      ),
+      Endpoints::Delete.new(
+        :geocoding_session,
+        base_path:   [API_BASE_PATH, 'geocoding'],
+        path:        'session',
+        model_class: nil
+      ),
+      Endpoints::Create.new(
+        :geocoding_search,
+        base_path:            [API_BASE_PATH, 'geocoding', 'session', :id],
+        path:                 'search',
+        model_class:          Ioki::Model::Operator::GeocodingSearchResults,
+        outgoing_model_class: Ioki::Model::Operator::GeocodingSearch
+      ),
+      Endpoints::Create.new(
+        :geocoding_search_details,
+        base_path:   [API_BASE_PATH, 'geocoding', 'session', :id],
+        path:        'details',
+        model_class: Ioki::Model::Operator::GeocodingSearchDetails
       )
     ].freeze
   end

@@ -2531,4 +2531,62 @@ RSpec.describe Ioki::OperatorApi do
         .to all be_a(Ioki::Model::Operator::Consentable)
     end
   end
+
+  describe '#create_geocoding_session()' do
+    let(:geocoding_session) { Ioki::Model::Operator::GeocodingSession.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/session')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_geocoding_session(geocoding_session, options))
+        .to be_a(Ioki::Model::Operator::GeocodingSession)
+    end
+  end
+
+  describe '#delete_geocoding_session(id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/session/0815')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_geocoding_session('0815', options))
+        .to be_nil
+    end
+  end
+
+  describe '#create_geocoding_search(id)' do
+    let(:geocoding_search) { Ioki::Model::Operator::GeocodingSearch.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/session/0815/search')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_geocoding_search('0815', geocoding_search, options))
+        .to be_a(Ioki::Model::Operator::GeocodingSearchResults)
+    end
+  end
+
+  describe '#create_geocoding_search_details(id)' do
+    let(:geocoding_search_details) { Ioki::Model::Operator::GeocodingSearchDetails.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/session/0815/details')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_geocoding_search_details('0815', geocoding_search_details, options))
+        .to be_a(Ioki::Model::Operator::GeocodingSearchDetails)
+    end
+  end
 end
