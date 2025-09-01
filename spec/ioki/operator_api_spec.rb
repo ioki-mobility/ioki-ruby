@@ -2574,4 +2574,19 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::GeocodingSearchResults)
     end
   end
+
+  describe '#create_geocoding_search_details(id)' do
+    let(:geocoding_search_details) { Ioki::Model::Operator::GeocodingSearchDetails.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/session/0815/details')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_geocoding_search_details('0815', geocoding_search_details, options))
+        .to be_a(Ioki::Model::Operator::GeocodingSearchDetails)
+    end
+  end
 end
