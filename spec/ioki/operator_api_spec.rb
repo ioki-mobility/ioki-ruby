@@ -616,6 +616,19 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#task_lists_batch_destroy(product_id)' do
+    let(:result_with_data) { nil }
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/batch_destroy')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.task_lists_batch_destroy('0815', options))
+        .to be_nil
+    end
+  end
+
   describe '#task_lists_current_journey(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
