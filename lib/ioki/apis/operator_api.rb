@@ -83,6 +83,13 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'stations', :id],
         model_class: Ioki::Model::Operator::Station
       ),
+      Endpoints::DeleteSingular.new(
+        :station_batch,
+        base_path:            [API_BASE_PATH, 'products', :id, 'stations'],
+        path:                 'batch_destroy',
+        model_class:          nil,
+        outgoing_model_class: Ioki::Model::Operator::StationBatch
+      ),
       Endpoints::Index.new(
         :station_overview,
         base_path:   [API_BASE_PATH, 'products', :id, 'stations'],

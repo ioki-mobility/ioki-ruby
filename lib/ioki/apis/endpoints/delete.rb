@@ -5,10 +5,11 @@ module Ioki
     class Delete
       attr_reader :base_path, :model_class, :resource, :path
 
-      def initialize(resource, base_path:, model_class:, path: nil)
+      def initialize(resource, base_path:, model_class:, outgoing_model_class: nil, path: nil)
         @base_path = base_path
         @resource = resource.to_s
         @model_class = model_class
+        @outgoing_model_class = outgoing_model_class
         @path = path
       end
 

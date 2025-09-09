@@ -10,6 +10,7 @@ require_relative 'index'
 require_relative 'update'
 require_relative 'update_singular'
 require_relative 'delete'
+require_relative 'delete_singular'
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'rating_criterion', 'rating_criteria'
