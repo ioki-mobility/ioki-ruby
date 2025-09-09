@@ -21,16 +21,13 @@ module Ioki
         path || resource.pluralize
       end
 
-      def full_path(with_id:)
-        path_elements = base_path + [resource_path_name]
-        with_id ? path_elements + [:id] : path_elements
+      def full_path
+        base_path + [resource_path_name, :id]
       end
 
       def call(client, args = [], options = {})
-        with_id = options.key?(:with_id) ? options[:with_id] : true
-
         parsed_response, = client.request(
-          url:    client.build_request_url(*Endpoints.url_elements(full_path(with_id:), *args)),
+          url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
           method: :delete,
           params: options[:params]
         )
