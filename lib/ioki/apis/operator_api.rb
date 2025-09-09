@@ -140,6 +140,13 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::Journey
       ),
+      Endpoints::DeleteSingular.new(
+        :task_list_batch,
+        base_path:            [API_BASE_PATH, 'products', :id, 'task_lists'],
+        path:                 'batch_destroy',
+        model_class:          nil,
+        outgoing_model_class: Ioki::Model::Operator::TaskListBatch
+      ),
       Endpoints.crud_endpoints(
         :pause,
         base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],

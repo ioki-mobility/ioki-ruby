@@ -645,6 +645,22 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe 'task_list_batch_destroy(product_id, task_list_batch)' do
+    let(:task_list_batch) { Ioki::Model::Operator::TaskListBatch.new(task_list_ids: ['tls_123']) }
+    let(:result_with_data) { nil }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/task_lists/batch_destroy')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_task_list_batch('0815', task_list_batch, options))
+        .to be_nil
+    end
+  end
+
   describe '#task_lists_current_journey(product_id, task_list_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
