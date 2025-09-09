@@ -35,6 +35,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Vehicle
       ),
+      Endpoints.custom_endpoints(
+        'vehicles',
+        actions:     { 'detach_image' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'vehicles', :id],
+        model_class: Ioki::Model::Operator::Vehicle
+      ),
       Endpoints::Index.new(
         :permissions,
         base_path:   [API_BASE_PATH, 'admin'],
@@ -79,7 +85,7 @@ module Ioki
       ),
       Endpoints.custom_endpoints(
         'stations',
-        actions:     { 'fix' => :patch, 'unfix' => :patch },
+        actions:     { 'fix' => :patch, 'unfix' => :patch, 'detach_image' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'stations', :id],
         model_class: Ioki::Model::Operator::Station
       ),
