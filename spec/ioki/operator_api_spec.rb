@@ -434,7 +434,8 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#stations_batch_destroy(product_id)' do
+  describe 'station_batch_destroy(product_id, station_batch)' do
+    let(:station_batch) { Ioki::Model::Operator::StationBatch.new(station_ids: ['sta_123']) }
     let(:result_with_data) { nil }
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
@@ -442,7 +443,7 @@ RSpec.describe Ioki::OperatorApi do
         result_with_data
       end
 
-      expect(operator_client.stations_batch_destroy('0815', options))
+      expect(operator_client.delete_station_batch('0815', station_batch, options))
         .to be_nil
     end
   end
