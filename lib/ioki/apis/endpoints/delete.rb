@@ -3,15 +3,14 @@
 module Ioki
   module Endpoints
     class Delete
-      attr_reader :base_path, :model_class, :resource, :path, :with_id
+      attr_reader :base_path, :model_class, :resource, :path
 
-      def initialize(resource, base_path:, model_class:, outgoing_model_class: nil, path: nil, with_id: true)
+      def initialize(resource, base_path:, model_class:, outgoing_model_class: nil, path: nil)
         @base_path = base_path
         @resource = resource.to_s
         @model_class = model_class
         @outgoing_model_class = outgoing_model_class
         @path = path
-        @with_id = with_id
       end
 
       def name
@@ -22,16 +21,16 @@ module Ioki
         path || resource.pluralize
       end
 
-      def full_path
+      def full_path(with_id:)
         path_elements = base_path + [resource_path_name]
         with_id ? path_elements + [:id] : path_elements
       end
 
       def call(client, args = [], options = {})
-        # outgoing_model_class = @outgoing_model_class || options[:outgoing_model_class] || model_class
+        with_id = options.key?(:with_id) ? options[:with_id] : true
 
         parsed_response, = client.request(
-          url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
+          url:    client.build_request_url(*Endpoints.url_elements(full_path(with_id:), *args)),
           method: :delete,
           params: options[:params]
         )

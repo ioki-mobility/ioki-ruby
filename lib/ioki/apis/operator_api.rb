@@ -87,7 +87,6 @@ module Ioki
         :station_batch,
         base_path:            [API_BASE_PATH, 'products', :id, 'stations'],
         path:                 'batch_destroy',
-        with_id:              false,
         model_class:          nil,
         outgoing_model_class: Ioki::Model::Operator::StationBatch
       ),
