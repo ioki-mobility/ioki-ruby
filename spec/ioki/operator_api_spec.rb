@@ -2647,4 +2647,66 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::GeocodingSearchDetails)
     end
   end
+
+  describe '#no_show_acknowledge(product_id, no_show_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/no_shows/4711/acknowledge')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.no_show_acknowledge('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::NoShow)
+    end
+  end
+
+  describe '#no_shows(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/no_shows')
+        result_with_index_data
+      end
+
+      expect(operator_client.no_shows('0815', options))
+        .to all(be_a(Ioki::Model::Operator::NoShow))
+    end
+  end
+
+  describe '#no_show_block_acknowledge(product_id, no_show_block_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/no_show_blocks/4711/acknowledge')
+        expect(params[:method]).to eq(:patch)
+        result_with_data
+      end
+
+      expect(operator_client.no_show_block_acknowledge('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::NoShowBlock)
+    end
+  end
+
+  describe '#no_show_blocks(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/no_show_blocks')
+        result_with_index_data
+      end
+
+      expect(operator_client.no_show_blocks('0815', options))
+        .to all(be_a(Ioki::Model::Operator::NoShowBlock))
+    end
+  end
+
+  describe '#no_show_block(product_id, no_show_block_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/no_show_blocks/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.no_show_block('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::NoShowBlock)
+    end
+  end
 end

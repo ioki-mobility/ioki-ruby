@@ -554,6 +554,29 @@ module Ioki
         base_path:   [API_BASE_PATH, 'geocoding', 'session', :id],
         path:        'details',
         model_class: Ioki::Model::Operator::GeocodingSearchDetails
+      ),
+      Endpoints::Index.new(
+        :no_shows,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::NoShow
+      ),
+      Endpoints.custom_endpoints(
+        'no_show',
+        actions:     { 'acknowledge' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'no_shows', :id],
+        model_class: Ioki::Model::Operator::NoShow
+      ),
+      Endpoints.crud_endpoints(
+        :no_show_block,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::NoShowBlock,
+        except:      [:create, :update, :delete]
+      ),
+      Endpoints.custom_endpoints(
+        'no_show_block',
+        actions:     { 'acknowledge' => :patch },
+        path:        [API_BASE_PATH, 'products', :id, 'no_show_blocks', :id],
+        model_class: Ioki::Model::Operator::NoShowBlock
       )
     ].freeze
   end
