@@ -26,6 +26,10 @@ module Ioki
                   type: :boolean,
                   on:   :read
 
+        attribute :supports_passenger_update_by_driver,
+                  type: :boolean,
+                  on:   :read
+
         attribute :supports_passenger_cancellation_statement,
                   type: :boolean,
                   on:   :read
