@@ -577,6 +577,19 @@ module Ioki
         actions:     { 'acknowledge' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'no_show_blocks', :id],
         model_class: Ioki::Model::Operator::NoShowBlock
+      ),
+      Endpoints::Create.new(
+        :public_transport_changeover_connection,
+        base_path:            [API_BASE_PATH, 'products', :id, 'stations', :id],
+        path:                 'public_transport_changeover_connection',
+        model_class:          Ioki::Model::Operator::Station,
+        outgoing_model_class: Ioki::Model::Operator::PublicTransportChangeoverConnection
+      ),
+      Endpoints::DeleteSingular.new(
+        :public_transport_changeover_connection,
+        base_path:   [API_BASE_PATH, 'products', :id, 'stations', :id],
+        path:        'public_transport_changeover_connection',
+        model_class: Ioki::Model::Operator::Station
       )
     ].freeze
   end
