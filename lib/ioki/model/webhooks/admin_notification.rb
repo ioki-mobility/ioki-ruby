@@ -2,7 +2,7 @@
 
 module Ioki
   module Model
-    module Operator
+    module Webhooks
       class AdminNotification < Base
         attribute :type, type: :string
         attribute :id, type: :string
