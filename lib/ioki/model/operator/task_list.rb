@@ -166,6 +166,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :custom_tags,
+                  on:         [:create, :read, :update],
+                  type:       :array,
+                  class_name: Ioki::Model::Operator::CustomTag
+
         attribute :version,
                   on:             [:read, :update],
                   omit_if_nil_on: [:update],
