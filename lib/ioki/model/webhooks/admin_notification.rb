@@ -12,6 +12,7 @@ module Ioki
         attribute :title, type: :string
         attribute :description, type: :string
         attribute :read_at, type: :date_time
+        attribute :receiver_id, type: :string
       end
     end
   end
