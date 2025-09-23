@@ -89,8 +89,8 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'stations', :id],
         model_class: Ioki::Model::Operator::Station
       ),
-      Endpoints::DeleteSingular.new(
-        :station_batch,
+      Endpoints::Create.new(
+        :station_batch_destroy,
         base_path:            [API_BASE_PATH, 'products', :id, 'stations'],
         path:                 'batch_destroy',
         model_class:          nil,
@@ -140,8 +140,8 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'task_lists', :id],
         model_class: Ioki::Model::Operator::Journey
       ),
-      Endpoints::DeleteSingular.new(
-        :task_list_batch,
+      Endpoints::Create.new(
+        :task_list_batch_destroy,
         base_path:            [API_BASE_PATH, 'products', :id, 'task_lists'],
         path:                 'batch_destroy',
         model_class:          nil,
