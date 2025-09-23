@@ -447,18 +447,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe 'station_batch_destroy(product_id, station_batch)' do
+  describe 'station_batch_destroy_request(product_id, station_batch)' do
     let(:station_batch) { Ioki::Model::Operator::StationBatch.new(station_ids: ['sta_123']) }
     let(:result_with_data) { nil }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/stations/batch_destroy')
-        expect(params[:method]).to eq(:delete)
+        expect(params[:method]).to eq(:post)
         result_with_data
       end
 
-      expect(operator_client.delete_station_batch('0815', station_batch, options))
+      expect(operator_client.create_station_batch_destroy_request('0815', station_batch, options))
         .to be_nil
     end
   end
@@ -658,18 +658,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe 'task_list_batch_destroy(product_id, task_list_batch)' do
+  describe 'task_list_batch_destroy_request(product_id, task_list_batch)' do
     let(:task_list_batch) { Ioki::Model::Operator::TaskListBatch.new(task_list_ids: ['tls_123']) }
     let(:result_with_data) { nil }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('operator/products/0815/task_lists/batch_destroy')
-        expect(params[:method]).to eq(:delete)
+        expect(params[:method]).to eq(:post)
         result_with_data
       end
 
-      expect(operator_client.delete_task_list_batch('0815', task_list_batch, options))
+      expect(operator_client.create_task_list_batch_destroy_request('0815', task_list_batch, options))
         .to be_nil
     end
   end
