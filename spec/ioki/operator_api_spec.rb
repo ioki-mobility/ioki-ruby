@@ -2793,4 +2793,33 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::NoShowBlock)
     end
   end
+
+  describe '#create_public_transport_changeover_connection(product_id, station_id)' do
+    let(:public_transport_changeover_connection) { Ioki::Model::Operator::PublicTransportChangeoverConnection.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/public_transport_changeover_connection')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_public_transport_changeover_connection(
+               '0815', '4711', public_transport_changeover_connection, options
+             )).to be_a(Ioki::Model::Operator::Station)
+    end
+  end
+
+  describe '#delete_public_transport_changeover_connection(product_id, station_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/4711/public_transport_changeover_connection')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(operator_client.delete_public_transport_changeover_connection('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::Station)
+    end
+  end
 end
