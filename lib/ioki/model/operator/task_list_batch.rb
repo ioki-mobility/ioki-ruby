@@ -9,7 +9,7 @@ module Ioki
         end
 
         attribute :task_list_ids,
-                  on:   :delete,
+                  on:   :create,
                   type: :array
       end
     end

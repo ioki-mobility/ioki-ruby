@@ -9,7 +9,7 @@ module Ioki
         end
 
         attribute :station_ids,
-                  on:   :delete,
+                  on:   :create,
                   type: :array
       end
     end
