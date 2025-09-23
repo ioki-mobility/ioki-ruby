@@ -90,7 +90,7 @@ module Ioki
         model_class: Ioki::Model::Operator::Station
       ),
       Endpoints::Create.new(
-        :station_batch_destroy_request,
+        :station_batch_destroy,
         base_path:            [API_BASE_PATH, 'products', :id, 'stations'],
         path:                 'batch_destroy',
         model_class:          nil,
@@ -141,7 +141,7 @@ module Ioki
         model_class: Ioki::Model::Operator::Journey
       ),
       Endpoints::Create.new(
-        :task_list_batch_destroy_request,
+        :task_list_batch_destroy,
         base_path:            [API_BASE_PATH, 'products', :id, 'task_lists'],
         path:                 'batch_destroy',
         model_class:          nil,
