@@ -24,6 +24,10 @@ module Ioki
                   on:   [:read, :create],
                   type: :string
 
+        attribute :value,
+                  on:   :create,
+                  type: [:boolean, :integer, :string]
+
         attribute :default_value,
                   on:   [:read, :create, :update],
                   type: [:boolean, :integer, :string]

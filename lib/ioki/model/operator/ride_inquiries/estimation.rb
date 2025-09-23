@@ -11,12 +11,12 @@ module Ioki
 
           attribute :confidence,
                     on:   :read,
-                    type: :decimal
+                    type: :float
 
           attribute :dropoff,
                     on:         :read,
                     type:       :object,
-                    class_name: 'CalculatedPoint'
+                    class_name: 'Ioki::Model::Operator::CalculatedPoint'
 
           attribute :estimation_type,
                     on:   :read,
@@ -29,7 +29,7 @@ module Ioki
           attribute :pickup,
                     on:         :read,
                     type:       :object,
-                    class_name: 'CalculatedPoint'
+                    class_name: 'Ioki::Model::Operator::CalculatedPoint'
         end
       end
     end

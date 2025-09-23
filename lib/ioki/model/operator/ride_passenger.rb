@@ -17,7 +17,7 @@ module Ioki
                   type: :boolean
 
         attribute :type,
-                  on:   :read,
+                  on:   [:create, :read],
                   type: :string
 
         attribute :walker,
@@ -27,6 +27,11 @@ module Ioki
         attribute :wheelchair,
                   on:   :read,
                   type: :boolean
+
+        attribute :options,
+                  on:         [:create, :read],
+                  type:       :array,
+                  class_name: 'PassengerOption'
       end
     end
   end
