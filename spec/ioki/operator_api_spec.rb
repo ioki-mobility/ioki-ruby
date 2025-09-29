@@ -1429,7 +1429,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.admin('0815', options))
-        .to be_a(Ioki::Model::Operator::Admin)
+        .to be_a(Ioki::Model::Operator::AdminAccount)
     end
   end
 
