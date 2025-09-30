@@ -28,13 +28,12 @@ module Ioki
         attribute :locale,
                   type: :string
 
+        attribute :unread_count,
+                  type: :integer
+
         attribute :permissions,
                   type:       :array,
                   class_name: 'Ioki::Model::Webhooks::Permission'
-
-        attribute :unread_count,
-                  type:       :object,
-                  class_name: 'Ioki::Model::Webhooks::AdminNotification::UnreadCount'
 
         attribute :consentables,
                   type:       :array,
