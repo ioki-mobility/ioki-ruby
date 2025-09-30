@@ -36,15 +36,13 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :unread_count,
+                  type: :integer
+
         attribute :permissions,
                   on:         :read,
                   type:       :array,
                   class_name: 'Ioki::Model::Operator::Permission'
-
-        attribute :unread_count,
-                  on:         :read,
-                  type:       :object,
-                  class_name: 'Ioki::Model::Operator::AdminNotification::UnreadCount'
 
         attribute :consentables,
                   on:         :read,
