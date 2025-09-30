@@ -41,10 +41,10 @@ module Ioki
                   type:       :array,
                   class_name: 'Ioki::Model::Operator::Permission'
 
-        attribute :admin_notifications,
+        attribute :unread_count,
                   on:         :read,
-                  type:       :array,
-                  class_name: 'Ioki::Model::Operator::AdminNotification::AdminNotification'
+                  type:       :object,
+                  class_name: 'Ioki::Model::Operator::AdminNotification::UnreadCount'
 
         attribute :consentables,
                   on:         :read,
