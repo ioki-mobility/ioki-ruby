@@ -276,6 +276,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Line
       ),
+      Endpoints::Index.new(
+        :line_overview,
+        base_path:   [API_BASE_PATH, 'products', :id, 'lines'],
+        path:        'overview',
+        model_class: Ioki::Model::Operator::Line
+      ),
       Endpoints.crud_endpoints(
         :line_stop,
         base_path:   [API_BASE_PATH, 'products', :id, 'lines', :id],
