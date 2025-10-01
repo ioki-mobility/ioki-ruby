@@ -37,6 +37,7 @@ module Ioki
                   type: :string
 
         attribute :unread_count,
+                  on:   :read,
                   type: :integer
 
         attribute :permissions,
