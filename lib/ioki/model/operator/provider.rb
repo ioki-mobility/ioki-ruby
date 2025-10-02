@@ -98,6 +98,11 @@ module Ioki
         attribute :tip_payment_method_types,
                   on:   :read,
                   type: :array
+
+        attribute :features,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Ioki::Model::Operator::ProviderFeatures'
       end
     end
   end
