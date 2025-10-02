@@ -49,8 +49,14 @@ module Ioki
       Endpoints.crud_endpoints(
         :admin,
         base_path:   [API_BASE_PATH],
-        model_class: Ioki::Model::Operator::AdminAccount,
+        model_class: Ioki::Model::Operator::Admin,
         except:      [:create, :update, :delete, :index]
+      ),
+      Endpoints::ShowSingular.new(
+        :admin_account,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'admin'],
+        model_class: Ioki::Model::Operator::AdminAccount
       ),
       Endpoints.crud_endpoints(
         :driver,
