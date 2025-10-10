@@ -169,7 +169,7 @@ module Ioki
         attribute :custom_tags,
                   on:         [:create, :read, :update],
                   type:       :array,
-                  class_name: Ioki::Model::Operator::CustomTag
+                  class_name: 'CustomTag'
 
         attribute :version,
                   on:             [:read, :update],
