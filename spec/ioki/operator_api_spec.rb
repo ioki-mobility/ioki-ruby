@@ -1433,6 +1433,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#admin_account' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/admin')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.admin_account(options))
+        .to be_a(Ioki::Model::Operator::AdminAccount)
+    end
+  end
+
   describe '#users_autocomplete(provider_id, ...)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
