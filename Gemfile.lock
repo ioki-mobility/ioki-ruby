@@ -83,7 +83,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.15.1)
+    json (2.15.2)
     jwt (3.1.2)
       base64
     language_server-protocol (3.17.0.5)
@@ -129,7 +129,7 @@ GEM
       version_gem (~> 1.1, >= 1.1.9)
     openssl (3.3.2)
     parallel (1.27.0)
-    parser (3.3.9.0)
+    parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
     pp (0.6.2)
@@ -170,7 +170,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.6)
-    rubocop (1.81.6)
+    rubocop (1.81.7)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
