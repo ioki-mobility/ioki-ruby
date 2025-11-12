@@ -11,6 +11,7 @@ module Ioki
         attribute :actual_ends_at, on: :read, type: :date_time
         attribute :actual_starts_at, on: :read, type: :date_time
         attribute :ad_hoc_bookable, on: [:read, :create, :update], type: :boolean
+        attribute :auto_repositioning_strategy, on: :read, type: :string
         attribute :current, on: :read, type: :boolean
         attribute :deactivated, on: :read, type: :boolean
         attribute :deactivations, on: :read, type: :array, class_name: 'Deactivation'
