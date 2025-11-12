@@ -16,15 +16,15 @@ RSpec.describe Ioki::Model::Base do
                   type:    'adult',
                   options: [
                     {
-                      name:  'a_boolean_option',
+                      slug:  'a_boolean_option',
                       value: true
                     },
                     {
-                      name:  'a_string_option',
+                      slug:  'a_string_option',
                       value: 'a_string'
                     },
                     {
-                      name:  'an_integer_option',
+                      slug:  'an_integer_option',
                       value: 13
                     }
                   ]
@@ -46,15 +46,15 @@ RSpec.describe Ioki::Model::Base do
           type:    'adult',
           options: [
             Ioki::Model::Passenger::PassengerOption.new(
-              name:  'a_boolean_option',
+              slug:  'a_boolean_option',
               value: true
             ),
             Ioki::Model::Passenger::PassengerOption.new(
-              name:  'a_string_option',
+              slug:  'a_string_option',
               value: 'a_string'
             ),
             Ioki::Model::Passenger::PassengerOption.new(
-              name:  'an_integer_option',
+              slug:  'an_integer_option',
               value: 13
             )
           ]
@@ -78,15 +78,15 @@ RSpec.describe Ioki::Model::Base do
             type:    'adult',
             options: [
               {
-                name:  'a_boolean_option',
+                slug:  'a_boolean_option',
                 value: true
               },
               {
-                name:  'a_string_option',
+                slug:  'a_string_option',
                 value: 'a_string'
               },
               {
-                name:  'an_integer_option',
+                slug:  'an_integer_option',
                 value: 13
               }
             ]

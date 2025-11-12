@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Passenger
       class PassengerOption < Base
-        attribute :name, on: [:read, :create], type: :string
+        attribute :slug, on: [:read, :create], type: :string
         attribute :value, on: :create, type: [:string, :boolean, :integer]
 
         attribute :type, on: :read, type: :string
