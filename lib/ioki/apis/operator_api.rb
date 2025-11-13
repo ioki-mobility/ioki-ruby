@@ -628,6 +628,19 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id, 'stations', :id],
         path:        'public_transport_changeover_connection',
         model_class: Ioki::Model::Operator::Station
+      ),
+      Endpoints::Create.new(
+        :station_batch_deletion_request,
+        base_path:            [API_BASE_PATH, 'products', :id, 'stations'],
+        path:                 'batch_deletion_requests',
+        model_class:          Ioki::Model::Operator::BatchDeletionRequest,
+        outgoing_model_class: Ioki::Model::Operator::StationBatch
+      ),
+      Endpoints::ShowSingular.new(
+        :station_batch_deletion_request,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'products', :id, 'stations', 'batch_deletion_requests', :id],
+        model_class: Ioki::Model::Operator::BatchDeletionRequest
       )
     ].freeze
   end
