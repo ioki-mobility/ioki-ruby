@@ -2846,4 +2846,32 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::Station)
     end
   end
+
+  describe '#create_station_batch_deletion_request(product_id)' do
+    let(:station_batch) { Ioki::Model::Operator::StationBatch.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/batch_deletion_requests')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_station_batch_deletion_request(
+               '0815', station_batch, options
+             )).to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+    end
+  end
+
+  describe '#station_batch_deletion_request(product_id, batch_deletion_request_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/stations/batch_deletion_requests/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.station_batch_deletion_request('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+    end
+  end
 end
