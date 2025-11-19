@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      module AdminNotification
+      module AdminNotifications
         class UnreadCount < Base
           attribute :type,
                     on:   :read,
