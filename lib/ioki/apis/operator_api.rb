@@ -549,7 +549,27 @@ module Ioki
         path:        [
           API_BASE_PATH, 'admin', 'admin_notifications', 'unread_count'
         ],
-        model_class: Ioki::Model::Operator::AdminNotification::UnreadCount
+        model_class: Ioki::Model::Operator::AdminNotifications::UnreadCount
+      ),
+      Endpoints::Create.new(
+        :admin_notification_read_confirmation,
+        base_path:            [API_BASE_PATH, 'products', :id, 'admin_notifications'],
+        path:                 'read_confirmations',
+        model_class:          Ioki::Model::Operator::AdminNotification,
+        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBatch
+      ),
+      Endpoints::DeleteSingular.new(
+        :admin_notification_read_confirmation,
+        base_path:            [API_BASE_PATH, 'products', :id, 'admin_notifications'],
+        path:                 'read_confirmations',
+        model_class:          Ioki::Model::Operator::AdminNotification,
+        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBatch
+      ),
+      Endpoints.crud_endpoints(
+        :admin_notification,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::AdminNotification,
+        except:      [:create, :update]
       ),
       Endpoints::Index.new(
         :consentables,
