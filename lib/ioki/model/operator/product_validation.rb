@@ -4,6 +4,10 @@ module Ioki
   module Model
     module Operator
       class ProductValidation < Base
+        attribute :type,
+                  on:   :read,
+                  type: :string
+
         attribute :slug,
                   on:   :read,
                   type: :string
