@@ -4,14 +4,25 @@ module Ioki
   module Model
     module Operator
       class ProductValidation < Base
-        def self.schema_path
-          'operator_api--v20210101--product_validator'
-        end
+        attribute :type,
+                  on:   :read,
+                  type: :string
 
-        attribute :product_bulletins,
-                  on:         :read,
-                  type:       :array,
-                  class_name: 'ProductBulletin'
+        attribute :slug,
+                  on:   :read,
+                  type: :string
+
+        attribute :severity,
+                  on:   :read,
+                  type: :string
+
+        attribute :title,
+                  on:   :read,
+                  type: :string
+
+        attribute :description,
+                  on:   :read,
+                  type: :string
       end
     end
   end

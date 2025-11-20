@@ -83,7 +83,19 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.products_product_validations('0815', options))
-        .to be_a(Ioki::Model::Operator::ProductValidation)
+        .to be_a(Ioki::Model::Operator::ProductValidator)
+    end
+  end
+
+  describe '#validations(id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/validations')
+        result_with_index_data
+      end
+
+      expect(operator_client.validations('0815', options))
+        .to all(be_a(Ioki::Model::Operator::ProductValidation))
     end
   end
 
