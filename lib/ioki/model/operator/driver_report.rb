@@ -51,6 +51,10 @@ module Ioki
         attribute :acknowledger_name,
                   on:   :read,
                   type: :string
+
+        attribute :ride_id,
+                  on:   :read,
+                  type: :string
       end
     end
   end
