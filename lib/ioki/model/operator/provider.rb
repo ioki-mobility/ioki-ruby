@@ -103,6 +103,10 @@ module Ioki
         attribute :tip_payment_method_types,
                   on:   :read,
                   type: :array
+
+        attribute :reporting_custom_column_names,
+                  on:   :read,
+                  type: :array
       end
     end
   end

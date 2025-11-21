@@ -100,6 +100,14 @@ module Ioki
                   on:         [:read, :create, :update],
                   type:       :object,
                   class_name: 'ResourceConfiguration'
+
+        attribute :reporting_column_index,
+                  on:   [:read, :create, :update],
+                  type: :integer
+
+        attribute :reporting_column_name,
+                  on:   :read,
+                  type: :string
       end
     end
   end
