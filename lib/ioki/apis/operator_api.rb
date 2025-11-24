@@ -553,21 +553,21 @@ module Ioki
       ),
       Endpoints::Create.new(
         :admin_notification_read_confirmation,
-        base_path:            [API_BASE_PATH, 'products', :id, 'admin_notifications'],
+        base_path:            [API_BASE_PATH, 'admin', 'admin_notifications'],
         path:                 'read_confirmations',
         model_class:          Ioki::Model::Operator::AdminNotification,
-        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBatch
+        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBulk
       ),
       Endpoints::DeleteSingular.new(
         :admin_notification_read_confirmation,
-        base_path:            [API_BASE_PATH, 'products', :id, 'admin_notifications'],
+        base_path:            [API_BASE_PATH, 'admin', 'admin_notifications'],
         path:                 'read_confirmations',
         model_class:          Ioki::Model::Operator::AdminNotification,
-        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBatch
+        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBulk
       ),
       Endpoints.crud_endpoints(
         :admin_notification,
-        base_path:   [API_BASE_PATH, 'products', :id],
+        base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::AdminNotification,
         except:      [:create, :update]
       ),

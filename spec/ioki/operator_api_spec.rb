@@ -2629,22 +2629,22 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#admin_notification(product_id, admin_notification_id)' do
+  describe '#admin_notification(admin_notification_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/admin_notifications/4711')
+        expect(params[:url].to_s).to eq('operator/admin/admin_notifications/0815')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.admin_notification('0815', '4711', options))
+      expect(operator_client.admin_notification('0815', options))
         .to be_a(Ioki::Model::Operator::AdminNotification)
     end
   end
 
-  describe '#admin_notifications(product_id)' do
+  describe '#admin_notifications()' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/admin_notifications')
+        expect(params[:url].to_s).to eq('operator/admin/admin_notifications')
         [result_with_data, full_response]
       end
 
@@ -2653,43 +2653,44 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#delete_admin_notification(product_id, admin_notification_id)' do
+  describe '#delete_admin_notification(admin_notification_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/admin_notifications/4711')
+        expect(params[:url].to_s).to eq('operator/admin/admin_notifications/0815')
         expect(params[:method]).to eq(:delete)
         result_with_data
       end
 
-      expect(operator_client.delete_admin_notification('0815', '4711', options))
+      expect(operator_client.delete_admin_notification('0815', options))
         .to be_a(Ioki::Model::Operator::AdminNotification)
     end
   end
 
-  describe '#create_admin_notification_read_confirmation(product_id, options)' do
-    let(:admin_notification_batch) { Ioki::Model::Operator::AdminNotificationBatch.new }
+  describe '#create_admin_notification_read_confirmation(options)' do
+    let(:admin_notification_bulk) { Ioki::Model::Operator::AdminNotificationBulk.new }
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/admin_notifications/read_confirmations')
+        expect(params[:url].to_s).to eq('operator/admin/admin_notifications/read_confirmations')
         expect(params[:method]).to eq(:post)
         [result_with_data, full_response]
       end
 
-      expect(operator_client.create_admin_notification_read_confirmation('0815', admin_notification_batch, options))
+      expect(operator_client.create_admin_notification_read_confirmation('0815', admin_notification_bulk, options))
         .to be_a(Ioki::Model::Operator::AdminNotification)
     end
   end
 
-  describe '#delete_admin_notification_read_confirmation(product_id, options)' do
+  describe '#delete_admin_notification_read_confirmation(options)' do
+    let(:admin_notification_bulk) { Ioki::Model::Operator::AdminNotificationBulk.new }
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/admin_notifications/read_confirmations')
+        expect(params[:url].to_s).to eq('operator/admin/admin_notifications/read_confirmations')
         expect(params[:method]).to eq(:delete)
         result_with_data
       end
 
-      expect(operator_client.delete_admin_notification_read_confirmation('0815', options))
+      expect(operator_client.delete_admin_notification_read_confirmation('0815', admin_notification_bulk, options))
         .to be_a(Ioki::Model::Operator::AdminNotification)
     end
   end
