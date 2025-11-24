@@ -3,11 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class AdminNotificationBatch < Base
-        def self.schema_path
-          'operator_api--v20210101--admin_notification_bulk_schema'
-        end
-
+      class AdminNotificationBulk < Base
         attribute :admin_notification_ids,
                   on:   :create,
                   type: :array
