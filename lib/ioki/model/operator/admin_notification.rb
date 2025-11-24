@@ -21,24 +21,20 @@ module Ioki
                   type: :date_time
 
         attribute :admin_notification_type,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
 
         attribute :title,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
 
         attribute :description,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :string
 
         attribute :read_at,
-                  on:   [:create, :read, :update],
+                  on:   :read,
                   type: :date_time
-
-        attribute :receiver_id,
-                  on:   [:create, :read, :update],
-                  type: :string
       end
     end
   end
