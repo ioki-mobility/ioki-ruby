@@ -18,7 +18,7 @@ RSpec.describe 'Ioki::PlatformApi', :vcr do
       created_driver = platform_client.create_driver(real_demo_product_id, new_driver)
       expect(platform_client.drivers(real_demo_product_id).map(&:username)).to include 'vcr-suszab'
 
-      platform_client.delete_driver(real_demo_product_id, created_driver)
+      platform_client.delete_driver(real_demo_product_id, created_driver.id)
       expect(platform_client.drivers(real_demo_product_id).map(&:username)).not_to include 'vcr-suszab'
     end
   end
