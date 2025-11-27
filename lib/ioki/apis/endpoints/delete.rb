@@ -25,10 +25,17 @@ module Ioki
         base_path + [resource_path_name, :id]
       end
 
-      def call(client, args = [], options = {})
+      def call(client, model, args = [], options = {})
+        outgoing_model_class = @outgoing_model_class || options[:outgoing_model_class] || model_class
+
+        unless model.nil? || model.is_a?(outgoing_model_class)
+          raise(ArgumentError, "#{model} is not an instance of #{outgoing_model_class}")
+        end
+
         parsed_response, = client.request(
           url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
           method: :delete,
+          body:   { data: model&.serialize(:delete) },
           params: options[:params]
         )
 
