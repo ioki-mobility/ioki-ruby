@@ -33,12 +33,12 @@ module Ioki
           raise(ArgumentError, "#{model} is not an instance of #{outgoing_model_class}")
         end
 
-        body = @send_body && model ? { data: model.serialize(:delete) } : nil
+        body = (@send_body && model) ? { data: model.serialize(:delete) } : nil
 
         parsed_response, = client.request(
           url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
           method: :delete,
-          body:,
+          body:   body,
           params: options[:params]
         )
 

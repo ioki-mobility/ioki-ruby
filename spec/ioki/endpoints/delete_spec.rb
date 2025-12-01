@@ -3,7 +3,9 @@
 RSpec.describe Ioki::Endpoints::Delete do
   let(:model_class) { Ioki::Model::Platform::Product }
   let(:client)      { instance_double(Ioki::Client, 'client', build_request_url: 'url') }
-  let(:endpoint)    { described_class.new('product', base_path: ['base_path'], model_class: model_class, send_body:) }
+  let(:endpoint)    do
+    described_class.new('product', base_path: ['base_path'], model_class: model_class, send_body: send_body)
+  end
   let(:params)      { instance_double(Hash, 'params') }
   let(:response)    { { 'data' => { 'id' => '0815' } } }
 
