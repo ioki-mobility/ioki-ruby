@@ -34,7 +34,7 @@ RSpec.describe 'Ioki::DriverApi', :vcr do
       expect(product.ride_options.passengers.types.first).to be_a(Ioki::Model::Driver::PassengerType)
       expect(product.ride_options.prebooking_threshold).to be_a(Ioki::Model::Driver::PrebookingThreshold)
 
-      platform_client.delete_driver(real_demo_product_id, created_driver.id)
+      platform_client.delete_driver(real_demo_product_id, created_driver)
     end
   end
 end

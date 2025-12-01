@@ -359,7 +359,7 @@ RSpec.describe Ioki::PassengerApi do
         [result_with_data, full_response]
       end
 
-      expect(passenger_client.delete_payment_method(payment_method.id))
+      expect(passenger_client.delete_payment_method(payment_method))
         .to be_a Ioki::Model::Passenger::PaymentMethod
     end
   end
