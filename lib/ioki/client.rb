@@ -29,11 +29,7 @@ module Ioki
           if [Endpoints::Create, Endpoints::Update, Endpoints::UpdateSingular].include?(endpoint.class)
             endpoint.call(self, model, args, options)
           elsif [Endpoints::Delete, Endpoints::DeleteSingular].include?(endpoint.class)
-            model = if args&.last.is_a?(Ioki::Model::Base)
-                      args.last
-                    else
-                      nil
-                    end
+            model = nil unless options[:send_body]
             endpoint.call(self, model, args, options)
           elsif endpoint.is_a? Endpoints::Index
             endpoint.call(self, args, options, &block)
