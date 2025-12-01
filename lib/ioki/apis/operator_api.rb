@@ -563,7 +563,8 @@ module Ioki
         base_path:            [API_BASE_PATH, 'admin', 'admin_notifications'],
         path:                 'read_confirmations',
         model_class:          Ioki::Model::Operator::AdminNotification,
-        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBulk
+        outgoing_model_class: Ioki::Model::Operator::AdminNotificationBulk,
+        send_body:            true
       ),
       Endpoints.crud_endpoints(
         :admin_notification,

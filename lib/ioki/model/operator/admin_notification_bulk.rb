@@ -5,7 +5,7 @@ module Ioki
     module Operator
       class AdminNotificationBulk < Base
         attribute :admin_notification_ids,
-                  on:   :create,
+                  on:   [:create, :delete],
                   type: :array
       end
     end
