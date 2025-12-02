@@ -11,6 +11,7 @@ module Ioki
         attribute :email, type: :string
         attribute :first_name, type: :string
         attribute :last_name, type: :string
+        attribute :locale, type: :string
       end
     end
   end
