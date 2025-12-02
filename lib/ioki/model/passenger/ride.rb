@@ -22,6 +22,7 @@ module Ioki
         attribute :cancellation_reason_translated, type: :string, on: [:read, :create, :update]
         attribute :driver, type: :object, on: :read, class_name: 'Driver'
         attribute :driver_can_be_called, type: :boolean, on: [:read, :create, :update]
+        attribute :matching_state, on: :read, type: :object, class_name: 'MatchingState'
         attribute :needs_cancellation_code, type: :boolean, on: [:read, :create, :update]
         attribute :passenger_can_be_called, type: :boolean, on: [:read, :create, :update]
         attribute :payment_method, type: :object, on: :read, class_name: 'PaymentMethod'
