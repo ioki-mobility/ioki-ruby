@@ -50,6 +50,7 @@ module Ioki
         attribute :options, on: :create, type: :array, class_name: 'RideOption'
         attribute :passenger_note_to_driver, type: :string, on: [:read, :create, :update]
         attribute :ride_series_id, on: :read, type: :string
+        attribute :payment_method_required, on: :read, type: :boolean
       end
     end
   end

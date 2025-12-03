@@ -278,6 +278,10 @@ module Ioki
         attribute :vehicle_reached_pickup_at,
                   on:   :read,
                   type: :date_time
+
+        attribute :payment_method_required,
+                  on:   :read,
+                  type: :boolean
       end
     end
   end
