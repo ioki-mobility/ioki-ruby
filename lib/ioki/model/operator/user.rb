@@ -116,6 +116,11 @@ module Ioki
                   on:         :read,
                   type:       :object,
                   class_name: 'UserSegment'
+
+        attribute :payment_methods,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'PaymentMethod'
       end
     end
   end
