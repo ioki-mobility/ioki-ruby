@@ -49,6 +49,7 @@ module Ioki
         attribute :vehicle_reached_dropoff, on: :read, type: :boolean
         attribute :vehicle_reached_pickup, on: :read, type: :boolean
         attribute :version, type: :integer, on: [:read, :update]
+        attribute :payment_method_required, on: :read, type: :boolean
       end
     end
   end
