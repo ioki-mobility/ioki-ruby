@@ -191,6 +191,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#driver_overview(product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/overview')
+        result_with_index_data
+      end
+
+      expect(operator_client.driver_overview('0815', options))
+        .to all(be_a(Ioki::Model::Operator::Driver))
+    end
+  end
+
   describe '#driver(product_id, driver_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
