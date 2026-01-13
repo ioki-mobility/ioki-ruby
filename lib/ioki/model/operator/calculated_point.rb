@@ -103,6 +103,14 @@ module Ioki
         attribute :waypoint_type,
                   on:   :read,
                   type: :string
+
+        attribute :driver_delay_state,
+                  on:   :read,
+                  type: :string
+
+        attribute :passenger_delay_state,
+                  on:   :read,
+                  type: :string
       end
     end
   end
