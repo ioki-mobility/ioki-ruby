@@ -8,6 +8,7 @@ module Ioki
           'platform_api--v20210101--ride_inquiry--links'
         end
 
+        attribute :type, type: :string, on: [:create, :read, :update]
         attribute :android, on: :read, type: :object, class_name: 'RideInquiryLinkAndroid'
         attribute :ios, on: :read, type: :object, class_name: 'RideInquiryLinkIos'
         attribute :universal_link, on: :read, type: :string
