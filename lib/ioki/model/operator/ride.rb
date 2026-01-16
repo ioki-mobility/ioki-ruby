@@ -282,6 +282,11 @@ module Ioki
         attribute :payment_method_required,
                   on:   :read,
                   type: :boolean
+
+        attribute :matching_state,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'MatchingState'
       end
     end
   end
