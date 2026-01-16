@@ -74,6 +74,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::Driver
       ),
+      Endpoints::Index.new(
+        :driver_overview,
+        base_path:   [API_BASE_PATH, 'products', :id, 'drivers'],
+        path:        'overview',
+        model_class: Ioki::Model::Operator::Driver
+      ),
       Endpoints.custom_endpoints(
         'drivers',
         actions:     {
