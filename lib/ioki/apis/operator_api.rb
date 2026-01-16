@@ -47,6 +47,12 @@ module Ioki
         model_class: Ioki::Model::Operator::Vehicle
       ),
       Endpoints::Index.new(
+        :vehicle_overview,
+        base_path:   [API_BASE_PATH, 'products', :id, 'vehicles'],
+        path:        'overview',
+        model_class: Ioki::Model::Operator::Vehicle
+      ),
+      Endpoints::Index.new(
         :permissions,
         base_path:   [API_BASE_PATH, 'admin'],
         model_class: Ioki::Model::Operator::Permission
