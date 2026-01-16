@@ -376,6 +376,12 @@ module Ioki
         model_class: Ioki::Model::Operator::Zone
       ),
       Endpoints::Index.new(
+        :zone_overview,
+        base_path:   [API_BASE_PATH, 'products', :id, 'zones'],
+        path:        'overview',
+        model_class: Ioki::Model::Operator::Zone
+      ),
+      Endpoints::Index.new(
         :reporting_scopes,
         base_path:   [API_BASE_PATH, 'reporting', 'report'],
         path:        'scopes',
