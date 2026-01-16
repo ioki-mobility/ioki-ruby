@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Driver
       class CalculatedPoint < Base
+        attribute :max_communicated_time, type: :string, on: [:create, :read, :update]
+        attribute :communicated_time, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -19,7 +21,7 @@ module Ioki
         attribute :location_name, on: :read, type: :string
         attribute :negotiation_time, on: :read, type: :string
         attribute :negotiation_time_max, on: :read, type: :string
-        attribute :pause_id, on: :read, type: :string
+        # attribute :pause_id, on: :read, type: :string
         attribute :postal_code, on: :read, type: :string
         attribute :station_id, on: :read, type: :string
         attribute :street_name, on: :read, type: :string
