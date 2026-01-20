@@ -39,6 +39,10 @@ module Ioki
         attribute :lng,
                   on:   :read,
                   type: :float
+
+        attribute :result_type,
+                  on:   :read,
+                  type: :string
       end
     end
   end
