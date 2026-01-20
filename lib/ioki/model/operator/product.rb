@@ -98,6 +98,10 @@ module Ioki
                   type:       :array,
                   class_name: 'Station'
 
+        attribute :requires_fixed_station,
+                  on:   :read,
+                  type: :boolean
+
         attribute :has_custom_flags,
                   on:   :read,
                   type: :boolean
