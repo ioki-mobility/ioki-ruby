@@ -45,6 +45,11 @@ module Ioki
                   type: :boolean
 
         attribute :formatted_street,
+                  on:         :read,
+                  type:       :string,
+                  deprecated: true
+
+        attribute :formatted_address,
                   on:   :read,
                   type: :string
 

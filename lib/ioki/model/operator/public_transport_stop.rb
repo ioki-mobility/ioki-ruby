@@ -79,6 +79,10 @@ module Ioki
         attribute :street_number,
                   type: :string,
                   on:   :read
+
+        attribute :formatted_address,
+                  on:   :read,
+                  type: :string
       end
     end
   end
