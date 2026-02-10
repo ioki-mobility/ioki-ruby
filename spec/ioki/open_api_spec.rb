@@ -130,10 +130,12 @@ RSpec.describe OpenApi do
       allow(File).to receive(:write) do |path, ruby_code|
         expect(path).to eq(model_file_path)
         if ruby_code != expected_repaired_model_definition
+          # rubocop:disable RSpec/Output
           puts "\nExpected code:\n\n"
           puts expected_repaired_model_definition
           puts "\nActual code:\n\n"
           puts ruby_code
+          # rubocop:enable RSpec/Output
         end
         aggregate_failures 'testing generated ruby code' do
           expect(ruby_code).to include('attribute :new_attribute, type: :string, on: [:create, :read, :update]')
