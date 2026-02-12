@@ -2870,6 +2870,21 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#create_geocoding_reverse_search(id)' do
+    let(:geocoding_search) { Ioki::Model::Operator::GeocodingReverseSearch.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/geocoding/reverse/products/0815/search')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_geocoding_reverse_search('0815', geocoding_search, options))
+        .to be_a(Ioki::Model::Operator::GeocodingReverseSearchResults)
+    end
+  end
+
   describe '#no_show_acknowledge(product_id, no_show_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
