@@ -639,8 +639,8 @@ module Ioki
       ),
       Endpoints::Create.new(
         :geocoding_reverse_search,
-        base_path:            [API_BASE_PATH, 'geocoding', 'reverse', 'products', :id],
-        path:                 'search',
+        base_path:            [API_BASE_PATH, 'geocoding', 'products', :id],
+        path:                 'reverse_search',
         model_class:          Ioki::Model::Operator::GeocodingReverseSearchResults,
         outgoing_model_class: Ioki::Model::Operator::GeocodingReverseSearch
       ),

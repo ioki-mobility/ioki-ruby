@@ -2875,7 +2875,7 @@ RSpec.describe Ioki::OperatorApi do
 
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/geocoding/reverse/products/0815/search')
+        expect(params[:url].to_s).to eq('operator/geocoding/products/0815/reverse_search')
         expect(params[:method]).to eq(:post)
         [result_with_data, full_response]
       end
