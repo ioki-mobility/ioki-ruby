@@ -661,6 +661,12 @@ module Ioki
         model_class: Ioki::Model::Operator::NoShowBlock,
         except:      [:create, :update, :delete]
       ),
+      Endpoints::Index.new(
+        :no_show_blocks_per_user,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id, 'products', :id],
+        path:        'no_show_blocks',
+        model_class: Ioki::Model::Operator::NoShowBlock
+      ),
       Endpoints.custom_endpoints(
         'no_show_block',
         actions:     { 'acknowledge' => :patch },
