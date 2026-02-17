@@ -2947,6 +2947,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#no_show_blocks_per_user(provider_id, user_id, product_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/123/users/456/products/789/no_show_blocks')
+        result_with_index_data
+      end
+
+      expect(operator_client.no_show_blocks_per_user('123', '456', '789', options))
+        .to all(be_a(Ioki::Model::Operator::NoShowBlock))
+    end
+  end
+
   describe '#create_public_transport_changeover_connection(product_id, station_id)' do
     let(:public_transport_changeover_connection) { Ioki::Model::Operator::PublicTransportChangeoverConnection.new }
 
