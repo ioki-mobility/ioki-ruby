@@ -698,6 +698,12 @@ module Ioki
         base_path:   nil,
         path:        [API_BASE_PATH, 'products', :id, 'stations', 'batch_deletion_requests', :id],
         model_class: Ioki::Model::Operator::BatchDeletionRequest
+      ),
+      Endpoints.crud_endpoints(
+        :purchase,
+        base_path:   [API_BASE_PATH, 'providers', :id],
+        model_class: Ioki::Model::Operator::Purchase,
+        only:        [:index, :show]
       )
     ].freeze
   end
