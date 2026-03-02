@@ -12,7 +12,8 @@ require 'ioki'
 require 'vcr'
 require 'webmock/rspec'
 require 'helper/string_helper'
-require 'helper/client_helpers'
+require 'helper/included_client_helpers'
+require 'helper/extended_client_helpers'
 require 'helper/define_attribute_matcher'
 
 RSpec.configure do |config|
