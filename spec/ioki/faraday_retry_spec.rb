@@ -3,23 +3,25 @@
 require 'spec_helper'
 require 'ioki/apis/endpoints/endpoints'
 
-class DummyModel < Ioki::Model::Base
-  attribute :value, on: :read, type: :integer
-end
+RSpec.describe Faraday do
+  let(:dummy_model) do
+    Class.new(Ioki::Model::Base) do
+      attribute :value, on: :read, type: :integer
+    end
+  end
 
-class DummyApi
-  ENDPOINTS =
-    [
+  let(:client) { Ioki::Client.new(Ioki::Configuration.new, DummyApi) }
+
+  before do
+    stub_const('DummyApi', Class.new)
+    stub_const('DummyApi::ENDPOINTS', [
       Ioki::Endpoints::Index.new(
         :ping,
         base_path:   ['driver'],
-        model_class: DummyModel
+        model_class: dummy_model
       )
-    ].freeze
-end
-
-RSpec.describe Faraday do
-  let(:client) { Ioki::Client.new(Ioki::Configuration.new, DummyApi) }
+    ].freeze)
+  end
 
   it 'does not retry on 404 errors' do
     ping_request = stub_request(:get, 'https://app.io.ki/api/driver/ping')

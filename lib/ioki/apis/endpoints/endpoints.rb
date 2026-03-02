@@ -67,11 +67,11 @@ module Ioki
         raise ArgumentError, 'path: must consist of Strings and Symbols only'
       end
 
-      unless path.select { |element| element.is_a?(Symbol) }.size <= args.size
+      unless path.grep(Symbol).size <= args.size
         raise ArgumentError, "args: must have an argument for every symbol in :path. path: #{path}, args: #{args}"
       end
 
-      interpolation_args = path.select { |inner_element| inner_element.is_a?(Symbol) }.zip(args).reverse
+      interpolation_args = path.grep(Symbol).zip(args).reverse
       interpolation_path = path.map { |element| element.is_a?(String) ? element : interpolation_args.pop }
       interpolation_path.map do |path_element, arg|
         next path_element if path_element.is_a?(String)

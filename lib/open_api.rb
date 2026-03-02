@@ -211,11 +211,7 @@ module OpenApi
     end
 
     def file_lines
-      @file_lines ||= model_file.readlines.to_a
-    end
-
-    def model_file
-      File.open file_path
+      @file_lines ||= File.read(file_path).lines
     end
 
     def file_path
