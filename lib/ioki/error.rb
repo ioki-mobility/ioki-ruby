@@ -8,6 +8,7 @@ require 'ioki/error/not_acceptable'
 require 'ioki/error/not_found'
 require 'ioki/error/not_modified'
 require 'ioki/error/response_malformed'
+require 'ioki/error/session_expired'
 require 'ioki/error/unauthorized'
 require 'ioki/error/unexpected_redirection'
 require 'ioki/error/unexpected_response_code'
@@ -34,6 +35,8 @@ module Ioki
           Conflict
         when 406
           NotAcceptable
+        when 419
+          SessionExpired
         when 422
           UnprocessableEntity
         when 500
