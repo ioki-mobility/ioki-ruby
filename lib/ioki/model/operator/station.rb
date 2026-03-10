@@ -70,6 +70,11 @@ module Ioki
                   type:       :array,
                   class_name: 'Deactivation'
 
+        attribute :deactivation,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Deactivation'
+
         attribute :description,
                   on:             [:read, :create, :update],
                   omit_if_nil_on: [:create, :update],
@@ -125,6 +130,11 @@ module Ioki
                   on:             [:read, :create, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
+
+        attribute :station_category,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'StationCategory'
 
         attribute :station_category_id,
                   on:   [:create, :update, :read],
