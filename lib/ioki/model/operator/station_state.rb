@@ -16,6 +16,16 @@ module Ioki
                   on:         :read,
                   type:       :array,
                   class_name: 'Station'
+
+        attribute :station_categories,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'StationCategory'
+
+        attribute :station_deactivations,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Deactivation'
       end
     end
   end
