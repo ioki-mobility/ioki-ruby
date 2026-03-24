@@ -384,7 +384,7 @@ module Ioki
       ),
       Endpoints::ShowSingular.new(
         :station_state,
-        base_path:   [API_BASE_PATH],
+        base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::StationState
       ),
       Endpoints.crud_endpoints(

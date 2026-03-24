@@ -3040,14 +3040,14 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#station_state' do
+  describe '#station_state(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/station_state')
+        expect(params[:url].to_s).to eq('operator/products/0815/station_state')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.station_state(options)).to be_a Ioki::Model::Operator::StationState
+      expect(operator_client.station_state('0815', options)).to be_a Ioki::Model::Operator::StationState
     end
   end
 end
