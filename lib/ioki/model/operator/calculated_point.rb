@@ -97,6 +97,14 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
+        attribute :time_max,
+                  on:   :read,
+                  type: :date_time
+
+        attribute :time_min,
+                  on:   :read,
+                  type: :date_time
+
         attribute :walking_duration,
                   on:   :read,
                   type: :integer
