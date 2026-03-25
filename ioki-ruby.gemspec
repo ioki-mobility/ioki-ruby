@@ -36,5 +36,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday', '>= 1.8', '< 3.0'
   spec.add_dependency 'faraday-retry', '~> 2.2'
   spec.add_dependency 'oauth2', '>= 2.0.2', '< 3'
-  spec.add_dependency 'openssl', '>= 2.2.0'
 end
