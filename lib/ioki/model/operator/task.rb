@@ -61,6 +61,10 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :dismissable,
+                  on:   :read,
+                  type: :boolean
+
         attribute :pause_id,
                   on:   :read,
                   type: :string
