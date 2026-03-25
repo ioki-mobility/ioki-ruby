@@ -171,6 +171,11 @@ module Ioki
                   type:       :array,
                   class_name: 'CustomTag'
 
+        attribute :tasks,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'Task'
+
         attribute :version,
                   on:             [:read, :update],
                   omit_if_nil_on: [:update],
