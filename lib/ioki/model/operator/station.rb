@@ -24,6 +24,10 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :active_deactivation_id,
+                  on:   :read,
+                  type: :string
+
         attribute :approach,
                   on:   [:read, :create, :update],
                   type: :string
