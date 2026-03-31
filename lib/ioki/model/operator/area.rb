@@ -109,8 +109,8 @@ module Ioki
                   class_name:     'Geojson'
 
         attribute :recurrence_rules,
-                  on:             [:read, :update],
-                  omit_if_nil_on: [:update],
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
                   type:           :array,
                   class_name:     'RecurrenceRule'
       end
