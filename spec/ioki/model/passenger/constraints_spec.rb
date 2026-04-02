@@ -4,7 +4,7 @@ RSpec.describe Ioki::Model::Passenger::Constraints, :vcr do
   setup_platform_client(:platform_client)
   setup_passenger_client(:passenger_client)
   let(:product) { passenger_client.products.first }
-  let(:ride_inqury) do
+  let(:ride_inquiry) do
     Ioki::Model::Passenger::RideInquiry.new(
       origin:      { lat: 1, lng: 1 },
       destination: { lat: 1, lng: 1 },
@@ -23,7 +23,7 @@ RSpec.describe Ioki::Model::Passenger::Constraints, :vcr do
   end
 
   it 'has data for all defined attributes' do
-    returned_ride_inquiry = passenger_client.create_ride_inquiry(ride_inqury)
+    returned_ride_inquiry = passenger_client.create_ride_inquiry(ride_inquiry)
     expect(returned_ride_inquiry.constraints).to be_a(described_class)
   end
 end
