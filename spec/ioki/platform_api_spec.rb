@@ -561,7 +561,7 @@ RSpec.describe Ioki::PlatformApi do
     end
   end
 
-  describe '#create_ride_inqury(product_id)' do
+  describe '#create_ride_inquiry(product_id)' do
     let(:ride_inquiry) { Ioki::Model::Platform::RideInquiry.new }
 
     it 'calls request on the client with expected params' do
