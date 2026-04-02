@@ -28,6 +28,14 @@ module Ioki
                   on:   :read,
                   type: :boolean
 
+        attribute :first_name,
+                  on:   :create,
+                  type: :string
+
+        attribute :last_name,
+                  on:   :create,
+                  type: :string
+
         attribute :options,
                   on:         [:create, :read],
                   type:       :array,
