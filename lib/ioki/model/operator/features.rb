@@ -193,6 +193,10 @@ module Ioki
         attribute :driver_automation,
                   type: :boolean,
                   on:   :read
+
+        attribute :requires_passenger_names_or_ticket,
+                  type: :boolean,
+                  on:   :read
       end
     end
   end
