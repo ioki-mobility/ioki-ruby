@@ -126,6 +126,18 @@ module Ioki
                   on:             [:create, :read, :update],
                   omit_if_nil_on: [:create, :update],
                   type:           :boolean
+
+        attribute :gps_signal_missing,
+                  on:   :read,
+                  type: :boolean
+
+        attribute :with_due_start_of_shift_task,
+                  on:   :read,
+                  type: :boolean
+
+        attribute :driver_missing,
+                  on:   :read,
+                  type: :boolean
       end
     end
   end
