@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frozen_ string_literal: true
 
 module Ioki
