@@ -36,6 +36,11 @@ module Ioki
           attribute :variant,
                     on:   :read,
                     type: :string
+
+          attribute :line_stops,
+                    type:       :array,
+                    on:         :read,
+                    class_name: 'LineStates::LineStop'
         end
       end
     end
