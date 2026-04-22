@@ -15,12 +15,12 @@ module Ioki
         attribute :lines,
                   on:         :read,
                   type:       :array,
-                  class_name: 'Line'
+                  class_name: 'LineStates::Line'
 
         attribute :line_stops,
                   on:         :read,
                   type:       :array,
-                  class_name: 'LineStop'
+                  class_name: 'LineStates::LineStop'
       end
     end
   end
