@@ -121,6 +121,11 @@ module Ioki
                   on:         :read,
                   type:       :array,
                   class_name: 'PaymentMethod'
+
+        attribute :failed_purchases_summary,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'Ioki::Model::Operator::Payment::FailedPurchasesSummary'
       end
     end
   end
