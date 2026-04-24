@@ -59,6 +59,10 @@ module Ioki
                   on:   [:read, :create, :update],
                   type: :string
 
+        attribute :line_id,
+                  on:   :read,
+                  type: :string
+
         attribute :version,
                   on:   :read,
                   type: :integer
