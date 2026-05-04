@@ -3085,4 +3085,16 @@ RSpec.describe Ioki::OperatorApi do
       expect(operator_client.line_state('0815', options)).to be_a Ioki::Model::Operator::LineState
     end
   end
+
+  describe '#quota_metrics' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/reporting/quota_metrics')
+        result_with_index_data
+      end
+
+      expect(operator_client.quota_metrics(options))
+        .to all(be_a(Ioki::Model::Operator::Reporting::QuotaMetric))
+    end
+  end
 end

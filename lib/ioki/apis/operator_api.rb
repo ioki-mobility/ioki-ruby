@@ -726,6 +726,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::Purchase,
         only:        [:index, :show]
+      ),
+      Endpoints::Index.new(
+        :quota_metrics,
+        base_path:   [API_BASE_PATH, 'reporting'],
+        path:        'quota_metrics',
+        model_class: Ioki::Model::Operator::Reporting::QuotaMetric
       )
     ].freeze
   end
