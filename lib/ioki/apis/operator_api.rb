@@ -795,6 +795,12 @@ module Ioki
         base_path:   nil,
         path:        [API_BASE_PATH, 'products', :id, 'lines', 'batch_deletion_requests', :id],
         model_class: Ioki::Model::Operator::BatchDeletionRequest
+      ),
+      Endpoints::Index.new(
+        :quota_metrics,
+        base_path:   [API_BASE_PATH, 'reporting'],
+        path:        'quota_metrics',
+        model_class: Ioki::Model::Operator::Reporting::QuotaMetric
       )
     ].freeze
   end
