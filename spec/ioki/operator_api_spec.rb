@@ -1429,6 +1429,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#users_recently_used_stations(provider_id, user_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users/4711/recently_used_stations')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.users_recently_used_stations('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::RecentlyUsedStations)
+    end
+  end
+
   describe '#create_ride_inquiry(product_id)' do
     let(:ride_inquiry) { Ioki::Model::Operator::RideInquiry.new }
 
