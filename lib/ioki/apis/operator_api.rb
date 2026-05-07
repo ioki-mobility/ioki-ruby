@@ -337,6 +337,12 @@ module Ioki
         model_class: Ioki::Model::Operator::User
       ),
       Endpoints::Index.new(
+        :users_ride_templates,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id],
+        path:        'ride_templates',
+        model_class: Ioki::Model::Operator::Ride
+      ),
+      Endpoints::Index.new(
         :rides_notifications,
         base_path:   [API_BASE_PATH, 'products', :id, 'rides', :id],
         path:        'notifications',

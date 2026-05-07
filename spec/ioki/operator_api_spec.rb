@@ -1493,6 +1493,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#users_ride_templates(provider_id, user_id, ...)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/providers/0815/users/01/ride_templates')
+        result_with_index_data
+      end
+
+      expect(operator_client.users_ride_templates('0815', '01', options))
+        .to all(be_a(Ioki::Model::Operator::Ride))
+    end
+  end
+
   describe '#rides_notifications(product_id, ride_id, ...)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
