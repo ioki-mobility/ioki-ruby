@@ -318,8 +318,9 @@ module Ioki
         except:      [:update, :delete]
       ),
       Endpoints::ShowSingular.new(
-        :recently_used_stations,
-        base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id],
+        :users_recently_used_stations,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'providers', :id, 'users', :id, 'recently_used_stations'],
         model_class: Ioki::Model::Operator::RecentlyUsedStations
       ),
       Endpoints::Create.new(
