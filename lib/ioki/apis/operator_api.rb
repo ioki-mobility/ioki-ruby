@@ -340,7 +340,7 @@ module Ioki
         :users_ride_templates,
         base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id],
         path:        'ride_templates',
-        model_class: Ioki::Model::Operator::Ride
+        model_class: Ioki::Model::Operator::RideTemplate
       ),
       Endpoints::Index.new(
         :rides_notifications,

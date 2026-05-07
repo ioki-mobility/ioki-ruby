@@ -1501,7 +1501,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.users_ride_templates('0815', '01', options))
-        .to all(be_a(Ioki::Model::Operator::Ride))
+        .to all(be_a(Ioki::Model::Operator::RideTemplate))
     end
   end
 
