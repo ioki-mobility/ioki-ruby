@@ -317,6 +317,11 @@ module Ioki
         model_class: Ioki::Model::Operator::User,
         except:      [:update, :delete]
       ),
+      Endpoints::ShowSingular.new(
+        :recently_used_stations,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id],
+        model_class: Ioki::Model::Operator::RecentlyUsedStations
+      ),
       Endpoints::Create.new(
         :ride_inquiry,
         base_path:   [API_BASE_PATH, 'products', :id],
