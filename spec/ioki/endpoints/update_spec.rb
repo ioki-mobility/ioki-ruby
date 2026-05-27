@@ -17,7 +17,7 @@ RSpec.describe Ioki::Endpoints::Update do
       ]
     end
 
-    before { allow(model).to receive(:serialize).with(:update).and_return(serialized_model) }
+    before { allow(model).to receive(:serialize).with(:update, format: :json).and_return(serialized_model) }
 
     it 'is a shortcut calling #request, sending serialized modeldata and instantiating a new class from the result' do
       expect(client).to receive(:request).with(

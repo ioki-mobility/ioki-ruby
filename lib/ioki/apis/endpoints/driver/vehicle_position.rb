@@ -20,7 +20,7 @@ module Ioki
           client.request(
             url:    client.build_request_url('driver', 'vehicle', 'positions'),
             method: :post,
-            body:   { data: model.serialize(:create) }
+            body:   { data: model.serialize(:create, format: :json) }
           )
         end
       end

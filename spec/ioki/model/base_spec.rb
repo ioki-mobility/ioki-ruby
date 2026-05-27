@@ -367,6 +367,38 @@ RSpec.describe Ioki::Model::Base do
         )
       end
 
+      it 'does not serialize objects with a ruby format' do
+        expect(model.serialize(:read, format: :ruby)).to eq(
+          {
+            foo: '1',
+            bar: '2',
+            baz: 3,
+            bam: 4.0,
+            brk: false,
+            baf: DateTime.parse('2020-01-01 12:34:56 +0200'),
+            bak: {
+              'lol' => '42'
+            }
+          }
+        )
+      end
+
+      it 'allows to force JSON output' do
+        expect(model.serialize(:read, format: :json)).to eq(
+          {
+            foo: '1',
+            bar: '2',
+            baz: 3,
+            bam: 4.0,
+            brk: false,
+            baf: '2020-01-01T12:34:56+02:00',
+            bak: {
+              'lol' => '42'
+            }
+          }
+        )
+      end
+
       context 'without all attributes' do
         let(:example_class) do
           Class.new(Ioki::Model::Base) do

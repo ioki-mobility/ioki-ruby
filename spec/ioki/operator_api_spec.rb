@@ -1988,7 +1988,7 @@ RSpec.describe Ioki::OperatorApi do
         expect(params[:url].to_s)
           .to eq('operator/reporting/report/scopes/myscope/reports/myname/aggregations/ride_counts/aggregate')
         expect(params[:method]).to eq(:post)
-        expect(params[:body]).to eq({ data: query.serialize(:create) })
+        expect(params[:body]).to eq({ data: query.serialize(:create, format: :json) })
         [result_with_reporting_aggregation, full_response]
       end
 

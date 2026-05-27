@@ -181,9 +181,11 @@ module Ioki
 
       # may get overridden in hard ways by subclasses. This default
       # implementation should bring us a long way.
-      def serialize(usecase = :read, only_changed: true)
+      def serialize(usecase = :read, only_changed: true, format: :ruby)
         if !@_raw_attributes.is_a?(Hash)
-          return @_raw_attributes.map { |object| object.serialize(usecase) } if @_raw_attributes.is_a?(Array)
+          if @_raw_attributes.is_a?(Array)
+            return @_raw_attributes.map { |object| object.serialize(usecase, format: format) }
+          end
 
           return @_raw_attributes
         end
@@ -210,11 +212,11 @@ module Ioki
                   !@_initial_attributes.key?(attribute)
 
           data[attribute] = if definition[:type] == :object && value.is_a?(Ioki::Model::Base)
-                              value.serialize(usecase)
+                              value.serialize(usecase, format: format)
                             elsif definition[:type] == :array && value.respond_to?(:map)
-                              value.map { |el| el.is_a?(Ioki::Model::Base) ? el.serialize(usecase) : el }
+                              value.map { |el| el.is_a?(Ioki::Model::Base) ? el.serialize(usecase, format: format) : serialize_as_type(definition[:type], el, format: format) }
                             else
-                              value
+                              serialize_as_type(definition[:type], value, format: format)
                             end
         end
       end
@@ -310,6 +312,17 @@ module Ioki
           end
         else
           raise "Unknown type #{type}"
+        end
+      end
+
+      def serialize_as_type(type, value, format: :ruby)
+        return value if format == :ruby
+
+        case type
+        when :date_time
+          value.respond_to?(:iso8601) ? value.iso8601 : value
+        else
+          value
         end
       end
 

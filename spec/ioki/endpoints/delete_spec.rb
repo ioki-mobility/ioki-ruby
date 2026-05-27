@@ -66,7 +66,7 @@ RSpec.describe Ioki::Endpoints::Delete do
     let(:serialized_model) { { name: 'To be deleted' } }
     let(:send_body) { true }
 
-    before { allow(model).to receive(:serialize).with(:delete).and_return(serialized_model) }
+    before { allow(model).to receive(:serialize).with(:delete, format: :json).and_return(serialized_model) }
 
     context 'and send_body is false' do
       let(:send_body) { false }
