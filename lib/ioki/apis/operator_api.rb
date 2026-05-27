@@ -457,6 +457,21 @@ module Ioki
         ],
         model_class: Ioki::Model::Operator::Reporting::ReportPartition
       ),
+      Endpoints::Index.new(
+        :reporting_aggregations,
+        base_path:   [API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name],
+        path:        'aggregations',
+        model_class: Ioki::Model::Operator::Reporting::ReportAggregation
+      ),
+      Endpoints::Create.new(
+        :reporting_aggregation_query,
+        base_path:            [
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'aggregations', :aggregation_name
+        ],
+        path:                 'aggregate',
+        model_class:          Ioki::Model::Operator::Reporting::ReportAggregationResult,
+        outgoing_model_class: Ioki::Model::Operator::Reporting::ReportAggregationQuery
+      ),
       Endpoints.crud_endpoints(
         :cancellation_statement,
         base_path:   [API_BASE_PATH, 'products', :id],
