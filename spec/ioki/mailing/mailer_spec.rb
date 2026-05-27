@@ -26,7 +26,7 @@ RSpec.describe Ioki::Mailing::Mailer do
       without_partial_double_verification do
         expect(platform_client).to receive(:create_email_delivery).with(
           have_attributes(id: 'prv_1'),
-          have_attributes(delivery_context: 'registration', user_id: nil)
+          have_attributes(delivery_context: 'registration', recipient_id: nil, recipient_type: nil)
         )
       end
 
@@ -50,7 +50,32 @@ RSpec.describe Ioki::Mailing::Mailer do
       without_partial_double_verification do
         expect(platform_client).to receive(:create_email_delivery).with(
           have_attributes(id: 'prv_1'),
-          have_attributes(delivery_context: 'standard', user_id: 'usr_1')
+          have_attributes(delivery_context: 'standard', recipient_id: 'usr_1', recipient_type: 'User')
+        )
+      end
+
+      subject
+    end
+  end
+
+  context 'with recipient_id and recipient_type' do
+    let(:mail) do
+      Mail::Message.new.tap do |message|
+        message.ioki_options = {
+          provider_id:      'prv_1',
+          platform_client:  platform_client,
+          delivery_context: 'standard',
+          recipient_id:     'adm_1',
+          recipient_type:   'Admin'
+        }
+      end
+    end
+
+    it 'calls the API to deliver an email' do
+      without_partial_double_verification do
+        expect(platform_client).to receive(:create_email_delivery).with(
+          have_attributes(id: 'prv_1'),
+          have_attributes(delivery_context: 'standard', recipient_id: 'adm_1', recipient_type: 'Admin')
         )
       end
 
