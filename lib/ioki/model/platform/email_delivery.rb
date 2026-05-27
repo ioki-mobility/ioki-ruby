@@ -12,10 +12,10 @@ module Ioki
         attribute :recipient_id, on: :create, type: :string, omit_if_nil_on: :create
         attribute :recipient_type, on: :create, type: :string, omit_if_nil_on: :create
         deprecated_attribute :user_id,
-                             on: :create,
-                             type: :string,
+                             on:             :create,
+                             type:           :string,
                              omit_if_nil_on: :create,
-                             replaced_by: :recipient_id
+                             replaced_by:    :recipient_id
         attribute :mime_message, on: :create, type: :string
       end
     end
