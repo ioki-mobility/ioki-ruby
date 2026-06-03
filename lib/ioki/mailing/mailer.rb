@@ -30,7 +30,7 @@ module Ioki
         email_delivery = Ioki::Model::Platform::EmailDelivery.new(
           delivery_context: delivery_context,
           mime_message:     mail.encoded,
-          user_id:          mail.ioki_options[:user_id]
+          **recipient_options(mail.ioki_options)
         )
 
         platform_client.create_email_delivery(provider, email_delivery)
@@ -42,6 +42,14 @@ module Ioki
         return false unless options
 
         !!(options[:platform_client] && options[:provider_id])
+      end
+
+      def recipient_options(options)
+        if options[:user_id]
+          { recipient_id: options[:user_id], recipient_type: 'User' }
+        else
+          { recipient_id: options[:recipient_id], recipient_type: options[:recipient_type] }
+        end
       end
     end
   end

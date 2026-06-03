@@ -9,7 +9,13 @@ module Ioki
         end
 
         attribute :delivery_context, on: :create, type: :string
-        attribute :user_id, on: :create, type: :string, omit_if_nil_on: :create
+        attribute :recipient_id, on: :create, type: :string, omit_if_nil_on: :create
+        attribute :recipient_type, on: :create, type: :string, omit_if_nil_on: :create
+        deprecated_attribute :user_id,
+                             on:             :create,
+                             type:           :string,
+                             omit_if_nil_on: :create,
+                             replaced_by:    :recipient_id
         attribute :mime_message, on: :create, type: :string
       end
     end
