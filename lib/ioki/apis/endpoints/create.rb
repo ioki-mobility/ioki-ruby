@@ -36,7 +36,7 @@ module Ioki
         parsed_response, response = client.request(
           url:    client.build_request_url(*Endpoints.url_elements(full_path, *args)),
           method: :post,
-          body:   { data: model&.serialize(:create) },
+          body:   { data: model&.serialize(:create, format: :json) },
           params: options[:params]
         )
 

@@ -9,7 +9,7 @@ RSpec.describe Ioki::Endpoints::Create do
   let(:params)           { instance_double(Hash, 'params') }
   let(:serialized_model) { { name: 'Test' } }
 
-  before { allow(model).to receive(:serialize).with(:create).and_return(serialized_model) }
+  before { allow(model).to receive(:serialize).with(:create, format: :json).and_return(serialized_model) }
 
   describe '#call' do
     let(:response) do

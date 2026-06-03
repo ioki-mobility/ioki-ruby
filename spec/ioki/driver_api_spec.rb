@@ -130,7 +130,9 @@ RSpec.describe Ioki::DriverApi do
       expect(driver_client).to receive(:request) do |params|
         expect(params[:url].to_s).to eq('driver/vehicle/positions')
         expect(params[:method]).to eq(:post)
-        expect(params[:body]).to include(data: hash_including(lat: 1.0, lng: 2.0, recorded_at: be_a(DateTime)))
+        expect(params[:body]).to include(data: hash_including(
+          lat: 1.0, lng: 2.0, recorded_at: '2012-12-12T12:12:12+00:00'
+        ))
         [nil, full_response]
       end
 
