@@ -11,7 +11,7 @@ module Ioki
         attribute :coordinates, type: :array, on: [:create, :read, :update]
         attribute :type, type: :string, on: [:create, :read, :update]
 
-        def serialize(usecase = :read, only_changed: true)
+        def serialize(usecase = :read, only_changed: true, format: :ruby)
           case usecase
           when :read then super
           else @_raw_attributes.to_json
