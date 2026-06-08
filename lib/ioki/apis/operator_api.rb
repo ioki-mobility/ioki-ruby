@@ -464,13 +464,22 @@ module Ioki
         model_class: Ioki::Model::Operator::Reporting::ReportAggregation
       ),
       Endpoints::Create.new(
-        :reporting_aggregation_query,
+        :reporting_aggregation_series,
         base_path:            [
           API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'aggregations', :aggregation_name
         ],
-        path:                 'aggregate',
-        model_class:          Ioki::Model::Operator::Reporting::ReportAggregationResult,
-        outgoing_model_class: Ioki::Model::Operator::Reporting::ReportAggregationQuery
+        path:                 'series',
+        model_class:          Ioki::Model::Operator::Reporting::ReportAggregationSeries,
+        outgoing_model_class: Ioki::Model::Operator::Reporting::ReportAggregationSeriesQuery
+      ),
+      Endpoints::Create.new(
+        :reporting_aggregation_totals,
+        base_path:            [
+          API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name, 'aggregations', :aggregation_name
+        ],
+        path:                 'totals',
+        model_class:          Ioki::Model::Operator::Reporting::ReportAggregationTotals,
+        outgoing_model_class: Ioki::Model::Operator::Reporting::ReportAggregationTotalsQuery
       ),
       Endpoints.crud_endpoints(
         :cancellation_statement,

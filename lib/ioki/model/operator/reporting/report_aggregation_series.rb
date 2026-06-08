@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Operator
       module Reporting
-        class ReportAggregationResult < Base
+        class ReportAggregationSeries < Base
           attribute :type,
                     on:   :read,
                     type: :string

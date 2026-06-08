@@ -4,7 +4,7 @@ module Ioki
   module Model
     module Operator
       module Reporting
-        class ReportAggregationQuery < Base
+        class ReportAggregationTotalsQuery < Base
           attribute :start_time,
                     on:   :create,
                     type: :date_time
@@ -12,11 +12,6 @@ module Ioki
           attribute :end_time,
                     on:   :create,
                     type: :date_time
-
-          attribute :bucket,
-                    on:             :create,
-                    type:           :string,
-                    omit_if_nil_on: :create
 
           attribute :filters,
                     on:             :create,
