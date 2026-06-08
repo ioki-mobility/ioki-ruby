@@ -17,6 +17,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :percentile,
+                    on:   :read,
+                    type: :float
+
           attribute :localized_function,
                     on:   :read,
                     type: :string

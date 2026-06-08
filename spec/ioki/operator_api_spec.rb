@@ -1913,6 +1913,7 @@ RSpec.describe Ioki::OperatorApi do
                 type:               'reporting/report_aggregation_measure',
                 name:               'login_count',
                 function:           'count_rows',
+                percentile:         nil,
                 localized_function: 'Count',
                 localized_label:    'Logins',
                 localized_type:     'Count',
@@ -1941,12 +1942,13 @@ RSpec.describe Ioki::OperatorApi do
       expect(aggregations.first.release_stage).to eq('stable')
       expect(aggregations.first.bucket.default_preset).to eq('last_7_days')
       expect(aggregations.first.measures.first.localized_label).to eq('Logins')
+      expect(aggregations.first.measures.first.percentile).to be_nil
     end
   end
 
-  describe '#create_reporting_aggregation_query(scope, name, aggregation_name, query)' do
+  describe '#create_reporting_aggregation_series(scope, name, aggregation_name, query)' do
     let(:query) do
-      Ioki::Model::Operator::Reporting::ReportAggregationQuery.new(
+      Ioki::Model::Operator::Reporting::ReportAggregationSeriesQuery.new(
         start_time: DateTime.parse('2026-04-01T00:00:00Z'),
         end_time:   DateTime.parse('2026-05-01T00:00:00Z'),
         bucket:     'day',
@@ -1962,7 +1964,7 @@ RSpec.describe Ioki::OperatorApi do
     let(:result_with_reporting_aggregation) do
       {
         'data' => {
-          type:                  'reporting/report_aggregation_result',
+          type:                  'reporting/report_aggregation_series',
           aggregation_name:      'admin_logins',
           visualization:         'bar',
           timezone_identifier:   'Europe/Berlin',
@@ -1986,13 +1988,13 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s)
-          .to eq('operator/reporting/report/scopes/myscope/reports/myname/aggregations/ride_counts/aggregate')
+          .to eq('operator/reporting/report/scopes/myscope/reports/myname/aggregations/ride_counts/series')
         expect(params[:method]).to eq(:post)
         expect(params[:body]).to eq({ data: query.serialize(:create, format: :json) })
         [result_with_reporting_aggregation, full_response]
       end
 
-      aggregation_result = operator_client.create_reporting_aggregation_query(
+      aggregation_result = operator_client.create_reporting_aggregation_series(
         'myscope',
         'myname',
         'ride_counts',
@@ -2000,13 +2002,69 @@ RSpec.describe Ioki::OperatorApi do
         options
       )
 
-      expect(aggregation_result).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationResult)
+      expect(aggregation_result).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationSeries)
       expect(aggregation_result.aggregation_name).to eq('admin_logins')
       expect(aggregation_result.timezone_identifier).to eq('Europe/Berlin')
       expect(aggregation_result.bucket).to eq('day')
       expect(aggregation_result.measures.first.localized_label).to eq('Logins')
       expect(aggregation_result.partitions_considered).to eq(2)
       expect(aggregation_result.definition_versions).to eq([1])
+    end
+  end
+
+  describe '#create_reporting_aggregation_totals(scope, name, aggregation_name, query)' do
+    let(:query) do
+      Ioki::Model::Operator::Reporting::ReportAggregationTotalsQuery.new(
+        start_time: DateTime.parse('2026-04-01T00:00:00Z'),
+        end_time:   DateTime.parse('2026-05-01T00:00:00Z'),
+        filters:    [
+          Ioki::Model::Operator::Reporting::ReportAggregationFilterParam.new(
+            name:   'booking_type',
+            values: %w[prebooked adhoc]
+          )
+        ]
+      )
+    end
+
+    let(:result_with_reporting_aggregation) do
+      {
+        'data' => {
+          type:             'reporting/report_aggregation_totals',
+          aggregation_name: 'admin_logins',
+          measures:         [
+            {
+              type:            'reporting/report_aggregation_measure_total',
+              key:             'login_count',
+              localized_label: 'Logins',
+              value:           30.0
+            }
+          ]
+        }
+      }
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s)
+          .to eq('operator/reporting/report/scopes/myscope/reports/myname/aggregations/ride_counts/totals')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to eq({ data: query.serialize(:create, format: :json) })
+        [result_with_reporting_aggregation, full_response]
+      end
+
+      aggregation_totals = operator_client.create_reporting_aggregation_totals(
+        'myscope',
+        'myname',
+        'ride_counts',
+        query,
+        options
+      )
+
+      expect(aggregation_totals).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationTotals)
+      expect(aggregation_totals.aggregation_name).to eq('admin_logins')
+      expect(aggregation_totals.measures.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationMeasureTotal)
+      expect(aggregation_totals.measures.first.localized_label).to eq('Logins')
+      expect(aggregation_totals.measures.first.value).to eq(30.0)
     end
   end
 

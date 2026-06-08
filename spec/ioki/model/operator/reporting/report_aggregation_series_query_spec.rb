@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationQuery do
+RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationSeriesQuery do
   let(:start_time) { DateTime.parse('2026-04-01T00:00:00Z') }
   let(:end_time) { DateTime.parse('2026-05-01T00:00:00Z') }
 
@@ -9,7 +9,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationQuery do
   it { is_expected.to define_attribute(:bucket).as(:string) }
   it { is_expected.to define_attribute(:filters).as(:array).with(class_name: 'ReportAggregationFilterParam') }
 
-  it 'serializes the raw aggregation query payload' do
+  it 'serializes the raw series query payload' do
     query = described_class.new(
       start_time: start_time,
       end_time:   end_time,
