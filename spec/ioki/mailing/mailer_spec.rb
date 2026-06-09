@@ -65,8 +65,8 @@ RSpec.describe Ioki::Mailing::Mailer do
           provider_id:      'prv_1',
           platform_client:  platform_client,
           delivery_context: 'standard',
-          receiver_id:     'adm_1',
-          receiver_type:   'Admin'
+          receiver_id:      'adm_1',
+          receiver_type:    'Admin'
         }
       end
     end
