@@ -3286,9 +3286,8 @@ RSpec.describe Ioki::OperatorApi do
         [result_with_data, full_response]
       end
 
-      expect(operator_client.create_vehicle_batch_deletion_request(
-               '0815', vehicle_batch, options
-             )).to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+      expect(operator_client.create_vehicle_batch_deletion_request('0815', vehicle_batch, options))
+        .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
     end
   end
 
@@ -3300,6 +3299,33 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.vehicle_batch_deletion_request('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+    end
+  end
+
+  describe '#create_line_batch_deletion_request(product_id)' do
+    let(:line_batch) { Ioki::Model::Operator::LineBatch.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/batch_deletion_requests')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_line_batch_deletion_request('0815', line_batch, options))
+        .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+    end
+  end
+
+  describe '#line_batch_deletion_request(product_id, batch_deletion_request_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/lines/batch_deletion_requests/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.line_batch_deletion_request('0815', '4711', options))
         .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
     end
   end

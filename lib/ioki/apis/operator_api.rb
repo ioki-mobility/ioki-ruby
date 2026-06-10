@@ -763,6 +763,19 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id],
         model_class: Ioki::Model::Operator::Purchase,
         only:        [:index, :show]
+      ),
+      Endpoints::Create.new(
+        :line_batch_deletion_request,
+        base_path:            [API_BASE_PATH, 'products', :id, 'lines'],
+        path:                 'batch_deletion_requests',
+        model_class:          Ioki::Model::Operator::BatchDeletionRequest,
+        outgoing_model_class: Ioki::Model::Operator::LineBatch
+      ),
+      Endpoints::ShowSingular.new(
+        :line_batch_deletion_request,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'products', :id, 'lines', 'batch_deletion_requests', :id],
+        model_class: Ioki::Model::Operator::BatchDeletionRequest
       )
     ].freeze
   end
