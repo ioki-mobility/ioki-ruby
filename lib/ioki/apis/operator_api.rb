@@ -745,6 +745,19 @@ module Ioki
         path:        [API_BASE_PATH, 'products', :id, 'stations', 'batch_deletion_requests', :id],
         model_class: Ioki::Model::Operator::BatchDeletionRequest
       ),
+      Endpoints::Create.new(
+        :vehicle_batch_deletion_request,
+        base_path:            [API_BASE_PATH, 'products', :id, 'vehicles'],
+        path:                 'batch_deletion_requests',
+        model_class:          Ioki::Model::Operator::BatchDeletionRequest,
+        outgoing_model_class: Ioki::Model::Operator::VehicleBatch
+      ),
+      Endpoints::ShowSingular.new(
+        :vehicle_batch_deletion_request,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'products', :id, 'vehicles', 'batch_deletion_requests', :id],
+        model_class: Ioki::Model::Operator::BatchDeletionRequest
+      ),
       Endpoints.crud_endpoints(
         :purchase,
         base_path:   [API_BASE_PATH, 'providers', :id],
