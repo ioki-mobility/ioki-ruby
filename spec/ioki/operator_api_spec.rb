@@ -1441,6 +1441,33 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#eligibility_group_memberships_manually_assign_by_email_address(provider_id, membership)' do
+    let(:membership) do
+      Ioki::Model::Operator::EligibilityGroupMembership.new(
+        {
+          email_address:          'horst.schlemmer@example.com',
+          user_segment_slug:      'vhh_default',
+          eligibility_group_slug: 'users_with_driver_assistance'
+        }
+      )
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s)
+          .to eq('operator/providers/0815/eligibility_group_memberships/manually_assign_by_email_address')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to eq({ data: membership.serialize(:create, format: :json) })
+        [result_with_data, full_response]
+      end
+
+      expect(
+        operator_client.eligibility_group_memberships_manually_assign_by_email_address('0815', membership, options)
+      )
+        .to be_a(Ioki::Model::Operator::EligibilityGroupMembership)
+    end
+  end
+
   describe '#create_ride_inquiry(product_id)' do
     let(:ride_inquiry) { Ioki::Model::Operator::RideInquiry.new }
 
