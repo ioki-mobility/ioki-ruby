@@ -463,6 +463,12 @@ module Ioki
         path:        'aggregations',
         model_class: Ioki::Model::Operator::Reporting::ReportAggregation
       ),
+      Endpoints::Index.new(
+        :reporting_dashboards,
+        base_path:   [API_BASE_PATH, 'reporting', 'report', 'scopes', :scope],
+        path:        'dashboards',
+        model_class: Ioki::Model::Operator::Reporting::ReportDashboard
+      ),
       Endpoints::Create.new(
         :reporting_aggregation_series,
         base_path:            [

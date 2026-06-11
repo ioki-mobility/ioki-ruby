@@ -1948,6 +1948,20 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#reporting_dashboards(scope)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s)
+          .to eq('operator/reporting/report/scopes/myscope/dashboards')
+        result_with_index_data
+      end
+
+      dashboards = operator_client.reporting_dashboards('myscope', options)
+
+      expect(dashboards).to all(be_a(Ioki::Model::Operator::Reporting::ReportDashboard))
+    end
+  end
+
   describe '#create_reporting_aggregation_series(scope, name, aggregation_name, query)' do
     let(:query) do
       Ioki::Model::Operator::Reporting::ReportAggregationSeriesQuery.new(
