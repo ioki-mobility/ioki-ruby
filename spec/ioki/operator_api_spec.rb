@@ -1885,6 +1885,7 @@ RSpec.describe Ioki::OperatorApi do
           {
             type:                    'reporting/report_aggregation',
             name:                    'admin_logins',
+            localized_name:          'Admin logins',
             visualization:           'bar',
             localized_visualization: 'Bar chart',
             release_stage:           'stable',
@@ -1910,14 +1911,14 @@ RSpec.describe Ioki::OperatorApi do
             },
             measures:                [
               {
-                type:               'reporting/report_aggregation_measure',
-                name:               'login_count',
-                function:           'count_rows',
-                percentile:         nil,
-                localized_function: 'Count',
-                localized_label:    'Logins',
-                localized_type:     'Count',
-                value_type:         'number'
+                type:                   'reporting/report_aggregation_measure',
+                name:                   'login_count',
+                localized_name:         'Logins',
+                function:               'count_rows',
+                percentile:             nil,
+                localized_function:     'Count',
+                measure_type:           'number',
+                localized_measure_type: 'Count'
               }
             ],
             dimensions:              [],
@@ -1938,10 +1939,11 @@ RSpec.describe Ioki::OperatorApi do
 
       expect(aggregations).to all(be_a(Ioki::Model::Operator::Reporting::ReportAggregation))
       expect(aggregations.first.name).to eq('admin_logins')
+      expect(aggregations.first.localized_name).to eq('Admin logins')
       expect(aggregations.first.localized_visualization).to eq('Bar chart')
       expect(aggregations.first.release_stage).to eq('stable')
       expect(aggregations.first.bucket.default_preset).to eq('last_7_days')
-      expect(aggregations.first.measures.first.localized_label).to eq('Logins')
+      expect(aggregations.first.measures.first.localized_name).to eq('Logins')
       expect(aggregations.first.measures.first.percentile).to be_nil
     end
   end
@@ -1964,23 +1966,27 @@ RSpec.describe Ioki::OperatorApi do
     let(:result_with_reporting_aggregation) do
       {
         'data' => {
-          type:                  'reporting/report_aggregation_series',
-          aggregation_name:      'admin_logins',
-          visualization:         'bar',
-          timezone_identifier:   'Europe/Berlin',
-          buckets:               %w[2026-04-01 2026-04-02],
-          bucket:                'day',
-          measures:              [
+          type:                       'reporting/report_aggregation_series',
+          aggregation_name:           'admin_logins',
+          localized_aggregation_name: 'Admin logins',
+          visualization:              'bar',
+          timezone_identifier:        'Europe/Berlin',
+          buckets:                    %w[2026-04-01 2026-04-02],
+          bucket:                     'day',
+          measures:                   [
             {
-              type:            'reporting/report_aggregation_measure_series',
-              key:             'login_count',
-              localized_label: 'Logins',
-              points:          [10, 20],
-              trend:           nil
+              type:                      'reporting/report_aggregation_measure_series',
+              measure_name:              'login_count',
+              localized_measure_name:    'Logins',
+              dimension_name:            nil,
+              localized_dimension_name:  nil,
+              dimension_value:           nil,
+              localized_dimension_value: nil,
+              points:                    [10, 20]
             }
           ],
-          partitions_considered: 2,
-          definition_versions:   [1]
+          partitions_considered:      2,
+          definition_versions:        [1]
         }
       }
     end
@@ -2004,9 +2010,10 @@ RSpec.describe Ioki::OperatorApi do
 
       expect(aggregation_result).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationSeries)
       expect(aggregation_result.aggregation_name).to eq('admin_logins')
+      expect(aggregation_result.localized_aggregation_name).to eq('Admin logins')
       expect(aggregation_result.timezone_identifier).to eq('Europe/Berlin')
       expect(aggregation_result.bucket).to eq('day')
-      expect(aggregation_result.measures.first.localized_label).to eq('Logins')
+      expect(aggregation_result.measures.first.localized_measure_name).to eq('Logins')
       expect(aggregation_result.partitions_considered).to eq(2)
       expect(aggregation_result.definition_versions).to eq([1])
     end
@@ -2029,14 +2036,19 @@ RSpec.describe Ioki::OperatorApi do
     let(:result_with_reporting_aggregation) do
       {
         'data' => {
-          type:             'reporting/report_aggregation_totals',
-          aggregation_name: 'admin_logins',
-          measures:         [
+          type:                       'reporting/report_aggregation_totals',
+          aggregation_name:           'admin_logins',
+          localized_aggregation_name: 'Admin logins',
+          measures:                   [
             {
-              type:            'reporting/report_aggregation_measure_total',
-              key:             'login_count',
-              localized_label: 'Logins',
-              value:           30.0
+              type:                      'reporting/report_aggregation_measure_total',
+              measure_name:              'login_count',
+              localized_measure_name:    'Logins',
+              dimension_name:            nil,
+              localized_dimension_name:  nil,
+              dimension_value:           nil,
+              localized_dimension_value: nil,
+              value:                     30.0
             }
           ]
         }
@@ -2062,8 +2074,9 @@ RSpec.describe Ioki::OperatorApi do
 
       expect(aggregation_totals).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationTotals)
       expect(aggregation_totals.aggregation_name).to eq('admin_logins')
+      expect(aggregation_totals.localized_aggregation_name).to eq('Admin logins')
       expect(aggregation_totals.measures.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationMeasureTotal)
-      expect(aggregation_totals.measures.first.localized_label).to eq('Logins')
+      expect(aggregation_totals.measures.first.localized_measure_name).to eq('Logins')
       expect(aggregation_totals.measures.first.value).to eq(30.0)
     end
   end

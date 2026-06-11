@@ -13,7 +13,7 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :localized_label,
+          attribute :localized_name,
                     on:   :read,
                     type: :string
 

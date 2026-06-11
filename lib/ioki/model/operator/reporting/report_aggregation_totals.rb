@@ -13,6 +13,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_aggregation_name,
+                    on:   :read,
+                    type: :string
+
           attribute :measures,
                     on:         :read,
                     type:       :array,

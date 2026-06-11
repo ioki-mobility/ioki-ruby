@@ -7,7 +7,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationDimension do
     {
       type:             'reporting/report_aggregation_dimension',
       name:             'booking_type',
-      localized_label:  'Booking type',
+      localized_name:   'Booking type',
       values:           %w[prebooked adhoc],
       localized_values: ['Prebooked', 'Ad hoc']
     }
@@ -15,13 +15,13 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationDimension do
 
   it { is_expected.to define_attribute(:type).as(:string) }
   it { is_expected.to define_attribute(:name).as(:string) }
-  it { is_expected.to define_attribute(:localized_label).as(:string) }
+  it { is_expected.to define_attribute(:localized_name).as(:string) }
   it { is_expected.to define_attribute(:values).as(:array) }
   it { is_expected.to define_attribute(:localized_values).as(:array) }
 
   it 'casts dimension metadata' do
     expect(dimension.name).to eq('booking_type')
-    expect(dimension.localized_label).to eq('Booking type')
+    expect(dimension.localized_name).to eq('Booking type')
     expect(dimension.values).to eq(%w[prebooked adhoc])
     expect(dimension.localized_values).to eq(['Prebooked', 'Ad hoc'])
   end
