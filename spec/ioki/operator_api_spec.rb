@@ -1443,7 +1443,7 @@ RSpec.describe Ioki::OperatorApi do
 
   describe '#eligibility_group_memberships_manually_assign_by_email_address(provider_id, membership)' do
     let(:membership) do
-      Ioki::Model::Operator::EligibilityGroupMembership.new(
+      Ioki::Model::Operator::EligibilityGroupMembershipManuallyAssignByEmailAddress.new(
         {
           email_address:          'horst.schlemmer@example.com',
           user_segment_slug:      'vhh_default',

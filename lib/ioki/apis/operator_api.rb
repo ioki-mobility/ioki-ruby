@@ -319,10 +319,11 @@ module Ioki
       ),
       Endpoints::Create.new(
         :eligibility_group_membership,
-        base_path:   [API_BASE_PATH, 'providers', :id, 'eligibility_group_memberships'],
-        path:        'manually_assign_by_email_address',
-        model_class: Ioki::Model::Operator::EligibilityGroupMembership,
-        method_name: 'eligibility_group_memberships_manually_assign_by_email_address'
+        base_path:            [API_BASE_PATH, 'providers', :id, 'eligibility_group_memberships'],
+        path:                 'manually_assign_by_email_address',
+        model_class:          Ioki::Model::Operator::EligibilityGroupMembership,
+        outgoing_model_class: Ioki::Model::Operator::EligibilityGroupMembershipManuallyAssignByEmailAddress,
+        method_name:          'eligibility_group_memberships_manually_assign_by_email_address'
       ),
       Endpoints::ShowSingular.new(
         :users_recently_used_stations,

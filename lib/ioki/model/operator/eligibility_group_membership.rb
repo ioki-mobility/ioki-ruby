@@ -4,14 +4,6 @@ module Ioki
   module Model
     module Operator
       class EligibilityGroupMembership < Base
-        attribute :email_address,
-                  on:   :create,
-                  type: :string
-
-        attribute :user_segment_slug,
-                  on:   :create,
-                  type: :string
-
         attribute :id,
                   on:   :read,
                   type: :string
@@ -33,7 +25,7 @@ module Ioki
                   type: :string
 
         attribute :eligibility_group_slug,
-                  on:   [:read, :create],
+                  on:   :read,
                   type: :string
 
         attribute :state,
