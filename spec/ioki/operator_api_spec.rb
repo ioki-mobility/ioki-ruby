@@ -1445,9 +1445,9 @@ RSpec.describe Ioki::OperatorApi do
     let(:membership) do
       Ioki::Model::Operator::EligibilityGroupMembershipManuallyAssignByEmailAddress.new(
         {
-          email_address:          'horst.schlemmer@example.com',
-          user_segment_slug:      'vhh_default',
-          eligibility_group_slug: 'users_with_driver_assistance'
+          email_address:          'user@example.com',
+          user_segment_slug:      'example_user_segment',
+          eligibility_group_slug: 'example_eligibility_group'
         }
       )
     end
