@@ -13,6 +13,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_name,
+                    on:   :read,
+                    type: :string
+
           attribute :function,
                     on:   :read,
                     type: :string
@@ -25,15 +29,11 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :localized_label,
+          attribute :measure_type,
                     on:   :read,
                     type: :string
 
-          attribute :localized_type,
-                    on:   :read,
-                    type: :string
-
-          attribute :value_type,
+          attribute :localized_measure_type,
                     on:   :read,
                     type: :string
         end

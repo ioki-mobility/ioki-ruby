@@ -13,6 +13,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_name,
+                    on:   :read,
+                    type: :string
+
           attribute :visualization,
                     on:   :read,
                     type: :string
