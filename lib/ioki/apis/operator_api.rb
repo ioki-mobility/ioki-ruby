@@ -317,6 +317,14 @@ module Ioki
         model_class: Ioki::Model::Operator::User,
         except:      [:update, :delete]
       ),
+      Endpoints::Create.new(
+        :eligibility_group_membership,
+        base_path:            [API_BASE_PATH, 'providers', :provider_id, 'eligibility_groups', :eligibility_group_slug],
+        path:                 'memberships',
+        model_class:          Ioki::Model::Operator::EligibilityGroupMembership,
+        outgoing_model_class: Ioki::Model::Operator::EligibilityGroupMembershipManuallyAssignByEmailAddress,
+        method_name:          'create_eligibility_group_membership'
+      ),
       Endpoints::ShowSingular.new(
         :users_recently_used_stations,
         base_path:   nil,
