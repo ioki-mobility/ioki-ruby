@@ -11,10 +11,6 @@ module Ioki
         attribute :user_segment_slug,
                   on:   :create,
                   type: :string
-
-        attribute :eligibility_group_slug,
-                  on:   :create,
-                  type: :string
       end
     end
   end

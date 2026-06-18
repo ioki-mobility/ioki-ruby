@@ -1441,13 +1441,12 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#eligibility_group_memberships_manually_assign_by_email_address(provider_id, membership)' do
+  describe '#create_eligibility_group_membership(provider_id, eligibility_group_slug, membership)' do
     let(:membership) do
       Ioki::Model::Operator::EligibilityGroupMembershipManuallyAssignByEmailAddress.new(
         {
-          email_address:          'user@example.com',
-          user_segment_slug:      'example_user_segment',
-          eligibility_group_slug: 'example_eligibility_group'
+          email_address:     'user@example.com',
+          user_segment_slug: 'example_user_segment'
         }
       )
     end
@@ -1455,14 +1454,19 @@ RSpec.describe Ioki::OperatorApi do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
         expect(params[:url].to_s)
-          .to eq('operator/providers/0815/eligibility_group_memberships/manually_assign_by_email_address')
+          .to eq('operator/providers/0815/eligibility_groups/example_eligibility_group/memberships')
         expect(params[:method]).to eq(:post)
         expect(params[:body]).to eq({ data: membership.serialize(:create, format: :json) })
         [result_with_data, full_response]
       end
 
       expect(
-        operator_client.eligibility_group_memberships_manually_assign_by_email_address('0815', membership, options)
+        operator_client.create_eligibility_group_membership(
+          '0815',
+          'example_eligibility_group',
+          membership,
+          options
+        )
       )
         .to be_a(Ioki::Model::Operator::EligibilityGroupMembership)
     end
