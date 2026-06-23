@@ -105,6 +105,15 @@ module Ioki
                   type: :array
 
         attribute :reporting_custom_column_names,
+                  on:         :read,
+                  type:       :array,
+                  deprecated: true
+
+        attribute :reporting_passenger_option_columns,
+                  on:   :read,
+                  type: :array
+
+        attribute :reporting_ride_option_columns,
                   on:   :read,
                   type: :array
 
