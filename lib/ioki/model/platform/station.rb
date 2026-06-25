@@ -4,6 +4,18 @@ module Ioki
   module Model
     module Platform
       class Station < Base
+        attribute :parking_time, type: :integer, on: [:create, :read, :update]
+        attribute :walker_boarding_time, type: :integer, on: [:create, :read, :update]
+        attribute :wheelchair_boarding_time, type: :integer, on: [:create, :read, :update]
+        attribute :boarding_time, type: :integer, on: [:create, :read, :update]
+        attribute :station_category_id, type: :string, on: [:create, :read, :update]
+        attribute :announcements, type: :array, on: [:create, :read, :update]
+        attribute :tariff_codes, type: :array, on: [:create, :read, :update]
+        attribute :station_category, type: :object, on: [:create, :read, :update], class_name: 'NestedStationCategory'
+        attribute :visible_on_map_in_passenger_client, type: :boolean, on: [:create, :read, :update]
+        attribute :product_id, type: :string, on: [:create, :read, :update]
+        attribute :municipality, type: :string, on: [:create, :read, :update]
+        attribute :dhid, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

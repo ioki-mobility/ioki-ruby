@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Platform
       class CalculatedPoint < Base
+        attribute :communicated_time, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

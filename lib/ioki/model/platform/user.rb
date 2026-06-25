@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Platform
       class User < Base
+        attribute :additional_data, type: :object, on: [:create, :read, :update], class_name: 'AdditionalDataSchema'
+        attribute :notification_settings, type: :array, on: [:create, :read, :update]
+        attribute :last_activity_at, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -26,7 +29,7 @@ module Ioki
         attribute :provider_id, type: :string, on: :read
         attribute :terms_accepted, type: :boolean, on: [:create, :update], unvalidated: true
         attribute :terms_accepted_at, type: :date_time, on: :read
-        attribute :logpay_customer_set, on: :read, type: :boolean
+        # attribute :logpay_customer_set, on: :read, type: :boolean
         attribute :version, type: :integer, on: [:read, :update]
       end
     end

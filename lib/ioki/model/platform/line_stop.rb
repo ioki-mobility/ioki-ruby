@@ -16,7 +16,7 @@ module Ioki
         attribute :supports_dropoff, on: [:read, :create, :update], type: :boolean
         attribute :supports_pass_through, on: [:read, :create, :update], type: :boolean
         attribute :station_id, on: [:read, :create], type: :string
-        attribute :version, on: :read, type: :integer
+        # attribute :version, on: :read, type: :integer
       end
     end
   end
