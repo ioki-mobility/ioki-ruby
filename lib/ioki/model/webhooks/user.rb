@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Webhooks
       class User < Base
+        attribute :last_activity_at, type: :string, on: [:create, :read, :update]
         attribute :type, type: :string
         attribute :id, type: :string
         attribute :created_at, type: :date_time
