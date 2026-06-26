@@ -52,6 +52,11 @@ module Ioki
         path:        'overview',
         model_class: Ioki::Model::Operator::Vehicle
       ),
+      Endpoints::ShowSingular.new(
+        :vehicle_state,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::VehicleState
+      ),
       Endpoints::Index.new(
         :permissions,
         base_path:   [API_BASE_PATH, 'admin'],
