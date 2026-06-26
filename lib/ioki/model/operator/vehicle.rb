@@ -138,6 +138,24 @@ module Ioki
         attribute :driver_missing,
                   on:   :read,
                   type: :boolean
+
+        attribute :maximum_range_budget,
+                  on:   [:create, :read, :update],
+                  type: :integer
+
+        attribute :current_range_budget,
+                  on:   [:create, :read, :update],
+                  type: :integer
+
+        attribute :range_budget_unit,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
+
+        attribute :range_budget_calculation_adapter_name,
+                  on:             [:create, :read, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :string
       end
     end
   end
