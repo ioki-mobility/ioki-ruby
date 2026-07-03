@@ -723,20 +723,20 @@ module Ioki
       Endpoints.crud_endpoints(
         :no_show_block,
         base_path:   [API_BASE_PATH, 'products', :id],
-        model_class: Ioki::Model::Operator::NoShowBlock,
+        model_class: Ioki::Model::Operator::ServiceViolationBlock,
         except:      [:create, :update, :delete]
       ),
       Endpoints::Index.new(
         :no_show_blocks_per_user,
         base_path:   [API_BASE_PATH, 'providers', :id, 'users', :id, 'products', :id],
         path:        'no_show_blocks',
-        model_class: Ioki::Model::Operator::NoShowBlock
+        model_class: Ioki::Model::Operator::ServiceViolationBlock
       ),
       Endpoints.custom_endpoints(
         'no_show_block',
         actions:     { 'acknowledge' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'no_show_blocks', :id],
-        model_class: Ioki::Model::Operator::NoShowBlock
+        model_class: Ioki::Model::Operator::ServiceViolationBlock
       ),
       Endpoints::Create.new(
         :public_transport_changeover_connection,

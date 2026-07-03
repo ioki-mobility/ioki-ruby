@@ -3191,7 +3191,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.no_show_block_acknowledge('0815', '4711'))
-        .to be_a(Ioki::Model::Operator::NoShowBlock)
+        .to be_a(Ioki::Model::Operator::ServiceViolationBlock)
     end
   end
 
@@ -3203,7 +3203,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.no_show_blocks('0815', options))
-        .to all(be_a(Ioki::Model::Operator::NoShowBlock))
+        .to all(be_a(Ioki::Model::Operator::ServiceViolationBlock))
     end
   end
 
@@ -3215,7 +3215,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.no_show_block('0815', '4711', options))
-        .to be_a(Ioki::Model::Operator::NoShowBlock)
+        .to be_a(Ioki::Model::Operator::ServiceViolationBlock)
     end
   end
 
@@ -3227,7 +3227,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.no_show_blocks_per_user('123', '456', '789', options))
-        .to all(be_a(Ioki::Model::Operator::NoShowBlock))
+        .to all(be_a(Ioki::Model::Operator::ServiceViolationBlock))
     end
   end
 
