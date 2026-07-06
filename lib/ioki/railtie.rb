@@ -8,5 +8,9 @@ module Ioki
     ActiveSupport.on_load(:action_mailer) do
       add_delivery_method :ioki, Ioki::Mailing::Mailer
     end
+
+    initializer 'ioki.deprecator' do |app|
+      app.deprecators[:ioki] = Ioki.deprecator
+    end
   end
 end
