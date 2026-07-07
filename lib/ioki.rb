@@ -34,5 +34,13 @@ module Ioki
     def configure
       yield(config)
     end
+
+    def deprecator
+      @deprecator ||= if defined?(Rails)
+                        ActiveSupport::Deprecation.new('1.0', 'Ioki')
+                      else
+                        Kernel
+                      end
+    end
   end
 end

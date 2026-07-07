@@ -340,15 +340,7 @@ module Ioki
       end
 
       def deprecation_warning(message)
-        if defined?(Rails)
-          deprecator.warn(message)
-        else
-          warn message
-        end
-      end
-
-      def deprecator
-        @deprecator ||= ActiveSupport::Deprecation.new('1.0', 'Ioki')
+        Ioki.deprecator.warn(message)
       end
     end
   end
