@@ -3182,52 +3182,52 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#no_show_block_acknowledge(product_id, no_show_block_id)' do
+  describe '#service_violation_block_acknowledge(product_id, service_violation_block_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/no_show_blocks/4711/acknowledge')
+        expect(params[:url].to_s).to eq('operator/products/0815/service_violation_blocks/4711/acknowledge')
         expect(params[:method]).to eq(:patch)
         result_with_data
       end
 
-      expect(operator_client.no_show_block_acknowledge('0815', '4711'))
-        .to be_a(Ioki::Model::Operator::NoShowBlock)
+      expect(operator_client.service_violation_block_acknowledge('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::ServiceViolationBlock)
     end
   end
 
-  describe '#no_show_blocks(product_id)' do
+  describe '#service_violation_blocks(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/no_show_blocks')
+        expect(params[:url].to_s).to eq('operator/products/0815/service_violation_blocks')
         result_with_index_data
       end
 
-      expect(operator_client.no_show_blocks('0815', options))
-        .to all(be_a(Ioki::Model::Operator::NoShowBlock))
+      expect(operator_client.service_violation_blocks('0815', options))
+        .to all(be_a(Ioki::Model::Operator::ServiceViolationBlock))
     end
   end
 
-  describe '#no_show_block(product_id, no_show_block_id)' do
+  describe '#service_violation_block(product_id, service_violation_block_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/no_show_blocks/4711')
+        expect(params[:url].to_s).to eq('operator/products/0815/service_violation_blocks/4711')
         [result_with_data, full_response]
       end
 
-      expect(operator_client.no_show_block('0815', '4711', options))
-        .to be_a(Ioki::Model::Operator::NoShowBlock)
+      expect(operator_client.service_violation_block('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::ServiceViolationBlock)
     end
   end
 
-  describe '#no_show_blocks_per_user(provider_id, user_id, product_id)' do
+  describe '#service_violation_blocks_per_user(provider_id, user_id, product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/providers/123/users/456/products/789/no_show_blocks')
+        expect(params[:url].to_s).to eq('operator/providers/123/users/456/products/789/service_violation_blocks')
         result_with_index_data
       end
 
-      expect(operator_client.no_show_blocks_per_user('123', '456', '789', options))
-        .to all(be_a(Ioki::Model::Operator::NoShowBlock))
+      expect(operator_client.service_violation_blocks_per_user('123', '456', '789', options))
+        .to all(be_a(Ioki::Model::Operator::ServiceViolationBlock))
     end
   end
 

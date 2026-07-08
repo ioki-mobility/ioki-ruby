@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class NoShowBlock < Base
+      class ServiceViolationBlock < Base
         attribute :type,
                   on:   :read,
                   type: :string
