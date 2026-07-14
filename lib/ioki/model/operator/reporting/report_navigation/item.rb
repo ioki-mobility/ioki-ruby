@@ -21,6 +21,10 @@ module Ioki
             attribute :description,
                       on:   :read,
                       type: :string
+
+            attribute :has_aggregations,
+                      on:   :read,
+                      type: :boolean
           end
         end
       end
