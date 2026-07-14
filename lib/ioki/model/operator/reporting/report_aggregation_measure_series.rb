@@ -17,6 +17,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_measure_description,
+                    on:   :read,
+                    type: :string
+
           attribute :dimension_name,
                     on:   :read,
                     type: :string

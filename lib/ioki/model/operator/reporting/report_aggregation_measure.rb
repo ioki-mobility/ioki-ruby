@@ -17,6 +17,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_description,
+                    on:   :read,
+                    type: :string
+
           attribute :function,
                     on:   :read,
                     type: :string
