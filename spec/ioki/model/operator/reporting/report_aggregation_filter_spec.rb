@@ -18,12 +18,16 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationFilter do
   it { is_expected.to define_attribute(:localized_name).as(:string) }
   it { is_expected.to define_attribute(:values).as(:array) }
   it { is_expected.to define_attribute(:localized_values).as(:array) }
+  it { is_expected.to define_attribute(:default_values).as(:array) }
+  it { is_expected.to define_attribute(:fixed_values).as(:array) }
 
   it 'casts filter metadata' do
     expect(filter.name).to eq('operator_id')
     expect(filter.localized_name).to eq('Operator')
     expect(filter.values).to eq(%w[op-1 op-2])
     expect(filter.localized_values).to eq(%w[Op-1 Op-2])
+    expect(filter.default_values).to be_nil
+    expect(filter.fixed_values).to be_nil
   end
 
   it 'accepts unrestricted filter values' do

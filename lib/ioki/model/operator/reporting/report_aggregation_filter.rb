@@ -24,6 +24,14 @@ module Ioki
           attribute :localized_values,
                     on:   :read,
                     type: :array
+
+          attribute :default_values,
+                    on:   :read,
+                    type: :array
+
+          attribute :fixed_values,
+                    on:   :read,
+                    type: :array
         end
       end
     end
