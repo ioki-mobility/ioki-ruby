@@ -1942,14 +1942,12 @@ RSpec.describe Ioki::OperatorApi do
             },
             measures:                [
               {
-                type:                   'reporting/report_aggregation_measure',
-                name:                   'login_count',
-                localized_name:         'Logins',
-                function:               'count_rows',
-                percentile:             nil,
-                localized_function:     'Count',
-                measure_type:           'number',
-                localized_measure_type: 'Count'
+                type:               'reporting/report_aggregation_measure',
+                name:               'login_count',
+                localized_name:     'Logins',
+                function:           'count_rows',
+                percentile:         nil,
+                localized_function: 'Count'
               }
             ],
             dimensions:              [],

@@ -21,14 +21,12 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
       },
       measures:                [
         {
-          type:                   'reporting/report_aggregation_measure',
-          name:                   'rides',
-          localized_name:         'Rides',
-          function:               'count_rows',
-          percentile:             nil,
-          localized_function:     'Count',
-          measure_type:           'number',
-          localized_measure_type: 'Count'
+          type:               'reporting/report_aggregation_measure',
+          name:               'rides',
+          localized_name:     'Rides',
+          function:           'count_rows',
+          percentile:         nil,
+          localized_function: 'Count'
         }
       ],
       dimensions:              [
@@ -75,7 +73,6 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
     expect(report_aggregation.measures.first).to be_a(
       Ioki::Model::Operator::Reporting::ReportAggregationMeasure
     )
-    expect(report_aggregation.measures.first.measure_type).to eq('number')
     expect(report_aggregation.measures.first.percentile).to be_nil
     expect(report_aggregation.measures.first.localized_name).to eq('Rides')
     expect(report_aggregation.dimensions.first).to be_a(
