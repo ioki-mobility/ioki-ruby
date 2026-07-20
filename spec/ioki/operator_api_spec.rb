@@ -3164,7 +3164,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.service_violation_acknowledge('0815', '4711'))
-        .to be_a(Ioki::Model::Operator::NoShow)
+        .to be_a(Ioki::Model::Operator::ServiceViolation)
     end
   end
 
@@ -3176,7 +3176,7 @@ RSpec.describe Ioki::OperatorApi do
       end
 
       expect(operator_client.service_violations('0815', options))
-        .to all(be_a(Ioki::Model::Operator::NoShow))
+        .to all(be_a(Ioki::Model::Operator::ServiceViolation))
     end
   end
 

@@ -712,13 +712,13 @@ module Ioki
       Endpoints::Index.new(
         :service_violations,
         base_path:   [API_BASE_PATH, 'products', :id],
-        model_class: Ioki::Model::Operator::NoShow
+        model_class: Ioki::Model::Operator::ServiceViolation
       ),
       Endpoints.custom_endpoints(
         'service_violation',
         actions:     { 'acknowledge' => :patch },
         path:        [API_BASE_PATH, 'products', :id, 'service_violations', :id],
-        model_class: Ioki::Model::Operator::NoShow
+        model_class: Ioki::Model::Operator::ServiceViolation
       ),
       Endpoints.crud_endpoints(
         :service_violation_block,
