@@ -25,19 +25,27 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :percentile,
-                    on:   :read,
-                    type: :float
-
           attribute :localized_function,
                     on:   :read,
                     type: :string
 
-          attribute :measure_type,
+          attribute :percentile,
+                    on:   :read,
+                    type: :float
+
+          attribute :format_type,
                     on:   :read,
                     type: :string
 
-          attribute :localized_measure_type,
+          attribute :localized_format_type,
+                    on:   :read,
+                    type: :string
+
+          attribute :format_unit,
+                    on:   :read,
+                    type: :string
+
+          attribute :localized_format_unit,
                     on:   :read,
                     type: :string
         end

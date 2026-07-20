@@ -5,14 +5,12 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
 
   let(:attributes) do
     {
-      type:                   'reporting/report_aggregation_measure',
-      name:                   'login_count',
-      localized_name:         'Logins',
-      function:               'count_rows',
-      percentile:             nil,
-      localized_function:     'Count',
-      measure_type:           'number',
-      localized_measure_type: 'Count'
+      type:               'reporting/report_aggregation_measure',
+      name:               'login_count',
+      localized_name:     'Logins',
+      function:           'count_rows',
+      percentile:         nil,
+      localized_function: 'Count'
     }
   end
 
@@ -22,8 +20,10 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
   it { is_expected.to define_attribute(:function).as(:string) }
   it { is_expected.to define_attribute(:percentile).as(:float) }
   it { is_expected.to define_attribute(:localized_function).as(:string) }
-  it { is_expected.to define_attribute(:measure_type).as(:string) }
-  it { is_expected.to define_attribute(:localized_measure_type).as(:string) }
+  it { is_expected.to define_attribute(:format_type).as(:string) }
+  it { is_expected.to define_attribute(:localized_format_type).as(:string) }
+  it { is_expected.to define_attribute(:format_unit).as(:string) }
+  it { is_expected.to define_attribute(:localized_format_unit).as(:string) }
 
   it 'casts measure metadata' do
     expect(measure.name).to eq('login_count')
@@ -31,8 +31,6 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
     expect(measure.function).to eq('count_rows')
     expect(measure.percentile).to be_nil
     expect(measure.localized_function).to eq('Count')
-    expect(measure.measure_type).to eq('number')
-    expect(measure.localized_measure_type).to eq('Count')
   end
 
   it 'casts percentile values for percentile measures' do
