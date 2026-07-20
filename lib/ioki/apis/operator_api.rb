@@ -710,14 +710,14 @@ module Ioki
         outgoing_model_class: Ioki::Model::Operator::GeocodingReverseSearch
       ),
       Endpoints::Index.new(
-        :no_shows,
+        :service_violations,
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::NoShow
       ),
       Endpoints.custom_endpoints(
-        'no_show',
+        'service_violation',
         actions:     { 'acknowledge' => :patch },
-        path:        [API_BASE_PATH, 'products', :id, 'no_shows', :id],
+        path:        [API_BASE_PATH, 'products', :id, 'service_violations', :id],
         model_class: Ioki::Model::Operator::NoShow
       ),
       Endpoints.crud_endpoints(
