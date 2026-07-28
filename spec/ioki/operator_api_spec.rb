@@ -3155,28 +3155,28 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  describe '#no_show_acknowledge(product_id, no_show_id)' do
+  describe '#service_violation_acknowledge(product_id, service_violation_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/no_shows/4711/acknowledge')
+        expect(params[:url].to_s).to eq('operator/products/0815/service_violations/4711/acknowledge')
         expect(params[:method]).to eq(:patch)
         result_with_data
       end
 
-      expect(operator_client.no_show_acknowledge('0815', '4711'))
-        .to be_a(Ioki::Model::Operator::NoShow)
+      expect(operator_client.service_violation_acknowledge('0815', '4711'))
+        .to be_a(Ioki::Model::Operator::ServiceViolation)
     end
   end
 
-  describe '#no_shows(product_id)' do
+  describe '#service_violations(product_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
-        expect(params[:url].to_s).to eq('operator/products/0815/no_shows')
+        expect(params[:url].to_s).to eq('operator/products/0815/service_violations')
         result_with_index_data
       end
 
-      expect(operator_client.no_shows('0815', options))
-        .to all(be_a(Ioki::Model::Operator::NoShow))
+      expect(operator_client.service_violations('0815', options))
+        .to all(be_a(Ioki::Model::Operator::ServiceViolation))
     end
   end
 

@@ -3,7 +3,7 @@
 module Ioki
   module Model
     module Operator
-      class NoShow < Base
+      class ServiceViolation < Base
         attribute :type,
                   on:   :read,
                   type: :string
@@ -37,6 +37,10 @@ module Ioki
                   type: :string
 
         attribute :ride_id,
+                  on:   :read,
+                  type: :string
+
+        attribute :service_violation_type,
                   on:   :read,
                   type: :string
       end
