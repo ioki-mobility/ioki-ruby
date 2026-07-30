@@ -9,6 +9,7 @@ module Ioki
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
         attribute :analytics_tracking, on: [:read, :create], type: :boolean
+        attribute :claimed, on: [:create], type: :boolean
         attribute :email,
                   type:             :object,
                   on:               [:read, :create, :update],
