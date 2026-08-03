@@ -265,6 +265,31 @@ module Ioki
         path:                 'purchase',
         model_class:          Ioki::Model::Passenger::Ticketing::Voucher,
         outgoing_model_class: Ioki::Model::Passenger::Ticketing::ProductPurchase
+      ),
+      Endpoints::Create.new(
+        :geocoding_session,
+        base_path:   [API_BASE_PATH, 'geocoding'],
+        path:        'session',
+        model_class: Ioki::Model::Passenger::GeocodingSession
+      ),
+      Endpoints::Delete.new(
+        :geocoding_session,
+        base_path:   [API_BASE_PATH, 'geocoding'],
+        path:        'session',
+        model_class: nil
+      ),
+      Endpoints::Create.new(
+        :geocoding_search,
+        base_path:            [API_BASE_PATH, 'geocoding', 'session', :id],
+        path:                 'search',
+        model_class:          Ioki::Model::Passenger::GeocodingSearchResults,
+        outgoing_model_class: Ioki::Model::Passenger::GeocodingSearch
+      ),
+      Endpoints::Create.new(
+        :geocoding_search_details,
+        base_path:   [API_BASE_PATH, 'geocoding', 'session', :id],
+        path:        'details',
+        model_class: Ioki::Model::Passenger::GeocodingSearchDetails
       )
     ].freeze
   end

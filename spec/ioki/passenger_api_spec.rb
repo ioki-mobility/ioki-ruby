@@ -637,4 +637,62 @@ RSpec.describe Ioki::PassengerApi do
         .to be_a Ioki::Model::Passenger::Ticketing::Voucher
     end
   end
+
+  describe '#create_geocoding_session()' do
+    let(:geocoding_session) { Ioki::Model::Passenger::GeocodingSession.new }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/geocoding/session')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_geocoding_session(geocoding_session, options))
+        .to be_a(Ioki::Model::Passenger::GeocodingSession)
+    end
+  end
+
+  describe '#delete_geocoding_session(id)' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/geocoding/session/0815')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(passenger_client.delete_geocoding_session('0815', options))
+        .to be_nil
+    end
+  end
+
+  describe '#create_geocoding_search(id)' do
+    let(:geocoding_search) { Ioki::Model::Passenger::GeocodingSearch.new }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/geocoding/session/0815/search')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_geocoding_search('0815', geocoding_search, options))
+        .to be_a(Ioki::Model::Passenger::GeocodingSearchResults)
+    end
+  end
+
+  describe '#create_geocoding_search_details(id)' do
+    let(:geocoding_search_details) { Ioki::Model::Passenger::GeocodingSearchDetails.new }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/geocoding/session/0815/details')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.create_geocoding_search_details('0815', geocoding_search_details, options))
+        .to be_a(Ioki::Model::Passenger::GeocodingSearchDetails)
+    end
+  end
 end
