@@ -12,10 +12,6 @@ module Ioki
                   on:   :create,
                   type: :string
 
-        attribute :place_types,
-                  on:   :create,
-                  type: :string
-
         attribute :result_types,
                   on:   :create,
                   type: :array
