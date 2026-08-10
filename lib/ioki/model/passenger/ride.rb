@@ -46,6 +46,7 @@ module Ioki
         attribute :version, type: :integer, on: [:read, :update]
         attribute :fare, on: :read, type: :object, class_name: 'Fare'
         attribute :ticket, on: :read, type: :object, class_name: 'Ticket'
+        attribute :booked_solution, on: :read, type: :object, class_name: 'OfferedSolution'
         attribute :offered_solutions, on: :read, type: :array, class_name: 'OfferedSolution'
         attribute :options, on: :create, type: :array, class_name: 'RideOption'
         attribute :passenger_note_to_driver, type: :string, on: [:read, :create, :update]
