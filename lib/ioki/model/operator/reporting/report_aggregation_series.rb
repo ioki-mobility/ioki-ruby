@@ -33,6 +33,42 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :col_buckets,
+                    on:   :read,
+                    type: :array
+
+          attribute :localized_col_buckets,
+                    on:   :read,
+                    type: :array
+
+          attribute :col_periodic_type,
+                    on:   :read,
+                    type: :string
+
+          attribute :end_time,
+                    on:   :read,
+                    type: :date_time
+
+          attribute :periodic,
+                    on:   :read,
+                    type: :boolean
+
+          attribute :localized_row_buckets,
+                    on:   :read,
+                    type: :array
+
+          attribute :row_buckets,
+                    on:   :read,
+                    type: :array
+
+          attribute :row_periodic_type,
+                    on:   :read,
+                    type: :string
+
+          attribute :start_time,
+                    on:   :read,
+                    type: :date_time
+
           attribute :measures,
                     on:         :read,
                     type:       :array,
