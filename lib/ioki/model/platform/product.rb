@@ -19,7 +19,6 @@ module Ioki
         attribute :help_url, on: :read, type: :string
         attribute :name, on: :read, type: :string
         attribute :payment_method_allowed_on_booking, on: :read, type: :boolean
-        attribute :payment_method_required_on_booking, on: :read, type: :boolean
         attribute :prebookable, on: :read, type: :boolean
         attribute :ride_options, on: :read, type: :object, class_name: 'RideOptions'
         attribute :ride_rating_criteria, on: :read, type: :array
