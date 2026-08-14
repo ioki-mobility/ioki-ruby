@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Platform
       class Operator < Base
+        attribute :locale, type: :string, on: [:create, :read, :update]
+        attribute :matching_rank, type: :integer, on: [:create, :read, :update]
         attribute :type,
                   on:   :read,
                   type: :string
@@ -20,9 +22,9 @@ module Ioki
                   on:   :read,
                   type: :date_time
 
-        attribute :archived_at,
-                  on:   :read,
-                  type: :date_time
+        # attribute :archived_at,
+        #           on:   :read,
+        #           type: :date_time
 
         attribute :default_operator,
                   on:   :read,

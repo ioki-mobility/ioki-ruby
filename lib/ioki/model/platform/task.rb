@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Platform
       class Task < Base
+        attribute :reported_completed_at, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

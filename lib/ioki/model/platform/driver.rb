@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Platform
       class Driver < Base
+        attribute :operator_id, type: :string, on: [:create, :read, :update]
+        attribute :password_disclosed, type: :boolean, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time

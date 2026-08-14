@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Platform
       class Line < Base
+        attribute :slug, type: :string, on: [:create, :read, :update]
+        attribute :mode, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -13,7 +15,7 @@ module Ioki
         attribute :variant, on: [:read, :create, :update], type: :string
         attribute :skip_time_window_check, on: [:read, :create, :update], type: :boolean
         attribute :line_stops, type: :array, on: :read, class_name: 'LineStop'
-        attribute :version, on: :read, type: :integer
+        # attribute :version, on: :read, type: :integer
       end
     end
   end

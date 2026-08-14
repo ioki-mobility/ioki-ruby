@@ -4,7 +4,9 @@ module Ioki
   module Model
     module Platform
       class RideOption < Base
-        attribute :name, on: [:read, :create], type: :string
+        attribute :accessibility_information_translations, type: :object, on: [:create, :read, :update], class_name: 'MultilanguageString'
+        attribute :default_value, type: :boolean, on: [:create, :read, :update]
+        deprecated_attribute :name, on: [:read, :create], type: :string
         attribute :slug, on: [:read, :create], type: :string
         attribute :value, on: :create, type: [:string, :boolean, :integer]
 
