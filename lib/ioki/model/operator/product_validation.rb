@@ -23,6 +23,11 @@ module Ioki
         attribute :description,
                   on:   :read,
                   type: :string
+
+        attribute :follow_request,
+                  on:         :read,
+                  type:       :object,
+                  class_name: 'ProductValidations::FollowRequest'
       end
     end
   end
