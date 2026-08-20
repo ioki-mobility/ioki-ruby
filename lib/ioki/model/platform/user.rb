@@ -24,8 +24,6 @@ module Ioki
         attribute :locked_at, type: :date_time, on: :read
         attribute :minimum_age_confirmed, on: [:read, :create], type: :boolean
         attribute :phone_number, type: :string, on: [:read, :create, :update], omit_if_blank_on: [:create, :update]
-        attribute :verified_phone_number, type: :string, on: [:create, :update], omit_if_blank_on: [:create, :update]
-        attribute :unverified_phone_number, type: :string, on: [:create, :update], omit_if_blank_on: [:create, :update]
         attribute :provider_id, type: :string, on: :read
         attribute :terms_accepted, type: :boolean, on: [:create, :update], unvalidated: true
         attribute :terms_accepted_at, type: :date_time, on: :read
