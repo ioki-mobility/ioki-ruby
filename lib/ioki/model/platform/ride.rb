@@ -8,6 +8,7 @@ module Ioki
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
+        attribute :available_payment_method_types, on: :read, type: :array
         attribute :book_for_others, on: [:read, :create, :update], type: :boolean
         attribute :booking, type: :object, on: :read, class_name: 'Booking'
         attribute :cancellable, on: :read, type: :boolean
