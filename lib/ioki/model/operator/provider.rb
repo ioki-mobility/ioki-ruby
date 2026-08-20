@@ -75,9 +75,9 @@ module Ioki
                   on:   :read,
                   type: :string
 
-        attribute :ride_payment_method_types,
-                  on:   :read,
-                  type: :array
+        deprecated_attribute :ride_payment_method_types,
+                             on:   :read,
+                             type: :array
 
         attribute :service_credit_options,
                   on:         :read,
