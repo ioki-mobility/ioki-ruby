@@ -62,4 +62,5 @@ RSpec.describe Ioki::Model::Operator::Ride do
   it { is_expected.to define_attribute(:vehicle_reached_pickup_at).as(:date_time) }
   it { is_expected.to define_attribute(:last_serving_driver_id).as(:string) }
   it { is_expected.to define_attribute(:last_serving_driver).as(:object).with(class_name: 'Driver') }
+  it { is_expected.to define_attribute(:available_payment_method_types).as(:array) }
 end

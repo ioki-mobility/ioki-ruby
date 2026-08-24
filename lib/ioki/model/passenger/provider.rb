@@ -22,7 +22,7 @@ module Ioki
         attribute :postal_code, on: :read, type: :string
         attribute :psp, on: :read, type: :string
         attribute :retry_payment_method_types, on: :read, type: :array
-        attribute :ride_payment_method_types, on: :read, type: :array
+        deprecated_attribute :ride_payment_method_types, on: :read, type: :array
         attribute :service_credit_options, on: :read, type: :object, class_name: 'ServiceCreditOptions'
         attribute :service_credit_payment_method_types, on: :read, type: :array
         attribute :street_name, on: :read, type: :string

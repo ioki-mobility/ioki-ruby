@@ -24,6 +24,10 @@ module Ioki
                   on:   :read,
                   type: :integer
 
+        attribute :available_payment_method_types,
+                  on:   :read,
+                  type: :array
+
         attribute :book_for_others,
                   on:   :read,
                   type: :boolean
