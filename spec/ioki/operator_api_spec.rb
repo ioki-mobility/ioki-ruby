@@ -2498,7 +2498,7 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
-  # rubocop:disable Layout/LineLength
+  # rubocop:disable-next Layout/LineLength
   describe '#update_blacklisted_travel_combination(product_id, blacklisted_travel_combination_id, blacklisted_travel_combination)' do
     let(:blacklisted_travel_combination) { Ioki::Model::Operator::BlacklistedTravelCombination.new({ id: '4711' }) }
 
@@ -2513,7 +2513,6 @@ RSpec.describe Ioki::OperatorApi do
         .to be_a(Ioki::Model::Operator::BlacklistedTravelCombination)
     end
   end
-  # rubocop:enable Layout/LineLength
 
   describe '#delete_blacklisted_travel_combination(product_id, blacklisted_travel_combination_id)' do
     it 'calls request on the client with expected params' do
