@@ -17,6 +17,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :localized_reference_timestamp,
+                    on:   :read,
+                    type: :string
+
           attribute :visualization,
                     on:   :read,
                     type: :string
