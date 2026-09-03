@@ -8,7 +8,8 @@ module Ioki
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
-        attribute :available_payment_method_types, on: :read, type: :array
+        attribute :available_booking_payment_method_types, on: :read, type: :array
+        attribute :available_tip_payment_method_types, on: :read, type: :array
         attribute :origin, type: :object, on: [:create, :read], class_name: 'RequestedPoint'
         attribute :destination, type: :object, on: [:create, :read], class_name: 'RequestedPoint'
         attribute :passengers, type: :array, on: [:create, :read], class_name: 'RidePassenger'
