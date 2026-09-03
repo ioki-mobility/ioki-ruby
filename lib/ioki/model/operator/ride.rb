@@ -24,7 +24,11 @@ module Ioki
                   on:   :read,
                   type: :integer
 
-        attribute :available_payment_method_types,
+        attribute :available_booking_payment_method_types,
+                  on:   :read,
+                  type: :array
+
+        attribute :available_tip_payment_method_types,
                   on:   :read,
                   type: :array
 
