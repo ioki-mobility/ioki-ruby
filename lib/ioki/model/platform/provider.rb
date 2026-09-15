@@ -76,6 +76,13 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :payment_service_provider,
+                  on:   :read,
+                  type: [
+                    Ioki::Model::Platform::PaymentServiceProvider::Stripe,
+                    Ioki::Model::Platform::PaymentServiceProvider::Logpay
+                  ]
+
         attribute :privacy_policy_url,
                   on:   :read,
                   type: :string

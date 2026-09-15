@@ -20,6 +20,12 @@ module Ioki
         attribute :name, on: :read, type: :string
         attribute :personal_discount_payment_method_types, on: :read, type: :array
         attribute :postal_code, on: :read, type: :string
+        attribute :payment_service_provider,
+                  on:   :read,
+                  type: [
+                    Ioki::Model::Passenger::PaymentServiceProvider::Stripe,
+                    Ioki::Model::Passenger::PaymentServiceProvider::Logpay
+                  ]
         attribute :psp, on: :read, type: :string
         attribute :retry_payment_method_types, on: :read, type: :array
         deprecated_attribute :ride_payment_method_types, on: :read, type: :array
