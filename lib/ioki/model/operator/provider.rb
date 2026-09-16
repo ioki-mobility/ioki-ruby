@@ -67,10 +67,11 @@ module Ioki
                   type: :string
 
         attribute :payment_service_provider,
-                  on:   :read,
-                  type: [
-                    Ioki::Model::Operator::PaymentServiceProvider::Stripe,
-                    Ioki::Model::Operator::PaymentServiceProvider::Logpay
+                  on:         :read,
+                  type:       :object,
+                  class_name: [
+                    'PaymentServiceProvider::Stripe',
+                    'PaymentServiceProvider::Logpay'
                   ]
 
         attribute :products,
