@@ -9,6 +9,7 @@ module Ioki
         attribute :created_at, on: :read, type: :date_time
         attribute :updated_at, on: :read, type: :date_time
         attribute :payment_method_type, on: :create, type: :string
+        attribute :requires_paypal_secure_element, on: :read, type: :boolean
         attribute :attached, on: :read, type: :boolean
         attribute :summary, on: :read, type: :object, class_name: 'PaymentMethodSummary'
 

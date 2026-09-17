@@ -257,6 +257,15 @@ module Ioki
 
         return class_name_from_value_type if class_name.include?(class_name_from_value_type)
 
+        # The above behavior only considers the last part of the type (split by
+        # `/`). To keep backwards compatibility, the following implementation
+        # using the whole type (to support deeply nested models) is added as a
+        # fallback only.
+        type_string = value_type(value)
+        class_name_from_value_type = Support.camelize(type_string)
+
+        return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+
         nil
       end
 

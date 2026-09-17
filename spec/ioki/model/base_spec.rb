@@ -156,6 +156,41 @@ RSpec.describe Ioki::Model::Base do
       end
     end
 
+    describe 'for an attribute of type :object with nested class_name' do
+      let(:example_referenced_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :bar, type: :integer, on: :read
+        end
+      end
+      let(:example_other_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :bar, type: :integer, on: :read
+        end
+      end
+
+      let(:example_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :foo, type: :object, class_name: ['Example::ReferencedClass', 'Example::OtherClass'], on: :read
+        end
+      end
+
+      before do
+        stub_const('Ioki::Model::Example::ReferencedClass', example_referenced_class)
+        stub_const('Ioki::Model::Example::OtherClass', example_other_class)
+        stub_const('Ioki::Model::ExampleObjectClassName', example_class)
+      end
+
+      it 'parses the class correctly' do
+        model = example_class.new({ foo: { type: 'example/referenced_class', bar: 42 } })
+        expect(model.foo).to be_a(example_referenced_class)
+        expect(model.foo.bar).to eq(42)
+
+        model = example_class.new({ foo: { type: 'example/other_class', bar: 42 } })
+        expect(model.foo).to be_a(example_other_class)
+        expect(model.foo.bar).to eq(42)
+      end
+    end
+
     describe 'for an attribute of type :array with a class_name' do
       let(:example_referenced_class) do
         Class.new(Ioki::Model::Base) do
