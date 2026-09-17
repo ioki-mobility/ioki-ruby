@@ -6,9 +6,9 @@ module Ioki
       class Client < Base
         attribute :type, on: :read, type: :string
         attribute :current_version, on: :read, type: :string
-        attribute :default_map_center_lat, on: :read, type: :float
-        attribute :default_map_center_lng, on: :read, type: :float
-        attribute :default_map_zoom_level, on: :read, type: :integer
+        # attribute :default_map_center_lat, on: :read, type: :float
+        # attribute :default_map_center_lng, on: :read, type: :float
+        # attribute :default_map_zoom_level, on: :read, type: :integer
         attribute :distribution_url, on: :read, type: :string
         attribute :features, on: :read, type: :object
         attribute :help_url, on: :read, type: :string

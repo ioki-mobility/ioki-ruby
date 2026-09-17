@@ -4,6 +4,8 @@ module Ioki
   module Model
     module Driver
       class PersonalDiscount < Base
+        attribute :fixed_price_per_ride, type: :object, on: [:create, :read, :update], class_name: 'Money'
+        attribute :fixed_price_per_passenger, type: :object, on: [:create, :read, :update], class_name: 'Money'
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -22,7 +24,7 @@ module Ioki
         attribute :validity, on: :read, type: :string
         attribute :absolute_discount, on: :read, type: :object, class_name: 'Money'
         attribute :payment_method, on: :read, type: :object, class_name: 'PaymentMethod'
-        attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
+        deprecated_attribute :receipts, on: :read, type: :array, class_name: 'Receipt'
       end
     end
   end

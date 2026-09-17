@@ -4,6 +4,7 @@ module Ioki
   module Model
     module Driver
       class Leg < Base
+        attribute :destination_task_id, type: :string, on: [:create, :read, :update]
         attribute :type, on: :read, type: :string
         attribute :id, on: :read, type: :string
         attribute :created_at, on: :read, type: :date_time
@@ -17,7 +18,7 @@ module Ioki
         attribute :leg_order, on: :read, type: :integer
         attribute :maneuvers, on: :read, type: :array
         attribute :maneuvers_calculated_at, on: :read, type: :date_time
-        attribute :destination_task, on: :read, type: :object, class_name: 'Task'
+        # attribute :destination_task, on: :read, type: :object, class_name: 'Task'
       end
     end
   end
