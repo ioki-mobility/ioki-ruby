@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Webhooks
       class Vehicle < Base
+        attribute :wheelchair_bays, type: :integer, on: [:create, :read, :update]
+        attribute :walker_bays, type: :integer, on: [:create, :read, :update]
+        attribute :storage_spaces, type: :integer, on: [:create, :read, :update]
         attribute :type, type: :string
         attribute :id, type: :string
         attribute :created_at, type: :date_time
