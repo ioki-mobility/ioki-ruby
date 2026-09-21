@@ -695,4 +695,25 @@ RSpec.describe Ioki::PassengerApi do
         .to be_a(Ioki::Model::Passenger::GeocodingSearchDetails)
     end
   end
+
+  describe '#purchases' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/purchases')
+        result_with_index_data
+      end
+
+      expect(passenger_client.purchases(options)).to all(be_a(Ioki::Model::Passenger::Purchase))
+    end
+  end
+
+  describe '#purchase' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/purchases/0815')
+        [result_with_data, full_response]
+      end
+      expect(passenger_client.purchase('0815', options)).to be_a Ioki::Model::Passenger::Purchase
+    end
+  end
 end

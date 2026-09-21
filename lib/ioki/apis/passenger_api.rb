@@ -290,6 +290,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'geocoding', 'session', :id],
         path:        'details',
         model_class: Ioki::Model::Passenger::GeocodingSearchDetails
+      ),
+      Endpoints.crud_endpoints(
+        :purchase,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::Purchase,
+        only:        [:index, :show]
       )
     ].freeze
   end
