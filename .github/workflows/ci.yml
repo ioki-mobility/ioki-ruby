@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   linting:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Pull repository
@@ -17,17 +17,26 @@ jobs:
         run: |
           bundle exec rubocop --ignore-unrecognized-cops
 
-  backend-services:
-    runs-on: ubuntu-22.04
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.3.12'
+          - '3.4.11'
+          - '4.0.7'
 
     steps:
       - name: Pull repository
         uses: actions/checkout@v7
-      - name: Bundle install and cache result
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Run rspec
+      - name: Run rspec tests
         run: |
           source .github/ci_workflow.env
           bundle exec rspec
