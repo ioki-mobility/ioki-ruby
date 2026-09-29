@@ -41,6 +41,8 @@ module Ioki
                   omit_if_nil_on: :create
 
         attribute :paypal_secure_element, type: :string, on: :create, omit_if_nil_on: :create
+        attribute :on_session, on: :create, type: :boolean, omit_if_nil_on: :create
+        attribute :async, on: :create, type: :boolean, omit_if_nil_on: :create
       end
     end
   end

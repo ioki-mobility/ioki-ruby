@@ -70,6 +70,10 @@ module Ioki
                   type:       :object,
                   class_name: 'Invoice'
 
+        attribute :payment_action,
+                  on:   :read,
+                  type: :string
+
         attribute :payment_method,
                   on:         :read,
                   type:       :object,
