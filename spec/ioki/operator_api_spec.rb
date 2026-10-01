@@ -3395,4 +3395,31 @@ RSpec.describe Ioki::OperatorApi do
       expect(operator_client.vehicle_state('0815', options)).to be_a Ioki::Model::Operator::VehicleState
     end
   end
+
+  describe '#create_driver_batch_deletion_request(product_id)' do
+    let(:driver_batch) { Ioki::Model::Operator::DriverBatch.new }
+
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/batch_deletion_requests')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.create_driver_batch_deletion_request('0815', driver_batch, options))
+        .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+    end
+  end
+
+  describe '#driver_batch_deletion_request(product_id, batch_deletion_request_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/drivers/batch_deletion_requests/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.driver_batch_deletion_request('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::BatchDeletionRequest)
+    end
+  end
 end
