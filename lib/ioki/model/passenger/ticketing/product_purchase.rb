@@ -13,6 +13,8 @@ module Ioki
           attribute :ride_id, on: :create, type: :string
           attribute :payment_method, on: :create, type: :object, class_name: 'Ioki::Model::Passenger::PaymentMethod'
           attribute :paypal_secure_element, on: :create, type: :string
+          attribute :on_session, on: :create, type: :boolean, omit_if_nil_on: :create
+          attribute :async, on: :create, type: :boolean, omit_if_nil_on: :create
         end
       end
     end

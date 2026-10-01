@@ -27,6 +27,8 @@ module Ioki
 
         attribute :personal_discount_type_id, on: :create, type: :string
         attribute :paypal_secure_element, on: :create, type: :string, omit_if_nil_on: :create
+        attribute :on_session, on: :create, type: :boolean, omit_if_nil_on: :create
+        attribute :async, on: :create, type: :boolean, omit_if_nil_on: :create
       end
     end
   end

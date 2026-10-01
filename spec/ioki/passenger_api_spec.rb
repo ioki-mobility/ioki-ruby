@@ -695,4 +695,69 @@ RSpec.describe Ioki::PassengerApi do
         .to be_a(Ioki::Model::Passenger::GeocodingSearchDetails)
     end
   end
+
+  describe '#purchases' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/purchases')
+        result_with_index_data
+      end
+
+      expect(passenger_client.purchases(options)).to all(be_a(Ioki::Model::Passenger::Purchase))
+    end
+  end
+
+  describe '#purchase' do
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/purchases/0815')
+        [result_with_data, full_response]
+      end
+      expect(passenger_client.purchase('0815', options)).to be_a Ioki::Model::Passenger::Purchase
+    end
+  end
+
+  describe '#reserve_debit' do
+    let(:reserve_debit) { Ioki::Model::Passenger::ReserveDebit.new(paypal_secure_element: 'secret') }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/purchases/0815/reserve_debit')
+        expect(params[:body][:data]).to match(hash_including(paypal_secure_element: 'secret'))
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.update_reserve_debit('0815', reserve_debit, options)).to be_a Ioki::Model::Passenger::Purchase
+    end
+  end
+
+  describe '#settle_debit' do
+    let(:settle_debit) do
+      Ioki::Model::Passenger::SettleDebit.new(
+        payment_method:        Ioki::Model::Passenger::PaymentMethod.new(
+          payment_method_type: 'service_credits',
+          id:                  'pam_1'
+        ),
+        paypal_secure_element: 'secret'
+      )
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/purchases/0815/settle_debit')
+        expect(params[:body][:data]).to match(
+          hash_including(
+            payment_method:        hash_including(
+              payment_method_type: 'service_credits',
+              id:                  'pam_1'
+            ),
+            paypal_secure_element: 'secret'
+          )
+        )
+        [result_with_data, full_response]
+      end
+
+      expect(passenger_client.update_settle_debit('0815', settle_debit, options)).to be_a Ioki::Model::Passenger::Purchase
+    end
+  end
 end

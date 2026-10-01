@@ -10,6 +10,7 @@ module Ioki
         attribute :updated_at, on: :read, type: :date_time
         attribute :attachment_url, on: :read, type: :string
         attribute :receipt_type, on: :read, type: :string
+        attribute :charge_id, on: :read, type: :string
       end
     end
   end
