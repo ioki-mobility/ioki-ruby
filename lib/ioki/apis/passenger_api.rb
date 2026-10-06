@@ -290,6 +290,26 @@ module Ioki
         base_path:   [API_BASE_PATH, 'geocoding', 'session', :id],
         path:        'details',
         model_class: Ioki::Model::Passenger::GeocodingSearchDetails
+      ),
+      Endpoints.crud_endpoints(
+        :purchase,
+        base_path:   [API_BASE_PATH],
+        model_class: Ioki::Model::Passenger::Purchase,
+        only:        [:index, :show]
+      ),
+      Endpoints::UpdateSingular.new(
+        :reserve_debit,
+        path:                 'reserve_debit',
+        base_path:            [API_BASE_PATH, 'purchases', :id],
+        model_class:          Ioki::Model::Passenger::Purchase,
+        outgoing_model_class: Ioki::Model::Passenger::ReserveDebit
+      ),
+      Endpoints::UpdateSingular.new(
+        :settle_debit,
+        path:                 'settle_debit',
+        base_path:            [API_BASE_PATH, 'purchases', :id],
+        model_class:          Ioki::Model::Passenger::Purchase,
+        outgoing_model_class: Ioki::Model::Passenger::SettleDebit
       )
     ].freeze
   end
