@@ -795,6 +795,19 @@ module Ioki
         base_path:   nil,
         path:        [API_BASE_PATH, 'products', :id, 'lines', 'batch_deletion_requests', :id],
         model_class: Ioki::Model::Operator::BatchDeletionRequest
+      ),
+      Endpoints::Create.new(
+        :driver_batch_deletion_request,
+        base_path:            [API_BASE_PATH, 'products', :id, 'drivers'],
+        path:                 'batch_deletion_requests',
+        model_class:          Ioki::Model::Operator::BatchDeletionRequest,
+        outgoing_model_class: Ioki::Model::Operator::DriverBatch
+      ),
+      Endpoints::ShowSingular.new(
+        :driver_batch_deletion_request,
+        base_path:   nil,
+        path:        [API_BASE_PATH, 'products', :id, 'drivers', 'batch_deletion_requests', :id],
+        model_class: Ioki::Model::Operator::BatchDeletionRequest
       )
     ].freeze
   end
