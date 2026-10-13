@@ -33,6 +33,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :measure_name,
+                    on:   :read,
+                    type: :string
+
           attribute :default_preset,
                     on:   :read,
                     type: :string
