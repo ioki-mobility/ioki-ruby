@@ -17,6 +17,11 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :categories,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportDashboardCategory'
+
           attribute :groups,
                     on:         :read,
                     type:       :array,
