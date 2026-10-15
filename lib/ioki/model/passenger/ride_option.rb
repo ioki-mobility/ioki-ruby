@@ -21,6 +21,7 @@ module Ioki
         attribute :localized_link, on: :read, type: :string
         attribute :localized_link_text, on: :read, type: :string
         attribute :localized_name, on: :read, type: :string
+        attribute :default_value, on: :read, type: [:string, :integer, :boolean]
       end
     end
   end
