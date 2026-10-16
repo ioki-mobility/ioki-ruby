@@ -45,6 +45,21 @@ module Ioki
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Passenger::Product
       ),
+      Endpoints::Index.new(
+        :passenger_types,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Passenger::PassengerType
+      ),
+      Endpoints::Index.new(
+        :passenger_options,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Passenger::PassengerOption
+      ),
+      Endpoints::Index.new(
+        :ride_options,
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Passenger::RideOption
+      ),
       Endpoints::Create.new(
         :ride_inquiry,
         base_path:   [API_BASE_PATH],

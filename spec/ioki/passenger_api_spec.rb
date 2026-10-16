@@ -45,6 +45,51 @@ RSpec.describe Ioki::PassengerApi do
     end
   end
 
+  describe '#passenger_types(product_id)' do
+    let(:options) { { params: { bookable: true } } }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/products/0815/passenger_types')
+        expect(params[:params]).to eq(bookable: true)
+        result_with_index_data
+      end
+
+      expect(passenger_client.passenger_types('0815', options))
+        .to all(be_a(Ioki::Model::Passenger::PassengerType))
+    end
+  end
+
+  describe '#passenger_options(product_id)' do
+    let(:options) { { params: { bookable: true } } }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/products/0815/passenger_options')
+        expect(params[:params]).to eq(bookable: true)
+        result_with_index_data
+      end
+
+      expect(passenger_client.passenger_options('0815', options))
+        .to all(be_a(Ioki::Model::Passenger::PassengerOption))
+    end
+  end
+
+  describe '#ride_options(product_id)' do
+    let(:options) { { params: { bookable: true } } }
+
+    it 'calls request on the client with expected params' do
+      expect(passenger_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('passenger/products/0815/ride_options')
+        expect(params[:params]).to eq(bookable: true)
+        result_with_index_data
+      end
+
+      expect(passenger_client.ride_options('0815', options))
+        .to all(be_a(Ioki::Model::Passenger::RideOption))
+    end
+  end
+
   describe '#station(id)' do
     it 'calls request on the client with expected params' do
       expect(passenger_client).to receive(:request) do |params|
