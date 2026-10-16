@@ -2632,6 +2632,18 @@ RSpec.describe Ioki::OperatorApi do
     end
   end
 
+  describe '#driver_emergency(product_id, driver_emergency_id)' do
+    it 'calls request on the client with expected params' do
+      expect(operator_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('operator/products/0815/driver_emergencies/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(operator_client.driver_emergency('0815', '4711', options))
+        .to be_a(Ioki::Model::Operator::DriverEmergency)
+    end
+  end
+
   describe '#driver_emergencies_acknowledge(product_id, driver_emergency_id)' do
     it 'calls request on the client with expected params' do
       expect(operator_client).to receive(:request) do |params|
