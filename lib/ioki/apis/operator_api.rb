@@ -546,6 +546,12 @@ module Ioki
         base_path:   [API_BASE_PATH, 'products', :id],
         model_class: Ioki::Model::Operator::DriverEmergency
       ),
+      Endpoints::Show.new(
+        :driver_emergency,
+        path:        'driver_emergencies',
+        base_path:   [API_BASE_PATH, 'products', :id],
+        model_class: Ioki::Model::Operator::DriverEmergency
+      ),
       Endpoints.custom_endpoints(
         'driver_emergencies',
         actions:     { 'acknowledge' => :patch },
