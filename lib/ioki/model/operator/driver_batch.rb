@@ -5,7 +5,7 @@ module Ioki
     module Operator
       class DriverBatch < Base
         def self.schema_path
-          'operator_api--v20210101--driver_batch_archive_schema'
+          'operator_api--v20210101--driver_batch_deletion_schema'
         end
 
         attribute :driver_ids,
