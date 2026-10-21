@@ -23,5 +23,3 @@
 
 # Cached common rubocop config
 .rubocop-https---dbdrive-github-io-triebwerk-rubocop-common-yml
-
-.tool-versions
