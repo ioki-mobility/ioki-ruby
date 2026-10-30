@@ -51,6 +51,11 @@ module Ioki
                   type:       :array,
                   on:         :read,
                   class_name: 'LineStop'
+
+        attribute :spawn_line_stop_tasks,
+                  on:             [:read, :create, :update],
+                  omit_if_nil_on: [:create, :update],
+                  type:           :boolean
       end
     end
   end

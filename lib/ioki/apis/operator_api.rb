@@ -814,6 +814,11 @@ module Ioki
         base_path:   nil,
         path:        [API_BASE_PATH, 'products', :id, 'drivers', 'batch_deletion_requests', :id],
         model_class: Ioki::Model::Operator::BatchDeletionRequest
+      ),
+      Endpoints.crud_endpoints(
+        :line_serving,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Operator::LineServing
       )
     ].freeze
   end
