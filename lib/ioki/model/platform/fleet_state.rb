@@ -15,7 +15,7 @@ module Ioki
         attribute :vehicles,
                   on:         :read,
                   type:       :array,
-                  class_name: 'Vehicle'
+                  class_name: 'Ioki::Model::Platform::FleetState::Vehicle'
       end
     end
   end

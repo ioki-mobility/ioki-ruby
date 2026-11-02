@@ -251,20 +251,18 @@ module Ioki
         return class_name unless class_name.is_a?(Array)
         return nil if value.nil?
 
-        type_string = value_type(value)
-        type_string = type_string.split('/').last
-        class_name_from_value_type = Support.camelize(type_string)
+        # The type is matched from its last part (split by `/`) up to the whole
+        # type, so that e.g. `hardware_integration/vendor_data/we_ride` matches
+        # `WeRide`, `VendorData::WeRide` or `HardwareIntegration::VendorData::WeRide`,
+        # whichever names the model relative to the module the referencing
+        # model is in. The last part alone is tried first, as before.
+        type_parts = value_type(value).split('/')
 
-        return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+        (type_parts.size - 1).downto(0).each do |first_part|
+          class_name_from_value_type = Support.camelize(type_parts[first_part..].join('/'))
 
-        # The above behavior only considers the last part of the type (split by
-        # `/`). To keep backwards compatibility, the following implementation
-        # using the whole type (to support deeply nested models) is added as a
-        # fallback only.
-        type_string = value_type(value)
-        class_name_from_value_type = Support.camelize(type_string)
-
-        return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+          return class_name_from_value_type if class_name.include?(class_name_from_value_type)
+        end
 
         nil
       end
