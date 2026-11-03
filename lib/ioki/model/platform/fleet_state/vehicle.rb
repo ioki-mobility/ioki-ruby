@@ -4,7 +4,8 @@ module Ioki
   module Model
     module Platform
       class FleetState < Base
-        # A vehicle as the fleet state lists it, which differs from a Vehicle: it has the product_id, for instance
+        # A vehicle as the fleet state lists it, which differs from an Ioki::Model::Platform::Vehicle: it has the
+        # product_id, for instance
         class Vehicle < Base
           attribute :type,
                     on:   :read,
