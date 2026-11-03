@@ -189,6 +189,16 @@ RSpec.describe Ioki::Model::Base do
         expect(model.foo).to be_a(example_other_class)
         expect(model.foo.bar).to eq(42)
       end
+
+      it 'matches a class named by the end of a deeper nested type' do
+        model = example_class.new({ foo: { type: 'outer/example/referenced_class', bar: 42 } })
+        expect(model.foo).to be_a(example_referenced_class)
+      end
+
+      it 'leaves a value whose type matches none of the classes as it is' do
+        model = example_class.new({ foo: { type: 'example/unknown_class', bar: 42 } })
+        expect(model.foo).to eq({ type: 'example/unknown_class', bar: 42 })
+      end
     end
 
     describe 'for an attribute of type :array with a class_name' do

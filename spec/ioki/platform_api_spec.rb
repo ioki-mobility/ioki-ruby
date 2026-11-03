@@ -945,5 +945,40 @@ RSpec.describe Ioki::PlatformApi do
 
       expect(platform_client.fleet_state(options)).to be_a Ioki::Model::Platform::FleetState
     end
+
+    it 'lists the vehicles as the fleet state serializes them, with their product' do
+      expect(platform_client).to receive(:request) do
+        [{ 'data' => { 'vehicles' => [{ 'id' => 'veh_1', 'product_id' => 'prd_1' }] } }, full_response]
+      end
+
+      vehicle = platform_client.fleet_state(params: { vehicle_ids: 'veh_1' }).vehicles.first
+
+      expect(vehicle).to be_a(Ioki::Model::Platform::FleetState::Vehicle)
+      expect(vehicle.product_id).to eq('prd_1')
+    end
+  end
+
+  describe '#hardware_integration_assets(provider_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/hardware_integration/assets')
+        result_with_index_data
+      end
+
+      expect(platform_client.hardware_integration_assets('0815', options))
+        .to all(be_a(Ioki::Model::Platform::HardwareIntegration::Asset))
+    end
+  end
+
+  describe '#hardware_integration_asset(provider_id, id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/hardware_integration/assets/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.hardware_integration_asset('0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::HardwareIntegration::Asset)
+    end
   end
 end

@@ -298,6 +298,18 @@ module Ioki
         :fleet_state,
         base_path:   [API_BASE_PATH],
         model_class: Ioki::Model::Platform::FleetState
+      ),
+      Endpoints::Index.new(
+        :hardware_integration_assets,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'hardware_integration'],
+        path:        'assets',
+        model_class: Ioki::Model::Platform::HardwareIntegration::Asset
+      ),
+      Endpoints::Show.new(
+        :hardware_integration_asset,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'hardware_integration'],
+        path:        'assets',
+        model_class: Ioki::Model::Platform::HardwareIntegration::Asset
       )
     ].freeze
   end
