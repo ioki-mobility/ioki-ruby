@@ -24,6 +24,13 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationSeries do
           points:                    [10.0, 20.0]
         }
       ],
+      range_splits:               [
+        {
+          type:   'reporting/report_aggregation_range_split',
+          name:   'ride_distance',
+          values: [{ count: 4, from: nil, label: '< 1 km', to: 1.0 }]
+        }
+      ],
       partitions_considered:      2,
       definition_versions:        [1]
     }
@@ -41,6 +48,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationSeries do
     is_expected.to define_attribute(:measures).as(:array).with(class_name: 'ReportAggregationMeasureSeries')
   end
 
+  it { is_expected.to define_attribute(:range_splits).as(:array).with(class_name: 'ReportAggregationRangeSplit') }
   it { is_expected.to define_attribute(:partitions_considered).as(:integer) }
   it { is_expected.to define_attribute(:definition_versions).as(:array) }
 
@@ -53,6 +61,8 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationSeries do
     expect(series.bucket).to eq('day')
     expect(series.measures.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationMeasureSeries)
     expect(series.measures.first.localized_measure_name).to eq('Logins')
+    expect(series.range_splits.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationRangeSplit)
+    expect(series.range_splits.first.name).to eq('ride_distance')
     expect(series.partitions_considered).to eq(2)
     expect(series.definition_versions).to eq([1])
   end

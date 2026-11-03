@@ -74,6 +74,11 @@ module Ioki
                     type:       :array,
                     class_name: 'ReportAggregationMeasureSeries'
 
+          attribute :range_splits,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportAggregationRangeSplit'
+
           attribute :partitions_considered,
                     on:   :read,
                     type: :integer

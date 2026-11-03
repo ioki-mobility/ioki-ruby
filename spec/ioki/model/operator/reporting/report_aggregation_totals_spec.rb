@@ -19,6 +19,13 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationTotals do
           localized_dimension_value: nil,
           value:                     30.0
         }
+      ],
+      range_splits:               [
+        {
+          type:   'reporting/report_aggregation_range_split',
+          name:   'ride_distance',
+          values: [{ count: 4, from: nil, label: '< 1 km', to: 1.0 }]
+        }
       ]
     }
   end
@@ -27,6 +34,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationTotals do
   it { is_expected.to define_attribute(:aggregation_name).as(:string) }
   it { is_expected.to define_attribute(:localized_aggregation_name).as(:string) }
   it { is_expected.to define_attribute(:measures).as(:array).with(class_name: 'ReportAggregationMeasureTotal') }
+  it { is_expected.to define_attribute(:range_splits).as(:array).with(class_name: 'ReportAggregationRangeSplit') }
 
   it 'casts measure totals into reporting models' do
     expect(totals.aggregation_name).to eq('admin_logins')
@@ -34,6 +42,8 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationTotals do
     expect(totals.measures.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationMeasureTotal)
     expect(totals.measures.first.localized_measure_name).to eq('Logins')
     expect(totals.measures.first.value).to eq(30.0)
+    expect(totals.range_splits.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationRangeSplit)
+    expect(totals.range_splits.first.values.first.count).to eq(4)
   end
 
   it 'accepts nullable total values' do

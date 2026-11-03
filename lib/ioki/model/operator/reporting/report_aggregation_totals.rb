@@ -21,6 +21,11 @@ module Ioki
                     on:         :read,
                     type:       :array,
                     class_name: 'ReportAggregationMeasureTotal'
+
+          attribute :range_splits,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportAggregationRangeSplit'
         end
       end
     end

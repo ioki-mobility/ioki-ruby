@@ -37,6 +37,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :range_split_name,
+                    on:   :read,
+                    type: :string
+
           attribute :default_preset,
                     on:   :read,
                     type: :string
