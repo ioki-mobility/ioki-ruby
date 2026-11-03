@@ -6,6 +6,10 @@ module Ioki
       class FleetState < Base
         # A vehicle as the fleet state lists it, which differs from a Vehicle: it has the product_id, for instance
         class Vehicle < Base
+          attribute :type,
+                    on:   :read,
+                    type: :string
+
           attribute :id,
                     on:   :read,
                     type: :string

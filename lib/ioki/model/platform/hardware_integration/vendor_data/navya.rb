@@ -10,6 +10,10 @@ module Ioki
                       on:   :read,
                       type: :string
 
+            attribute :asset_type,
+                      on:   :create,
+                      type: :string
+
             attribute :vendor_id,
                       on:   :read,
                       type: :string
