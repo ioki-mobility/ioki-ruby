@@ -8,6 +8,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
       type:               'reporting/report_aggregation_measure',
       name:               'login_count',
       localized_name:     'Logins',
+      indexed:            true,
       function:           'count_rows',
       percentile:         nil,
       localized_function: 'Count'
@@ -17,6 +18,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
   it { is_expected.to define_attribute(:type).as(:string) }
   it { is_expected.to define_attribute(:name).as(:string) }
   it { is_expected.to define_attribute(:localized_name).as(:string) }
+  it { is_expected.to define_attribute(:indexed).as(:boolean) }
   it { is_expected.to define_attribute(:function).as(:string) }
   it { is_expected.to define_attribute(:percentile).as(:float) }
   it { is_expected.to define_attribute(:localized_function).as(:string) }
@@ -28,6 +30,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
   it 'casts measure metadata' do
     expect(measure.name).to eq('login_count')
     expect(measure.localized_name).to eq('Logins')
+    expect(measure.indexed).to be(true)
     expect(measure.function).to eq('count_rows')
     expect(measure.percentile).to be_nil
     expect(measure.localized_function).to eq('Count')

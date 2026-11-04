@@ -10,6 +10,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
       localized_name:          'Admin logins',
       visualization:           'bar',
       localized_visualization: 'Bar chart',
+      indexed:                 true,
       release_stage:           'stable',
       bucket:                  {
         type:                    'reporting/report_aggregation_bucket',
@@ -24,6 +25,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
           type:               'reporting/report_aggregation_measure',
           name:               'rides',
           localized_name:     'Rides',
+          indexed:            false,
           function:           'count_rows',
           percentile:         nil,
           localized_function: 'Count'
@@ -55,6 +57,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
   it { is_expected.to define_attribute(:localized_name).as(:string) }
   it { is_expected.to define_attribute(:visualization).as(:string) }
   it { is_expected.to define_attribute(:localized_visualization).as(:string) }
+  it { is_expected.to define_attribute(:indexed).as(:boolean) }
   it { is_expected.to define_attribute(:release_stage).as(:string) }
   it { is_expected.to define_attribute(:bucket).as(:object).with(class_name: 'ReportAggregationBucket') }
   it { is_expected.to define_attribute(:measures).as(:array).with(class_name: 'ReportAggregationMeasure') }
@@ -66,6 +69,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
     expect(report_aggregation.localized_name).to eq('Admin logins')
     expect(report_aggregation.visualization).to eq('bar')
     expect(report_aggregation.localized_visualization).to eq('Bar chart')
+    expect(report_aggregation.indexed).to be(true)
     expect(report_aggregation.release_stage).to eq('stable')
     expect(report_aggregation.bucket).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationBucket)
     expect(report_aggregation.bucket.localized_granularities).to eq(['Daily', 'Weekly'])
@@ -75,6 +79,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
     )
     expect(report_aggregation.measures.first.percentile).to be_nil
     expect(report_aggregation.measures.first.localized_name).to eq('Rides')
+    expect(report_aggregation.measures.first.indexed).to be(false)
     expect(report_aggregation.dimensions.first).to be_a(
       Ioki::Model::Operator::Reporting::ReportAggregationDimension
     )

@@ -29,6 +29,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :indexed,
+                    on:   :read,
+                    type: :boolean
+
           attribute :release_stage,
                     on:   :read,
                     type: :string

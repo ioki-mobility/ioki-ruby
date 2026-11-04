@@ -21,6 +21,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :indexed,
+                    on:   :read,
+                    type: :boolean
+
           attribute :function,
                     on:   :read,
                     type: :string
