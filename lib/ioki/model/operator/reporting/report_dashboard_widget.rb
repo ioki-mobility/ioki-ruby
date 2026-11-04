@@ -53,6 +53,10 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :highlighted,
+                    on:   :read,
+                    type: :boolean
+
           attribute :bucket,
                     on:         :read,
                     type:       :object,
