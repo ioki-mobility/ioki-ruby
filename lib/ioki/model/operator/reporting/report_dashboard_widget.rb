@@ -57,6 +57,10 @@ module Ioki
                     on:   :read,
                     type: :boolean
 
+          attribute :columns,
+                    on:   :read,
+                    type: :integer
+
           attribute :bucket,
                     on:         :read,
                     type:       :object,
