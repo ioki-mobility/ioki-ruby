@@ -470,11 +470,12 @@ module Ioki
         ],
         model_class: Ioki::Model::Operator::Reporting::ReportPartition
       ),
-      Endpoints::Index.new(
-        :reporting_aggregations,
+      Endpoints.crud_endpoints(
+        :reporting_aggregation,
         base_path:   [API_BASE_PATH, 'reporting', 'report', 'scopes', :scope, 'reports', :name],
-        path:        'aggregations',
-        model_class: Ioki::Model::Operator::Reporting::ReportAggregation
+        paths:       { index: 'aggregations', show: 'aggregations' },
+        model_class: Ioki::Model::Operator::Reporting::ReportAggregation,
+        only:        [:index, :show]
       ),
       Endpoints::Index.new(
         :reporting_dashboards,
