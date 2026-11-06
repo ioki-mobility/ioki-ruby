@@ -71,6 +71,10 @@ module Ioki
                   omit_if_nil_on: [:create],
                   type:           :string
 
+        attribute :product_id,
+                  on:   :read,
+                  type: :string
+
         attribute :phone_number,
                   on:   [:read, :create, :update],
                   type: :string
