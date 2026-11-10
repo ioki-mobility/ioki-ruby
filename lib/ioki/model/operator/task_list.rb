@@ -162,6 +162,11 @@ module Ioki
                   on:   :read,
                   type: :string
 
+        attribute :line_servings,
+                  on:         :read,
+                  type:       :array,
+                  class_name: 'LineServing'
+
         attribute :driver_name,
                   on:   :read,
                   type: :string
