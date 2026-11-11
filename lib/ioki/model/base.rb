@@ -32,6 +32,12 @@ module Ioki
             @_attributes[attribute]
           end
 
+          if definition[:type] == :boolean
+            define_method :"#{attribute}?" do
+              public_send(attribute)
+            end
+          end
+
           define_method :"#{attribute}=" do |value, show_deprecation_warnings: true|
             if show_deprecation_warnings && attribute_deprecated?(attribute)
               deprecation_warning deprecated_attribute_message(attribute)

@@ -113,6 +113,33 @@ RSpec.describe Ioki::Model::Base do
         model.foo = 'true'
         expect(model.foo).to be_truthy
       end
+
+      it 'provides a predicate getter returning the same value as the getter' do
+        model = example_class.new
+        expect(model.foo?).to be_nil
+        model.foo = 'true'
+        expect(model.foo?).to be(true)
+        model.foo = false
+        expect(model.foo?).to be(false)
+      end
+
+      it 'does not provide a predicate setter' do
+        expect(example_class.new).not_to respond_to(:'foo?=')
+      end
+    end
+
+    describe 'predicate getter for non-boolean attributes' do
+      let(:example_class) do
+        Class.new(Ioki::Model::Base) do
+          attribute :foo, type: :string, on: :read
+          attribute :bar, type: [:string, :boolean, :integer], on: :read
+        end
+      end
+
+      it 'is not defined' do
+        expect(example_class.new).not_to respond_to(:foo?)
+        expect(example_class.new).not_to respond_to(:bar?)
+      end
     end
 
     describe 'for an attribute of type :date_time' do
@@ -1059,6 +1086,7 @@ RSpec.describe Ioki::Model::Base do
       Class.new(Ioki::Model::Base) do
         deprecated_attribute :name, type: :string, on: [:read, :create]
         deprecated_attribute :identifier, type: :string, on: [:read, :create], replaced_by: :slug
+        deprecated_attribute :enabled, type: :boolean, on: [:read, :create]
         attribute :slug, type: :string, on: [:read, :create]
       end
     end
@@ -1068,6 +1096,7 @@ RSpec.describe Ioki::Model::Base do
         model = example_class.new(attributes)
 
         expect { model.name }.to output("The attribute `#name` is deprecated.\n").to_stderr
+        expect { model.enabled? }.to output("The attribute `#enabled` is deprecated.\n").to_stderr
         expect { model.name = 'new name' }.to output("The attribute `#name` is deprecated.\n").to_stderr
         expect { model.identifier }
           .to output("The attribute `#identifier` is deprecated. Please use `#slug` instead.\n").to_stderr
