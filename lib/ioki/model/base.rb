@@ -255,7 +255,7 @@ module Ioki
 
       def class_name_from_value_type(class_name, value)
         return class_name unless class_name.is_a?(Array)
-        return nil if value.nil?
+        return nil if value.nil? || value_type(value).nil?
 
         # The type is matched from its last part (split by `/`) up to the whole
         # type, so that e.g. `hardware_integration/vendor_data/we_ride` matches

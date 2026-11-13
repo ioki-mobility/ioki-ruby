@@ -981,4 +981,84 @@ RSpec.describe Ioki::PlatformApi do
         .to be_a(Ioki::Model::Platform::HardwareIntegration::Asset)
     end
   end
+
+  describe '#create_hardware_integration_state_change_request(provider_id, asset_id, state_change_request)' do
+    let(:state_change_request) do
+      Ioki::Model::Platform::HardwareIntegration::StateChangeRequest.new(requested_state: 'platform_api')
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/hardware_integration/assets/4711/state_change_request')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to eq(data: { requested_state: 'platform_api' })
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_hardware_integration_state_change_request('0815', '4711', state_change_request))
+        .to be_a(Ioki::Model::Platform::HardwareIntegration::Asset)
+    end
+  end
+
+  describe '#create_hardware_integration_event(provider_id, asset_id, event)' do
+    let(:event) do
+      Ioki::Model::Platform::HardwareIntegration::Event.new(
+        event_type: 'asset_update',
+        event_data: Ioki::Model::Platform::HardwareIntegration::EventData::AssetUpdate.new(
+          sds_state:                  'ready',
+          sds_telemetry_active:       true,
+          sds_door_control_available: false
+        )
+      )
+    end
+
+    it 'calls request on the client with expected params, with the event data type triebwerk accepts on create' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/providers/0815/hardware_integration/assets/4711/events')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to eq(
+          data: {
+            event_type: 'asset_update',
+            event_data: {
+              type:                       'event_data/asset_update',
+              sds_state:                  'ready',
+              sds_telemetry_active:       true,
+              sds_door_control_available: false
+            }
+          }
+        )
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_hardware_integration_event('0815', '4711', event))
+        .to be_a(Ioki::Model::Platform::HardwareIntegration::Event)
+    end
+  end
+
+  describe '#create_vehicle_position(vehicle_id, vehicle_position)' do
+    let(:vehicle_position) do
+      Ioki::Model::Platform::VehiclePosition.new(lat: 52.5, lng: 13.4, recorded_at: '2026-11-13T10:00:00Z')
+    end
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/vehicles/4711/positions')
+        expect(params[:method]).to eq(:post)
+        expect(params[:body]).to eq(data: { lat: 52.5, lng: 13.4, recorded_at: '2026-11-13T10:00:00+00:00' })
+        [nil, full_response]
+      end
+
+      platform_client.create_vehicle_position('4711', vehicle_position)
+    end
+
+    # triebwerk answers with `head :created`, whose content type follows the request's Accept header, which
+    # ioki-ruby sets to JSON
+    it 'returns nil for the empty 201 triebwerk answers with' do
+      client = Ioki::Client.new(Ioki::Configuration.new(api_base_url: 'https://app.io.ki/api/'), described_class)
+      stub_request(:post, 'https://app.io.ki/api/platform/vehicles/4711/positions')
+        .to_return(status: 201, body: '', headers: { 'Content-Type' => 'application/json; charset=utf-8' })
+
+      expect(client.create_vehicle_position('4711', vehicle_position)).to be_nil
+    end
+  end
 end
