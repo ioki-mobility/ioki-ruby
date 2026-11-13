@@ -26,6 +26,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
   it { is_expected.to define_attribute(:localized_format_type).as(:string) }
   it { is_expected.to define_attribute(:format_unit).as(:string) }
   it { is_expected.to define_attribute(:localized_format_unit).as(:string) }
+  it { is_expected.to define_attribute(:dimensions).as(:array).with(class_name: 'ReportAggregationSplit') }
 
   it 'casts measure metadata' do
     expect(measure.name).to eq('login_count')

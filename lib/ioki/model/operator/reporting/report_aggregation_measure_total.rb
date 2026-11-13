@@ -17,21 +17,18 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :dimension_name,
+          attribute :format_type,
                     on:   :read,
                     type: :string
 
-          attribute :localized_dimension_name,
+          attribute :format_unit,
                     on:   :read,
                     type: :string
 
-          attribute :dimension_value,
-                    on:   :read,
-                    type: :string
-
-          attribute :localized_dimension_value,
-                    on:   :read,
-                    type: :string
+          attribute :dimensions,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportAggregationDimension'
 
           attribute :value,
                     on:   :read,
