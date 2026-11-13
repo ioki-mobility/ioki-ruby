@@ -1947,10 +1947,10 @@ RSpec.describe Ioki::OperatorApi do
                 localized_name:     'Logins',
                 function:           'count_rows',
                 percentile:         nil,
-                localized_function: 'Count'
+                localized_function: 'Count',
+                dimensions:         []
               }
             ],
-            dimensions:              [],
             filters:                 []
           }
         ]
@@ -2031,14 +2031,13 @@ RSpec.describe Ioki::OperatorApi do
           bucket:                     'day',
           measures:                   [
             {
-              type:                      'reporting/report_aggregation_measure_series',
-              measure_name:              'login_count',
-              localized_measure_name:    'Logins',
-              dimension_name:            nil,
-              localized_dimension_name:  nil,
-              dimension_value:           nil,
-              localized_dimension_value: nil,
-              points:                    [10, 20]
+              type:                   'reporting/report_aggregation_measure_series',
+              measure_name:           'login_count',
+              localized_measure_name: 'Logins',
+              format_type:            'number',
+              format_unit:            nil,
+              dimensions:             [],
+              points:                 [10, 20]
             }
           ],
           partitions_considered:      2,
@@ -2097,14 +2096,13 @@ RSpec.describe Ioki::OperatorApi do
           localized_aggregation_name: 'Admin logins',
           measures:                   [
             {
-              type:                      'reporting/report_aggregation_measure_total',
-              measure_name:              'login_count',
-              localized_measure_name:    'Logins',
-              dimension_name:            nil,
-              localized_dimension_name:  nil,
-              dimension_value:           nil,
-              localized_dimension_value: nil,
-              value:                     30.0
+              type:                   'reporting/report_aggregation_measure_total',
+              measure_name:           'login_count',
+              localized_measure_name: 'Logins',
+              format_type:            'number',
+              format_unit:            nil,
+              dimensions:             [],
+              value:                  30.0
             }
           ]
         }

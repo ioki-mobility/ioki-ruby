@@ -47,11 +47,6 @@ module Ioki
                     type:       :array,
                     class_name: 'ReportAggregationMeasure'
 
-          attribute :dimensions,
-                    on:         :read,
-                    type:       :array,
-                    class_name: 'ReportAggregationDimension'
-
           attribute :filters,
                     on:         :read,
                     type:       :array,
