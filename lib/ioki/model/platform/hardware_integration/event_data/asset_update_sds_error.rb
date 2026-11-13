@@ -6,9 +6,11 @@ module Ioki
       module HardwareIntegration
         module EventData
           class AssetUpdateSdsError < Base
+            # The type triebwerk accepts on create; responses carry their own, hardware_integration/event_data/asset_update_sds_error
             attribute :type,
-                      on:   [:read, :create],
-                      type: :string
+                      on:      [:read, :create],
+                      type:    :string,
+                      default: 'event_data/asset_update_sds_error'
 
             attribute :code,
                       on:   [:read, :create],

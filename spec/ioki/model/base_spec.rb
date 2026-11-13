@@ -818,6 +818,10 @@ RSpec.describe Ioki::Model::Base do
           expect(model.type_cast_attribute_value(:attr, nil)).to be_nil
         end
 
+        it 'returns a hash when the value has no type' do
+          expect(model.type_cast_attribute_value(:attr, { 'name' => 'Kiosk' })).to eq({ 'name' => 'Kiosk' })
+        end
+
         it 'returns a hash when value type is not in class_name array' do
           result = model.type_cast_attribute_value(:attr, { 'type' => 'user' })
           expect(result).not_to be_a(Ioki::Model::Operator::User)
