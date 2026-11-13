@@ -310,6 +310,25 @@ module Ioki
         base_path:   [API_BASE_PATH, 'providers', :id, 'hardware_integration'],
         path:        'assets',
         model_class: Ioki::Model::Platform::HardwareIntegration::Asset
+      ),
+      Endpoints::Create.new(
+        :hardware_integration_state_change_request,
+        base_path:            [API_BASE_PATH, 'providers', :id, 'hardware_integration', 'assets', :id],
+        path:                 'state_change_request',
+        model_class:          Ioki::Model::Platform::HardwareIntegration::Asset,
+        outgoing_model_class: Ioki::Model::Platform::HardwareIntegration::StateChangeRequest
+      ),
+      Endpoints::Create.new(
+        :hardware_integration_event,
+        base_path:   [API_BASE_PATH, 'providers', :id, 'hardware_integration', 'assets', :id],
+        path:        'events',
+        model_class: Ioki::Model::Platform::HardwareIntegration::Event
+      ),
+      Endpoints::Create.new(
+        :vehicle_position,
+        base_path:   [API_BASE_PATH, 'vehicles', :id],
+        path:        'positions',
+        model_class: Ioki::Model::Platform::VehiclePosition
       )
     ].freeze
   end
