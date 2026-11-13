@@ -33,14 +33,6 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :measure_name,
-                    on:   :read,
-                    type: :string
-
-          attribute :range_split_name,
-                    on:   :read,
-                    type: :string
-
           attribute :default_preset,
                     on:   :read,
                     type: :string
@@ -66,15 +58,10 @@ module Ioki
                     type:       :object,
                     class_name: 'ReportAggregationBucket'
 
-          attribute :measures,
+          attribute :measure,
                     on:         :read,
-                    type:       :array,
+                    type:       :object,
                     class_name: 'ReportAggregationMeasure'
-
-          attribute :dimensions,
-                    on:         :read,
-                    type:       :array,
-                    class_name: 'ReportAggregationDimension'
 
           attribute :filters,
                     on:         :read,

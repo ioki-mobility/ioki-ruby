@@ -21,6 +21,11 @@ module Ioki
                     on:   :read,
                     type: :string
 
+          attribute :dimensions,
+                    on:         :read,
+                    type:       :array,
+                    class_name: 'ReportAggregationSplit'
+
           attribute :indexed,
                     on:   :read,
                     type: :boolean
