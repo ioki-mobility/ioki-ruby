@@ -33,6 +33,10 @@ module Ioki
                     on:   :read,
                     type: :boolean
 
+          attribute :spawn_line_stop_tasks,
+                    on:   :read,
+                    type: :boolean
+
           attribute :variant,
                     on:   :read,
                     type: :string
