@@ -1061,4 +1061,70 @@ RSpec.describe Ioki::PlatformApi do
       expect(client.create_vehicle_position('4711', vehicle_position)).to be_nil
     end
   end
+
+  describe '#line_servings(product_id, task_list_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/0815/line_servings')
+        result_with_index_data
+      end
+
+      expect(platform_client.line_servings('0815', '0815', options))
+        .to all(be_a(Ioki::Model::Platform::LineServing))
+    end
+  end
+
+  describe '#line_serving(product_id, task_list_id, line_serving_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/0815/line_servings/4711')
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.line_serving('0815', '0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::LineServing)
+    end
+  end
+
+  describe '#create_line_serving(product_id, task_list_id, line_serving)' do
+    let(:line_serving) { Ioki::Model::Platform::LineServing.new({ id: '4711' }) }
+
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/0815/line_servings')
+        expect(params[:method]).to eq(:post)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.create_line_serving('0815', '0815', line_serving, options))
+        .to be_a(Ioki::Model::Platform::LineServing)
+    end
+  end
+
+  describe '#delete_line_serving(product_id, task_list_id, line_serving_id)' do
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/0815/line_servings/4711')
+        expect(params[:method]).to eq(:delete)
+        result_with_data
+      end
+
+      expect(platform_client.delete_line_serving('0815', '0815', '4711', options))
+        .to be_a(Ioki::Model::Platform::LineServing)
+    end
+  end
+
+  describe '#update_line_serving(product_id, task_list_id, line_serving_id, line_serving)' do
+    let(:line_serving) { Ioki::Model::Platform::LineServing.new({ id: '4711' }) }
+    it 'calls request on the client with expected params' do
+      expect(platform_client).to receive(:request) do |params|
+        expect(params[:url].to_s).to eq('platform/products/0815/task_lists/0815/line_servings/4711')
+        expect(params[:method]).to eq(:patch)
+        [result_with_data, full_response]
+      end
+
+      expect(platform_client.update_line_serving('0815', '0815', '4711', line_serving, options))
+        .to be_a(Ioki::Model::Platform::LineServing)
+    end
+  end
 end
