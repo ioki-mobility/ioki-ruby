@@ -9,21 +9,33 @@ module Ioki
                     on:   :read,
                     type: :string
 
-          attribute :name,
+          attribute :dimension_type,
                     on:   :read,
                     type: :string
+
+          attribute :from,
+                    on:   :read,
+                    type: :float
 
           attribute :localized_name,
                     on:   :read,
                     type: :string
 
-          attribute :values,
+          attribute :localized_value,
                     on:   :read,
-                    type: :array
+                    type: :string
 
-          attribute :localized_values,
+          attribute :name,
                     on:   :read,
-                    type: :array
+                    type: :string
+
+          attribute :to,
+                    on:   :read,
+                    type: :float
+
+          attribute :value,
+                    on:   :read,
+                    type: :string
         end
       end
     end

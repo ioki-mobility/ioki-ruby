@@ -28,16 +28,18 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
           indexed:            false,
           function:           'count_rows',
           percentile:         nil,
-          localized_function: 'Count'
-        }
-      ],
-      dimensions:              [
-        {
-          type:             'reporting/report_aggregation_dimension',
-          name:             'booking_type',
-          localized_name:   'Booking type',
-          values:           ['prebooked', 'adhoc'],
-          localized_values: ['Prebooked', 'Ad hoc']
+          localized_function: 'Count',
+          dimensions:         [
+            {
+              type:             'reporting/report_aggregation_split',
+              dimension_type:   'enum',
+              name:             'booking_type',
+              localized_name:   'Booking type',
+              values:           ['prebooked', 'adhoc'],
+              localized_values: ['Prebooked', 'Ad hoc'],
+              thresholds:       nil
+            }
+          ]
         }
       ],
       filters:                 [
@@ -61,7 +63,6 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
   it { is_expected.to define_attribute(:release_stage).as(:string) }
   it { is_expected.to define_attribute(:bucket).as(:object).with(class_name: 'ReportAggregationBucket') }
   it { is_expected.to define_attribute(:measures).as(:array).with(class_name: 'ReportAggregationMeasure') }
-  it { is_expected.to define_attribute(:dimensions).as(:array).with(class_name: 'ReportAggregationDimension') }
   it { is_expected.to define_attribute(:filters).as(:array).with(class_name: 'ReportAggregationFilter') }
 
   it 'casts nested aggregation data into reporting models' do
@@ -80,10 +81,10 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
     expect(report_aggregation.measures.first.percentile).to be_nil
     expect(report_aggregation.measures.first.localized_name).to eq('Rides')
     expect(report_aggregation.measures.first.indexed).to be(false)
-    expect(report_aggregation.dimensions.first).to be_a(
-      Ioki::Model::Operator::Reporting::ReportAggregationDimension
+    expect(report_aggregation.measures.first.dimensions.first).to be_a(
+      Ioki::Model::Operator::Reporting::ReportAggregationSplit
     )
-    expect(report_aggregation.dimensions.first.localized_values).to eq(['Prebooked', 'Ad hoc'])
+    expect(report_aggregation.measures.first.dimensions.first.localized_values).to eq(['Prebooked', 'Ad hoc'])
     expect(report_aggregation.filters.first).to be_a(Ioki::Model::Operator::Reporting::ReportAggregationFilter)
     expect(report_aggregation.filters.first.localized_name).to eq('Operator')
   end
@@ -91,17 +92,8 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
   it 'accepts nullable bucket and known values metadata' do
     aggregation = described_class.new(
       attributes.merge(
-        bucket:     nil,
-        dimensions: [
-          {
-            type:             'reporting/report_aggregation_dimension',
-            name:             'booking_type',
-            localized_name:   'Booking type',
-            values:           nil,
-            localized_values: nil
-          }
-        ],
-        filters:    [
+        bucket:  nil,
+        filters: [
           {
             type:             'reporting/report_aggregation_filter',
             name:             'operator_id',
@@ -114,8 +106,6 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregation do
     )
 
     expect(aggregation.bucket).to be_nil
-    expect(aggregation.dimensions.first.values).to be_nil
-    expect(aggregation.dimensions.first.localized_values).to be_nil
     expect(aggregation.filters.first.values).to be_nil
     expect(aggregation.filters.first.localized_values).to be_nil
   end
