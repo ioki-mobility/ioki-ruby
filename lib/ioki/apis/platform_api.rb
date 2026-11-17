@@ -329,6 +329,11 @@ module Ioki
         base_path:   [API_BASE_PATH, 'vehicles', :id],
         path:        'positions',
         model_class: Ioki::Model::Platform::VehiclePosition
+      ),
+      Endpoints.crud_endpoints(
+        :line_serving,
+        base_path:   [API_BASE_PATH, 'products', :id, 'task_lists', :id],
+        model_class: Ioki::Model::Platform::LineServing
       )
     ].freeze
   end
