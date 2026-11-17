@@ -10,6 +10,7 @@ module Ioki
         attribute :updated_at, type: :date_time
         attribute :actual_ends_at, type: :date_time
         attribute :actual_starts_at, type: :date_time
+        attribute :current, type: :boolean
         attribute :deactivated, type: :boolean
         attribute :planned_ends_at, type: :date_time
         attribute :planned_starts_at, type: :date_time

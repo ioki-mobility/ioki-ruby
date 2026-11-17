@@ -8,6 +8,7 @@ RSpec.describe Ioki::Model::Webhooks::TaskList do
 
   it { is_expected.to define_attribute(:actual_ends_at).as(:date_time) }
   it { is_expected.to define_attribute(:actual_starts_at).as(:date_time) }
+  it { is_expected.to define_attribute(:current).as(:boolean) }
   it { is_expected.to define_attribute(:deactivated).as(:boolean) }
   it { is_expected.to define_attribute(:planned_ends_at).as(:date_time) }
   it { is_expected.to define_attribute(:planned_starts_at).as(:date_time) }
