@@ -33,6 +33,10 @@ module Ioki
           attribute :value,
                     on:   :read,
                     type: :float
+
+          attribute :availability,
+                    on:   :read,
+                    type: :string
         end
       end
     end
