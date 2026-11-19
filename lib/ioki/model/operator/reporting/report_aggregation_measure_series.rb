@@ -37,6 +37,10 @@ module Ioki
           attribute :points,
                     on:   :read,
                     type: :array
+
+          attribute :availability,
+                    on:   :read,
+                    type: :string
         end
       end
     end
