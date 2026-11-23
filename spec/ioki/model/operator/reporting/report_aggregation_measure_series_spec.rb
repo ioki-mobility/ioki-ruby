@@ -32,7 +32,8 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasureSeries 
           to:              5.0
         }
       ],
-      points:                 [10.0, nil]
+      points:                 [10.0, nil],
+      availability:           'partial'
     }
   end
 
@@ -47,6 +48,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasureSeries 
   end
 
   it { is_expected.to define_attribute(:points).as(:array) }
+  it { is_expected.to define_attribute(:availability).as(:string) }
 
   it 'casts measure series metadata' do
     expect(measure_series.measure_name).to eq('login_count')
@@ -60,5 +62,10 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasureSeries 
     expect(measure_series.dimensions.last.from).to eq(1.0)
     expect(measure_series.dimensions.last.to).to eq(5.0)
     expect(measure_series.points).to eq([10.0, nil])
+    expect(measure_series.availability).to eq('partial')
+  end
+
+  it 'accepts a response without availability' do
+    expect(described_class.new(attributes.except(:availability)).availability).to be_nil
   end
 end

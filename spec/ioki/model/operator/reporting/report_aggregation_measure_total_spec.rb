@@ -32,7 +32,8 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasureTotal d
           to:              5.0
         }
       ],
-      value:                  30.0
+      value:                  30.0,
+      availability:           'partial'
     }
   end
 
@@ -47,6 +48,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasureTotal d
   end
 
   it { is_expected.to define_attribute(:value).as(:float) }
+  it { is_expected.to define_attribute(:availability).as(:string) }
 
   it 'casts total measure metadata' do
     expect(measure_total.measure_name).to eq('login_count')
@@ -60,9 +62,14 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasureTotal d
     expect(measure_total.dimensions.last.from).to eq(1.0)
     expect(measure_total.dimensions.last.to).to eq(5.0)
     expect(measure_total.value).to eq(30.0)
+    expect(measure_total.availability).to eq('partial')
   end
 
   it 'accepts nullable values' do
     expect(described_class.new(attributes.merge(value: nil)).value).to be_nil
+  end
+
+  it 'accepts a response without availability' do
+    expect(described_class.new(attributes.except(:availability)).availability).to be_nil
   end
 end
