@@ -11,7 +11,8 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
       indexed:            true,
       function:           'count_rows',
       percentile:         nil,
-      localized_function: 'Count'
+      localized_function: 'Count',
+      visualization:      'line'
     }
   end
 
@@ -26,6 +27,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
   it { is_expected.to define_attribute(:localized_format_type).as(:string) }
   it { is_expected.to define_attribute(:format_unit).as(:string) }
   it { is_expected.to define_attribute(:localized_format_unit).as(:string) }
+  it { is_expected.to define_attribute(:visualization).as(:string) }
   it { is_expected.to define_attribute(:dimensions).as(:array).with(class_name: 'ReportAggregationSplit') }
 
   it 'casts measure metadata' do
@@ -35,6 +37,7 @@ RSpec.describe Ioki::Model::Operator::Reporting::ReportAggregationMeasure do
     expect(measure.function).to eq('count_rows')
     expect(measure.percentile).to be_nil
     expect(measure.localized_function).to eq('Count')
+    expect(measure.visualization).to eq('line')
   end
 
   it 'casts percentile values for percentile measures' do
