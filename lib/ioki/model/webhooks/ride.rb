@@ -4,6 +4,9 @@ module Ioki
   module Model
     module Webhooks
       class Ride < Base
+        attribute :options, type: :array, on: [:create, :read, :update]
+        attribute :passenger_note_to_driver, type: :string, on: [:create, :read, :update]
+        attribute :vehicle_approached_dropoff_at, type: :string, on: [:create, :read, :update]
         attribute :type, type: :string
         attribute :id, type: :string
         attribute :created_at, type: :date_time
@@ -16,7 +19,7 @@ module Ioki
         attribute :estimated_direct_distance, type: :integer
         attribute :estimated_direct_duration, type: :integer
         attribute :passenger_accepted_at, type: :date_time
-        attribute :payment_state, type: :string
+        deprecated_attribute :payment_state, type: :string
         attribute :picked_up_at, type: :date_time
         attribute :product_id, type: :string
         attribute :state, type: :string
