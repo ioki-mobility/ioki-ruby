@@ -57,6 +57,10 @@ module Ioki
           attribute :localized_format_unit,
                     on:   :read,
                     type: :string
+
+          attribute :visualization,
+                    on:   :read,
+                    type: :string
         end
       end
     end
